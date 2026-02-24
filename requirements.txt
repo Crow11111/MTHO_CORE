@@ -1,0 +1,23 @@
+# CORE SYSTEM
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+loguru>=0.7.0    # Besseres Logging als Standard-Lib
+
+# NETWORK & API
+requests>=2.31.0
+httpx>=0.25.0    # Für asynchrone API Calls (Scout/HA)
+paramiko>=3.4.0  # SSH Verbindung zum Scout
+fastapi>=0.109.0 # API Server für ATLAS_CORE
+uvicorn>=0.27.0  # Server Runner
+
+# FRONTEND
+streamlit>=1.31.0
+streamlit-autorefresh>=1.0.0
+
+# DATA HANDLING
+pandas>=2.2.0
+numpy>=1.26.0
+
+# AI INTERFACE
+ollama>=0.1.6    # Offizielle Python Lib
+langchain>=0.1.0 # Optional für spätere Ketten

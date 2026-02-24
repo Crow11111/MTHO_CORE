@@ -1,0 +1,44 @@
+# ATLAS_CORE .gitignore
+# Osmium Standard: Schütze Secrets, ignoriere Build-Artefakte
+
+# === SECRETS (NIEMALS committen) ===
+.env
+*.pem
+*.key
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# === Datenbank (lokal, wird nicht versioniert) ===
+data/argos_db/*.sqlite
+data/argos_db/*.sqlite-wal
+data/argos_db/*.sqlite-shm
+
+# === Logs ===
+logs/
+*.log
+
+# === Media (binär, zu groß für Git) ===
+media/
+data/gute_nacht.mp3
+
+# === IDE ===
+.vscode/
+.idea/
+
+# === Antigravity / Gemini Brain (lokale Session-Daten) ===
+.gemini/
+
+# === VS Code Extensions ===
+*.vsix
+
+# === OS ===
+Thumbs.db
+Desktop.ini
+.DS_Store
