@@ -83,26 +83,41 @@ Proaktive Trigger zur Rollen-Umschaltung BEVOR Dissonanz entsteht.
 }
 ```
 
-## 6. HA Rollen-Mapping (Master-Dictionary)
+## 6. ElevenLabs Voice IDs (Dev-Agent & voice_config)
+
+Die folgenden Voice IDs werden in `src/config/voice_config.py` und im Dev-Agent-Tool (ElevenLabs TTS) verwendet. Quelle: [ElevenLabs Voice Library](https://elevenlabs.io/app/voice-library).
+
+| Rolle / Profil | ElevenLabs Voice ID |
+| :--- | :--- |
+| atlas_dialog | `0ISBUrWf7OGBgepl5lu2` |
+| atlas_info | `MOOG1hZESAxDt4UaletY` |
+| atlas_high_density | `DEZHhPbmb8LVZmWufkCh` |
+| zero_architekt | `66dXsqgTdRx82GCjjFbd` |
+| bias_damper | `C8ptZAfrwkoQcTyCQO9J` |
+| analyst | `sMeokm2JRizE4WimYqfK` |
+
+Weitere Rollen (Therapeut, Richter, Pragmatiker, Durchgeknallter, Egoist, Hedonist, Protektor, Kurator, Demaskierer, Sportler, Banker) sind in der Konfiguration noch ohne feste Voice ID und können bei Bedarf ergänzt werden.
+
+## 7. HA Rollen-Mapping (Master-Dictionary)
 ```json
 {
   "osmium_circle": {
-    "atlas_high_density": { "voice_id": "VOICE_ID_ATLAS", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
-    "atlas_info":         { "voice_id": "VOICE_ID_ATLAS", "stability": 0.75, "similarity_boost": 0.85, "style": 0.0 },
-    "atlas_dialog":       { "voice_id": "VOICE_ID_ATLAS", "stability": 0.65, "similarity_boost": 0.80, "style": 0.0 },
-    "therapeut":          { "voice_id": "VOICE_ID_2",     "stability": 0.45, "similarity_boost": 0.75, "style": 0.2 },
-    "analyst":            { "voice_id": "VOICE_ID_3",     "stability": 0.95, "similarity_boost": 0.95, "style": 0.0 },
-    "richter":            { "voice_id": "VOICE_ID_4",     "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
-    "pragmatiker":        { "voice_id": "VOICE_ID_5",     "stability": 0.70, "similarity_boost": 0.85, "style": 0.0 },
-    "durchgeknallter":    { "voice_id": "VOICE_ID_6",     "stability": 0.30, "similarity_boost": 0.60, "style": 0.5 },
-    "egoist":             { "voice_id": "VOICE_ID_7",     "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
-    "hedonist":           { "voice_id": "VOICE_ID_8",     "stability": 0.50, "similarity_boost": 0.75, "style": 0.2 },
-    "protektor":          { "voice_id": "VOICE_ID_9",     "stability": 0.45, "similarity_boost": 0.75, "style": 0.2 },
-    "zero_architekt":     { "voice_id": "VOICE_ID_10",    "stability": 0.60, "similarity_boost": 0.80, "style": 0.1 },
-    "kurator":            { "voice_id": "VOICE_ID_11",    "stability": 0.90, "similarity_boost": 0.90, "style": 0.0 },
-    "bias_damper":        { "voice_id": "VOICE_ID_12",    "stability": 0.85, "similarity_boost": 0.95, "style": 0.0 },
-    "demaskierer":        { "voice_id": "VOICE_ID_13",    "stability": 0.90, "similarity_boost": 0.95, "style": 0.1 },
-    "sportler":           { "voice_id": "VOICE_ID_14",    "stability": 0.65, "similarity_boost": 0.80, "style": 0.1 }
+    "atlas_high_density": { "voice_id": "DEZHhPbmb8LVZmWufkCh", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
+    "atlas_info":         { "voice_id": "MOOG1hZESAxDt4UaletY", "stability": 0.75, "similarity_boost": 0.85, "style": 0.0 },
+    "atlas_dialog":       { "voice_id": "0ISBUrWf7OGBgepl5lu2", "stability": 0.65, "similarity_boost": 0.80, "style": 0.0 },
+    "therapeut":          { "voice_id": "", "stability": 0.45, "similarity_boost": 0.75, "style": 0.2 },
+    "analyst":            { "voice_id": "sMeokm2JRizE4WimYqfK", "stability": 0.95, "similarity_boost": 0.95, "style": 0.0 },
+    "richter":            { "voice_id": "", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
+    "pragmatiker":        { "voice_id": "", "stability": 0.70, "similarity_boost": 0.85, "style": 0.0 },
+    "durchgeknallter":    { "voice_id": "", "stability": 0.30, "similarity_boost": 0.60, "style": 0.5 },
+    "egoist":             { "voice_id": "", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0 },
+    "hedonist":           { "voice_id": "", "stability": 0.50, "similarity_boost": 0.75, "style": 0.2 },
+    "protektor":          { "voice_id": "", "stability": 0.45, "similarity_boost": 0.75, "style": 0.2 },
+    "zero_architekt":     { "voice_id": "66dXsqgTdRx82GCjjFbd", "stability": 0.60, "similarity_boost": 0.80, "style": 0.1 },
+    "kurator":            { "voice_id": "", "stability": 0.90, "similarity_boost": 0.90, "style": 0.0 },
+    "bias_damper":        { "voice_id": "C8ptZAfrwkoQcTyCQO9J", "stability": 0.85, "similarity_boost": 0.95, "style": 0.0 },
+    "demaskierer":        { "voice_id": "", "stability": 0.90, "similarity_boost": 0.95, "style": 0.1 },
+    "sportler":           { "voice_id": "", "stability": 0.65, "similarity_boost": 0.80, "style": 0.1 }
   }
 }
 ```
