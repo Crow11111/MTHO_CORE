@@ -168,7 +168,7 @@ def main() -> int:
     # --- 3.2 OpenClaw: Container (Sandbox in openclaw_net) ---
     if OPENCLAW_TOKEN:
         print("\n[3.2] OpenClaw-Gateway (Sandbox) ...")
-        run(ssh, "mkdir -p /var/lib/openclaw/workspace && chown -R 1000:1000 /var/lib/openclaw && chmod -R 755 /var/lib/openclaw")
+        run(ssh, "mkdir -p /var/lib/openclaw/workspace /var/lib/openclaw/workspace/rat_submissions && chown -R 1000:1000 /var/lib/openclaw && chmod -R 755 /var/lib/openclaw")
         # openclaw.json: Gateway, Agents, Channels (aus .env)
         openclaw_config = {
             "gateway": {
@@ -178,6 +178,7 @@ def main() -> int:
                 "auth": {"mode": "token", "token": OPENCLAW_TOKEN},
                 "remote": {"token": OPENCLAW_TOKEN},
                 "controlUi": {"allowedOrigins": ["*"], "dangerouslyAllowHostHeaderOriginFallback": True},
+                "http": {"endpoints": {"responses": {"enabled": True}}},
             },
             "agents": {"defaults": {"workspace": "~/.openclaw/workspace"}},
         }

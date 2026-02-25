@@ -99,7 +99,7 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 | Einstieg            | Ziel                         | Konfiguration / Code                    |
 |---------------------|------------------------------|-----------------------------------------|
 | HA WhatsApp-Webhook | ATLAS (Lights, TTS, LLM)     | `whatsapp_webhook.py`, HA rest_command  |
-| OC (OpenClaw, Hostinger) | Claw-Bot / Agent (z.B. Pi) | OC Gateway, allowFrom, Docs |
+| OC (OpenClaw, Hostinger) | Claw-Bot / Agent (z.B. Pi) | OC Gateway, allowFrom, Docs. **Direkter Kanal:** [KANAL_ATLAS_OC.md](KANAL_ATLAS_OC.md) (ATLAS→OC per API, OC→ATLAS per rat_submissions). |
 
 ### Wie sende ich Anfragen und bekomme Antwort? (WhatsApp)
 
