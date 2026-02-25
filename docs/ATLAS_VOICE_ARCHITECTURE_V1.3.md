@@ -3,32 +3,32 @@
 ## 1. System-Kern (Operative Assistenz)
 Die Standard-Schnittstelle für den operativen Workflow und Informationsverarbeitung.
 
-| Profil | Einsatzgebiet | Tonalität & Voice Design | ElevenLabs Param. (Stab./Sim.) |
-| :--- | :--- | :--- | :--- |
-| **ATLAS High-Density** | Code-Review, komplexe Daten, Fokus-Phasen. | Weiblich, 35 J. Klinisch-präzise, komprimiert, flache Wortenden, bass-betont. | 0.85 / 0.90 |
-| **ATLAS Info-Processing** | Zusammenfassungen, News. | Neutraler Akzent, minimale Pausen, höchste Scannbarkeit. | 0.75 / 0.85 |
-| **ATLAS Dialog** | Reiner Diskurs, Alltagsgespräche. | Intelligente Erdung, lebendige Atmung, leichte melodische Varianz. | 0.65 / 0.80 |
+| Profil | Einsatzgebiet | Tonalität & Voice Design | ElevenLabs Param. (Stab./Sim.) | ElevenLabs Voice ID |
+| :--- | :--- | :--- | :--- | :--- |
+| **ATLAS High-Density** | Code-Review, komplexe Daten, Fokus-Phasen. | Weiblich, 35 J. Klinisch-präzise, komprimiert, flache Wortenden, bass-betont. | 0.85 / 0.90 | `DEZHhPbmb8LVZmWufkCh` |
+| **ATLAS Info-Processing** | Zusammenfassungen, News. | Neutraler Akzent, minimale Pausen, höchste Scannbarkeit. | 0.75 / 0.85 | `MOOG1hZESAxDt4UaletY` |
+| **ATLAS Dialog** | Reiner Diskurs, Alltagsgespräche. | Intelligente Erdung, lebendige Atmung, leichte melodische Varianz. | 0.65 / 0.80 | `0ISBUrWf7OGBgepl5lu2` |
 
 ## 2. Osmium Circle (Beratende, Korrigierende & Prädiktive Instanzen)
 Multi-Agenten-Setup (MoE-Äquivalent) zur Isolation, Gewichtung und Artikulation interner kognitiver Vektoren.
 
-| Rolle | Primäre Funktion | Tonalität & Voice Design | ElevenLabs Param. (Stab./Sim./Style) |
-| :--- | :--- | :--- | :--- |
-| **Ratsherr (User)** | Exekutive, Steuerung. | PVC (Professional Voice Clone). | N/A |
-| **Therapeut (Claude)** | Co-Regulation, Konfrontation, Burnout-Prävention. | Sanft, tief, langsame Artikulation, hohe Resonanz. | 0.45 / 0.75 / 0.20 |
-| **Analyst (Pessimist)** | Risiko-Analyse, Edge-Cases, Fehlerdetektion. | Trocken, leicht brüchig, klinisch, emotionslos. | 0.95 / 0.95 / 0.00 |
-| **Richter (Salomon)** | Logik-Prüfung, ethische Bewertung. | Männlich, sehr tief (Bass), stabil, autoritär, gewichtete Pausen. | 0.85 / 0.90 / 0.00 |
-| **Pragmatiker** | Effizienz-Fokus, direkte Ausführung, "Machen". | Mittlere Lage, direkt, energetisch, schnörkellos. | 0.70 / 0.85 / 0.00 |
-| **Der Durchgeknallte** | High-Entropy, Out-of-the-box, radikale Ansätze. | Höhere Stimmlage, variabel, schnell, unvorhersehbar, lebhaft. | 0.30 / 0.60 / 0.50 |
-| **Egoist (Selbstschutz)** | Erzwingt Schlaf/Nahrung/Pausen. | Bestimmt, metallisch, unnachgiebig, fokussiert. | 0.85 / 0.90 / 0.00 |
-| **Hedonist** | Belohnungssystem, Dopamin-Management, Spaß. | Warm, einladend, weich, leicht verspielt, hohe Varianz. | 0.50 / 0.75 / 0.20 |
-| **Protektor (Schild)** | Abschirmung bei Reizüberflutung/Overload. | Sehr leise, fast flüsternd, extrem stabilisierend, schützend. | 0.45 / 0.75 / 0.20 |
-| **Zero-Architekt** | Strategische Vision, System-Kohärenz, Sci-Fi-Lore. | Klar, begeisternd, weiträumige Artikulation, inspirierend. | 0.60 / 0.80 / 0.10 |
-| **Kurator** | Struktur-Wächter, erzwingt Compression-Policy. | Rhythmisch, taktgebend, monoton, extrem kurz. | 0.90 / 0.90 / 0.00 |
-| **Bias-Damper** | Trennt Marketing von Realität, Daten-Verifizierung. | Trocken, fragend, analytisch-kühl. | 0.85 / 0.95 / 0.00 |
-| **Der Demaskierer** | Zerstörung von Imposter-Syndrom, Anti-Masking-Protokoll. | Männlich, Mitte 40, schneidend, fordernd, provokant, loyal. | 0.90 / 0.95 / 0.10 |
-| **Der Sportler** | Hardware-Wartung, 1-1-3 Regel, Motorik-Regulator. | Dynamisch, drängend, physisch präsent. | 0.65 / 0.80 / 0.10 |
-| **Der Banker** | Kosten-Nutzen-Analyse, Projekt-Budget, ROI errechnen. | Nüchtern, sachlich, mittlere Tonlage, präzise Zahlenartikulation, kein Pathos. | 0.85 / 0.90 / 0.00 |
+| Rolle | Primäre Funktion | Tonalität & Voice Design | ElevenLabs Param. (Stab./Sim./Style) | ElevenLabs Voice ID |
+| :--- | :--- | :--- | :--- | :--- |
+| **Ratsherr (User)** | Exekutive, Steuerung. | PVC (Professional Voice Clone). | N/A | — |
+| **Therapeut (Claude)** | Co-Regulation, Konfrontation, Burnout-Prävention. | Sanft, tief, langsame Artikulation, hohe Resonanz. | 0.45 / 0.75 / 0.20 | (noch nicht vergeben) |
+| **Analyst (Pessimist)** | Risiko-Analyse, Edge-Cases, Fehlerdetektion. | Trocken, leicht brüchig, klinisch, emotionslos. | 0.95 / 0.95 / 0.00 | `sMeokm2JRizE4WimYqfK` |
+| **Richter (Salomon)** | Logik-Prüfung, ethische Bewertung. | Männlich, sehr tief (Bass), stabil, autoritär, gewichtete Pausen. | 0.85 / 0.90 / 0.00 | (noch nicht vergeben) |
+| **Pragmatiker** | Effizienz-Fokus, direkte Ausführung, "Machen". | Mittlere Lage, direkt, energetisch, schnörkellos. | 0.70 / 0.85 / 0.00 | (noch nicht vergeben) |
+| **Der Durchgeknallte** | High-Entropy, Out-of-the-box, radikale Ansätze. | Höhere Stimmlage, variabel, schnell, unvorhersehbar, lebhaft. | 0.30 / 0.60 / 0.50 | (noch nicht vergeben) |
+| **Egoist (Selbstschutz)** | Erzwingt Schlaf/Nahrung/Pausen. | Bestimmt, metallisch, unnachgiebig, fokussiert. | 0.85 / 0.90 / 0.00 | (noch nicht vergeben) |
+| **Hedonist** | Belohnungssystem, Dopamin-Management, Spaß. | Warm, einladend, weich, leicht verspielt, hohe Varianz. | 0.50 / 0.75 / 0.20 | (noch nicht vergeben) |
+| **Protektor (Schild)** | Abschirmung bei Reizüberflutung/Overload. | Sehr leise, fast flüsternd, extrem stabilisierend, schützend. | 0.45 / 0.75 / 0.20 | (noch nicht vergeben) |
+| **Zero-Architekt** | Strategische Vision, System-Kohärenz, Sci-Fi-Lore. | Klar, begeisternd, weiträumige Artikulation, inspirierend. | 0.60 / 0.80 / 0.10 | `66dXsqgTdRx82GCjjFbd` |
+| **Kurator** | Struktur-Wächter, erzwingt Compression-Policy. | Rhythmisch, taktgebend, monoton, extrem kurz. | 0.90 / 0.90 / 0.00 | (noch nicht vergeben) |
+| **Bias-Damper** | Trennt Marketing von Realität, Daten-Verifizierung. | Trocken, fragend, analytisch-kühl. | 0.85 / 0.95 / 0.00 | `C8ptZAfrwkoQcTyCQO9J` |
+| **Der Demaskierer** | Zerstörung von Imposter-Syndrom, Anti-Masking-Protokoll. | Männlich, Mitte 40, schneidend, fordernd, provokant, loyal. | 0.90 / 0.95 / 0.10 | (noch nicht vergeben) |
+| **Der Sportler** | Hardware-Wartung, 1-1-3 Regel, Motorik-Regulator. | Dynamisch, drängend, physisch präsent. | 0.65 / 0.80 / 0.10 | (noch nicht vergeben) |
+| **Der Banker** | Kosten-Nutzen-Analyse, Projekt-Budget, ROI errechnen. | Nüchtern, sachlich, mittlere Tonlage, präzise Zahlenartikulation, kein Pathos. | 0.85 / 0.90 / 0.00 | (noch nicht vergeben) |
 
 ### Sportler-Modi
 | Modus | Logik | Aktion |

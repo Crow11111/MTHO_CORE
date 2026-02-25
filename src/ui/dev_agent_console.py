@@ -1,6 +1,6 @@
 import streamlit as st
 
-from src.ai.dev_agent_claude46 import call_claude_46
+from src.ai.dev_agent_claude46 import call_dev_agent, DEV_AGENT_MODELS
 from src.voice.elevenlabs_tts import speak_text
 from src.config.voice_config import OSMIUM_VOICE_CONFIG, EMOTIONAL_STATE_PREFIXES
 
@@ -36,15 +36,22 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("ATLAS_DEV_AGENT // CLAUDE 4.6")
+st.title("ATLAS_DEV_AGENT")
 
 # --- Steuerleiste ---
-cols = st.columns(3)
+cols = st.columns(4)
 with cols[0]:
-    speak_enabled = st.checkbox("Sprache (ElevenLabs) aktiv", value=False)
+    model_choice = st.selectbox(
+        "Modell",
+        options=[m[0] for m in DEV_AGENT_MODELS],
+        format_func=lambda id: next((m[1] for m in DEV_AGENT_MODELS if m[0] == id), id),
+        index=0,
+    )
 with cols[1]:
-    role_name = st.selectbox("Rolle", sorted(OSMIUM_VOICE_CONFIG.keys()), index=2)
+    speak_enabled = st.checkbox("Sprache (ElevenLabs) aktiv", value=False)
 with cols[2]:
+    role_name = st.selectbox("Rolle", sorted(OSMIUM_VOICE_CONFIG.keys()), index=2)
+with cols[3]:
     state_prefix = st.selectbox(
         "STATE",
         options=[""] + EMOTIONAL_STATE_PREFIXES,
@@ -53,7 +60,7 @@ with cols[2]:
     )
 
 prompt = st.text_area(
-    "Aufgabe / Prompt an Claude 4.6",
+    "Aufgabe / Prompt an Dev-Agent",
     height=160,
     placeholder="Beschreibe hier, was der Dev-Agent tun soll (z.B. Refactor, Analyse, Plan)...",
 )
@@ -62,8 +69,8 @@ if st.button("▶ AUSFÜHREN", type="primary"):
     if not prompt.strip():
         st.warning("Bitte zuerst eine Aufgabe eingeben.")
     else:
-        with st.spinner("Claude 4.6 denkt..."):
-            answer = call_claude_46(prompt)
+        with st.spinner(f"Dev-Agent ({model_choice})..."):
+            answer = call_dev_agent(prompt, model=model_choice)
 
         st.subheader("Antwort (Text)")
         st.write(answer)
