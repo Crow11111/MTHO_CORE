@@ -6,6 +6,20 @@ Konkrete Tasks aus Projektplan und Doku. Status: offen / in Arbeit / erledigt.
 
 ---
 
+## Task: OC (OpenClaw) in WhatsApp – getrennte Kanäle & letzte Instanz
+
+**OC = OpenClaw** (Kurzbezeichnung im Projekt).
+
+- [ ] **In Implementierung und Schnittstellen/Architektur aufnehmen:** OC ist im WhatsApp-Kanal aktiv (eigene Session auf dem VPS). Wir werden **später getrennte Kanäle** brauchen: Wenn OC Zugriff auf einen Chat hat, in dem alle verknüpft sind und in dem auch Steuerbefehle ankommen, kann OC damit Dinge außerhalb seiner Umgebung anstoßen, die nicht in seinen Zuständigkeitsbereich gehören.
+- [ ] **Jetzt:** Beschränkungen für OC können **bewusst niedriger** sein, um das Gesamtsystem einfacher hochzufahren. **Später:** Diese Lücken wieder schließen (getrennte Kanäle, klare Grenzen).
+- [ ] **Generell:** Potenzielle Einfallstore (nicht nur OC, sondern alle Gateways/Messenger-Einstiege) **regelmäßig hinterfragen**; sicherstellen, dass **lokales ATLAS** immer die **letzte Entscheidungsgewalt** hat.
+
+**Referenz:** [DEV_AGENT_UND_SCHNITTSTELLEN.md](DEV_AGENT_UND_SCHNITTSTELLEN.md) (Netzarchitektur Messenger & OC), [WHATSAPP_OPENCLAW_VS_HA.md](WHATSAPP_OPENCLAW_VS_HA.md).
+
+**Status:** in Planung aufgenommen.
+
+---
+
 ## Task: Offene Punkte klären (Priorität)
 
 **Quelle:** [OFFENE_PUNKTE_AUDIT.md](OFFENE_PUNKTE_AUDIT.md)

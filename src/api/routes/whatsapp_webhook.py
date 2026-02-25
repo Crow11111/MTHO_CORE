@@ -48,15 +48,16 @@ async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
         seconds = audio_msg.get("seconds", 0) if isinstance(audio_msg, dict) else 0
         logger.success(f"🎤 Sprachnachricht von {sender} ({seconds}s)!")
 
-        # Sofort Bestätigung — Pipeline läuft im Hintergrund
+        # Sofort Bestätigung — Pipeline läuft im Hintergrund ([Scout] = leichte Systemantwort)
         ha_client.send_whatsapp(
             to_number=sender,
-            text=f"🎤 Sprachmemo ({seconds}s) empfangen. Analysiere..."
+            text=f"[Scout] 🎤 Sprachmemo ({seconds}s) empfangen. Analysiere..."
         )
 
         async def run_audio():
             result = await process_whatsapp_audio(audio_msg, sender)
-            ha_client.send_whatsapp(to_number=sender, text=result)
+            # [ATLAS] = Antwort vom vollen Modell (Dreadnought)
+            ha_client.send_whatsapp(to_number=sender, text=f"[ATLAS] {result}")
 
         background_tasks.add_task(run_audio)
         return {"status": "audio_processing", "sender": sender, "seconds": seconds}
@@ -76,15 +77,18 @@ async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
         triage = atlas_llm.run_triage(text)
         
         if triage.intent == "command":
+            # Steuerbefehl (HA) → [Scout]: kleines Modell / direkte Bestätigung
             domain = triage.target_entity.split(".")[0] if "." in triage.target_entity else "homeassistant"
             service = triage.action or "turn_on"
             success = ha_client.call_service(domain=domain, service=service, entity_id=triage.target_entity)
-            reply = f"✅ {service} → {triage.target_entity}" if success else f"❌ Fehler: {service} → {triage.target_entity}"
+            reply = f"[Scout] ✅ {service} → {triage.target_entity}" if success else f"[Scout] ❌ Fehler: {service} → {triage.target_entity}"
         elif triage.intent in ["deep_reasoning", "chat"]:
+            # Schwere KI (Dreadnought) → [ATLAS]
             sys_prompt = "Du bist ATLAS, ein intelligenter Assistent. Antworte präzise und knapp auf WhatsApp."
             reply = atlas_llm.invoke_heavy_reasoning(sys_prompt, text)
+            reply = f"[ATLAS] {reply}" if reply else "[ATLAS] (keine Antwort)"
         else:
-            reply = f"Nicht verstanden: '{text}'"
+            reply = f"[Scout] Nicht verstanden: '{text}'"
         
         ha_client.send_whatsapp(to_number=sender, text=reply)
         return {"status": "text_handled", "sender": sender, "intent": triage.intent}

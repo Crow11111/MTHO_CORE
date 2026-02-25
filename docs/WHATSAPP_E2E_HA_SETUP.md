@@ -66,6 +66,17 @@ Das Skript ruft den HA-Service **rest_command.atlas_whatsapp_webhook** mit einem
 
 ---
 
-## 5. Abgrenzung zu OpenClaw
+## 5. Präfix [ATLAS] und [Scout] in Nachrichten
 
-OpenClaw hat einen **eigenen** WhatsApp-Kanal (Gateway mit Baileys auf dem VPS). Das ist ein **zweiter** Weg, unabhängig von HA. Der **HA-E2E** betrifft nur den Pfad über deinen Account + Addon + ATLAS. Siehe [WHATSAPP_OPENCLAW_VS_HA.md](WHATSAPP_OPENCLAW_VS_HA.md).
+Jede **von ATLAS/Scout ausgelöste** WhatsApp-Antwort beginnt mit einem Präfix, damit erkennbar ist, woher die Nachricht kommt:
+
+- **[ATLAS]** – Nachricht vom **Dreadnought** (volles Modell): tiefere Reasoning-Antworten, Chat, Sprachanalyse-Ergebnis.
+- **[Scout]** – Nachricht vom **kleinen Modell / direkter Steuerung**: z. B. Bestätigung von HA-Steuerbefehlen („Licht an“, „Szene XY“), „Nicht verstanden“, oder kurze Systembestätigungen („Sprachmemo empfangen …“).
+
+Implementierung: `src/api/routes/whatsapp_webhook.py` setzt den Präfix je nach Intent (command → [Scout], deep_reasoning/chat + Audio-Ergebnis → [ATLAS]).
+
+---
+
+## 6. Abgrenzung zu OpenClaw (OC)
+
+OC (OpenClaw) hat einen **eigenen** WhatsApp-Kanal (Gateway mit Baileys auf dem VPS). Das ist ein **zweiter** Weg, unabhängig von HA. Der **HA-E2E** betrifft nur den Pfad über deinen Account + Addon + ATLAS. Siehe [WHATSAPP_OPENCLAW_VS_HA.md](WHATSAPP_OPENCLAW_VS_HA.md).

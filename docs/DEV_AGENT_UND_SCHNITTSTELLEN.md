@@ -1,5 +1,7 @@
 # Dev-Agent & Schnittstellenbeschreibung
 
+**Dokumentationsübersicht:** [DOCS_INDEX.md](DOCS_INDEX.md) – konsolidierte Übersicht aller Docs inkl. Stammdokumente für OC, Architektur, Umsetzung.
+
 ## Dev-Agent (ATLAS_DEV_AGENT)
 
 ### Modell
@@ -70,18 +72,23 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 
 ---
 
-## Netzarchitektur: Messenger & OpenClaw
+## Netzarchitektur: Messenger & OC (OpenClaw)
+
+**OC = OpenClaw** (Kurzbezeichnung im Projekt).
+
+**Getrennte Kanäle & letzte Instanz:** OC ist in WhatsApp aktiv (eigene Session auf dem VPS). Später sind **getrennte Kanäle** nötig, damit OC keinen Zugriff auf Chats hat, in denen Steuerbefehle laufen und die außerhalb von OCs Sandbox wirken könnten. Vorübergehend können die Beschränkungen für OC niedriger sein (einfacheres Hochfahren); die Lücken müssen später wieder geschlossen werden. **Lokales ATLAS** behält stets die **letzte Entscheidungsgewalt**; potenzielle Einfallstore (OC und andere Gateways) regelmäßig prüfen. Siehe UMSETZUNGSPLANUNG (Task „OC in WhatsApp – getrennte Kanäle & letzte Instanz“).
 
 ### Aktuell: ATLAS-Core-WhatsApp (Home Assistant)
 
 - **Pfad:** WhatsApp → Home Assistant (WhatsApp-Addon) → `rest_command.atlas_whatsapp_webhook` → ATLAS_CORE FastAPI (`/webhook/whatsapp`) → LLM/TTS/HA-Services. **E2E-Setup und Test:** [WHATSAPP_E2E_HA_SETUP.md](WHATSAPP_E2E_HA_SETUP.md); Skript `run_whatsapp_e2e_ha.py` löst die Kette über den HA-Service aus. **OpenClaw vs. HA:** [WHATSAPP_OPENCLAW_VS_HA.md](WHATSAPP_OPENCLAW_VS_HA.md).
 - **Code:** `src/api/routes/whatsapp_webhook.py`, `src/network/ha_client.py` (HASS_URL, HASS_TOKEN).
+- **Präfix in jeder ausgehenden Nachricht:** **[ATLAS]** = Antwort vom Dreadnought (volles Modell, Reasoning, Chat, Sprachanalyse); **[Scout]** = Antwort vom kleinen Modell / direkte Steuerung (z. B. HA-Befehlsbestätigung „Licht an“, „Nicht verstanden“, Systembestätigungen). Details: [WHATSAPP_E2E_HA_SETUP.md](WHATSAPP_E2E_HA_SETUP.md) Abschnitt 5.
 
 **Addon (gajosu/whatsapp-ha-addon):** Das Addon verbindet sich per **WhatsApp Web** mit **deinem eigenen** WhatsApp-Account. Es gibt **keine separate „Bot-Nummer“** – der Empfang läuft über deinen Account; alle eingehenden Nachrichten (in deine Chats) können als Event an HA gemeldet werden. Der Event-Payload enthält z.B. `key.remoteJid` (Chat-ID, Format z.B. `491788360264@s.whatsapp.net`) und die Nachricht. ATLAS antwortet mit `send_whatsapp(to_number=sender)` – also an genau diesen `remoteJid` (den Absender der eingehenden Nachricht). Beim **Versand** im Addon kannst du Sender/Empfänger manuell anpassen (Nummer im Format `…@s.whatsapp.net`). **Wo du „die Nummer“ herkriegst:** Du holst keine extra Nummer – dein Account ist der Addon-Account. Die „Nummer“, an die ATLAS zurückschreibt, ist der **Absender** aus dem Event (`remoteJid`/`sender`), also der Chat, aus dem die Nachricht kam. Um ATLAS zu nutzen: Eine Nachricht muss in deinem Account **eingehen** (z.B. von einem Kontakt oder von dir aus einem anderen Gerät); die Automation leitet sie an ATLAS weiter, die Antwort kommt in denselben Chat.
 
-### OpenClaw (Hostinger)
+### OC (OpenClaw, Hostinger)
 
-- **Rolle:** Selbst gehostetes **Gateway** zwischen Messenger (WhatsApp, Telegram, Discord, iMessage) und AI-Agents. Läuft auf Hostinger; Referenz: [OpenClaw Docs](https://docs.openclaw.ai/).
+- **Rolle:** Selbst gehostetes **Gateway** (OC = OpenClaw) zwischen Messenger (WhatsApp, Telegram, Discord, iMessage) und AI-Agents. Läuft auf Hostinger; Referenz: [OpenClaw Docs](https://docs.openclaw.ai/).
 - **Konfiguration:** z.B. `~/.openclaw/openclaw.json`; `channels.whatsapp.allowFrom` mit erlaubten Nummern (z.B. `["+491788360264"]`).
 - **Bezug zu ATLAS_CORE:** OpenClaw ist ein **zweiter, optionaler Einstieg** für Chat-to-Agent (z.B. mit Anthropic). Kein Ersatz für den ATLAS-Webhook; entweder zwei getrennte Wege (zwei Nummern/Instanzen) oder spätere Brücke (OpenClaw-API ↔ ATLAS).
 - **In .env:** `VPS_HOST`, `VPS_USER`, `VPS_PASSWORD`, **`OPENCLAW_GATEWAY_TOKEN`** (Gateway-Token von Hostinger). ATLAS_CORE liest den Token in `src/network/openclaw_client.py`; konkrete API-Anbindung (z.B. Nachrichten an Gateway senden/empfangen) nutzt diesen Token bei Bedarf.
@@ -92,16 +99,16 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 | Einstieg            | Ziel                         | Konfiguration / Code                    |
 |---------------------|------------------------------|-----------------------------------------|
 | HA WhatsApp-Webhook | ATLAS (Lights, TTS, LLM)     | `whatsapp_webhook.py`, HA rest_command  |
-| OpenClaw (Hostinger)| Claw-Bot / Agent (z.B. Pi)   | OpenClaw Gateway, allowFrom, Docs       |
+| OC (OpenClaw, Hostinger) | Claw-Bot / Agent (z.B. Pi) | OC Gateway, allowFrom, Docs |
 
 ### Wie sende ich Anfragen und bekomme Antwort? (WhatsApp)
 
 - **ATLAS (über Home Assistant):**  
   Das Addon nutzt **deinen** WhatsApp-Account (WhatsApp Web). Jede **eingehende** Nachricht in deinem Account kann (per Automation) an ATLAS weitergeleitet werden. Du schickst also z.B. von deinem Handy eine Nachricht **an einen Chat, der auf deinem Account ankommt** (z.B. von einem zweiten Gerät an dich selbst, oder ein Kontakt schreibt dir). HA feuert das Event, ruft `rest_command.atlas_whatsapp_webhook` mit dem Payload (inkl. `remoteJid` = Absender) auf, ATLAS antwortet mit **`send_whatsapp(to_number=sender, text=reply)`** – die Antwort erscheint **im selben Chat** beim Absender. Es gibt keine extra „HA-WhatsApp-Nummer“ zum Anschreiben; die „Nummer“ für die Antwort ist immer der **Absender** aus dem Event.
-- **OpenClaw (Hostinger):**  
-  OpenClaw hat eine **eigene** WhatsApp-Verbindung (andere Instanz). Du schickst an die **mit OpenClaw verknüpfte Nummer**; der Agent antwortet im gleichen Chat. `allowFrom` (WHATSAPP_TARGET_ID) in ATLAS legt fest, von welcher Nummer Nachrichten erlaubt sind.
+- **OC (OpenClaw, Hostinger):**  
+  OC hat eine **eigene** WhatsApp-Verbindung (andere Instanz). Du schickst an die **mit OC verknüpfte Nummer**; der Agent antwortet im gleichen Chat. `allowFrom` (WHATSAPP_TARGET_ID) legt fest, von welcher Nummer Nachrichten erlaubt sind. Später: getrennte Kanäle, damit OC keinen Zugriff auf Steuerbefehle-Chats hat; lokales ATLAS = letzte Instanz.
 
-**Kurz:** ATLAS antwortet in den Chat, aus dem die Nachricht kam (Absender = `remoteJid`). OpenClaw = eigener Kanal mit eigener Nummer.
+**Kurz:** ATLAS antwortet in den Chat, aus dem die Nachricht kam (Absender = `remoteJid`). OC = eigener Kanal mit eigener Nummer.
 
 ### Latenz & Platzierung: WhatsApp-Basis auf Scout vs. Hostinger
 
@@ -113,7 +120,7 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 ### VPS-Setup (automatisiert)
 
 - **Skript:** `src/scripts/setup_vps_hostinger.py` – richtet per SSH auf dem Hostinger-VPS ein: Docker, Firewall (22, 18789, 8000, 80/443), Netzwerk `openclaw_net`, ChromaDB-Container (`chroma-atlas`, Port 8000), Backup-Verzeichnis `/var/backups/atlas`, OpenClaw-Gateway in Sandbox (Config + SOUL.md + Channels).
-- **OpenClaw-Config:** Token aus `OPENCLAW_GATEWAY_TOKEN`; Channels aus .env: WhatsApp `allowFrom` aus `WHATSAPP_TARGET_ID`, optional `TELEGRAM_BOT_TOKEN`, `DISCORD_BOT_TOKEN`. ATLAS/ARGOS-System-Prompt-Framing wird als `SOUL.md` ins Workspace geschrieben.
+- **OC-Config:** Token aus `OPENCLAW_GATEWAY_TOKEN`; Channels aus .env: WhatsApp `allowFrom` aus `WHATSAPP_TARGET_ID`, optional `TELEGRAM_BOT_TOKEN`, `DISCORD_BOT_TOKEN`. ATLAS/ARGOS-System-Prompt-Framing wird als `SOUL.md` ins Workspace geschrieben.
 - **Hilfsskripte:** `src/scripts/check_openclaw_vps.py` (Status/Logs OpenClaw), `src/scripts/find_soul_on_vps.py` (Suche SOUL.md auf VPS), `src/scripts/test_vps_ssh.py` (SSH-Test).
 - **Ausführung:** `python src/scripts/setup_vps_hostinger.py` (idempotent; .env: VPS_HOST, VPS_USER, VPS_PASSWORD, OPENCLAW_GATEWAY_TOKEN).
 
