@@ -52,7 +52,20 @@ Kurze Gegenüberstellung und Einfluss auf unsere Umsetzung.
 
 ---
 
-## 4. Referenzen
+## 4. Wie erreichst du den OpenClaw-Kanal? (Kein eigener „Kontakt“)
+
+OpenClaw nutzt **keine eigene WhatsApp-Business-Nummer** und erscheint **nicht** als separater Kontakt auf dem Handy. Stattdessen:
+
+- **Einmaliges Pairing:** Auf dem VPS (oder wo das OpenClaw-Gateway läuft) musst du den **WhatsApp-Kanal anmelden**: z. B. `openclaw channels login` → QR-Code anzeigen → mit **deinem Handy** unter WhatsApp „Verbundene Geräte“ den QR-Code scannen. Damit ist **deine Nummer** (oder die des genutzten Accounts) mit OpenClaw verbunden – wie ein zweites „WhatsApp Web“.
+- **Der Kanal = diese verknüpfte Nummer:** Alle Nachrichten, die **an diese Nummer** in WhatsApp ankommen (auf deinem Handy sichtbar), werden an OpenClaw durchgereicht. OpenClaw antwortet aus derselben Session – die Antwort erscheint im **gleichen Chat** wie die eingehende Nachricht.
+- **So „erreichst“ du den Kanal:** Du schickst eine Nachricht **an die Nummer, die mit OpenClaw verknüpft ist**. Wenn du deine eigene Nummer verknüpft hast: z. B. von einem zweiten Gerät **eine Nachricht an dich selbst** schicken – dann geht sie in deinen Account (und an OpenClaw). Oder jemand, dessen Nummer in `allowFrom` steht, schickt dir eine Nachricht – dann geht sie an deinen Account und OpenClaw empfängt sie.
+- **Warum du keinen „Kontakt OpenClaw“ siehst:** Es gibt keinen zusätzlichen Chat. Der Kanal ist dein **eigener** Account, nur dass das Gateway (OpenClaw) die Nachrichten mitliest und beantwortet. Du siehst weiterhin deine normalen Chats; die Nachrichten, die an deine Nummer gehen, werden zusätzlich an OpenClaw gesendet.
+
+**Kurz:** Nummer mit OpenClaw per QR verknüpfen → Nachrichten **an diese Nummer** (z. B. von anderem Gerät an dich selbst) = Nachrichten an den OpenClaw-Kanal. Antworten kommen im selben Chat.
+
+---
+
+## 5. Referenzen
 
 - OpenClaw: [Channels WhatsApp](https://openclaw.im/docs/channels/whatsapp), [Messages](https://docs.openclaw.ai/concepts/messages).
 - Unser Setup: `setup_vps_hostinger.py` (OpenClaw `channels.whatsapp.allowFrom`), `wire_whatsapp_ha.py` (HA-Automation), `whatsapp_webhook.py` (ATLAS-Empfang), `ha_client.send_whatsapp` (Antwortweg).

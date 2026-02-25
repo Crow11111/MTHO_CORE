@@ -43,5 +43,20 @@
       "Bei Recherche oder wenn etwas nicht funktioniert: Dev-Agent hinzuziehen (python -m src.ai.dev_agent_claude46 mit Kontext und --out).",
       "Teilaufgaben wo möglich parallel (Dev-Agent + Code; siehe docs/DEV_AGENT_PARALLEL.md)."
     ]
+  },
+  "dev_agent_usage": {
+    "when": [
+      "Bei Recherche, Fehlersuche, unklarer API oder wenn etwas nicht klappt – Dev-Agent standardmäßig hinzuziehen.",
+      "Bei umsetzbaren Spezifikationen (Tests, Prozeduren, API-Design): Zuerst Dev-Agent mit Kontextdatei aufrufen, Ausgabe nutzen, dann umsetzen und ausführen.",
+      "Bei Implementierungsdetails, Modul-API, Testfällen, Doku, Refactor: Konkrete Teilaufgaben an Dev-Agent übergeben; Cursor-Agent setzt um und führt aus."
+    ],
+    "how": [
+      "Aufruf: python -m src.ai.dev_agent_claude46 \"Aufgabe\" [pfad/kontextdatei.md] --out=docs/ausgabe.md. Optional --claude für Claude (Anthropic) statt Gemini.",
+      "Kontext als Datei übergeben; Ergebnis (--out) lesen und in nächste Aktion einbeziehen. Bei Spezifikationen umsetzbare Schritte, Skriptnamen, erwartetes Verhalten einfordern."
+    ],
+    "docs": [
+      "docs/DEV_AGENT_UND_SCHNITTSTELLEN.md (Dev-Agent in der Coding-Prozedur, bei Recherche und Problemen, Parallelisierung)",
+      "docs/DEV_AGENT_PARALLEL.md"
+    ]
   }
 }

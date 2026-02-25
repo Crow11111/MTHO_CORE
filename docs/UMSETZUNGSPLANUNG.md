@@ -37,6 +37,20 @@ Konkrete Tasks aus Projektplan und Doku. Status: offen / in Arbeit / erledigt.
 
 ---
 
+## Task: Schalter + Anzeige im Frontend (API, Kamera, WhatsApp)
+
+**Ziel:** Im Frontend (Dev-Agent/Dashboard) einen **Schalter** sowie **Anzeige** dafür, dass Dienste laufen bzw. was fehlt – damit du nicht raten musst und ggf. per Klick starten kannst.
+
+- [ ] **ATLAS-CORE-API:** Anzeige, ob die API läuft (z. B. Ping `GET /` oder Status-Check); optional Schalter/Button „API starten“ (z. B. startet uvicorn im Hintergrund oder öffnet Hinweis zum manuellen Start).
+- [ ] **Kamerastream (MX/go2rtc/Snapshot-Server):** Anzeige, ob der Stream/Snapshot erreichbar ist; optional Schalter „Snapshot-Server starten“ oder Hinweis „go2rtc starten“.
+- [ ] **WhatsApp-Webhook-Kette:** Anzeige, welche Teile der Verbindung stehen (HA erreichbar? ATLAS-Webhook erreichbar? rest_command konfiguriert?) und ob etwas neu angestoßen werden muss.
+
+**Referenz:** [DEV_AGENT_SCHNITTSTELLE_FRONTEND.md](DEV_AGENT_SCHNITTSTELLE_FRONTEND.md), Task „Status-Anzeige Kamera & WhatsApp-Webhook“ oben.
+
+**Status:** offen.
+
+---
+
 ## Task: Tägliches Backup (Hostinger)
 
 **Quelle:** [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md)
