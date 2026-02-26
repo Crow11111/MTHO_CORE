@@ -5,10 +5,11 @@
 ## Dev-Agent (ATLAS_DEV_AGENT)
 
 ### Modell
-- **ATLAS-Ausgabe erfolgt ausschließlich über Pro-Tier-Modelle.** Flash/Leichtgewichte sind für produktive ATLAS-Antworten nicht vorgesehen.
+- **AT* Flash/Leichtgewichte sind für produktive ATLAS-Antworten nicht vorgesehen.
 - **Standard:** Gemini 3.1 Pro (`gemini-3.1-pro-preview`) über `GEMINI_API_KEY` aus `.env`.
 - **Wahl per .env:** `GEMINI_DEV_AGENT_MODEL` (z.B. `gemini-3.1-pro-preview`, `gemini-3-pro-preview`, `gemini-2.5-pro`).
 - **Später (optional):** Claude 4.6 / 3.5, sobald der Anthropic-Account die Modelle freischaltet.
+- **[OFFEN] Token-Überwachung / Kostenkontrolle:** Da wir intensiv mit Paid-APIs (Gemini/Anthropic) arbeiten, muss eine Überwachung für den Token-Verbrauch bzw. die API-Kosten implementiert werden, damit wir nicht blind in hohe Rechnungen oder Quota-Limits laufen. (Siehe auch `OFFENE_PUNKTE_AUDIT.md`).
 
 ### Abbrechen / Timeout
 - **Streamlit blockiert** während des LLM-Aufrufs; es gibt derzeit **keinen Abbrechen-Button** in der UI.
@@ -41,7 +42,7 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 - **Textfeld:** „Aufgabe / Prompt an Claude 4.6“ – hier die Anfrage an den Dev-Agenten eingeben.
 - **Button „▶ AUSFÜHREN“:** Sendet den Prompt an das konfigurierte LLM-Backend (Gemini); Antwort erscheint unter „Antwort (Text)“; bei aktivierter Sprache wird zusätzlich ElevenLabs aufgerufen (Rolle + STATE).
 
-**Code:** `src/ui/dev_agent_console.py` (Streamlit), Backend: `src/ai/dev_agent_claude46.py` (`call_dev_agent`), TTS: `src/voice/elevenlabs_tts.py`.
+**Code:** `src/ui/dev_aLAS-Ausgabe erfolgt ausschließlich über Pro-Tier-Modelle.*gent_console.py` (Streamlit), Backend: `src/ai/dev_agent_claude46.py` (`call_dev_agent`), TTS: `src/voice/elevenlabs_tts.py`.
 
 **Modell-Auswahl:** In der UI wählbar (Dropdown); Backend unterstützt `call_dev_agent(..., model="gemini-3.1-pro-preview"` bzw. `claude-sonnet-4-5` etc.). Liste der zulässigen Modelle: `DEV_AGENT_MODELS` in `dev_agent_claude46.py`. Mini-Schnittstellenbeschreibung für den Bau eines eigenen Frontends: [DEV_AGENT_SCHNITTSTELLE_FRONTEND.md](DEV_AGENT_SCHNITTSTELLE_FRONTEND.md).
 
@@ -115,14 +116,18 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 - **Latenz und Performance** sind entscheidend: Steuerbefehle („Licht Bad aus“) sollen schnell ausgeführt werden; die Antwort soll aus demselben Kontext kommen wie die lokale HA (Lichter, Sensoren).
 - **Empfehlung:** Der **WhatsApp-Basis-Handler** (nur klare Steuerkommandos, ohne Dreadnought) läuft auf dem **Scout (Pi)** – dort läuft HA ohnehin, der Handler ruft HA lokal auf (geringe Latenz), und der Kanal funktioniert auch, wenn der Dreadnought aus ist.
 - **Hostinger** eignet sich für: OpenClaw, ChromaDB, Backup; optional eine **zweite HA-Instanz**, die mit der lokalen HA verknüpft ist (mehrere Home-Assistant-Instanzen können gemeinsam ein Zuhause steuern und voneinander wissen). Dann könnte z.B. von unterwegs über Hostinger-HA auf die lokale HA zugegriffen werden – Aufteilung nach Latenz und Verfügbarkeit.
-- **Zusammenfassung:** Basis-WhatsApp und erste Reaktion = Scout (niedrige Latenz, unabhängig vom PC). Schwere LLM-Aufgaben und zweite HA = optional Hostinger.
+- **Zusammenfassung:** Basis-WhatsApp und erste Reaktion = Scout (niedrige Latenz, unabhängig vom PC). Schwere LLM-Aufgaben und zweite HA = Hostinger (VPS-HA-Container als Remote-Slave).
 
-### VPS-Setup (automatisiert)
+### VPS-Setup (Full-Stack Hostinger)
 
-- **Skript:** `src/scripts/setup_vps_hostinger.py` – richtet per SSH auf dem Hostinger-VPS ein: Docker, Firewall (22, 18789, 8000, 80/443), Netzwerk `openclaw_net`, ChromaDB-Container (`chroma-atlas`, Port 8000), Backup-Verzeichnis `/var/backups/atlas`, OpenClaw-Gateway in Sandbox (Config + SOUL.md + Channels).
-- **OC-Config:** Token aus `OPENCLAW_GATEWAY_TOKEN`; Channels aus .env: WhatsApp `allowFrom` aus `WHATSAPP_TARGET_ID`, optional `TELEGRAM_BOT_TOKEN`, `DISCORD_BOT_TOKEN`. ATLAS/ARGOS-System-Prompt-Framing wird als `SOUL.md` ins Workspace geschrieben.
-- **Hilfsskripte:** `src/scripts/check_openclaw_vps.py` (Status/Logs OpenClaw), `src/scripts/find_soul_on_vps.py` (Suche SOUL.md auf VPS), `src/scripts/test_vps_ssh.py` (SSH-Test).
-- **Ausführung:** `python src/scripts/setup_vps_hostinger.py` (idempotent; .env: VPS_HOST, VPS_USER, VPS_PASSWORD, OPENCLAW_GATEWAY_TOKEN).
+- **Architektur:** `docs/OPENCLAW_ADMIN_ARCHITEKTUR.md` und `docs/VPS_FULL_STACK_SETUP.md`
+- **Setup-Skript:** `src/scripts/deploy_vps_full_stack.py` – Richtet auf dem Hostinger-VPS ein:
+  1. `ha_net`, `openclaw_admin_net`, `openclaw_spine_net`, `chroma_net`
+  2. `homeassistant` (Port 18123) – als Remote-HA Slave gekoppelt an Scout via Nabu Casa
+  3. `openclaw-admin` (Port 18789) – Brain-Instanz mit Google/Anthropic/Nexos-Keys
+  4. `openclaw-spine` (Port 18790) – Slave-Instanz ohne Provider-Keys
+  5. `chroma-atlas` (Port 8000) – Vektordatenbank
+- **Abstimmungs-Ordner:** `docs/exchange/` (für Session-Briefings und Feedback von/an OC)
 
 ---
 
@@ -197,7 +202,7 @@ Bei einer **Paid API ohne Einschränkungen** werden die aktuellen **Pro-Modelle*
 
 | Bereich | Skript / Modul | Zweck |
 |--------|----------------|-------|
-| VPS-Setup | `src/scripts/setup_vps_hostinger.py` | Docker, Firewall, ChromaDB, OpenClaw, SOUL.md, Channels auf Hostinger |
+| VPS-Setup | `src/scripts/deploy_vps_full_stack.py` | Docker-Stack Hostinger (HA, Admin, Spine, Chroma) |
 | VPS-Check | `src/scripts/check_openclaw_vps.py` | OpenClaw-Container-Status und -Logs per SSH |
 | VPS | `src/scripts/find_soul_on_vps.py` | Suche nach SOUL.md auf dem VPS |
 | VPS | `src/scripts/test_vps_ssh.py` | SSH-Verbindungstest (VPS_HOST, VPS_USER, VPS_PASSWORD) |

@@ -37,12 +37,13 @@ Vaultwarden-Entities sind in HA sichtbar (z. B. `binary_sensor.vaultwarden_bitwa
 
 ---
 
-## UI / Status-Anzeige (Kamera, WhatsApp)
+## UI / Status-Anzeige & Metriken (Kamera, WhatsApp, Kosten)
 
 | Thema | Anforderung | Offen |
 |-------|-------------|--------|
 | **Kamerastream** | Schalter, Button oder Hinweis: Stream läuft nicht / nicht gestattet / langsam / muss angefordert werden; ggf. Aktion zum Anfordern oder Neustarten. Parallel in AI Studio aufgesetzt. | Anzeige im ATLAS-CORE-Frontend/Dashboard einplanen; welche Komponente (Stream/Snapshot-Server) meldet Status? |
 | **WhatsApp-Webhook** | Anzeige: Welche Teile der Verbindung stehen (HA, rest_command, ATLAS-API, Webhook), welche fehlen; Hinweis, ob etwas per Script neu angestoßen werden muss. | Welche Status-Checks (Ping HA, API erreichbar, …) und wo anzeigen? |
+| **Token-Überwachung / API-Kosten** | Da wir Paid-APIs (Gemini/Anthropic/Nexos) nutzen, muss der Token-Verbrauch bzw. die Kosten überwacht und ins Dashboard geführt werden. | Einbau von Token-Zählern in die API-Requests und eine Dashboard-Ansicht (oder Alert bei Threshold-Überschreitung). |
 
 ---
 

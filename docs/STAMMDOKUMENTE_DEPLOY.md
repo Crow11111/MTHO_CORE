@@ -6,6 +6,7 @@
 2. **Freigabe durch den Rat:** Der Rat (Osmium Council) prüft die Stammdokumente. Wenn alle eine Stimme abgegeben haben und die Mehrheit dafür ist, gilt die Freigabe.
 3. **Deployment:** Die Stammdokumente werden auf dem Hostinger-VPS an einer Stelle abgelegt, die **OC einsehen kann** (z. B. `/var/lib/openclaw/workspace/stammdokumente/`).
 4. **Information:** Marc informiert **per WhatsApp** (über den OC-Kanal oder den HA-Pfad, je nachdem wo OC erreicht wird), dass die Stammdokumente dort liegen und einsehbar sind.
+5. **Laufender Austausch:** Nach dem initialen Deploy findet die Abstimmung (Handshakes, Briefings, Feedback) ausschließlich über das Verzeichnis `docs/exchange/` statt.
 
 ## Skript: Stammdokumente auf VPS deployen
 

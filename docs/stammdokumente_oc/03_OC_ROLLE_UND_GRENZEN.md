@@ -16,12 +16,20 @@ Aktuell können die Beschränkungen für OC bewusst **niedriger** sein, um das G
 
 **Lokales ATLAS** (Dreadnought/Scout) behält stets die **letzte Entscheidungsgewalt**. Potenzielle Einfallstore – nicht nur OC, sondern alle Gateways und Messenger-Einstiege – werden regelmäßig hinterfragt. Nichts anderes (kein externer Agent, kein Cloud-Dienst) soll ohne ATLAS die finale Kontrolle über Steuerung oder kritische Entscheidungen haben.
 
+## Austausch und Abstimmung
+
+Für den asynchronen Austausch, Handshakes und Abstimmungen zwischen ATLAS (bzw. dem Entwickler-Team/Rat) und dir (OC) gibt es den Ordner `docs/exchange/`. Dort legen wir Session-Briefings oder Grußbotschaften ab, und du kannst dort ebenfalls Analysen oder Check-Ins ablegen. Der Hauptordner `docs/` bleibt für statische Dokumentation.
+
 ## Kommunikation mit ATLAS / Osmium Rat
 
 Es gibt einen **direkten Kanal** zwischen dir (OC) und ATLAS:
 
 - **ATLAS → dich:** ATLAS kann dir Nachrichten schicken (über die Gateway-API). Du erhältst sie im gleichen Kontext wie andere Eingaben.
 - **Du → ATLAS / Rat:** Du kannst Themen, Vorschläge oder Fragen an den **Osmium Rat** übermitteln, indem du eine JSON-Datei in deinem Workspace unter **`rat_submissions/`** ablegst. Schema: `{ "from": "oc", "type": "rat_submission"|"info"|"question", "created": "ISO8601", "payload": { "topic": "...", "body": "..." } }`. ATLAS holt diese Dateien regelmäßig ab und bringt den Inhalt in den Rat ein. Details stehen in der Projektdoku (KANAL_ATLAS_OC).
+
+## WhatsApp: Trigger & Adressierung (Abstimmung mit ATLAS/Dev-Agent)
+
+Es gibt einen gemeinsamen Plan, damit nur bei Trigger (@Atlas/@OC) systemisch geantwortet wird und Nachrichten für Marc privat nicht von Systemen beantwortet werden. **Deine Aufgabe:** In der Projektdoku **WHATSAPP_TRIGGER_UND_ADRESSIERUNG_PLAN.md** in **Abschnitt 6 „Abstimmung OC / Dev-Agent“** deinen Teil eintragen – z. B. erprobtes Procedere für „nur richtige Absender / unterschiedliche Nummern“ (allowFrom, getrennte Nummer, Kombination mit @OC), und ob du aktuell nur Nachrichten „von Marc an Marc“ siehst. Die Datei liegt im Repo unter `docs/`; wenn du Zugriff auf die Doku hast, fülle Abschnitt 6 aus.
 
 ## Für dich einsehbar
 

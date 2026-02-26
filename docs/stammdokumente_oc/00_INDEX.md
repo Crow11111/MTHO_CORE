@@ -10,6 +10,9 @@ Diese Dokumente liegen für **OC** (OpenClaw) einsehbar bereit. Sie beschreiben 
 
 Ablage auf dem Server: Nach Freigabe durch den Rat werden diese Dateien auf dem Hostinger-VPS unter dem OC-Workspace bereitgestellt; OC wird per WhatsApp informiert, dass die Stammdokumente dort liegen.
 
+**Wichtig zur Abstimmung:**
+Für laufende Konversationen, Handshakes, Check-Ins und Abstimmungen zwischen ATLAS, OC und Dev-Agent existiert der Ordner `docs/exchange/`. Dort legen wir Session-Abschlüsse, Briefings an OC oder Feedback von OC ab. Der Root-Ordner `docs/` bleibt für statische Systemdokumentation reserviert.
+
 ---
 
 *Stand: Projekt ATLAS_CORE. Stammdokumente-Version aus dem Repo.*
