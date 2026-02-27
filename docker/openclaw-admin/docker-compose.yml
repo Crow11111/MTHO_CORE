@@ -1,0 +1,27 @@
+# OpenClaw Admin (Gehirn) – native Installation
+# Alle API-Keys über Umgebungsvariablen; Config in openclaw_data.
+# Siehe: docs/OPENCLAW_ADMIN_ARCHITEKTUR.md
+
+services:
+  openclaw-admin:
+    image: ghcr.io/openclaw/openclaw:main
+    container_name: openclaw-admin
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+    environment:
+      - HOME=/home/node
+      - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN}
+      - GOOGLE_API_KEY=${GEMINI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - ./data:/home/node/.openclaw
+    command: ["node", "openclaw.mjs", "gateway", "--allow-unconfigured", "--bind", "0.0.0.0", "--port", "18789"]
+    networks:
+      - openclaw_net
+
+networks:
+  openclaw_net:
+    driver: bridge
+
+# data/ wird vom Deploy-Skript angelegt (openclaw.json, workspace/SOUL.md)

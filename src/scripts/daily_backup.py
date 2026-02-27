@@ -31,6 +31,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 VPS_HOST = os.getenv("VPS_HOST", "").strip()
 VPS_USER = os.getenv("VPS_USER", "root").strip()
 VPS_PASSWORD = (os.getenv("VPS_PASSWORD") or "").strip().strip('"').strip("'")
+VPS_SSH_KEY = (os.getenv("VPS_SSH_KEY") or "").strip()
 VPS_PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 REMOTE_BACKUP_DIR = "/var/backups/atlas"
 RETENTION_DAYS = int(os.getenv("BACKUP_RETENTION_DAYS", "7"))
@@ -139,7 +140,10 @@ def main() -> int:
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(VPS_HOST, port=VPS_PORT, username=VPS_USER, password=VPS_PASSWORD or None, timeout=30)
+        if VPS_SSH_KEY and os.path.isfile(VPS_SSH_KEY):
+            ssh.connect(VPS_HOST, port=VPS_PORT, username=VPS_USER, key_filename=VPS_SSH_KEY, timeout=30)
+        else:
+            ssh.connect(VPS_HOST, port=VPS_PORT, username=VPS_USER, password=VPS_PASSWORD or None, timeout=30)
     except Exception as e:
         logger.error("SSH-Verbindung fehlgeschlagen: %s", e)
         return 1

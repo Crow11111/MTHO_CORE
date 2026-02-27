@@ -7,11 +7,11 @@ Liest VPS_HOST und OPENCLAW_GATEWAY_TOKEN aus .env.
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/ATLAS_CORE/.env")
+load_dotenv()
 
 VPS_HOST = os.getenv("VPS_HOST", "")
 OPENCLAW_GATEWAY_TOKEN = os.getenv("OPENCLAW_GATEWAY_TOKEN", "")
-# OpenClaw Gateway läuft typisch auf Port 18789 (laut Docs)
+# OpenClaw Gateway: bei Hostinger oft Container-PORT (z. B. 58105), sonst 18789
 OPENCLAW_GATEWAY_PORT = int(os.getenv("OPENCLAW_GATEWAY_PORT", "18789"))
 
 # Pfad auf dem VPS, in dem OC Einreichungen für den Rat ablegt (OC → ATLAS)

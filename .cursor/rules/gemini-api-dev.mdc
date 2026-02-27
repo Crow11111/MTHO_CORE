@@ -1,0 +1,44 @@
+---
+description: Google AI / Gemini API Integration Procedure (Keys & Models)
+globs: **/*.py
+alwaysApply: false
+---
+
+# Gemini API Integration (ATLAS_CORE)
+
+## Model Standards
+- **Primary / Standard Model:** `gemini-3.1-pro-preview` (Gemini 3.1 Pro)
+  - Used for Dev-Agent, Heavy Reasoning, WhatsApp, Brio Image Analysis.
+- **Fallback Model:** `gemini-3-pro-preview` (Gemini 3 Pro)
+  - Used if 3.1 Pro is unavailable.
+- **NEVER** use `gemini-1.5-*`, `gemini-2.0-*`, or `flash` variants for core tasks.
+
+## API Keys & Environment Variables
+All keys MUST be loaded from the `.env` file:
+- `GEMINI_API_KEY`: Primary API key.
+- `GEMINI_DEV_AGENT_MODEL`, `GEMINI_HEAVY_MODEL`, `BRIO_VISION_MODEL`: Configuration overrides.
+
+## Python SDK Integration
+Always use the new `google-genai` SDK (`pip install google-genai`), not the deprecated `google-generativeai`.
+
+```python
+import os
+from google import genai
+
+# 1. Load key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# 2. Initialize client
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+# 3. Call API using the standard model
+MODEL_NAME = os.getenv("GEMINI_DEV_AGENT_MODEL", "gemini-3.1-pro-preview")
+response = client.models.generate_content(
+    model=MODEL_NAME,
+    contents="Prompt here"
+)
+```
+
+## Documentation Reference
+For API specifics, schema, or advanced features, fetch the official documentation index:
+- **llms.txt**: `https://ai.google.dev/gemini-api/docs/llms.txt`

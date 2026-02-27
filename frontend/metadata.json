@@ -1,0 +1,5 @@
+{
+  "name": "ATLAS Dev Agent",
+  "description": "Minimalist, zen, and modern frontend for the ATLAS development agent.",
+  "requestFramePermissions": []
+}

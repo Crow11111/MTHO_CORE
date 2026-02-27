@@ -32,6 +32,34 @@ async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
 
     logger.info(f"WhatsApp Webhook: {json.dumps(payload, ensure_ascii=False)[:500]}")
 
+    # Routing: @Atlas = ATLAS/Scout reagieren, @OC = nur OC (wir ignorieren). Nur einer adressiert → nur der reagiert.
+    def _message_text(p):
+        if not isinstance(p, dict):
+            return ""
+        msg = p.get("message", {}) or {}
+        return (
+            msg.get("conversation") or
+            (msg.get("extendedTextMessage") or {}).get("text") or
+            p.get("body") or
+            p.get("text") or
+            ""
+        ).strip()
+    incoming_text = _message_text(payload)
+    low = (incoming_text or "").lower()
+    # Nur @OC adressiert → für OC, ATLAS reagiert nicht
+    if incoming_text and low.startswith("@oc"):
+        logger.info(f"WhatsApp: ignoriert (für @OC): {incoming_text[:80]}...")
+        return {"status": "ignored", "reason": "addressed_to_@OC"}
+    # Nur bei @Atlas (am Anfang) reagieren; @Atlas + @OC später = Teil für beide, wir verarbeiten unseren
+    if incoming_text and not low.startswith("@atlas"):
+        logger.info(f"WhatsApp: ignoriert (kein @Atlas-Prefix): {incoming_text[:80]}...")
+        return {"status": "ignored", "reason": "no_@Atlas_prefix"}
+    # Sprachnachricht: nur bei @Atlas-Prefix reagieren
+    audio_msg = (payload.get("message", {}) or {}).get("audioMessage") or (payload.get("message", {}) or {}).get("pttMessage")
+    if audio_msg and not (incoming_text and low.startswith("@atlas")):
+        logger.info("WhatsApp: Sprachnachricht ignoriert (kein @Atlas).")
+        return {"status": "ignored", "reason": "audio_without_@Atlas"}
+
     # Sender extrahieren
     sender = (
         payload.get("key", {}).get("remoteJid") or
@@ -71,10 +99,14 @@ async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
     )
 
     if text:
+        # @Atlas-Prefix für Verarbeitung abziehen (reagieren tun wir nur mit Prefix, siehe Gate oben)
+        t = text.strip()
+        if t.lower().startswith("@atlas"):
+            t = t[6:].strip() or t
         logger.success(f"💬 Textnachricht von {sender}: {text}")
         
         # Triage → Command oder Reasoning (gleiche Pipeline wie ha_action)
-        triage = atlas_llm.run_triage(text)
+        triage = atlas_llm.run_triage(t)
         
         if triage.intent == "command":
             # Steuerbefehl (HA) → [Scout]: kleines Modell / direkte Bestätigung
@@ -85,10 +117,10 @@ async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
         elif triage.intent in ["deep_reasoning", "chat"]:
             # Schwere KI (Dreadnought) → [ATLAS]
             sys_prompt = "Du bist ATLAS, ein intelligenter Assistent. Antworte präzise und knapp auf WhatsApp."
-            reply = atlas_llm.invoke_heavy_reasoning(sys_prompt, text)
+            reply = atlas_llm.invoke_heavy_reasoning(sys_prompt, t)
             reply = f"[ATLAS] {reply}" if reply else "[ATLAS] (keine Antwort)"
         else:
-            reply = f"[Scout] Nicht verstanden: '{text}'"
+            reply = f"[Scout] Nicht verstanden: '{t}'"
         
         ha_client.send_whatsapp(to_number=sender, text=reply)
         return {"status": "text_handled", "sender": sender, "intent": triage.intent}

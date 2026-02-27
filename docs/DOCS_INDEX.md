@@ -1,64 +1,58 @@
 # ATLAS_CORE – Dokumentationsindex
 
-Zentrale Übersicht: Welche Doku gibt es, wo steht was, wie hängt es zusammen.
+Zentrale Übersicht der Projekt-Struktur.
 
 ---
 
-## 1. Stammdokumente (für OC)
-
-**Zweck:** Für **OC (OpenClaw)** einsehbar – erklärt das Projekt, Marc, das Team und OCs Rolle/Grenzen.
-
-- **Ordner:** [docs/stammdokumente_oc/](stammdokumente_oc/00_INDEX.md)
-- **Inhalt:** 00_INDEX, 01_PROJEKT_ATLAS, 02_MARC_UND_TEAM, 03_OC_ROLLE_UND_GRENZEN
-- **Ablage auf Hostinger:** Nach Freigabe durch den Rat werden die Stammdokumente auf dem VPS unter dem OC-Workspace bereitgestellt; Marc informiert OC per WhatsApp. Siehe [STAMMDOKUMENTE_DEPLOY.md](STAMMDOKUMENTE_DEPLOY.md).
+## 0. Indices (Einstieg)
+- **`docs/DOCS_INDEX.md`** (Diese Datei)
+- **`docs/BIBLIOTHEK_KERN_DOKUMENTE.md`** (Detail-Bibliothek der wichtigsten Files)
 
 ---
 
-## 2. Architektur & Schnittstellen
-
-| Dokument | Inhalt |
-|----------|--------|
-| [DEV_AGENT_UND_SCHNITTSTELLEN.md](DEV_AGENT_UND_SCHNITTSTELLEN.md) | Dev-Agent, Backup, **Netzarchitektur Messenger & OC**, WhatsApp/HA, VPS-Setup |
-| [WHATSAPP_OPENCLAW_VS_HA.md](WHATSAPP_OPENCLAW_VS_HA.md) | OC vs. HA-Pfad, getrennte Kanäle, wie man welchen Kanal erreicht |
-| [WHATSAPP_E2E_HA_SETUP.md](WHATSAPP_E2E_HA_SETUP.md) | E2E-Setup (rest_command, Automation), **Präfix [ATLAS]/[Scout]** |
-| [KANAL_ATLAS_OC.md](KANAL_ATLAS_OC.md) | **Direkter Kanal ATLAS ↔ OC** (Nachrichten an Agent, Rat-Einreichungen OC → ATLAS) |
-| [VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md](VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md) | Dienste auf Hostinger, OC-Sandbox-Pflicht |
+## 1. CORE DNA (`docs/01_CORE_DNA/`)
+**Die Verfassung des Projekts.**
+- `CREW_MANIFEST.md` – Rollen & Aufgaben (Architect Zero, Backend Forge, etc.)
+- `ATLAS_VOICE_ARCHITECTURE_V1.3.md` – Voice-Design & Persona-Definitionen
+- `stammdokumente_oc/` – Spezifische Dokumente für den Austausch mit OpenClaw (OC)
 
 ---
 
-## 3. Umsetzung & Tasks
-
-| Dokument | Inhalt |
-|----------|--------|
-| [UMSETZUNGSPLANUNG.md](UMSETZUNGSPLANUNG.md) | Konkrete Tasks (Backup, WhatsApp, OC-Kanäle, Status-Anzeige, offene Punkte) |
-| [OFFENE_PUNKTE_AUDIT.md](OFFENE_PUNKTE_AUDIT.md) | Offene Punkte aus Dev-Agent-Audit (HMAC, TLS, Vaultwarden, …) |
-
----
-
-## 4. Backup & Sicherheit
-
-| Dokument | Inhalt |
-|----------|--------|
-| [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md) | Einziges Ziel: Hostinger-VPS, Skript daily_backup.py, Retention |
+## 2. ARCHITECTURE (`docs/02_ARCHITECTURE/`)
+**System-Design & Logik.**
+- `DEV_AGENT_UND_SCHNITTSTELLEN.md` – Schnittstellen-Übersicht (Who calls whom)
+- `OPENCLAW_ADMIN_ARCHITEKTUR.md` – Admin vs. Spine Architektur
+- `WHATSAPP_ROUTING_ATLAS_OC.md` – Routing-Logik (Wer antwortet wann)
+- `KANAL_ATLAS_OC.md` – Direkter Kanal zwischen ATLAS und OC
+- `WHATSAPP_OPENCLAW_VS_HA.md` – Vergleich der Pfade
 
 ---
 
-## 5. Dev-Agent & Review
-
-| Dokument | Inhalt |
-|----------|--------|
-| [dev_agent_review_context.md](dev_agent_review_context.md) | Kontext für Review (Schnittstellen, Architektur, Sicherheit) |
-| [DEV_AGENT_PARALLEL.md](DEV_AGENT_PARALLEL.md) | Parallelisierung (APIs, Sub-Tasks) |
-| [DEV_AGENT_TESTS_SPEC.md](DEV_AGENT_TESTS_SPEC.md) | Tests (Kamera, WhatsApp, OC) |
-| [CREW_MANIFEST.md](CREW_MANIFEST.md) | Rollen (Architect Zero, Backend Forge, Net Engineer, UI Artist) |
-
----
-
-## 6. Weitere (Kamera, Voice, ND, …)
-
-- [CAMERA_GO2RTC_WINDOWS.md](CAMERA_GO2RTC_WINDOWS.md), [ATLAS_VOICE_ARCHITECTURE_V1.3.md](ATLAS_VOICE_ARCHITECTURE_V1.3.md)
-- nd_insights, BACKUP_PLAN (Vorläufer) – je nach Bedarf
+## 3. INFRASTRUCTURE (`docs/03_INFRASTRUCTURE/`)
+**Hardware, Server & Setup.**
+- `VPS_FULL_STACK_SETUP.md` – Hostinger VPS Setup (Ports, Firewall, Docker)
+- `VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md` – Dienste-Übersicht
+- `BACKUP_PLAN_FINAL.md` – Backup-Strategie & Restore
+- `WHATSAPP_E2E_HA_SETUP.md` – Home Assistant Integration
+- `CAMERA_GO2RTC_WINDOWS.md` – Kamera-Integration
 
 ---
 
-**Konsolidierung:** Neue Themen (z. B. OC, Stammdokumente, Präfix) sind in die bestehenden Docs eingepflegt; dieser Index verweist darauf. Stammdokumente für OC liegen unter `docs/stammdokumente_oc/` und werden nach Rat-Freigabe auf den Server deployed.
+## 4. PROCESSES (`docs/04_PROCESSES/`)
+**Workflows & How-Tos.**
+- `STAMMDOKUMENTE_DEPLOY.md` – Deployment der Core-Docs auf den VPS
+- `DEV_AGENT_TESTS_SPEC.md` – Test-Spezifikationen
+- `DEV_AGENT_PARALLEL.md` – Parallelisierung von Agenten
+
+---
+
+## 5. AUDIT & PLANNING (`docs/05_AUDIT_PLANNING/`)
+**Status, Backlog & Reviews.**
+- `OFFENE_PUNKTE_AUDIT.md` – Technisches Backlog & Schulden
+- `UMSETZUNGSPLANUNG.md` – Aktueller Projektplan
+- `dev_agent_review_context.md` – Kontext für Reviews
+
+---
+
+## 99. ARCHIVE (`docs/99_ARCHIVE/`)
+Alte, nicht mehr aktive Dokumente.

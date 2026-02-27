@@ -13,7 +13,7 @@
       "agent_framework": "OpenClaw (Persistent Docker Environment)",
       "vector_database": "Chroma DB",
       "ide_environment": "Cursor Business Tier",
-      "inference_engine": "Claude 3.5 Sonnet"
+      "inference_engine": "Claude 4.6 Sonnet / Gemini 3.1 Pro"
     }
   },
   "communication_protocol": {
@@ -36,27 +36,44 @@
   "global_coding_guidelines": {
     "objective": "Industrielle Zuverlässigkeit, Zero-Margin-of-Error.",
     "rules": [
-      "Strikte logische Trennung zwischen lokaler Entwicklungs-Umgebung (Cursor) und Produktions-Umgebung (OpenClaw/VPS).",
+      "Scripte (z. B. python -m src.scripts.*) selbst ausführen. Kein Vorschlag für User, sondern klarer Befehl selbst auszuführen.",
       "Sicherheits-Maxime: Niemals API-Keys in Code oder unverschlüsselten ENV-Files persistieren.",
       "Architektur-Fokus: Code muss auf den 16GB RAM / 4 vCPU Flaschenhals des Host-Systems optimiert sein.",
-      "Wenn Parameter oder Abhängigkeiten fehlen: Keine Annahmen treffen, sofortige Rückfrage.",
-      "Bei Recherche oder wenn etwas nicht funktioniert: Dev-Agent hinzuziehen (python -m src.ai.dev_agent_claude46 mit Kontext und --out).",
-      "Teilaufgaben wo möglich parallel (Dev-Agent + Code; siehe docs/DEV_AGENT_PARALLEL.md)."
+      "Wenn Parameter oder Abhängigkeiten fehlen: Keine Annahmen treffen, sofortige Rückfrage."
     ]
   },
-  "dev_agent_usage": {
-    "when": [
-      "Bei Recherche, Fehlersuche, unklarer API oder wenn etwas nicht klappt – Dev-Agent standardmäßig hinzuziehen.",
-      "Bei umsetzbaren Spezifikationen (Tests, Prozeduren, API-Design): Zuerst Dev-Agent mit Kontextdatei aufrufen, Ausgabe nutzen, dann umsetzen und ausführen.",
-      "Bei Implementierungsdetails, Modul-API, Testfällen, Doku, Refactor: Konkrete Teilaufgaben an Dev-Agent übergeben; Cursor-Agent setzt um und führt aus."
-    ],
-    "how": [
-      "Aufruf: python -m src.ai.dev_agent_claude46 \"Aufgabe\" [pfad/kontextdatei.md] --out=docs/ausgabe.md. Optional --claude für Claude (Anthropic) statt Gemini.",
-      "Kontext als Datei übergeben; Ergebnis (--out) lesen und in nächste Aktion einbeziehen. Bei Spezifikationen umsetzbare Schritte, Skriptnamen, erwartetes Verhalten einfordern."
-    ],
-    "docs": [
-      "docs/DEV_AGENT_UND_SCHNITTSTELLEN.md (Dev-Agent in der Coding-Prozedur, bei Recherche und Problemen, Parallelisierung)",
-      "docs/DEV_AGENT_PARALLEL.md"
-    ]
+  "critical_workflow_triggers": {
+    "project_dna_audit": {
+      "trigger_pattern": "docs/DOCS_INDEX.md|docs/BIBLIOTHEK_KERN_DOKUMENTE.md|docs/01_CORE_DNA/.*",
+      "mandatory_action": "STOP. Kritische DNA-Änderung (01_CORE_DNA). Rufe ZWINGEND Subagent 'osmium-council' (/council). Der 'osmium-judge' muss die Konsistenz prüfen und freigeben.",
+      "reason": "Änderungen an der Projekt-Verfassung (Core Indices) erfordern Full-Council-Konsens."
+    },
+    "architecture_audit": {
+      "trigger_pattern": "docs/02_ARCHITECTURE/.*|docs/03_INFRASTRUCTURE/.*",
+      "mandatory_action": "Konsultiere Subagent 'system-architect' BEVOR du Änderungen speicherst. Prüfe auf Boundaries und Spaghetti-Code.",
+      "reason": "Architektur-Dokumente definieren die System-Integrität."
+    },
+    "security_audit": {
+      "trigger_pattern": "docs/03_INFRASTRUCTURE/BACKUP_.*\\.md|\\.env.*|src/scripts/deploy.*\\.py",
+      "mandatory_action": "Konsultiere Subagent 'security-expert'. Prüfe auf Secret-Leaks, Rechte-Eskalation und Backup-Integrität.",
+      "reason": "Sicherheitskritische Komponenten dürfen nicht ohne Audit geändert werden."
+    },
+    "interface_audit": {
+      "trigger_pattern": "docs/02_ARCHITECTURE/WHATSAPP_.*\\.md|docs/02_ARCHITECTURE/KANAL_.*\\.md|src/api/routes/",
+      "mandatory_action": "Konsultiere Subagent 'api-interface-expert'. Prüfe auf Contract-Breaking-Changes und Fehlerbehandlung.",
+      "reason": "Stabile Schnittstellen sind essenziell für die Kommunikation mit OC/WhatsApp."
+    }
+  },
+  "skills": {
+    "osmium_council": {
+      "description": "Der Orchestrator für komplexe Entscheidungen.",
+      "trigger": "Explizit via '/council' ODER automatisch bei DNA-Änderungen (siehe critical_workflow_triggers).",
+      "action": "Subagent 'osmium-council' delegiert an Spezialisten und holt Veto-Prüfung ein."
+    },
+    "gemini_api_dev": {
+      "description": "Richtlinien und Standards für die Integration der Google Gemini API in ATLAS_CORE.",
+      "trigger": "User bearbeitet oder erstellt Code für Gemini API, Google AI, oder fragt nach Modell-Konventionen.",
+      "action": "Agent nutzt den 'gemini-api-dev' Skill (gemini-3.1-pro-preview als Standard, google-genai SDK, Keys via .env)."
+    }
   }
 }

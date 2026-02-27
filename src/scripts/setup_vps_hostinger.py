@@ -25,6 +25,7 @@ HOST = os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 USER = os.getenv("VPS_USER", "root")
 PASSWORD = os.getenv("VPS_PASSWORD", "")
+KEY_PATH = os.getenv("VPS_SSH_KEY", "").strip()
 OPENCLAW_TOKEN = (os.getenv("OPENCLAW_GATEWAY_TOKEN", "") or "").strip().strip('"')
 
 # WhatsApp: allowFrom aus WHATSAPP_TARGET_ID (491788360264@s.whatsapp.net → +491788360264)
@@ -91,7 +92,10 @@ def main() -> int:
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
+        if KEY_PATH and os.path.isfile(KEY_PATH):
+            ssh.connect(HOST, port=PORT, username=USER, key_filename=KEY_PATH, timeout=15)
+        else:
+            ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
     except Exception as e:
         print(f"SSH-Fehler: {e}")
         return 1

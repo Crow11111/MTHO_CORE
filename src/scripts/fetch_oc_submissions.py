@@ -34,6 +34,7 @@ HOST = os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 USER = os.getenv("VPS_USER", "root")
 PASSWORD = os.getenv("VPS_PASSWORD", "")
+KEY_PATH = os.getenv("VPS_SSH_KEY", "").strip()
 REMOTE_DIR = "/var/lib/openclaw/workspace/rat_submissions"
 REMOTE_ARCHIVE = "/var/lib/openclaw/workspace/rat_submissions_archive"
 
@@ -42,22 +43,29 @@ PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
 LOCAL_DIR = os.path.join(PROJECT_ROOT, "data", "rat_submissions")
 
 
-def main() -> int:
-    dry_run = "--dry-run" in sys.argv
+def run_fetch(dry_run: bool = False, project_root: str | None = None) -> tuple[bool, int, list[dict]]:
+    """
+    Liest Einreichungen von OC (SSH → VPS), speichert lokal, archiviert auf VPS.
+    Zur Nutzung aus API oder Skript.
+    Returns: (success, count, items) – items = Liste mit {"file": name, "topic": ... aus payload}
+    """
+    root = project_root or PROJECT_ROOT
+    local_dir = os.path.join(root, "data", "rat_submissions")
     if not HOST or not USER:
-        print("FEHLER: VPS_HOST oder VPS_USER in .env fehlt.")
-        return 1
+        return False, 0, []
 
-    os.makedirs(LOCAL_DIR, exist_ok=True)
-
+    os.makedirs(local_dir, exist_ok=True)
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
-    except Exception as e:
-        print(f"SSH-Fehler: {e}")
-        return 1
+        if KEY_PATH and os.path.isfile(KEY_PATH):
+            ssh.connect(HOST, port=PORT, username=USER, key_filename=KEY_PATH, timeout=15)
+        else:
+            ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
+    except Exception:
+        return False, 0, []
 
+    items: list[dict] = []
     try:
         sftp = ssh.open_sftp()
         try:
@@ -67,10 +75,8 @@ def main() -> int:
         json_files = [f for f in files if f.endswith(".json")]
 
         if not json_files:
-            print("Keine neuen Einreichungen von OC.")
-            return 0
+            return True, 0, []
 
-        # Archiv auf VPS anlegen
         stdin, stdout, stderr = ssh.exec_command(f"mkdir -p {REMOTE_ARCHIVE} && chown 1000:1000 {REMOTE_ARCHIVE}")
         stdout.channel.recv_exit_status()
 
@@ -79,34 +85,51 @@ def main() -> int:
             try:
                 with sftp.open(remote_path, "r") as f:
                     content = f.read().decode("utf-8")
-            except Exception as e:
-                print(f"  {name}: Lesefehler – {e}")
+            except Exception:
                 continue
             try:
                 data = json.loads(content)
             except json.JSONDecodeError:
-                data = {"raw": content, "parse_error": True}
+                data = {"raw": content[:200], "parse_error": True}
 
-            # Lokal speichern
-            local_path = os.path.join(LOCAL_DIR, name)
+            payload = data.get("payload") or {}
+            topic = payload.get("topic", data.get("type", ""))
+            items.append({"file": name, "topic": str(topic)[:200]})
+
+            local_path = os.path.join(local_dir, name)
             if not dry_run:
                 with open(local_path, "w", encoding="utf-8") as f:
                     json.dump(data, f, ensure_ascii=False, indent=2)
-            print(f"  {name} -> {local_path}")
-
-            # Auf VPS ins Archiv verschieben
             if not dry_run:
                 archive_path = f"{REMOTE_ARCHIVE}/{name}"
                 ssh.exec_command(f"mv '{remote_path}' '{archive_path}'")
 
         sftp.close()
-        if dry_run:
-            print("(Dry-Run: nichts geschrieben/verschoben)")
-        else:
-            print(f"{len(json_files)} Einreichung(en) gelesen und nach data/rat_submissions/ übernommen.")
     finally:
         ssh.close()
 
+    return True, len(items), items
+
+
+def main() -> int:
+    dry_run = "--dry-run" in sys.argv
+    if not HOST or not USER:
+        print("FEHLER: VPS_HOST oder VPS_USER in .env fehlt.")
+        return 1
+
+    ok, count, items = run_fetch(dry_run=dry_run)
+    if not ok:
+        print("SSH-Fehler oder Konfiguration fehlt.")
+        return 1
+    if count == 0:
+        print("Keine neuen Einreichungen von OC.")
+        return 0
+    for it in items:
+        print(f"  {it['file']} -> data/rat_submissions/")
+    if dry_run:
+        print("(Dry-Run: nichts geschrieben/verschoben)")
+    else:
+        print(f"{count} Einreichung(en) gelesen und nach data/rat_submissions/ übernommen.")
     return 0
 
 

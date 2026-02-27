@@ -25,12 +25,13 @@ HOST = os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 USER = os.getenv("VPS_USER", "root")
 PASSWORD = os.getenv("VPS_PASSWORD", "")
+KEY_PATH = os.getenv("VPS_SSH_KEY", "").strip()
 REMOTE_DIR = "/var/lib/openclaw/workspace/stammdokumente"
 
 # Projekt-Root: von src/scripts zwei Ebenen hoch
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
-LOCAL_DIR = os.path.join(PROJECT_ROOT, "docs", "stammdokumente_oc")
+LOCAL_DIR = os.path.join(PROJECT_ROOT, "docs", "01_CORE_DNA", "stammdokumente_oc")
 
 
 def main() -> int:
@@ -50,7 +51,10 @@ def main() -> int:
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
-        ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
+        if KEY_PATH and os.path.isfile(KEY_PATH):
+            ssh.connect(HOST, port=PORT, username=USER, key_filename=KEY_PATH, timeout=15)
+        else:
+            ssh.connect(HOST, port=PORT, username=USER, password=PASSWORD or None, timeout=15)
     except Exception as e:
         print(f"SSH-Fehler: {e}")
         return 1
@@ -74,7 +78,7 @@ def main() -> int:
         stdin, stdout, stderr = ssh.exec_command(f"chown -R 1000:1000 {REMOTE_DIR} && chmod -R 644 {REMOTE_DIR} && chmod 755 {REMOTE_DIR}")
         stdout.channel.recv_exit_status()
         print(f"Stammdokumente abgelegt unter {REMOTE_DIR} (für OC einsehbar).")
-        print("Nächster Schritt: OC per WhatsApp informieren (siehe docs/STAMMDOKUMENTE_DEPLOY.md).")
+        print("Nächster Schritt: OC per WhatsApp informieren (siehe docs/04_PROCESSES/STAMMDOKUMENTE_DEPLOY.md).")
     finally:
         ssh.close()
 
