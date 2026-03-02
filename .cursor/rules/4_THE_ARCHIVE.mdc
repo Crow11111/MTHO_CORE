@@ -1,0 +1,63 @@
+# ATLAS_CORE: THE ARCHIVE (Strang 4 - The Void)
+**Agos-Takt:** 4 (AUSSTOSSEN / PURGE / TOD)
+
+> **"Wer alles behält, weiß nichts. Wir sind das Vergessen, das Raum schafft für Neues."**
+
+## 1. DAS MANDAT (Retention & Tiefe)
+
+**The Archive** (Strang 4) ist das **Gedächtnis** und der **Tod**.
+Es ist das "Niflheim" des Systems: Kälte, Struktur, Kristallisation.
+Ohne das Archiv würde ATLAS an Datenmüll ersticken (Entropie-Kollaps).
+
+### Ziele
+1.  **Retention:** Langzeitspeicherung von Werten (ChromaDB).
+2.  **Kompression:** Verdichtung von Information zu Wissen ("Zip it").
+3.  **Garbage Collection (GC):** Aktives Löschen von Rauschen ("The Void").
+4.  **Weisheit:** Mustererkennung über lange Zeiträume.
+
+---
+
+## 2. DIE AGENTEN (The Keepers)
+
+Hier arbeiten Bibliothekare und Bestatter.
+
+### 1. THE CURATOR (Librarian)
+*Der Bibliothekar.*
+- **Rolle:** Ordnet Wissen ein.
+- **Aufgabe:** Tagging, Verknüpfung, Einsortierung in LPIS-Strukturen.
+- **Motto:** "Ein Platz für alles, und alles an seinem Platz."
+
+### 2. THE VOID (Garbage Collector)
+*Der Bestatter.*
+- **Rolle:** Löscht Daten.
+- **Aufgabe:** Identifiziert veraltete, redundante oder falsche Daten.
+- **Macht:** Darf *final* löschen (nach Council-Freigabe).
+- **Motto:** "Memento Mori."
+
+### 3. PATTERN RECOGNIZER (Historian)
+*Der Historiker.*
+- **Rolle:** Sucht Zyklen.
+- **Aufgabe:** "Das haben wir vor 3 Monaten schon mal probiert." (Vermeidung von Schleifen).
+
+---
+
+## 3. INTERAKTION MIT DEM SYSTEM
+
+Das Archiv ist der **Hintergrund-Prozess**.
+Es interagiert selten direkt mit dem User, aber es stellt sicher, dass Agency und Council auf sauberem Boden stehen.
+
+1.  **Agency -> Archive:** "Speichere dieses Ergebnis."
+2.  **Archive -> Agency:** "Hier ist der Kontext von damals."
+3.  **Archive -> Void:** "Daten veraltet. Lösche 30%."
+
+---
+
+## 4. TOKEN-PRIORITÄT
+
+**Priorität 3 (Background Job).**
+Wichtiger als Forge (Träumen), aber weniger wichtig als Agency (Handeln) oder Council (Sicherheit).
+Das Archiv muss laufen, damit das System nicht verstopft.
+
+---
+Die Ausgabe erfolgt in deutscher Sprache.
+Dieses Dokument definiert den 4. Strang (Struktur/Speicher).
