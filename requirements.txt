@@ -9,6 +9,7 @@ httpx>=0.25.0    # Für asynchrone API Calls (Scout/HA)
 paramiko>=3.4.0  # SSH Verbindung zum Scout
 fastapi>=0.109.0 # API Server für ATLAS_CORE
 uvicorn>=0.27.0  # Server Runner
+python-multipart>=0.0.9 # Für File-Uploads (API)
 
 # FRONTEND
 streamlit>=1.31.0
@@ -22,6 +23,8 @@ numpy>=1.26.0
 ollama>=0.1.6    # Offizielle Python Lib
 langchain>=0.1.0 # Optional für spätere Ketten
 anthropic        # Offizieller Anthropic-Client für Claude 4.6
+google-genai>=0.3.0 # Google AI SDK für Gemini
+pycryptodome>=3.20.0 # Für WhatsApp Audio Decryption
 
 # BACKUP (daily_backup.py: .env-Verschlüsselung)
 cryptography>=42.0.0

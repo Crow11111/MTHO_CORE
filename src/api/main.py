@@ -1,7 +1,8 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel
+from fastapi.staticfiles import StaticFiles
+from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, atlas_events, atlas_voice, atlas_knowledge
 
 app = FastAPI(
     title="ATLAS_CORE API",
@@ -21,6 +22,13 @@ app.add_middleware(
 app.include_router(whatsapp_webhook.router)
 app.include_router(ha_webhook.router)
 app.include_router(oc_channel.router)
+app.include_router(atlas_events.router)
+app.include_router(atlas_voice.router)
+app.include_router(atlas_knowledge.router)
+
+# Static Files (Media) für Audio/Bilder
+os.makedirs("media", exist_ok=True)
+app.mount("/media", StaticFiles(directory="media"), name="media")
 
 @app.get("/")
 def read_root():
