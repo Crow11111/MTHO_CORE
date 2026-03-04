@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "ATLAS Conversation einrichten",
+        "description": "ATLAS API URL und Bearer-Token (HA_WEBHOOK_TOKEN aus .env) eingeben.",
+        "data": {
+          "base_url": "ATLAS API URL",
+          "token": "Bearer Token (HA_WEBHOOK_TOKEN)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "ATLAS API nicht erreichbar. URL und Token prüfen (HA_WEBHOOK_TOKEN in .env)."
+    },
+    "abort": {
+      "already_configured": "ATLAS ist bereits für diese URL konfiguriert."
+    }
+  }
+}

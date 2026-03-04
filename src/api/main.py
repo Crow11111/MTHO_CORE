@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, atlas_knowledge
+from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, atlas_knowledge, atlas_voice
 from src.api.middleware.council_gate import CouncilGateMiddleware
 
 app = FastAPI(
@@ -26,6 +26,7 @@ app.include_router(whatsapp_webhook.router)
 app.include_router(ha_webhook.router)
 app.include_router(oc_channel.router)
 app.include_router(atlas_knowledge.router)
+app.include_router(atlas_voice.router)
 
 @app.get("/")
 def read_root():

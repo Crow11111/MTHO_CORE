@@ -21,6 +21,7 @@ numpy>=1.26.0
 # AI INTERFACE
 ollama>=0.1.6    # Offizielle Python Lib
 langchain>=0.1.0 # Optional für spätere Ketten
+rapidfuzz>=3.0.0 # Fuzzy-Matching für Voice Command Parser
 anthropic        # Offizieller Anthropic-Client für Claude 4.6
 
 # BACKUP (daily_backup.py: .env-Verschlüsselung)

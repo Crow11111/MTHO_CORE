@@ -4,6 +4,10 @@
 
 **Voraussetzung:** Add-ons Whisper, Piper, openWakeWord sind installiert und laufen (Scout/Raspi 5).
 
+**Verwandte Docs:**
+- [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) – Verfügbare vordefinierte Modelle
+- [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md) – Custom Training für „hey atlas“ und „computer“
+
 ---
 
 ## 1. Wyoming-Integration hinzufügen
@@ -52,22 +56,38 @@ Nach dem Start der Add-ons erscheinen die Dienste unter **Einstellungen → Ger�
 3. **Streaming Wake Word Engine:** openwakeword
 4. **Wake Word:** z.B. **ok nabu** (zum Testen) oder ein anderes vordefiniertes Modell
 
-**Hinweis:** „hey atlas“ ist nicht vordefiniert. Für „hey atlas“ siehe 3.2.
+**Vordefinierte Modelle:** alexa, hey_mycroft, hey_jarvis, hey_rhasspy, timer, weather.  
+**„computer“** und **„atlas“** sind nicht vordefiniert – siehe [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) und 3.2.
 
-### 3.2 Eigenes Wake Word „hey atlas“
+### 3.2 Eigenes Wake Word „hey atlas“ und „computer“
 
 1. [Wake-Word-Training (Google Colab)](https://colab.research.google.com/drive/1q1oe2zOyZp7UsB3jJiQ1IFn8z5YfjwEb?usp=sharing)
-2. `target_word`: `hey atlas` (oder `atlas`)
-3. **Runtime → Run all** ausführen (~1 Stunde)
+2. `target_word`: `hey atlas` (oder `atlas`) bzw. `computer`
+3. **Runtime → Run all** ausführen (~30–60 Min.)
 4. `.tflite`-Datei herunterladen
-5. Samba: `/share/openwakeword` anlegen
+5. Samba: `/share/openwakeword` anlegen (falls nicht vorhanden)
 6. `.tflite` in `/share/openwakeword` ablegen
 7. HA neu starten oder openWakeWord-Add-on neu starten
 8. Assistent bearbeiten → Wake Word: eigenes Modell wählen
 
+**Detaillierte Anleitung:** [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md)  
 **Dokumentation:** [HA Wake Words erstellen](https://www.home-assistant.io/voice_control/create_wake_word/)
 
-### 3.3 openWakeWord-Parameter
+### 3.3 Zwei Wake Words gleichzeitig (ab HA 2025.10)
+
+Ab Home Assistant 2025.10 unterstützen Voice Satellites **bis zu zwei Wake Words** pro Gerät.  
+→ Zwei verschiedene Assistenten/Pipelines mit unterschiedlichen Wake Words (z.B. „hey atlas“ und „computer“) können parallel aktiv sein.
+
+### 3.4 Setup-Skripte (ATLAS)
+
+| Skript | Zweck |
+|--------|-------|
+| `python src/scripts/download_openwakeword_models.py --all` | Lädt vordefinierte Modelle (hey_jarvis, alexa, etc.) herunter |
+| `python src/scripts/setup_scout_wake_words.py -s data/openwakeword_models -t \\\\192.168.178.54\\share\\openwakeword` | Kopiert .tflite nach Scout |
+
+**Ablage auf Scout:** `/share/openwakeword` (Samba: `\\192.168.178.54\share\openwakeword`)
+
+### 3.5 openWakeWord-Parameter
 
 - **Threshold:** 0.5 (Standard)
 - **Trigger Level:** 1 (Standard)
@@ -234,6 +254,10 @@ curl -X POST http://192.168.178.110:8000/webhook/assist \
 
 | Thema | Datei / URL |
 |-------|-------------|
+| openWakeWord Modelle | [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) |
+| Custom Training | [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md) |
+| Download-Skript | `src/scripts/download_openwakeword_models.py` |
+| Setup-Skript | `src/scripts/setup_scout_wake_words.py` |
 | ATLAS HA-Client | `src/connectors/home_assistant.py` |
 | Webhook-Routen | `src/api/routes/ha_webhook.py` – `/webhook/assist`, `/webhook/inject_text` |
 | Auth | `src/api/auth_webhook.py` – `verify_ha_auth` (Bearer) |

@@ -20,7 +20,7 @@ class TTSBody(BaseModel):
 
 class DispatchTTSBody(BaseModel):
     text: str
-    target: str = "mini"  # mini | local | both
+    target: str = "mini"  # mini | local | elevenlabs | elevenlabs_stream | both | piper
     role: str = "atlas_dialog"
 
 

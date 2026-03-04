@@ -113,14 +113,21 @@ rest_command:
 
 ---
 
-## 7. Automation: Assist-Text an ATLAS
+## 7. ATLAS Conversation Agent (empfohlen)
 
-Die Assist-Pipeline liefert den transkribierten Text an einen **Conversation Agent**. Für ATLAS wird ein **Custom Conversation Agent** benötigt, der den Text an die ATLAS API weiterleitet. HA bietet dafür keine Standard-Integration – es braucht entweder:
+**Custom Integration** `atlas_conversation` – empfängt Text von der Assist-Pipeline, sendet an ATLAS `/webhook/inject_text`, gibt Antwort für TTS zurück.
 
-- eine **Custom Integration** (Python), die die Conversation API implementiert und an ATLAS weiterleitet, oder
-- einen **Workaround** über `input_text` + Automation.
+### 7.0 Installation der ATLAS Conversation Integration
 
-### 7.1 Workaround: input_text + Automation
+1. Ordner `ha_integrations/atlas_conversation` nach `config/custom_components/atlas_conversation/` kopieren.
+2. HA neu starten.
+3. **Einstellungen → Geräte & Dienste → Integration hinzufügen** → "ATLAS Conversation".
+4. **ATLAS API URL:** z.B. `http://192.168.178.110:8000`
+5. **Bearer Token:** `HA_WEBHOOK_TOKEN` aus `.env`
+
+Vollständige Anleitung: `ha_integrations/atlas_conversation/README.md`
+
+### 7.1 Workaround: input_text + Automation (falls Integration nicht nutzbar)
 
 Wenn der Text auf anderem Weg in `input_text.assist_command` landet (z.B. von einem externen Skript oder einer anderen Integration):
 
@@ -150,14 +157,15 @@ automation:
           value: ""
 ```
 
-**Hinweis:** Damit die volle Voice-Pipeline funktioniert, muss der transkribierte Text aus der Assist-Pipeline in `input_text.assist_command` geschrieben werden. Dafür ist ein **Custom Conversation Agent** nötig, der:
-1. Den Text von der Assist-Pipeline empfängt,
-2. An ATLAS sendet,
-3. Die Antwort zurückgibt (für TTS).
+**Hinweis:** Damit die volle Voice-Pipeline funktioniert, muss der transkribierte Text aus der Assist-Pipeline in `input_text.assist_command` geschrieben werden. Dafür ist ein **Custom Conversation Agent** nötig – die ATLAS Conversation Integration (Abschnitt 7.0) löst das vollständig.
+
+**Event-basierte Alternative:** `assist_pipeline.run_stage` feuert `stt-end` (mit `stt_output.text`) und `intent-start`. Eine Automation könnte auf `stt-end` triggern und ATLAS aufrufen – aber die Antwort kann nicht zurück in die Pipeline injiziert werden (TTS würde fehlen). Daher: Custom Agent erforderlich.
 
 ### 7.2 ATLAS API Antwort und TTS
 
-Der Endpoint `/webhook/assist` gibt `{"status":"ok","reply":"<Antworttext>"}` zurück. **ATLAS spielt die Antwort automatisch auf dem Mini-Speaker ab** – nach der Verarbeitung ruft ATLAS den HA-Service `tts.google_translate_say` auf (via `tts_dispatcher`, Ziel: `media_player.schreibtisch` oder `TTS_CONFIRMATION_ENTITY`). Keine zusätzliche HA-Automation für TTS nötig.
+Mit **ATLAS Conversation Integration**: Der Agent ruft `/webhook/inject_text` auf. ATLAS gibt `{"status":"ok","reply":"<Antworttext>"}` zurück. **HA Piper** spricht die Antwort über den konfigurierten Media Player (TTS in der Assist-Pipeline).
+
+Ohne Custom Agent (rest_command-Workaround): `/webhook/assist` würde ATLAS-seitig TTS auslösen – für die volle Voice-Pipeline ist die Integration vorzuziehen.
 
 ---
 
@@ -166,12 +174,12 @@ Der Endpoint `/webhook/assist` gibt `{"status":"ok","reply":"<Antworttext>"}` zu
 1. **Einstellungen → Sprachassistenten → Assistent hinzufügen**
 2. **Name:** z.B. "ATLAS"
 3. **Sprache:** Deutsch (oder gewünschte Sprache)
-4. **Conversation Agent:** Home Assistant (Standard) – für ATLAS-Anbindung Custom Agent nötig, siehe Abschnitt 7
+4. **Conversation Agent:** **ATLAS Conversation** (nach Installation der Custom Integration, siehe Abschnitt 7.0)
 5. **Speech-to-Text:** Whisper
 6. **Text-to-Speech:** Piper
 7. **Wake Word:** openWakeWord (falls verfügbar)
 
-Ohne Custom Conversation Agent arbeitet die Pipeline mit dem Standard-HA-Agent. Für ATLAS-Anbindung ist eine Custom Integration oder der input_text-Workaround erforderlich.
+Ohne ATLAS Conversation Agent arbeitet die Pipeline mit dem Standard-HA-Agent. Für ATLAS-Anbindung die Integration aus Abschnitt 7.0 installieren.
 
 ---
 
@@ -194,7 +202,27 @@ curl -X POST http://192.168.178.110:8000/webhook/assist \
 
 ---
 
-## 10. Referenzen
+## 10. Wyoming-Integration verifizieren
+
+**Test-Script:** `python -m src.scripts.test_ha_voice_integration`
+
+Prüft ob Whisper STT, Piper TTS und openWakeWord in HA verfügbar sind. Nutzt `HomeAssistantClient` aus `src/connectors/home_assistant.py`; bei SSL-Problemen (Self-Signed/IP-Zertifikat) Fallback mit `requests` + `verify=False`.
+
+**HA REST API Calls (für Voice-Status):**
+
+| Zweck | Endpoint | Methode |
+|-------|----------|---------|
+| Alle Entities (STT/TTS/Wake-Word) | `/api/states` | GET |
+| Whisper STT Status | Filter `stt.*` aus `/api/states` (z.B. `stt.faster_whisper`) | - |
+| Piper TTS Status | Filter `tts.*` aus `/api/states` (z.B. `tts.piper`) | - |
+| openWakeWord Status | Filter `wake_word.*` aus `/api/states` (z.B. `wake_word.openwakeword`) | - |
+| Assist Pipelines listen | Kein dedizierter REST-Endpoint; Pipelines über UI/WebSocket | - |
+
+**Hinweis:** Assist Pipelines werden in HA über WebSocket/UI verwaltet. Die REST API liefert nur Entities (stt.*, tts.*, wake_word.*). Der JSON-Report wird nach `data/ha_voice_integration_report.json` geschrieben.
+
+---
+
+## 11. Referenzen
 
 - `src/connectors/home_assistant.py` – ATLAS HA-Client
 - `src/api/routes/ha_webhook.py` – `/webhook/assist`, `/webhook/inject_text`
@@ -202,3 +230,4 @@ curl -X POST http://192.168.178.110:8000/webhook/assist \
 - `docs/03_INFRASTRUCTURE/SCOUT_HA_EVENT_AN_OC_BRAIN.md` – Scout-Events an OC Brain
 - [HA Assist Pipeline](https://www.home-assistant.io/integrations/assist_pipeline/)
 - [HA Lokale Voice Pipeline](https://www.home-assistant.io/voice_control/voice_remote_local_assistant/)
+- `src/scripts/test_ha_voice_integration.py` – Wyoming-Verifizierung

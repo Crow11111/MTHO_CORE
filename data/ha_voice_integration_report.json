@@ -1,0 +1,78 @@
+{
+  "connection": true,
+  "wyoming": {
+    "whisper_stt": {
+      "available": true,
+      "entities": [
+        {
+          "entity_id": "stt.faster_whisper",
+          "state": "unknown",
+          "friendly_name": "faster-whisper"
+        }
+      ]
+    },
+    "piper_tts": {
+      "available": true,
+      "entities": [
+        {
+          "entity_id": "tts.piper",
+          "state": "unknown",
+          "friendly_name": "piper"
+        }
+      ]
+    },
+    "openwakeword": {
+      "available": true,
+      "entities": [
+        {
+          "entity_id": "wake_word.openwakeword",
+          "state": "unknown",
+          "friendly_name": "openwakeword"
+        }
+      ]
+    }
+  },
+  "assist_pipelines": [],
+  "all_stt": [
+    {
+      "entity_id": "stt.home_assistant_cloud",
+      "state": "unknown",
+      "friendly_name": "Home Assistant Cloud"
+    },
+    {
+      "entity_id": "stt.elevenlabs_sprache_zu_text",
+      "state": "unknown",
+      "friendly_name": "ElevenLabs Sprache-zu-Text"
+    },
+    {
+      "entity_id": "stt.faster_whisper",
+      "state": "unknown",
+      "friendly_name": "faster-whisper"
+    }
+  ],
+  "all_tts": [
+    {
+      "entity_id": "tts.home_assistant_cloud",
+      "state": "2026-02-24T02:24:11.583251+00:00",
+      "friendly_name": "Home Assistant Cloud"
+    },
+    {
+      "entity_id": "tts.elevenlabs",
+      "state": "2026-03-02T14:15:37.155207+00:00",
+      "friendly_name": "ElevenLabs Text-zu-Sprache"
+    },
+    {
+      "entity_id": "tts.piper",
+      "state": "unknown",
+      "friendly_name": "piper"
+    }
+  ],
+  "all_wake_word": [
+    {
+      "entity_id": "wake_word.openwakeword",
+      "state": "unknown",
+      "friendly_name": "openwakeword"
+    }
+  ],
+  "errors": []
+}

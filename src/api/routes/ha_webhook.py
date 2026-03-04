@@ -189,7 +189,8 @@ async def assist_pipeline(
     if reply:
         try:
             from src.voice.tts_dispatcher import dispatch_tts
-            await dispatch_tts(text=reply, target="mini", role_name="atlas_dialog")
+            tts_target = os.getenv("TTS_TARGET", "mini").strip().lower()
+            await dispatch_tts(text=reply, target=tts_target, role_name="atlas_dialog")
         except Exception as e:
             logger.warning(f"TTS auf Mini fehlgeschlagen: {e}")
     return result

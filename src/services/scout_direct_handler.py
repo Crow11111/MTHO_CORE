@@ -9,10 +9,14 @@ Routing:
 - deep_reasoning/chat → OC Brain (VPS)
 - HA unreachable → Fallback an ATLAS_VPS_URL (falls konfiguriert)
 
+Voice: Smart Command Parser (src/voice/smart_command_parser) wird bevorzugt,
+       wenn entities verfügbar sind – unterstützt Helligkeit, Farbe, Temperatur.
+
 Env: SCOUT_DIRECT_MODE, ATLAS_VPS_URL, HA_WEBHOOK_TOKEN, HASS_URL, HASS_TOKEN
 """
 from __future__ import annotations
 
+import json
 import os
 from dotenv import load_dotenv
 from loguru import logger
@@ -72,6 +76,21 @@ def _call_ha_service(domain: str, service: str, entity_id: str, service_data: di
         return False
 
 
+def _load_entities_for_parser(context: dict) -> list:
+    """Lädt HA-Entities für Smart Parser (Cache oder Context)."""
+    if context.get("entities"):
+        return context["entities"]
+    try:
+        base = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        path = os.path.join(base, "data", "home_assistant", "states.json")
+        if os.path.isfile(path):
+            with open(path, encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        logger.debug("Entities-Cache nicht geladen: {}", e)
+    return []
+
+
 def process_text(text: str, context: dict | None = None) -> dict:
     """
     Hauptlogik: Triage → Command lokal oder Deep-Reasoning an VPS.
@@ -84,6 +103,33 @@ def process_text(text: str, context: dict | None = None) -> dict:
     if not text:
         return {"reply": "Kein Text eingegeben.", "success": False, "routed": "local"}
 
+    # --- SMART COMMAND PARSER (Voice) – bevorzugt bei Steuerbefehlen ---
+    entities = _load_entities_for_parser(context)
+    try:
+        from src.voice.smart_command_parser import parse_command
+
+        ha_action = parse_command(text, entities)
+        if ha_action and ha_action.entity_id:
+            success = _call_ha_service(
+                ha_action.domain,
+                ha_action.service,
+                ha_action.entity_id,
+                ha_action.data if ha_action.data else None,
+            )
+            if success:
+                return {
+                    "reply": f"Befehl ausgeführt: {ha_action.service} auf {ha_action.entity_id}",
+                    "success": True,
+                    "routed": "local",
+                }
+            # Smart Parser hatte Match, aber HA-Call fehlgeschlagen → VPS-Fallback
+            logger.warning("Smart Parser Match, HA-Call fehlgeschlagen, versuche VPS-Fallback")
+            ok, reply = _forward_to_vps(text, context)
+            return {"reply": reply, "success": ok, "routed": "vps_fallback"}
+    except Exception as e:
+        logger.debug("Smart Parser nicht genutzt, Fallback auf Triage: {}", e)
+
+    # --- LEGACY: Hugin/LLM Triage ---
     triage = _load_triage().run_triage(text)
 
     # --- COMMAND PATH ---

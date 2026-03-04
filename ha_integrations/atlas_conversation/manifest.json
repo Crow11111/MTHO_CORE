@@ -1,0 +1,11 @@
+{
+  "domain": "atlas_conversation",
+  "name": "ATLAS Conversation",
+  "codeowners": ["@ATLAS_CORE"],
+  "config_flow": true,
+  "dependencies": ["conversation"],
+  "documentation": "https://github.com/ATLAS_CORE/ATLAS_CORE/blob/main/docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "version": "1.0.0"
+}
