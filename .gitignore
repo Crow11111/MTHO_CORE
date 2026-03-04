@@ -30,6 +30,11 @@ logs/
 media/
 data/gute_nacht.mp3
 
+# === Large Binaries (>50MB, not for Git) ===
+driver/go2rtc_win64/
+*.zip
+*.exe
+
 # === IDE ===
 .vscode/
 .idea/
