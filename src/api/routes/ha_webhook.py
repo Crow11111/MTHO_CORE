@@ -1,5 +1,7 @@
-from fastapi import APIRouter, Request, HTTPException
+from fastapi import APIRouter, Request, HTTPException, Depends
 from pydantic import BaseModel
+
+from src.api.auth_webhook import verify_ha_auth
 from typing import Optional, Dict, Any
 from loguru import logger
 from src.network.ha_client import HAClient
@@ -16,7 +18,10 @@ class HAActionPayload(BaseModel):
     user_id: Optional[str] = None
 
 @router.post("/ha_action")
-async def receive_ha_action(request: Request):
+async def receive_ha_action(
+    request: Request,
+    _auth: None = Depends(verify_ha_auth),
+):
     """
     Empfängt interaktive Action-Events oder direkte Text-Eingaben 
     von der Home Assistant Companion App (z.B. iPhone).
@@ -83,7 +88,10 @@ class RawTextPayload(BaseModel):
     text: str
 
 @router.post("/inject_text")
-async def inject_raw_text(payload: RawTextPayload):
+async def inject_raw_text(
+    payload: RawTextPayload,
+    _auth: None = Depends(verify_ha_auth),
+):
     """
     Empfängt rohe Text-Strings (z.B. von Google Home / Nabu Casa Webhooks) 
     und wirft sie direkt in die LLM-Triage-Pipeline.

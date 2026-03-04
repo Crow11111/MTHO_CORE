@@ -1,6 +1,8 @@
-from fastapi import APIRouter, Request, BackgroundTasks
+from fastapi import APIRouter, Request, BackgroundTasks, Depends
 from fastapi.responses import JSONResponse
 from loguru import logger
+
+from src.api.auth_webhook import verify_whatsapp_auth
 from src.network.ha_client import HAClient
 from src.ai.whatsapp_audio_processor import process_whatsapp_audio
 from src.ai.llm_interface import atlas_llm
@@ -18,7 +20,11 @@ ACCEPTED_MSG = "[Scout] Nachricht erhalten, verarbeite …"
 
 
 @router.post("/whatsapp")
-async def receive_whatsapp(request: Request, background_tasks: BackgroundTasks):
+async def receive_whatsapp(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    _auth: None = Depends(verify_whatsapp_auth),
+):
     """
     Empfängt WhatsApp-Nachrichten über Home Assistant.
     Erkennt Text- und Sprachnachrichten und leitet sie an Gemini weiter.

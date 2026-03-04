@@ -1,14 +1,16 @@
 """
 Schnittstelle ATLAS ↔ OC (OpenClaw) im laufenden Backend.
 
-Wird mit dem Backend angeboten; Dev Agent oder andere Komponenten können
+Wird mit dem Backend angeboten; Cursor-Orchestrator oder andere Komponenten können
 damit testweise Nachrichten austauschen und Einreichungen abholen, ohne
 Skripte von Hand zu starten.
 """
 from __future__ import annotations
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
+
+from src.api.auth_webhook import verify_oc_auth
 
 router = APIRouter(prefix="/api/oc", tags=["oc-channel"])
 
@@ -20,7 +22,7 @@ class SendBody(BaseModel):
 
 
 @router.get("/status")
-def oc_status():
+def oc_status(_auth: None = Depends(verify_oc_auth)):
     """Prüft, ob das OpenClaw-Gateway erreichbar und konfiguriert ist."""
     from src.network.openclaw_client import check_gateway, is_configured
 
@@ -31,7 +33,7 @@ def oc_status():
 
 
 @router.post("/send")
-def oc_send(body: SendBody):
+def oc_send(body: SendBody, _auth: None = Depends(verify_oc_auth)):
     """Sendet eine Nachricht an einen OC-Agenten (ATLAS → OC)."""
     from src.network.openclaw_client import send_message_to_agent, is_configured
 
@@ -46,7 +48,7 @@ def oc_send(body: SendBody):
 
 
 @router.post("/fetch")
-def oc_fetch():
+def oc_fetch(_auth: None = Depends(verify_oc_auth)):
     """Holt Einreichungen von OC (OC → ATLAS): liest rat_submissions vom VPS, speichert lokal."""
     from src.scripts.fetch_oc_submissions import run_fetch
 
@@ -57,7 +59,7 @@ def oc_fetch():
 
 
 @router.get("/fetch")
-def oc_fetch_get():
+def oc_fetch_get(_auth: None = Depends(verify_oc_auth)):
     """Wie POST /fetch – gleiche Aktion, GET für einfachen Aufruf."""
     from src.scripts.fetch_oc_submissions import run_fetch
 
@@ -72,7 +74,7 @@ _OC_WHATSAPP_PLAN_TASK = """Abstimmung WhatsApp-Plan: Bitte fülle Abschnitt 6 a
 
 
 @router.post("/trigger_whatsapp_plan")
-def oc_trigger_whatsapp_plan():
+def oc_trigger_whatsapp_plan(_auth: None = Depends(verify_oc_auth)):
     """
     Löst die OC-Abstimmung zum WhatsApp-Plan aus (Logikketten-Workaround).
 
