@@ -1,5 +1,14 @@
 # Projekt ATLAS_CORE – Was wir machen und warum
 
+## 4D State Vector (Bootloader)
+
+Dimensionen: X(CAR/CDR 0=NT,1=ND), Y(Gravitation 0=Wuji,1=Kollaps), Z(Widerstand 0=Nachgeben,1=Veto), W(Takt 0-4)
+Schwellwerte: PHI=0.618/0.382, Symmetriebruch=0.49/0.51, Delta=0.049
+LPIS: L(Logik,T,Schwach)↔I(Info,C,EM) [Motor], S(Struktur,G,Grav)↔P(Physik,A,Stark) [Rueckgrat]
+Tetralogie: Agency(P,Takt3), Council(L,Takt1+4), Forge(I,Takt2), Archive(S,Takt4)
+
+Vollstaendige Theorie: docs/01_CORE_DNA/ATLAS_4_STRANG_THEORIE.md
+
 ## Kurzbeschreibung
 
 **ATLAS** (und das Kernsystem **ATLAS_CORE**) ist ein kybernetischer Exocortex: ein System, das den Nutzer (Marc) bei Denkarbeit, Steuerung des Zuhauses und Kommunikation unterstützt – mit klarer Trennung zwischen leichten, lokalen Aktionen (Scout) und schwerer KI (Dreadnought/ATLAS).

@@ -1,16 +1,34 @@
 # ATLAS_CORE: ATLAS TETRALOGY (The 4-Strand Architecture)
 
-## 0. KONTEXT-PRIMAER: WUJI-DIAGRAMM
+## 0. KONTEXT-PRIMAER: WUJI-DIAGRAMM + 4D VEKTOR
 
-**VOR JEDER AUFGABE:** Lade `ATLAS_WUJI_MASTER_PLAN.png` im Root-Verzeichnis.
-Das Diagramm enthaelt die komplette Systemarchitektur:
-- Ring-0 (Wuji Core, Read-Only, Hugin+Munin)
-- Ring-1 (Operative Ausfuehrung, Cloud Agents, CrewAI)
-- Marc/ND als External Observer
-- Freeze Control bei Semantic Drift
+**VOR JEDER AUFGABE:**
+1. Lade `ATLAS_WUJI_MASTER_PLAN.png` (visuelle Architektur)
+2. Importiere `src/config/atlas_state_vector.py` (mathematischer Kern)
 
-**KEINE langen Docs lesen fuer Grundkontext.** Das Bild ist die Wahrheit.
+### Der 4D State Vector (Bootloader)
+```
+X: CAR/CDR Balance (0=NT, 1=ND)
+Y: Gravitation (0=Wuji/flat, 1=Kollaps)
+Z: Widerstand (0=Nachgeben, 1=Veto)
+W: Takt (0-4 Agos-Zyklus)
+```
+
+### Kritische Schwellwerte
+- **Phi-Balance:** 0.618 / 0.382
+- **Symmetriebruch:** 0.49 / 0.51
+- **Baryonisches Delta:** 0.049
+
+### LPIS Quaternaere Codierung
+```
+L(Logik,T,Schwach) ↔ I(Info,C,EM)     [asymmetrisch, Motor]
+S(Struktur,G,Grav) ↔ P(Physik,A,Stark) [symmetrisch, Rueckgrat]
+```
+
+**KEINE langen Docs lesen fuer Grundkontext.** Bild + Vektor sind die Wahrheit.
 Docs nur bei spezifischen Detail-Fragen.
+
+**Vollstaendige Theorie:** `docs/01_CORE_DNA/ATLAS_4_STRANG_THEORIE.md`
 
 ---
 

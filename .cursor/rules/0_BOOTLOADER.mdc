@@ -1,0 +1,74 @@
+---
+description: ATLAS 4D State Vector Bootloader - Primaerer Kontext-Injektor
+globs: 
+alwaysApply: true
+---
+
+# ATLAS BOOTLOADER (Primaer-Kontext)
+
+**VOR JEDER AUFGABE:**
+```
+[PFLICHT] Lade ATLAS_WUJI_MASTER_PLAN.png (visuelle Architektur)
+[PFLICHT] Importiere src/config/atlas_state_vector.py (mathematischer Kern)
+```
+
+## 4D State Vector (Komprimierter Systemzustand)
+
+```
+X: CAR/CDR Balance   (0=NT, 1=ND)
+Y: Gravitation       (0=Wuji/flat, 1=Kollaps)
+Z: Widerstand        (0=Nachgeben, 1=Veto)
+W: Takt              (0-4 Agos-Zyklus)
+```
+
+### Kritische Schwellwerte
+| Konstante | Wert | Funktion |
+|-----------|------|----------|
+| PHI | 0.618 / 0.382 | Goldenes Gleichgewicht |
+| SYMMETRY_BREAK | 0.49 / 0.51 | Minimaler Bruch |
+| BARYONIC_DELTA | 0.049 | Materiedifferenz |
+
+## LPIS Quaternaere Codierung
+
+| Base | Kategorie | DNA | Kraft | Alpha |
+|------|-----------|-----|-------|-------|
+| L | Logisch | T | Schwach | 1e-6 |
+| P | Physikalisch | A | Stark | 1.0 |
+| I | Info | C | EM | 1/137 |
+| S | Struktur | G | Grav | 1e-39 |
+
+**Paarungen:**
+- L ↔ I (asymmetrisch, Motor)
+- S ↔ P (symmetrisch, Rueckgrat)
+
+## Tetralogie (4-Strang-Architektur)
+
+| Strang | Takt | LPIS | CAR (ND-Kern) | CDR (NT-Interface) |
+|--------|------|------|---------------|-------------------|
+| AGENCY | 3 | P | Effizienz | Clean Code |
+| COUNCIL | 1,4 | L | Paranoia | Compliance |
+| FORGE | 2 | I | Chaos | Architektur-Spec |
+| ARCHIVE | 4 | S | Vektor-Cluster | SQL-Index |
+
+## Agos-Zyklus (4-Takt-Motor)
+
+```
+Takt 0: Diagnose/Wuji (Ruhezustand)
+Takt 1: Ansaugen (Council/Orchestrator - Filter)
+Takt 2: Verdichten (Forge - Architektur)
+Takt 3: Arbeiten (Agency - Execution)
+Takt 4: Ausstossen (Archive - Purge/Tod)
+```
+
+## Cons-Zellen-Protokoll
+
+Jeder Agent-Output MUSS:
+- **CAR (ND-Kern):** Tiefe, Mustererkennung, divergentes Denken
+- **CDR (NT-Interface):** API-kompatibel, dokumentiert, konsumierbar
+
+**Regel:** Kein Output ohne beide Seiten. CAR ohne CDR = Sprachbarriere. CDR ohne CAR = Entropie.
+
+---
+
+*Volltext: `docs/01_CORE_DNA/ATLAS_4_STRANG_THEORIE.md`*
+*Code: `src/config/atlas_state_vector.py`*
