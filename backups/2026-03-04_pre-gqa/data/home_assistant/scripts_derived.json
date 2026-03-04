@@ -1,0 +1,1467 @@
+[
+  {
+    "entity_id": "script.restart",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-18T22:56:44.525974+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:restart",
+      "friendly_name": "Core Restart"
+    },
+    "last_changed": "2026-02-19T22:06:24.197026+00:00",
+    "last_reported": "2026-02-19T22:06:24.197026+00:00",
+    "last_updated": "2026-02-19T22:06:24.197026+00:00",
+    "context": {
+      "id": "01KHVZ17Y57C0SC6N85ZN3ASJC",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.sg",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2023-01-16T09:51:58.676914+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "SG"
+    },
+    "last_changed": "2026-02-19T22:06:24.197280+00:00",
+    "last_reported": "2026-02-19T22:06:24.197280+00:00",
+    "last_updated": "2026-02-19T22:06:24.197280+00:00",
+    "context": {
+      "id": "01KHVZ17Y5NKN2XB8YDJDN93R7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.zuhause",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-16T19:50:21.874136+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:home-automation",
+      "friendly_name": "zuhause"
+    },
+    "last_changed": "2026-02-19T22:06:24.197488+00:00",
+    "last_reported": "2026-02-19T22:06:24.197488+00:00",
+    "last_updated": "2026-02-19T22:06:24.197488+00:00",
+    "context": {
+      "id": "01KHVZ17Y548EBNGHNWJG51KE1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ausuraus",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T19:36:10.470546+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:star-crescent",
+      "friendly_name": "ausuraus"
+    },
+    "last_changed": "2026-02-19T22:06:24.197653+00:00",
+    "last_reported": "2026-02-19T22:06:24.197653+00:00",
+    "last_updated": "2026-02-19T22:06:24.197653+00:00",
+    "context": {
+      "id": "01KHVZ17Y5VHW1ZS5NARP1RAE3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.confirmable_notification",
+    "state": "unavailable",
+    "attributes": {
+      "friendly_name": "Test Notification"
+    },
+    "last_changed": "2026-02-19T22:06:24.197924+00:00",
+    "last_reported": "2026-02-19T22:06:24.197924+00:00",
+    "last_updated": "2026-02-19T22:06:24.197924+00:00",
+    "context": {
+      "id": "01KHVZ17Y5XBR90D4SYPYG0MPY",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.badezeit",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-07-18T15:25:48.048592+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bell",
+      "friendly_name": "Badezeit"
+    },
+    "last_changed": "2026-02-19T22:06:24.198092+00:00",
+    "last_reported": "2026-02-19T22:06:24.198092+00:00",
+    "last_updated": "2026-02-19T22:06:24.198092+00:00",
+    "context": {
+      "id": "01KHVZ17Y6P0HW5Q6S56A5BE9Z",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.timer_schlafenzeit",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2023-03-06T22:54:55.616568+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:weather-night",
+      "friendly_name": "Timer Schlafenzeit"
+    },
+    "last_changed": "2026-02-19T22:06:24.198238+00:00",
+    "last_reported": "2026-02-19T22:06:24.198238+00:00",
+    "last_updated": "2026-02-19T22:06:24.198238+00:00",
+    "context": {
+      "id": "01KHVZ17Y6MZM5F6XJNDEEY3KD",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.tv_ambient_mode",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-02-15T13:03:04.671275+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:television",
+      "friendly_name": "TV Ambient Mode"
+    },
+    "last_changed": "2026-02-19T22:06:24.198385+00:00",
+    "last_reported": "2026-02-19T22:06:24.198385+00:00",
+    "last_updated": "2026-02-19T22:06:24.198385+00:00",
+    "context": {
+      "id": "01KHVZ17Y69WK783BRTZDGXKEQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1677621531559",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2023-10-24T09:36:13.404903+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Color Loop pc"
+    },
+    "last_changed": "2026-02-19T22:06:24.198522+00:00",
+    "last_reported": "2026-02-19T22:06:24.198522+00:00",
+    "last_updated": "2026-02-19T22:06:24.198522+00:00",
+    "context": {
+      "id": "01KHVZ17Y6PBY2CST3C0CAYVP5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.starnight",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-07-03T20:32:29.890234+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:star-check",
+      "friendly_name": "Starnight bath"
+    },
+    "last_changed": "2026-02-19T22:06:24.198658+00:00",
+    "last_reported": "2026-02-19T22:06:24.198658+00:00",
+    "last_updated": "2026-02-19T22:06:24.198658+00:00",
+    "context": {
+      "id": "01KHVZ17Y6ZHS24AKEYS0BXMJH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.matratzenhorchball",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-01-28T23:42:11.257988+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:bed-clock",
+      "friendly_name": "Matratzenhorchball"
+    },
+    "last_changed": "2026-02-19T22:06:24.198794+00:00",
+    "last_reported": "2026-02-19T22:06:24.198794+00:00",
+    "last_updated": "2026-02-19T22:06:24.198794+00:00",
+    "context": {
+      "id": "01KHVZ17Y6FAY0V0GB1N39NJ0M",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.aberlos2",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T21:57:52.663399+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL to all"
+    },
+    "last_changed": "2026-02-19T22:06:24.203365+00:00",
+    "last_reported": "2026-02-19T22:06:24.203365+00:00",
+    "last_updated": "2026-02-19T22:06:24.203365+00:00",
+    "context": {
+      "id": "01KHVZ17YB60A2DPGK66GD0G9B",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.welcome",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-01-21T17:23:26.140288+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:human-greeting",
+      "friendly_name": "WELCOME"
+    },
+    "last_changed": "2026-02-19T22:06:24.203593+00:00",
+    "last_reported": "2026-02-19T22:06:24.203593+00:00",
+    "last_updated": "2026-02-19T22:06:24.203593+00:00",
+    "context": {
+      "id": "01KHVZ17YB1N442533KY7THD8T",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.eco_heating_trigger",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-15T23:50:14.157690+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:record-circle-outline",
+      "friendly_name": "Eco Heating Trigger"
+    },
+    "last_changed": "2026-02-19T22:06:24.203748+00:00",
+    "last_reported": "2026-02-19T22:06:24.203748+00:00",
+    "last_updated": "2026-02-19T22:06:24.203748+00:00",
+    "context": {
+      "id": "01KHVZ17YBBTC9HSWXAWY0CSV0",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1701953550706",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T20:02:14.431409+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:human-greeting",
+      "friendly_name": "WELCOME A"
+    },
+    "last_changed": "2026-02-19T22:06:24.203883+00:00",
+    "last_reported": "2026-02-19T22:06:24.203883+00:00",
+    "last_updated": "2026-02-19T22:06:24.203883+00:00",
+    "context": {
+      "id": "01KHVZ17YBP3B37JRAAM3PRKC8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.nightglow",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2023-12-08T03:20:20.472010+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nightglow"
+    },
+    "last_changed": "2026-02-19T22:06:24.204019+00:00",
+    "last_reported": "2026-02-19T22:06:24.204019+00:00",
+    "last_updated": "2026-02-19T22:06:24.204019+00:00",
+    "context": {
+      "id": "01KHVZ17YCZQRSVW8T1RGVFXRG",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ausuraus_manuell",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-16T19:50:06.117841+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:run-fast",
+      "friendly_name": "ausuraus manuell"
+    },
+    "last_changed": "2026-02-19T22:06:24.204154+00:00",
+    "last_reported": "2026-02-19T22:06:24.204154+00:00",
+    "last_updated": "2026-02-19T22:06:24.204154+00:00",
+    "context": {
+      "id": "01KHVZ17YCJQNV24FY33MFCDD2",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.soft_off",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-16T19:50:06.128851+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:ubisoft",
+      "friendly_name": "Soft Off"
+    },
+    "last_changed": "2026-02-19T22:06:24.204282+00:00",
+    "last_reported": "2026-02-19T22:06:24.204282+00:00",
+    "last_updated": "2026-02-19T22:06:24.204282+00:00",
+    "context": {
+      "id": "01KHVZ17YCDR4WRQCPNY7MF2S8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.nachtlicht",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-07-15T23:33:42.809647+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bed-clock",
+      "friendly_name": "Nachtlicht"
+    },
+    "last_changed": "2026-02-19T22:06:24.204417+00:00",
+    "last_reported": "2026-02-19T22:06:24.204417+00:00",
+    "last_updated": "2026-02-19T22:06:24.204417+00:00",
+    "context": {
+      "id": "01KHVZ17YC07NGAXATSQCK9S96",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_change_bright",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-09T16:42:52.195529+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL change bright"
+    },
+    "last_changed": "2026-02-19T22:06:24.204539+00:00",
+    "last_reported": "2026-02-19T22:06:24.204539+00:00",
+    "last_updated": "2026-02-19T22:06:24.204539+00:00",
+    "context": {
+      "id": "01KHVZ17YCR9JC4DWH1DS7CX2J",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_reset",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T21:57:57.971386+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL Reset"
+    },
+    "last_changed": "2026-02-19T22:06:24.204669+00:00",
+    "last_reported": "2026-02-19T22:06:24.204669+00:00",
+    "last_updated": "2026-02-19T22:06:24.204669+00:00",
+    "context": {
+      "id": "01KHVZ17YC8X7WM26M7FAGBXNP",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_change_all",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T21:57:59.663264+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL change all"
+    },
+    "last_changed": "2026-02-19T22:06:24.204799+00:00",
+    "last_reported": "2026-02-19T22:06:24.204799+00:00",
+    "last_updated": "2026-02-19T22:06:24.204799+00:00",
+    "context": {
+      "id": "01KHVZ17YCNM0JFBVM8GG1X5D7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_decke",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-10T07:41:05.695207+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL decke"
+    },
+    "last_changed": "2026-02-19T22:06:24.204938+00:00",
+    "last_reported": "2026-02-19T22:06:24.204938+00:00",
+    "last_updated": "2026-02-19T22:06:24.204938+00:00",
+    "context": {
+      "id": "01KHVZ17YCKHEGG6AQ8T74FVR4",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1707946508635",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-11-19T20:12:58.826494+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:record-circle-outline",
+      "friendly_name": "Eco Heating Off"
+    },
+    "last_changed": "2026-02-19T22:06:24.205061+00:00",
+    "last_reported": "2026-02-19T22:06:24.205061+00:00",
+    "last_updated": "2026-02-19T22:06:24.205061+00:00",
+    "context": {
+      "id": "01KHVZ17YDQ8ECJ4V1GEJED088",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.startrek_2",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T10:11:50.678712+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:star-check-outline",
+      "friendly_name": "StarTrek"
+    },
+    "last_changed": "2026-02-19T22:06:24.205187+00:00",
+    "last_reported": "2026-02-19T22:06:24.205187+00:00",
+    "last_updated": "2026-02-19T22:06:24.205187+00:00",
+    "context": {
+      "id": "01KHVZ17YDZ8T6NAEYA7TY0G7A",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_toggle_all",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-05T07:37:33.687655+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL toggle all"
+    },
+    "last_changed": "2026-02-19T22:06:24.205307+00:00",
+    "last_reported": "2026-02-19T22:06:24.205307+00:00",
+    "last_updated": "2026-02-19T22:06:24.205307+00:00",
+    "context": {
+      "id": "01KHVZ17YD5TWZWK9HTWVRFMZA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.badezeit_neu",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-01-25T08:44:18.443386+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bathtub",
+      "friendly_name": "Badezeit neu"
+    },
+    "last_changed": "2026-02-19T22:06:24.205437+00:00",
+    "last_reported": "2026-02-19T22:06:24.205437+00:00",
+    "last_updated": "2026-02-19T22:06:24.205437+00:00",
+    "context": {
+      "id": "01KHVZ17YD2STCD91599NRFQKZ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1711323944377",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-04-03T22:51:42.359892+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Matrazte"
+    },
+    "last_changed": "2026-02-19T22:06:24.205555+00:00",
+    "last_reported": "2026-02-19T22:06:24.205555+00:00",
+    "last_updated": "2026-02-19T22:06:24.205555+00:00",
+    "context": {
+      "id": "01KHVZ17YDCMYEPB2TWK85DZFP",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.burn",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-11-06T22:34:26.994641+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:gas-burner",
+      "friendly_name": "Burn"
+    },
+    "last_changed": "2026-02-19T22:06:24.205683+00:00",
+    "last_reported": "2026-02-19T22:06:24.205683+00:00",
+    "last_updated": "2026-02-19T22:06:24.205683+00:00",
+    "context": {
+      "id": "01KHVZ17YDWZCR4FYZYS19G7TX",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.timer_matratze",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-10-21T01:01:39.910521+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bed-outline",
+      "friendly_name": "Matratze Timer"
+    },
+    "last_changed": "2026-02-19T22:06:24.205807+00:00",
+    "last_reported": "2026-02-19T22:06:24.205807+00:00",
+    "last_updated": "2026-02-19T22:06:24.205807+00:00",
+    "context": {
+      "id": "01KHVZ17YDNVX1W33NHGRFFRH8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.abandonlicht",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-04-03T23:04:37.399825+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:train-car-caboose",
+      "friendly_name": "Abandonlicht"
+    },
+    "last_changed": "2026-02-19T22:06:24.205932+00:00",
+    "last_reported": "2026-02-19T22:06:24.205932+00:00",
+    "last_updated": "2026-02-19T22:06:24.205932+00:00",
+    "context": {
+      "id": "01KHVZ17YD4XJB1RGCX3HVH54T",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1712193124187",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-04-04T01:12:59.332778+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bed-clock",
+      "friendly_name": "Matratzenhorchball lichtlos"
+    },
+    "last_changed": "2026-02-19T22:06:24.206058+00:00",
+    "last_reported": "2026-02-19T22:06:24.206058+00:00",
+    "last_updated": "2026-02-19T22:06:24.206058+00:00",
+    "context": {
+      "id": "01KHVZ17YEAS4RE8CHF07FMFN1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.gold",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-03-04T00:55:38.035307+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:gold",
+      "friendly_name": "GOLD"
+    },
+    "last_changed": "2026-02-19T22:06:24.206178+00:00",
+    "last_reported": "2026-02-19T22:06:24.206178+00:00",
+    "last_updated": "2026-02-19T22:06:24.206178+00:00",
+    "context": {
+      "id": "01KHVZ17YEPVDDKCJ3RBB277ZT",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1712773266308",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:star-crescent",
+      "friendly_name": "ausuraus (Duplizieren)"
+    },
+    "last_changed": "2026-02-19T22:06:24.206299+00:00",
+    "last_reported": "2026-02-19T22:06:24.206299+00:00",
+    "last_updated": "2026-02-19T22:06:24.206299+00:00",
+    "context": {
+      "id": "01KHVZ17YE5RPVVE16T0TKN1QA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.fensterloop",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Fensterloop"
+    },
+    "last_changed": "2026-02-19T22:06:24.206418+00:00",
+    "last_reported": "2026-02-19T22:06:24.206418+00:00",
+    "last_updated": "2026-02-19T22:06:24.206418+00:00",
+    "context": {
+      "id": "01KHVZ17YE75QW0DPXR2GCBB1A",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1713130501642",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-04-14T21:41:55.823272+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Kabuff Loop"
+    },
+    "last_changed": "2026-02-19T22:06:24.206547+00:00",
+    "last_reported": "2026-02-19T22:06:24.206547+00:00",
+    "last_updated": "2026-02-19T22:06:24.206547+00:00",
+    "context": {
+      "id": "01KHVZ17YEKH1PMH2XWARP7DDB",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1713467617145",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Neues Skript"
+    },
+    "last_changed": "2026-02-19T22:06:24.206876+00:00",
+    "last_reported": "2026-02-19T22:06:24.206876+00:00",
+    "last_updated": "2026-02-19T22:06:24.206876+00:00",
+    "context": {
+      "id": "01KHVZ17YEKSXGM7E6BGE58GE3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.bright_to_all",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-10T07:40:47.113502+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:brightness-percent",
+      "friendly_name": "Bright to all"
+    },
+    "last_changed": "2026-02-19T22:06:24.207006+00:00",
+    "last_reported": "2026-02-19T22:06:24.207006+00:00",
+    "last_updated": "2026-02-19T22:06:24.207006+00:00",
+    "context": {
+      "id": "01KHVZ17YFDATT42ZHQAW98VH6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.bright_5",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-10T11:12:59.403165+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:brightness-percent",
+      "friendly_name": "Bright -5"
+    },
+    "last_changed": "2026-02-19T22:06:24.207124+00:00",
+    "last_reported": "2026-02-19T22:06:24.207124+00:00",
+    "last_updated": "2026-02-19T22:06:24.207124+00:00",
+    "context": {
+      "id": "01KHVZ17YFF6ENWEDXG2PKJG07",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.bright_5_2",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-14T23:06:36.405911+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:brightness-percent",
+      "friendly_name": "Bright +5"
+    },
+    "last_changed": "2026-02-19T22:06:24.207250+00:00",
+    "last_reported": "2026-02-19T22:06:24.207250+00:00",
+    "last_updated": "2026-02-19T22:06:24.207250+00:00",
+    "context": {
+      "id": "01KHVZ17YF9S4GE2GG3VNRSMPY",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1714347321290",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-01T18:24:33.318469+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "S1 Auto Dimm"
+    },
+    "last_changed": "2026-02-19T22:06:24.207379+00:00",
+    "last_reported": "2026-02-19T22:06:24.207379+00:00",
+    "last_updated": "2026-02-19T22:06:24.207379+00:00",
+    "context": {
+      "id": "01KHVZ17YFTP22FAPJT0Y8QW7B",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.1714478543848",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Neues Skript"
+    },
+    "last_changed": "2026-02-19T22:06:24.207502+00:00",
+    "last_reported": "2026-02-19T22:06:24.207502+00:00",
+    "last_updated": "2026-02-19T22:06:24.207502+00:00",
+    "context": {
+      "id": "01KHVZ17YF7XHBCG5G117WS4NB",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.regal_100",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-06-10T20:05:23.142450+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:percent-outline",
+      "friendly_name": "Regal 100"
+    },
+    "last_changed": "2026-02-19T22:06:24.207647+00:00",
+    "last_reported": "2026-02-19T22:06:24.207647+00:00",
+    "last_updated": "2026-02-19T22:06:24.207647+00:00",
+    "context": {
+      "id": "01KHVZ17YF1MWTDR7774Z2GQSF",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.effekt_to_dreamteam",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-06-29T20:54:50.821640+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Effekt to Dreamteam"
+    },
+    "last_changed": "2026-02-19T22:06:24.207778+00:00",
+    "last_reported": "2026-02-19T22:06:24.207778+00:00",
+    "last_updated": "2026-02-19T22:06:24.207778+00:00",
+    "context": {
+      "id": "01KHVZ17YFRB1ES53X7JA5HWRN",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ausuraus_duplizieresn",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "ausuraus (Duplizieresn)"
+    },
+    "last_changed": "2026-02-19T22:06:24.207919+00:00",
+    "last_reported": "2026-02-19T22:06:24.207919+00:00",
+    "last_updated": "2026-02-19T22:06:24.207919+00:00",
+    "context": {
+      "id": "01KHVZ17YF9HSY4N3KB7AET51A",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ausuraus_sicherung",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:star-crescent",
+      "friendly_name": "ausuraus (Sicherung)"
+    },
+    "last_changed": "2026-02-19T22:06:24.208045+00:00",
+    "last_reported": "2026-02-19T22:06:24.208045+00:00",
+    "last_updated": "2026-02-19T22:06:24.208045+00:00",
+    "context": {
+      "id": "01KHVZ17YGXS6XSVNTD6KYQDEC",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.test_core_reload_ble",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Test Core Reload BLE"
+    },
+    "last_changed": "2026-02-19T22:06:24.214352+00:00",
+    "last_reported": "2026-02-19T22:06:24.214352+00:00",
+    "last_updated": "2026-02-19T22:06:24.214352+00:00",
+    "context": {
+      "id": "01KHVZ17YPQNZ5YM9HHF27MQ8R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.aaa_weniger_licht",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-08T01:07:49.426374+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:led-strip-variant-off",
+      "friendly_name": "AAA weniger Licht"
+    },
+    "last_changed": "2026-02-19T22:06:24.214636+00:00",
+    "last_reported": "2026-02-19T22:06:24.214636+00:00",
+    "last_updated": "2026-02-19T22:06:24.214636+00:00",
+    "context": {
+      "id": "01KHVZ17YPWMZVMCD1KXG0QXK6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.cast_youtube_to_my_chromecast",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-01-22T23:20:29.541754+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Cast YouTube to My Chromecast"
+    },
+    "last_changed": "2026-02-19T22:06:24.214778+00:00",
+    "last_reported": "2026-02-19T22:06:24.214778+00:00",
+    "last_updated": "2026-02-19T22:06:24.214778+00:00",
+    "context": {
+      "id": "01KHVZ17YPW68680XFJ72A0FBG",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.al_to_all_alt",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:material-design",
+      "friendly_name": "AL to all (alt)"
+    },
+    "last_changed": "2026-02-19T22:06:24.214904+00:00",
+    "last_reported": "2026-02-19T22:06:24.214904+00:00",
+    "last_updated": "2026-02-19T22:06:24.214904+00:00",
+    "context": {
+      "id": "01KHVZ17YPFR19ME5A30K5BQ4X",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.alarm",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-07-29T10:54:25.469431+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:alarm-check",
+      "friendly_name": "Alarm"
+    },
+    "last_changed": "2026-02-19T22:06:24.215025+00:00",
+    "last_reported": "2026-02-19T22:06:24.215025+00:00",
+    "last_updated": "2026-02-19T22:06:24.215025+00:00",
+    "context": {
+      "id": "01KHVZ17YQ15B5NM754D0ZW9BJ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.wach_schalter",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-10-28T12:15:30.874500+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:kettle-outline",
+      "friendly_name": "Wach Schalter"
+    },
+    "last_changed": "2026-02-19T22:06:24.215147+00:00",
+    "last_reported": "2026-02-19T22:06:24.215147+00:00",
+    "last_updated": "2026-02-19T22:06:24.215147+00:00",
+    "context": {
+      "id": "01KHVZ17YQXKYE20VH0SW7F5ZT",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.stimmung_speichern",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T22:00:00.178955+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Stimmung speichern"
+    },
+    "last_changed": "2026-02-19T22:06:24.215283+00:00",
+    "last_reported": "2026-02-19T22:06:24.215283+00:00",
+    "last_updated": "2026-02-19T22:06:24.215283+00:00",
+    "context": {
+      "id": "01KHVZ17YQ20DZXJX0Q29W274P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.spaater_speichern",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T20:20:00.179897+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Spaater  speichern"
+    },
+    "last_changed": "2026-02-19T22:06:24.215407+00:00",
+    "last_reported": "2026-02-19T22:06:24.215407+00:00",
+    "last_updated": "2026-02-19T22:06:24.215407+00:00",
+    "context": {
+      "id": "01KHVZ17YQ8RMD718X345HE4B3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.welcome_a_duplizieren",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-01-21T17:24:07.035637+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:human-greeting",
+      "friendly_name": "WELCOME A (Duplizieren)"
+    },
+    "last_changed": "2026-02-19T22:06:24.215547+00:00",
+    "last_reported": "2026-02-19T22:06:24.215547+00:00",
+    "last_updated": "2026-02-19T22:06:24.215547+00:00",
+    "context": {
+      "id": "01KHVZ17YQYVQ3VFN9BNA3EH6Z",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.auto_ventilator",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-10-12T21:55:48.545083+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:air-conditioner",
+      "friendly_name": "Auto Ventilator"
+    },
+    "last_changed": "2026-02-19T22:06:24.215682+00:00",
+    "last_reported": "2026-02-19T22:06:24.215682+00:00",
+    "last_updated": "2026-02-19T22:06:24.215682+00:00",
+    "context": {
+      "id": "01KHVZ17YQEDC6BWCPSF1E636R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.welcome_a_duplizieren_2",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:human-greeting",
+      "friendly_name": "WELCOME A (Duplizieren)"
+    },
+    "last_changed": "2026-02-19T22:06:24.215804+00:00",
+    "last_reported": "2026-02-19T22:06:24.215804+00:00",
+    "last_updated": "2026-02-19T22:06:24.215804+00:00",
+    "context": {
+      "id": "01KHVZ17YQNG6JZS6N7BNBPRGF",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ausuraus_duplizieren",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:star-crescent",
+      "friendly_name": "ausuraus (Duplizieren)"
+    },
+    "last_changed": "2026-02-19T22:06:24.215923+00:00",
+    "last_reported": "2026-02-19T22:06:24.215923+00:00",
+    "last_updated": "2026-02-19T22:06:24.215923+00:00",
+    "context": {
+      "id": "01KHVZ17YQ5CTGHVKFHAFX6CQ5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.venti_10min_off",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-09-03T22:39:38.867949+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Venti 10min off"
+    },
+    "last_changed": "2026-02-19T22:06:24.216043+00:00",
+    "last_reported": "2026-02-19T22:06:24.216043+00:00",
+    "last_updated": "2026-02-19T22:06:24.216043+00:00",
+    "context": {
+      "id": "01KHVZ17YRYWJ80G0THEQ5X748",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.ventil_off",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Ventil off"
+    },
+    "last_changed": "2026-02-19T22:06:24.216161+00:00",
+    "last_reported": "2026-02-19T22:06:24.216161+00:00",
+    "last_updated": "2026-02-19T22:06:24.216161+00:00",
+    "context": {
+      "id": "01KHVZ17YRH0EHNF437WZ973GQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.verzogertes_audio_aus",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-08-30T18:41:28.431400+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:music-note-bluetooth-off",
+      "friendly_name": "Verz\u00f6gertes Audio Aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.216280+00:00",
+    "last_reported": "2026-02-19T22:06:24.216280+00:00",
+    "last_updated": "2026-02-19T22:06:24.216280+00:00",
+    "context": {
+      "id": "01KHVZ17YRQ2FNRNFP4C1XSGZ3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.neues_skript",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-07-08T20:41:03.425450+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "60sec_Silence"
+    },
+    "last_changed": "2026-02-19T22:06:24.216398+00:00",
+    "last_reported": "2026-02-19T22:06:24.216398+00:00",
+    "last_updated": "2026-02-19T22:06:24.216398+00:00",
+    "context": {
+      "id": "01KHVZ17YRHEZG2AY5YMSWKCF3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.off_basic",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-10-29T12:43:52.057742+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Off Basic"
+    },
+    "last_changed": "2026-02-19T22:06:24.216516+00:00",
+    "last_reported": "2026-02-19T22:06:24.216516+00:00",
+    "last_updated": "2026-02-19T22:06:24.216516+00:00",
+    "context": {
+      "id": "01KHVZ17YRSE3WAS35MYDT7DZ1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.nacht_auto_dimm",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-10-11T22:37:29.069395+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nacht Auto Dimm "
+    },
+    "last_changed": "2026-02-19T22:06:24.216631+00:00",
+    "last_reported": "2026-02-19T22:06:24.216631+00:00",
+    "last_updated": "2026-02-19T22:06:24.216631+00:00",
+    "context": {
+      "id": "01KHVZ17YR9QBT7FZT9W5FQ207",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.reinigung_wenn_abwesend",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-19T19:36:16.603561+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:vacuum-outline",
+      "friendly_name": "Reinigung wenn abwesend"
+    },
+    "last_changed": "2026-02-19T22:06:24.216745+00:00",
+    "last_reported": "2026-02-19T22:06:24.216745+00:00",
+    "last_updated": "2026-02-19T22:06:24.216745+00:00",
+    "context": {
+      "id": "01KHVZ17YRYYT5CZA9T01K3Z5G",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.neues_skript_2",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Snap"
+    },
+    "last_changed": "2026-02-19T22:06:24.216856+00:00",
+    "last_reported": "2026-02-19T22:06:24.216856+00:00",
+    "last_updated": "2026-02-19T22:06:24.216856+00:00",
+    "context": {
+      "id": "01KHVZ17YR91Y44GQ3WRXZSSNK",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.staubsager_saugkraft_einstellen",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Staubsager Saugkraft einstellen"
+    },
+    "last_changed": "2026-02-19T22:06:24.216967+00:00",
+    "last_reported": "2026-02-19T22:06:24.216967+00:00",
+    "last_updated": "2026-02-19T22:06:24.216967+00:00",
+    "context": {
+      "id": "01KHVZ17YR4PZ6669E6GXYQC4R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.audio_off",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Audio off"
+    },
+    "last_changed": "2026-02-19T22:06:24.217077+00:00",
+    "last_reported": "2026-02-19T22:06:24.217077+00:00",
+    "last_updated": "2026-02-19T22:06:24.217077+00:00",
+    "context": {
+      "id": "01KHVZ17YSHQ472ZSFSETGPDBJ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.druckzeitansage",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-07-07T13:01:23.392367+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Druckzeitansage"
+    },
+    "last_changed": "2026-02-19T22:06:24.217191+00:00",
+    "last_reported": "2026-02-19T22:06:24.217191+00:00",
+    "last_updated": "2026-02-19T22:06:24.217191+00:00",
+    "context": {
+      "id": "01KHVZ17YSZZ90FHNT8TEWJKRA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.3d_zeitraffer_auto_aus",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-12-05T11:11:33.473816+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "3d Zeitraffer Auto aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.217308+00:00",
+    "last_reported": "2026-02-19T22:06:24.217308+00:00",
+    "last_updated": "2026-02-19T22:06:24.217308+00:00",
+    "context": {
+      "id": "01KHVZ17YS84K9PYZY32D9PG3N",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.druckbett_temp",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2024-12-16T19:33:07.272638+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Druckbett temp"
+    },
+    "last_changed": "2026-02-19T22:06:24.217421+00:00",
+    "last_reported": "2026-02-19T22:06:24.217421+00:00",
+    "last_updated": "2026-02-19T22:06:24.217421+00:00",
+    "context": {
+      "id": "01KHVZ17YS9J7ZND2QJFHY2GNG",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.matzratzenball_zeitverzogert",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-06-01T22:15:48.845372+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Matzratzenball zeitverz\u00f6gert"
+    },
+    "last_changed": "2026-02-19T22:06:24.217535+00:00",
+    "last_reported": "2026-02-19T22:06:24.217535+00:00",
+    "last_updated": "2026-02-19T22:06:24.217535+00:00",
+    "context": {
+      "id": "01KHVZ17YSK4AWV69EAQGKVZC5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.horspielende_variabel",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-08-27T02:16:26.475969+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:timer",
+      "friendly_name": "H\u00f6rspielende variabel"
+    },
+    "last_changed": "2026-02-19T22:06:24.217656+00:00",
+    "last_reported": "2026-02-19T22:06:24.217656+00:00",
+    "last_updated": "2026-02-19T22:06:24.217656+00:00",
+    "context": {
+      "id": "01KHVZ17YSMXP5TE04S612VSBQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.tapo_winkelkorrektur",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-01-27T12:05:47.289239+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Tapo Winkelkorrektur"
+    },
+    "last_changed": "2026-02-19T22:06:24.217774+00:00",
+    "last_reported": "2026-02-19T22:06:24.217774+00:00",
+    "last_updated": "2026-02-19T22:06:24.217774+00:00",
+    "context": {
+      "id": "01KHVZ17YSYFQRT28ZY16ADAZ3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.waschetimer",
+    "state": "off",
+    "attributes": {
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "W\u00e4schetimer"
+    },
+    "last_changed": "2026-02-19T22:06:24.217887+00:00",
+    "last_reported": "2026-02-19T22:06:24.217887+00:00",
+    "last_updated": "2026-02-19T22:06:24.217887+00:00",
+    "context": {
+      "id": "01KHVZ17YS9ZTYXWZMDSXH7XWA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.tapo_main",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-05T07:58:53.315537+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Tapo Main"
+    },
+    "last_changed": "2026-02-19T22:06:24.218001+00:00",
+    "last_reported": "2026-02-19T22:06:24.218001+00:00",
+    "last_updated": "2026-02-19T22:06:24.218001+00:00",
+    "context": {
+      "id": "01KHVZ17YTHV81B7GB31X0WGKF",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.tapo_plz_speichern",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-01-23T23:59:39.585084+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Tapo PLZ speichern"
+    },
+    "last_changed": "2026-02-19T22:06:24.218119+00:00",
+    "last_reported": "2026-02-19T22:06:24.218119+00:00",
+    "last_updated": "2026-02-19T22:06:24.218119+00:00",
+    "context": {
+      "id": "01KHVZ17YTEYJBDJFZGZ7NDE33",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.bbb_uber_aus_licht",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2025-08-23T14:40:57.970145+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:led-strip-variant-off",
+      "friendly_name": "BBB uber aus Licht"
+    },
+    "last_changed": "2026-02-19T22:06:24.218235+00:00",
+    "last_reported": "2026-02-19T22:06:24.218235+00:00",
+    "last_updated": "2026-02-19T22:06:24.218235+00:00",
+    "context": {
+      "id": "01KHVZ17YTFHR8F5DGQART6V78",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "script.kodi_restart",
+    "state": "off",
+    "attributes": {
+      "last_triggered": "2026-02-10T11:53:19.595301+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Kodi Restart"
+    },
+    "last_changed": "2026-02-19T22:06:24.219060+00:00",
+    "last_reported": "2026-02-19T22:06:24.219060+00:00",
+    "last_updated": "2026-02-19T22:06:24.219060+00:00",
+    "context": {
+      "id": "01KHVZ17YV45VFYXPB3E4KC7YT",
+      "parent_id": null,
+      "user_id": null
+    }
+  }
+]

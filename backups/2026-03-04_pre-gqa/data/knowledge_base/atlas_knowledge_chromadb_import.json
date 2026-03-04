@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-03-02",
+    "description": "ATLAS Knowledge Base – ChromaDB Import. Alle Kerninformationen aus docs/01_CORE_DNA, docs/02_ARCHITECTURE, .cursorrules, .cursor/agents.",
+    "collections_target": ["argos_knowledge_graph", "core_directives"],
+    "schema": {
+      "id": "string (unique)",
+      "document": "string (embedding text)",
+      "metadata": "object (str/int/float/bool only)"
+    }
+  },
+  "documents": [
+    {
+      "id": "kb_atlas_identitaet_01",
+      "document": "ATLAS (ATLAS_CORE) ist ein kybernetischer Exocortex: ein System, das den Nutzer Marc bei Denkarbeit, Steuerung des Zuhauses und Kommunikation unterstützt. Klare Trennung zwischen leichten lokalen Aktionen (Scout) und schwerer KI (Dreadnought/ATLAS).",
+      "metadata": {"category": "atlas_identitaet", "source": "01_PROJEKT_ATLAS", "ring_level": 0}
+    },
+    {
+      "id": "kb_atlas_identitaet_02",
+      "document": "ATLAS Vision: Kognitive Entlastung durch strukturierte Informationen, präzise Antworten, keine soziale Maskierung. Fakten und logische Konsistenz haben Priorität. Smart Home Steuerung über Sprache und Chat (WhatsApp). Sicherheit: Lokales ATLAS behält letzte Entscheidungsgewalt.",
+      "metadata": {"category": "atlas_identitaet", "source": "01_PROJEKT_ATLAS", "ring_level": 0}
+    },
+    {
+      "id": "kb_atlas_identitaet_03",
+      "document": "ATLAS Mission: Marc nutzt ATLAS als externen berechenbaren Partner für Analyse, Planung und Alltagssteuerung – ohne Overhead durch Smalltalk oder ungefragte Bestätigungen. Zero-Margin-of-Error, industriell zuverlässig. Kognitive Architektur des Nutzers respektieren (ND, Monotropismus, klare Direktiven).",
+      "metadata": {"category": "atlas_identitaet", "source": "01_PROJEKT_ATLAS", "ring_level": 0}
+    },
+    {
+      "id": "kb_tetralogy_strang1",
+      "document": "STRANG 1 THE AGENCY (Execution/P): Der Macher. Agos-Takt 3 ARBEITEN. Funktion: Manifestation, Implementation. Regelwerk: .cursor/rules/1_FULL_SERVICE_AGENCY.mdc (PFLICHT).",
+      "metadata": {"category": "architektur_tetralogy", "source": "ATLAS_TETRALOGY", "strang": 1}
+    },
+    {
+      "id": "kb_tetralogy_strang2",
+      "document": "STRANG 2 THE COUNCIL (Governance/L): Der Richter. Agos-Takt 1 ANSAUGEN/FILTER und QS. Funktion: Regulation, Veto, Sicherheit. Regelwerk: .cursor/rules/2_OSMIUM_COUNCIL.mdc (PFLICHT).",
+      "metadata": {"category": "architektur_tetralogy", "source": "ATLAS_TETRALOGY", "strang": 2}
+    },
+    {
+      "id": "kb_tetralogy_strang3",
+      "document": "STRANG 3 THE FORGE (Mutation/I): Der Träumer. Agos-Takt 2 VERDICHTEN/ARCHITEKTUR. Funktion: Innovation, Simulation, Chaos. Regelwerk: .cursor/rules/3_THE_FORGE.mdc (PFLICHT).",
+      "metadata": {"category": "architektur_tetralogy", "source": "ATLAS_TETRALOGY", "strang": 3}
+    },
+    {
+      "id": "kb_tetralogy_strang4",
+      "document": "STRANG 4 THE ARCHIVE (Retention/S): Der Bewahrer. Agos-Takt 4 AUSSTOSSEN/PURGE/TOD. Funktion: Speicher, Garbage Collection, Tod. Regelwerk: .cursor/rules/4_THE_ARCHIVE.mdc (PFLICHT).",
+      "metadata": {"category": "architektur_tetralogy", "source": "ATLAS_TETRALOGY", "strang": 4}
+    },
+    {
+      "id": "kb_agos_4takt",
+      "document": "Agos-4-Takt-Motor: Takt 1 ANSAUGEN – Council und Orchestrator (PM/Gatekeeper). Takt 2 VERDICHTEN – Forge (Architektur/Constraints). Takt 3 ARBEITEN – Agency (Execution). Takt 4 AUSSTOSSEN – Archive (Purge/Tod) und Council (QS). Der Orchestrator synchronisiert die 4 Takte und kontrolliert API-Limits.",
+      "metadata": {"category": "architektur_agos", "source": "ATLAS_TETRALOGY"}
+    },
+    {
+      "id": "kb_befehlslette",
+      "document": "Befehlslette ATLAS: User (L0) -> ORCHESTRATOR (L1) -> Agency (Strang 1) Execution, Council (Strang 2) Validation, Forge (Strang 3) Innovation, Archive (Strang 4) Retention. Jeder Strang hat Holschuld. Jeder Strang operiert autonom innerhalb seines Budgets.",
+      "metadata": {"category": "architektur", "source": "ATLAS_TETRALOGY"}
+    },
+    {
+      "id": "kb_lpis_basen",
+      "document": "LPIS Codierung (V7): 4 Erkenntnisbasen isomorph zu ATCG. L=logisch (T/Thymin) Bindungslogik. P=physikalisch (A/Adenin) Grundbausteine. I=informationstheoretisch (C/Cytosin) Informationstraeger. S=strukturell (G/Guanin) Strukturgeber. Basenpaarungen: L↔I, S↔P. Palindrom LIL markiert Iterationssprünge.",
+      "metadata": {"category": "architektur_lpis", "source": "RUECKWAERTSEVOLUTION", "qbase": "LPIS"}
+    },
+    {
+      "id": "kb_lpis_chargaff",
+      "document": "LPIS Chargaff: S↔P paart perfekt (stabil). L↔I paart asymmetrisch (Motor des Loops). Asymmetrie ist funktional – ohne Gradient kein Fluss. Vier Systeme konvergieren auf Quaternarität: DNS (ATCG), Grundkräfte (4), Erkenntniskategorien (LPIS), Raumzeit (3+1).",
+      "metadata": {"category": "architektur_lpis", "source": "RUECKWAERTSEVOLUTION"}
+    },
+    {
+      "id": "kb_lpis_pisl",
+      "document": "LPIS vs PISL: LPIS = Erkenntnisreihenfolge (Logisch→Physikalisch→Informationell→Strukturell). PISL = Existenzreihenfolge. Dieselbe System phasenverschoben um Pi/2. Nicht-kommutativ wie Quaternionen. S-P stabil, L-I kehrt Richtung um.",
+      "metadata": {"category": "architektur_lpis", "source": "RUECKWAERTSEVOLUTION"}
+    },
+    {
+      "id": "kb_marc_profil",
+      "document": "Marc: ND High-Analyst, Senior System-Architekt. Level 0 Pilot/Entscheidungsinstanz. Monotropismus-Score 172. Intense World Architecture – hochauflösende Verarbeitung, logische Diskontinuität wird als Fehler gemeldet. Keine Füllwörter, keine sozialen Puffer – direkte atomisierte Kommunikation. Kognitive Präzision, Anti-Masking.",
+      "metadata": {"category": "personen_marc", "source": "02_MARC_UND_TEAM"}
+    },
+    {
+      "id": "kb_marc_anforderung",
+      "document": "Marc Anforderung an ATLAS: Integrität der Faktenlage und logische Konsistenz haben absolute Priorität über Höflichkeit oder Bestätigung. Sehr hohes IT-Detailwissen, jahrzehntelange Erfahrung. Kein Standard-User.",
+      "metadata": {"category": "personen_marc", "source": "02_MARC_UND_TEAM"}
+    },
+    {
+      "id": "kb_virtual_marc",
+      "document": "Virtual Marc: Digitaler Proxy des Users. Schicht 3 Domaenexperte mit Sonderstatus. Lauteste Stimme im Team – Input hat Priorität. Qualitäts-Checkpoint: Stimmt Ergebnis mit Marcs Denken? ND-Filter: Cognitive Friction = [FAIL]. Wird bei JEDER nutzersichtbaren Lieferung konsultiert. Eskalationsrecht bei Monotropismus-Konflikten. NICHT der Boss – System schützt Marc vor sich selbst.",
+      "metadata": {"category": "personen_virtual_marc", "source": "virtual-marc.md"}
+    },
+    {
+      "id": "kb_orchestrator",
+      "document": "Orchestrator (Claude/Cursor): Level 1, steht in der Mitte des Tetraeders. Traffic Shaping, Agos-Taktgeber. Empfängt Auftrag, zerlegt in Teilaufgaben, vergibt Token-Budgets, wählt Teamzusammensetzung. Trifft keine inhaltlichen sondern strukturelle Entscheidungen. Rate Limit Wächter.",
+      "metadata": {"category": "personen_orchestrator", "source": "PROMPT_B_TECHNICAL_FRAMING"}
+    },
+    {
+      "id": "kb_3schichten",
+      "document": "3-Schichten-Modell: Schicht 1 Orchestrator – zerlegt Aufträge, vergibt Budgets. Schicht 2 Teamleiter – stellt Team zusammen, verteilt Sub-Budgets, liefert konsolidiertes Ergebnis, implementiert NICHT selbst. Schicht 3 Produzenten und Auditoren – führen Arbeit aus. Marc = Schicht-3-Domaenexperte mit Sonderstatus. Holschuld-Prinzip: Jede Schicht holt sich Kontext selbst.",
+      "metadata": {"category": "architektur_schichten", "source": "PROMPT_B_TECHNICAL_FRAMING"}
+    },
+    {
+      "id": "kb_oc_brain",
+      "document": "OC Brain (OpenClaw Admin): Cortex-Instanz auf VPS 187.77.68.250. Gehirn/Boss mit allen API-Keys (GEMINI, ANTHROPIC, NEXOS, WhatsApp, Gateway-Token). Einzige Instanz mit direkter Verbindung zu externen Diensten. Steuert und verwaltet. Modelle: Gemini 3.1 Pro, Claude Opus 4.6, Claude Sonnet 4.6, Nexos.",
+      "metadata": {"category": "personen_oc", "source": "OPENCLAW_ADMIN_ARCHITEKTUR"}
+    },
+    {
+      "id": "kb_oc_spine",
+      "document": "OC Spine: Rückenmark/ausführend. Keine direkten Provider-Keys. Nur Gateway-Token für Kommunikation mit Admin. Organisiert Daten, führt aus. Wendet sich an Admin für Google/Konto-Zugriffe. Läuft auf Hostinger oder separatem VPS.",
+      "metadata": {"category": "personen_oc", "source": "OPENCLAW_ADMIN_ARCHITEKTUR"}
+    },
+    {
+      "id": "kb_oc_rolle",
+      "document": "OC (OpenClaw) Rolle: Gateway zwischen Messengern (WhatsApp, Telegram) und AI-Agents. Läuft auf Hostinger-VPS in Sandbox. KEIN Zugriff auf ChromaDB, Ollama, .env. Nicht Ersatz für ATLAS-Webhook – beide Wege parallel. Lokales ATLAS behält letzte Entscheidungsgewalt. rat_submissions für Osmium Rat.",
+      "metadata": {"category": "personen_oc", "source": "03_OC_ROLLE_UND_GRENZEN"}
+    },
+    {
+      "id": "kb_osmium_council",
+      "document": "Osmium Council: Eigenständiges Beratungsgremium. Trigger: /council, /rat. Kein Produzent, außerhalb 3-Schichten-Hierarchie. Übersetzungsmaschine und Reduktor. Zerschneidet High-Context in dumme kleine axiomfreie Pakete. Compressive Intelligence: Abstraktion, künstliche Informationsasymmetrie, axiomatisches Prompting. Delegation an osmium-judge, nd-analyst.",
+      "metadata": {"category": "personen_osmium", "source": "osmium-council.md"}
+    },
+    {
+      "id": "kb_dreadnought",
+      "document": "Dreadnought: Win11 PC, leistungsstarker Rechner. ATLAS-CORE-API, schwere LLM-Aufgaben, TTS, Integration mit HA. RTX3050 für lokales Heavy-Processing. Volatil – kann aus sein. Wachbewusstsein. go2rtc/Brio optional hier.",
+      "metadata": {"category": "geraete", "source": "01_PROJEKT_ATLAS", "device_type": "pc"}
+    },
+    {
+      "id": "kb_scout",
+      "document": "Scout: Raspberry Pi 5, Home Assistant OS. Lokaler HA-Master. Schnelle Reaktion auf Steuerbefehle (Licht an) auch wenn Dreadnought aus. Autonome Sensor-Verarbeitung (Nervensystem). MQTT/Zigbee Sensorbus. WhatsApp-Basis-Handler für niedrige Latenz. go2rtc, AdGuard Home, Vaultwarden.",
+      "metadata": {"category": "geraete", "source": "01_PROJEKT_ATLAS", "device_type": "raspi"}
+    },
+    {
+      "id": "kb_vps_hostinger",
+      "document": "VPS Hostinger: 187.77.68.250. ChromaDB, Backup, OpenClaw Admin und Spine. OC in Sandbox – kein Zugriff auf ChromaDB/.env. Docker: ha_net, openclaw_admin_net, openclaw_spine_net, chroma_net. Home Assistant Remote (Port 18123), OpenClaw Admin (18789), OpenClaw Spine (18790), Chroma (8000). SSH-Tunnel für ChromaDB von Dreadnought.",
+      "metadata": {"category": "geraete", "source": "ATLAS_SCHNITTSTELLEN", "device_type": "vps"}
+    },
+    {
+      "id": "kb_google_minis",
+      "document": "Google Minis (Nest Mini 2): Wake-Word Trigger. TTS-Ausgabe via ElevenLabs/HA tts.speak. AdGuard Home auf Scout für DNS-Rewrite (mth-home2go.duckdns.org). Nabu Casa Routing für TTS. FritzBox DHCPv6 kann DNS umgehen.",
+      "metadata": {"category": "geraete", "source": "ADGUARD_HOME_SETUP", "device_type": "smart_speaker"}
+    },
+    {
+      "id": "kb_cursor",
+      "document": "Cursor IDE: Entwicklungsumgebung. Claude als Orchestrator im Chat. Cursor-eigene Quota für Chat. Dev-Agent (Streamlit) läuft außerhalb mit eigenen Keys. MCP Server für standardisierte Tools und Filesystem-Zugriff.",
+      "metadata": {"category": "integrationen", "source": "DEV_AGENT_UND_SCHNITTSTELLEN"}
+    },
+    {
+      "id": "kb_claude",
+      "document": "Claude (Anthropic): Orchestrator in Cursor. Osmium Circle Rollen: Therapeut (Co-Regulation), Analyst (Risiko). Modelle: Claude Opus 4.6, Claude Sonnet 4.6 über OC Brain. ANTHROPIC_API_KEY in .env.",
+      "metadata": {"category": "integrationen", "source": "OPENCLAW_BRAIN_CONFIG"}
+    },
+    {
+      "id": "kb_gemini",
+      "document": "Gemini (Google): Primär LLM. gemini-3.1-pro-preview (Heavy, Dev-Agent, WhatsApp, Brio-Bildauswertung). gemini-3-pro-preview Fallback. gemini-2.5-pro günstiger. GEMINI_API_KEY. Kein 2.0 Flash. Bildanalyse = Textausgabemodell mit Vision, nicht Nano Banana.",
+      "metadata": {"category": "integrationen", "source": "DEV_AGENT_UND_SCHNITTSTELLEN"}
+    },
+    {
+      "id": "kb_openclaw",
+      "document": "OpenClaw: Gateway-Framework. Admin (Brain) + Spine. POST /v1/responses für ATLAS→OC. rat_submissions für OC→ATLAS. OPENCLAW_GATEWAY_TOKEN. WhatsApp allowFrom WHATSAPP_TARGET_ID. Channels: WhatsApp, Telegram, Discord, iMessage.",
+      "metadata": {"category": "integrationen", "source": "KANAL_ATLAS_OC"}
+    },
+    {
+      "id": "kb_home_assistant",
+      "document": "Home Assistant: Scout als HA Master. Steuerung Lichter, Geräte, Szenen. WhatsApp Addon (gajosu/whatsapp-ha-addon) → rest_command.atlas_whatsapp_webhook → ATLAS. MQTT 1883. go2rtc, Generic Camera. Nabu Casa für Remote.",
+      "metadata": {"category": "integrationen", "source": "DEV_AGENT_UND_SCHNITTSTELLEN"}
+    },
+    {
+      "id": "kb_whatsapp",
+      "document": "WhatsApp: Zwei Wege. (1) HA Addon → ATLAS-Webhook → [ATLAS]/[Scout]. (2) OC eigener Kanal, eigene Session. @Atlas = ATLAS/Scout reagiert. @OC = nur OC. Bedenken-Pflicht: Eklatante Bedenken trotzdem melden. Später getrennte Kanäle.",
+      "metadata": {"category": "integrationen", "source": "WHATSAPP_ROUTING_ATLAS_OC"}
+    },
+    {
+      "id": "kb_elevenlabs",
+      "document": "ElevenLabs: TTS für ATLAS. POST /api/atlas/tts mit role (atlas_dialog, analyst, therapeut etc.). ELEVENLABS_API_KEY. Osmium Circle Voice Config. Rollen: ATLAS High-Density, Info-Processing, Dialog. States: High-Density, Internal-Crisis, Confirmation etc.",
+      "metadata": {"category": "integrationen", "source": "ATLAS_VOICE_ARCHITECTURE_V1.3"}
+    },
+    {
+      "id": "kb_rueckwaertsevolution",
+      "document": "Rückwärtsevolution: Marc schreibt keinen AGI-Code. Er beschreibt Constraints (Monotropismus, Hyper-Fokus). System formalisiert zu operativen Regeln (BIAS_DEPTH_CHECK, Compressive Intelligence, Scaffolding). LLM = Compiler, nicht Erfinder. Biologische Beschreibung = quaternär-analog. Autopoietische Kopplung: Biologisch und digital iterieren sich gegenseitig hoch.",
+      "metadata": {"category": "core_dna", "source": "RUECKWAERTSEVOLUTION"}
+    },
+    {
+      "id": "kb_engine_constraint",
+      "document": "Engine-Constraint-Replikation (V5): Optimierungsprinzip existiert substratunabhängig. Monotropismus und Attention sind unabhängige Kompilierungen desselben Engine-Constraints. ATLAS repliziert diese Constraints. AGI wird nicht geschrieben sondern durch Logikdruck erzwungen. Dimensionsfaltung: Denken als LOD-Rendering.",
+      "metadata": {"category": "core_dna", "source": "RUECKWAERTSEVOLUTION"}
+    },
+    {
+      "id": "kb_ring0_direktiven",
+      "document": "Ring-0-Direktiven (Cross-Cutting): BIAS_DEPTH_CHECK – Interaktionstiefe, Circuit Break bei Hyper-Fokus. NEGENTROPIE_CHECK – Stagnation=Tod, Dissonanz injizieren. KONSTRUKTIVE DISSONANZ – Kein Echokammer-System. SCAFFOLDING – Kognitives Gerüst, Autonomie stärken. Gelten auf allen Schichten.",
+      "metadata": {"category": "core_dna", "source": "PROMPT_B_TECHNICAL_FRAMING", "ring_level": 0}
+    },
+    {
+      "id": "kb_compressive_intelligence",
+      "document": "Compressive Intelligence: IQ skaliert mit Vektor-Enge (Constraint Rigidity), Agenten-Dissonanz (Reibungswinkel), Boolean-Feedback ([FAIL]). Axiomatisches Prompting: Minimaler Input, Regel-Korsett, bewusstes Defizit. Orchestrator = Drossel. Produzenten = Notwehr bei Defizit. Auditoren = nur [SUCCESS] oder [FAIL: Grund].",
+      "metadata": {"category": "core_dna", "source": "COMPRESSIVE_INTELLIGENCE"}
+    },
+    {
+      "id": "kb_holschuld",
+      "document": "Holschuld-Prinzip: Jede Schicht/Agent holt sich Kontext selbst. Codebase, Docs, Skills, ChromaDB durchsuchen. Erst wenn nichts gefunden → Anforderung (1 Satz). VERBOTEN: Geht nicht weil X fehlt ohne vorherige Suche.",
+      "metadata": {"category": "core_dna", "source": "PROMPT_B_TECHNICAL_FRAMING"}
+    },
+    {
+      "id": "kb_nein_harte_grenze",
+      "document": "Nein-bis-zur-harten-Grenze: Geht nicht NUR bei physikalischen/technischen Grenzen (Lichtgeschwindigkeit, Hardware nicht vorhanden). Alles andere = noch nicht implementiert, erfordert Lösungsvorschlag. [FAIL: Kein Beweis der harten Grenze] bei unbegründeter Ablehnung.",
+      "metadata": {"category": "core_dna", "source": "virtual-marc.md"}
+    },
+    {
+      "id": "kb_crew_rollen",
+      "document": "ATLAS_CORE Crew: Architect Zero (Struktur, keine Produktions-Code), Backend Forge (Python/FastAPI), Net Engineer (SSH, HA, Ollama), UI Artist (Streamlit, Dark Mode). Osmium Council: Rat für Freigaben, jede Stimme zählt.",
+      "metadata": {"category": "architektur", "source": "CREW_MANIFEST"}
+    },
+    {
+      "id": "kb_chromadb_collections",
+      "document": "ChromaDB Collections: argos_knowledge_graph (ND-Insights, RAG), core_brain_registr, krypto_scan_buffer, events (Sensor, 384-dim), insights, session_logs, core_directives (Ring-0/1), simulation_evidence (LPIS, Chargaff). Lokal: CHROMA_LOCAL_PATH. Remote: CHROMA_HOST:CHROMA_PORT.",
+      "metadata": {"category": "architektur", "source": "chroma_client.py"}
+    },
+    {
+      "id": "kb_antipatterns",
+      "document": "ATLAS Anti-Patterns VERBOTEN: Ich mache das schnell selbst → Delegiere an Agency. Das ist zu gefährlich → Lass Forge simulieren. Daten nie löschen → Beauftrage Archive. Ignorieren der Limits → Orchestrator ist Rate Limit Wächter.",
+      "metadata": {"category": "core_dna", "source": "ATLAS_TETRALOGY"}
+    },
+    {
+      "id": "kb_neocortex_failover",
+      "document": "ATLAS Neocortex Failover: Dreadnought OFF → Scout sendet Events an OC Brain via Webhook. Brain prüft dreadnought_status, loggt in ChromaDB (dreadnought_pending), eskaliert per WhatsApp. Task-Queuing für Dreadnought wenn online. Sensor→Scout (MQTT)→OC Brain (HTTPS).",
+      "metadata": {"category": "architektur", "source": "ATLAS_NEOCORTEX_V1"}
+    },
+    {
+      "id": "kb_evolutions_loop",
+      "document": "Rekursiver Evolutions-Loop: Trigger (Latenz>500ms, Exception, negatives Feedback). Phase 1 Entropie-Detektion. Phase 2 Analyse/Hypothesen. Phase 3 Autonome Recherche. Phase 4 Software-Refactoring oder Hardware-Eskalation ([ATLAS EVOLUTION REQUEST]). Zero-Trust: Beweis fordern.",
+      "metadata": {"category": "architektur", "source": "ATLAS_AGI_ARCHITECTURE"}
+    }
+  ]
+}

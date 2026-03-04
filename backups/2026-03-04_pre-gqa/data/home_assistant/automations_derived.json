@@ -1,0 +1,2601 @@
+[
+  {
+    "entity_id": "automation.h91_verlassen",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1673046888165",
+      "friendly_name": "ALT AUTO H91 verlassen ALT"
+    },
+    "last_changed": "2026-02-19T22:06:24.857083+00:00",
+    "last_reported": "2026-02-19T22:06:24.857083+00:00",
+    "last_updated": "2026-02-19T22:06:24.857083+00:00",
+    "context": {
+      "id": "01KHVZ18JSPNCXJ412EYMYW7JB",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.nachmittag",
+    "state": "off",
+    "attributes": {
+      "id": "1673450373015",
+      "last_triggered": "2024-04-22T18:41:23.706260+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Nachmittag"
+    },
+    "last_changed": "2026-02-19T22:06:24.857374+00:00",
+    "last_reported": "2026-02-19T22:06:24.857374+00:00",
+    "last_updated": "2026-02-19T22:06:24.857374+00:00",
+    "context": {
+      "id": "01KHVZ18JSV9RHCBQVS7G1R8RS",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.gogogo",
+    "state": "on",
+    "attributes": {
+      "id": "1673606286236",
+      "last_triggered": "2023-12-30T17:53:34.527574+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:shield-home-outline",
+      "friendly_name": "Gogogo"
+    },
+    "last_changed": "2026-02-19T22:06:24.857564+00:00",
+    "last_reported": "2026-02-19T22:06:24.857564+00:00",
+    "last_updated": "2026-02-19T22:06:24.857564+00:00",
+    "context": {
+      "id": "01KHVZ18JSYDP4S8CN0SV5G3ZN",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.badezeit",
+    "state": "on",
+    "attributes": {
+      "id": "1673948963704",
+      "last_triggered": "2025-10-02T15:14:13.208445+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:bathtub-outline",
+      "friendly_name": "000 Badezeit"
+    },
+    "last_changed": "2026-02-19T22:06:24.857713+00:00",
+    "last_reported": "2026-02-19T22:06:24.857713+00:00",
+    "last_updated": "2026-02-19T22:06:24.857713+00:00",
+    "context": {
+      "id": "01KHVZ18JS23W7CK95BKNA27HM",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.arbeitslicht_auto",
+    "state": "on",
+    "attributes": {
+      "id": "1674812134368",
+      "last_triggered": "2026-02-19T09:00:00.459961+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Arbeitslicht Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.857863+00:00",
+    "last_reported": "2026-02-19T22:06:24.857863+00:00",
+    "last_updated": "2026-02-19T22:06:24.857863+00:00",
+    "context": {
+      "id": "01KHVZ18JSW07THWF47718QR1V",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.gelb_bei_dammerungsbeginn",
+    "state": "off",
+    "attributes": {
+      "id": "1674812988937",
+      "last_triggered": "2025-05-27T20:57:46.329534+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Gelb bei D\u00e4mmerungsbeginn"
+    },
+    "last_changed": "2026-02-19T22:06:24.858001+00:00",
+    "last_reported": "2026-02-19T22:06:24.858001+00:00",
+    "last_updated": "2026-02-19T22:06:24.858001+00:00",
+    "context": {
+      "id": "01KHVZ18JTX2EGR27B5PF0YBE1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.test_bedingungen",
+    "state": "off",
+    "attributes": {
+      "id": "1674815153847",
+      "last_triggered": "2023-03-19T18:36:09.127857+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Z9 Test Bedingungen"
+    },
+    "last_changed": "2026-02-19T22:06:24.858125+00:00",
+    "last_reported": "2026-02-19T22:06:24.858125+00:00",
+    "last_updated": "2026-02-19T22:06:24.858125+00:00",
+    "context": {
+      "id": "01KHVZ18JTBAMR72AWCTRNCD0W",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.fruher_abend_orange",
+    "state": "on",
+    "attributes": {
+      "id": "1674922942846",
+      "last_triggered": "2023-11-24T18:11:43.403143+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Abendlicht sp\u00e4t"
+    },
+    "last_changed": "2026-02-19T22:06:24.858261+00:00",
+    "last_reported": "2026-02-19T22:06:24.858261+00:00",
+    "last_updated": "2026-02-19T22:06:24.858261+00:00",
+    "context": {
+      "id": "01KHVZ18JTPTK86GT8NHZTDRSD",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.abendstimmung_auto",
+    "state": "off",
+    "attributes": {
+      "id": "1674925124429",
+      "last_triggered": "2024-08-27T19:29:04.053793+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Abendstimmung Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.858380+00:00",
+    "last_reported": "2026-02-19T22:06:24.858380+00:00",
+    "last_updated": "2026-02-19T22:06:24.858380+00:00",
+    "context": {
+      "id": "01KHVZ18JT1YBB3H0DSBBG9PHZ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.heizung_nachtmodus",
+    "state": "off",
+    "attributes": {
+      "id": "1675728097484",
+      "last_triggered": "2023-03-09T06:30:00.011635+00:00",
+      "mode": "queued",
+      "current": 0,
+      "max": 10,
+      "friendly_name": "Heizung Nachtmodus"
+    },
+    "last_changed": "2026-02-19T22:06:24.858516+00:00",
+    "last_reported": "2026-02-19T22:06:24.858516+00:00",
+    "last_updated": "2026-02-19T22:06:24.858516+00:00",
+    "context": {
+      "id": "01KHVZ18JT8RT757AGR83A9NG9",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.automation_21",
+    "state": "off",
+    "attributes": {
+      "id": "1675728978851",
+      "last_triggered": "2026-02-16T01:25:00.222007+00:00",
+      "mode": "restart",
+      "current": 0,
+      "icon": "mdi:sun-snowflake",
+      "friendly_name": "ECO Heating Ultimate"
+    },
+    "last_changed": "2026-02-19T22:06:24.858638+00:00",
+    "last_reported": "2026-02-19T22:06:24.858638+00:00",
+    "last_updated": "2026-02-19T22:06:24.858638+00:00",
+    "context": {
+      "id": "01KHVZ18JTQZXJ8WZKWJFDD5TH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auschaltzeit",
+    "state": "off",
+    "attributes": {
+      "id": "1675998740615",
+      "last_triggered": "2023-05-02T01:45:00.208548+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Auschaltzeit"
+    },
+    "last_changed": "2026-02-19T22:06:24.858752+00:00",
+    "last_reported": "2026-02-19T22:06:24.858752+00:00",
+    "last_updated": "2026-02-19T22:06:24.858752+00:00",
+    "context": {
+      "id": "01KHVZ18JTV1A181HW3KXCVB62",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.automatic_backups",
+    "state": "off",
+    "attributes": {
+      "id": "1676193008842",
+      "last_triggered": "2023-09-23T00:30:00.132295+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Automatic Backups"
+    },
+    "last_changed": "2026-02-19T22:06:24.858864+00:00",
+    "last_reported": "2026-02-19T22:06:24.858864+00:00",
+    "last_updated": "2026-02-19T22:06:24.858864+00:00",
+    "context": {
+      "id": "01KHVZ18JTGCNKRYRHZPYV0VJ6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.nachtbad",
+    "state": "off",
+    "attributes": {
+      "id": "1676502383287",
+      "last_triggered": "2023-04-29T21:07:25.040816+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nachtbad"
+    },
+    "last_changed": "2026-02-19T22:06:24.859263+00:00",
+    "last_reported": "2026-02-19T22:06:24.859263+00:00",
+    "last_updated": "2026-02-19T22:06:24.859263+00:00",
+    "context": {
+      "id": "01KHVZ18JVE976DZPP1Y65PSX3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.wohnzimmer_auschaltzeit",
+    "state": "on",
+    "attributes": {
+      "id": "1678051782477",
+      "last_triggered": "2026-02-19T03:01:00.167680+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Wohnzimmer Auschaltzeit"
+    },
+    "last_changed": "2026-02-19T22:06:24.859390+00:00",
+    "last_reported": "2026-02-19T22:06:24.859390+00:00",
+    "last_updated": "2026-02-19T22:06:24.859390+00:00",
+    "context": {
+      "id": "01KHVZ18JVVG6AMT9P7BCVNF0E",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_spates_licht",
+    "state": "off",
+    "attributes": {
+      "id": "1678319305711",
+      "last_triggered": "2024-04-21T21:00:00.472828+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "AUTO sp\u00e4tes Licht"
+    },
+    "last_changed": "2026-02-19T22:06:24.859504+00:00",
+    "last_reported": "2026-02-19T22:06:24.859504+00:00",
+    "last_updated": "2026-02-19T22:06:24.859504+00:00",
+    "context": {
+      "id": "01KHVZ18JVPZFB38Y4HG7A7P6X",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.zzz_timer_alles_aus",
+    "state": "off",
+    "attributes": {
+      "id": "1681777652108",
+      "last_triggered": "2023-04-18T00:30:49.754998+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "ZZZ Timer Alles Aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.859653+00:00",
+    "last_reported": "2026-02-19T22:06:24.859653+00:00",
+    "last_updated": "2026-02-19T22:06:24.859653+00:00",
+    "context": {
+      "id": "01KHVZ18JV1ET3WDE5JZXG5QQZ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.light_off",
+    "state": "off",
+    "attributes": {
+      "id": "1682124199316",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto",
+      "friendly_name": "Light Off"
+    },
+    "last_changed": "2026-02-19T22:06:24.859773+00:00",
+    "last_reported": "2026-02-19T22:06:24.859773+00:00",
+    "last_updated": "2026-02-19T22:06:24.859773+00:00",
+    "context": {
+      "id": "01KHVZ18JV1YFDMP6C5MDCEGWT",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.999_check_auto_bad_automatisierung_on",
+    "state": "off",
+    "attributes": {
+      "id": "1682429063239",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "999 Check Auto Bad Automatisierung on"
+    },
+    "last_changed": "2026-02-19T22:06:24.859894+00:00",
+    "last_reported": "2026-02-19T22:06:24.859894+00:00",
+    "last_updated": "2026-02-19T22:06:24.859894+00:00",
+    "context": {
+      "id": "01KHVZ18JVEFQN7NJ423MPEMNC",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.aaaa_auto_test_aaaaaa",
+    "state": "off",
+    "attributes": {
+      "id": "1683978525110",
+      "last_triggered": "2023-06-12T20:55:40.131682+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AAAA AUTO TEST AAAAAA"
+    },
+    "last_changed": "2026-02-19T22:06:24.860028+00:00",
+    "last_reported": "2026-02-19T22:06:24.860028+00:00",
+    "last_updated": "2026-02-19T22:06:24.860028+00:00",
+    "context": {
+      "id": "01KHVZ18JWEX7DWKSBHBZ9V81P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.mthone_leave_h91",
+    "state": "on",
+    "attributes": {
+      "id": "1685873328550",
+      "last_triggered": "2026-02-19T19:33:16.536305+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "MTHOne leave H91"
+    },
+    "last_changed": "2026-02-19T22:06:24.860152+00:00",
+    "last_reported": "2026-02-19T22:06:24.860152+00:00",
+    "last_updated": "2026-02-19T22:06:24.860152+00:00",
+    "context": {
+      "id": "01KHVZ18JWXQ0T6G3KTAW7Y7M8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.mthone_in_h91",
+    "state": "on",
+    "attributes": {
+      "id": "1685874143294",
+      "last_triggered": "2026-02-19T20:06:04.537721+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "MTHOne in H91"
+    },
+    "last_changed": "2026-02-19T22:06:24.860278+00:00",
+    "last_reported": "2026-02-19T22:06:24.860278+00:00",
+    "last_updated": "2026-02-19T22:06:24.860278+00:00",
+    "context": {
+      "id": "01KHVZ18JW0YBG8SFNHNVHV30R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.tv_mainframe_inaktiv",
+    "state": "off",
+    "attributes": {
+      "id": "1692718806397",
+      "last_triggered": "2023-08-22T15:42:36.776419+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "TV Mainframe inaktiv"
+    },
+    "last_changed": "2026-02-19T22:06:24.860395+00:00",
+    "last_reported": "2026-02-19T22:06:24.860395+00:00",
+    "last_updated": "2026-02-19T22:06:24.860395+00:00",
+    "context": {
+      "id": "01KHVZ18JW48JTYRR628V4JGBE",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.automation_28",
+    "state": "off",
+    "attributes": {
+      "id": "1692724895954",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "TV unt\u00e4tig"
+    },
+    "last_changed": "2026-02-19T22:06:24.860507+00:00",
+    "last_reported": "2026-02-19T22:06:24.860507+00:00",
+    "last_updated": "2026-02-19T22:06:24.860507+00:00",
+    "context": {
+      "id": "01KHVZ18JWNBAQYHBRDSMBJ02P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.mittaaaaaaaaaaccchh",
+    "state": "on",
+    "attributes": {
+      "id": "1694014923282",
+      "last_triggered": "2026-02-19T11:00:00.485211+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Mittaaaaaaaaaaccchh"
+    },
+    "last_changed": "2026-02-19T22:06:24.860650+00:00",
+    "last_reported": "2026-02-19T22:06:24.860650+00:00",
+    "last_updated": "2026-02-19T22:06:24.860650+00:00",
+    "context": {
+      "id": "01KHVZ18JW4W3H09Q0J3XSFAM1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.eco_heating_ultimate_v1_1",
+    "state": "off",
+    "attributes": {
+      "id": "1697716000681",
+      "last_triggered": "2023-12-04T15:27:03.598998+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "ECO Heating Ultimate v1.1"
+    },
+    "last_changed": "2026-02-19T22:06:24.860770+00:00",
+    "last_reported": "2026-02-19T22:06:24.860770+00:00",
+    "last_updated": "2026-02-19T22:06:24.860770+00:00",
+    "context": {
+      "id": "01KHVZ18JWDKBCDK0SSJDYMX4B",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bad_eco",
+    "state": "off",
+    "attributes": {
+      "id": "1698100848140",
+      "last_triggered": "2026-02-15T23:50:14.167579+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Bad Eco"
+    },
+    "last_changed": "2026-02-19T22:06:24.860882+00:00",
+    "last_reported": "2026-02-19T22:06:24.860882+00:00",
+    "last_updated": "2026-02-19T22:06:24.860882+00:00",
+    "context": {
+      "id": "01KHVZ18JW9H19ZS0FADCGHW1Y",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_welcome",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1698598765926",
+      "friendly_name": "ALT Auto Welcome ALT"
+    },
+    "last_changed": "2026-02-19T22:06:24.861084+00:00",
+    "last_reported": "2026-02-19T22:06:24.861084+00:00",
+    "last_updated": "2026-02-19T22:06:24.861084+00:00",
+    "context": {
+      "id": "01KHVZ18JXTQ8J76AVAVRRN0A5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_bad_aus",
+    "state": "on",
+    "attributes": {
+      "id": "1698881739175",
+      "last_triggered": "2025-07-25T17:01:13.164766+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Auto Bad Aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.861221+00:00",
+    "last_reported": "2026-02-19T22:06:24.861221+00:00",
+    "last_updated": "2026-02-19T22:06:24.861221+00:00",
+    "context": {
+      "id": "01KHVZ18JXWM8P30F26KBM1BNZ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.force_h91",
+    "state": "off",
+    "attributes": {
+      "id": "1699129741320",
+      "last_triggered": "2026-02-05T20:32:00.088189+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:triforce",
+      "friendly_name": "FORCE H91"
+    },
+    "last_changed": "2026-02-19T22:06:24.861331+00:00",
+    "last_reported": "2026-02-19T22:06:24.861331+00:00",
+    "last_updated": "2026-02-19T22:06:24.861331+00:00",
+    "context": {
+      "id": "01KHVZ18JX4X77PRDSGP8KWMKR",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.dreamview_auto_aus_pro_sofa",
+    "state": "on",
+    "attributes": {
+      "id": "1699312832278",
+      "last_triggered": "2024-05-14T23:57:15.770840+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Dreamview Auto aus > PRo Sofa"
+    },
+    "last_changed": "2026-02-19T22:06:24.862104+00:00",
+    "last_reported": "2026-02-19T22:06:24.862104+00:00",
+    "last_updated": "2026-02-19T22:06:24.862104+00:00",
+    "context": {
+      "id": "01KHVZ18JY3GHX5WCW5DQEA0BN",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.akkustand_20",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1701517161308",
+      "friendly_name": "Akkustand > 20"
+    },
+    "last_changed": "2026-02-19T22:06:24.862310+00:00",
+    "last_reported": "2026-02-19T22:06:24.862310+00:00",
+    "last_updated": "2026-02-19T22:06:24.862310+00:00",
+    "context": {
+      "id": "01KHVZ18JYBV0R80K90CV8VWK3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.low_light_mode",
+    "state": "off",
+    "attributes": {
+      "id": "1703675834442",
+      "last_triggered": "2024-09-07T15:15:55.637304+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:home-floor-l",
+      "friendly_name": "Low Light Mode"
+    },
+    "last_changed": "2026-02-19T22:06:24.862437+00:00",
+    "last_reported": "2026-02-19T22:06:24.862437+00:00",
+    "last_updated": "2026-02-19T22:06:24.862437+00:00",
+    "context": {
+      "id": "01KHVZ18JYNWW4SAPA83B6ME0P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.test_motion_bads",
+    "state": "on",
+    "attributes": {
+      "id": "1703872846631",
+      "last_triggered": "2026-02-19T21:52:02.769436+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "AAA New Motion Bad"
+    },
+    "last_changed": "2026-02-19T22:06:24.862559+00:00",
+    "last_reported": "2026-02-19T22:06:24.862559+00:00",
+    "last_updated": "2026-02-19T22:06:24.862559+00:00",
+    "context": {
+      "id": "01KHVZ18JYEMNXCS2AVF0YXGQB",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.opladen_test",
+    "state": "off",
+    "attributes": {
+      "id": "1703931536634",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Opladen Test"
+    },
+    "last_changed": "2026-02-19T22:06:24.862673+00:00",
+    "last_reported": "2026-02-19T22:06:24.862673+00:00",
+    "last_updated": "2026-02-19T22:06:24.862673+00:00",
+    "context": {
+      "id": "01KHVZ18JY0Z7NZPJX5KNM79CV",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_opladen",
+    "state": "off",
+    "attributes": {
+      "id": "1703932088367",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Opladen"
+    },
+    "last_changed": "2026-02-19T22:06:24.862782+00:00",
+    "last_reported": "2026-02-19T22:06:24.862782+00:00",
+    "last_updated": "2026-02-19T22:06:24.862782+00:00",
+    "context": {
+      "id": "01KHVZ18JYEY5C5NJF899RS1FS",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.upup",
+    "state": "off",
+    "attributes": {
+      "id": "1704025367919",
+      "last_triggered": "2024-01-01T21:49:48.752802+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "upup"
+    },
+    "last_changed": "2026-02-19T22:06:24.862892+00:00",
+    "last_reported": "2026-02-19T22:06:24.862892+00:00",
+    "last_updated": "2026-02-19T22:06:24.862892+00:00",
+    "context": {
+      "id": "01KHVZ18JY4YCVN2D32E260949",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.upup2",
+    "state": "off",
+    "attributes": {
+      "id": "1704026713196",
+      "last_triggered": "2024-01-02T17:49:25.379561+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "UpUp2"
+    },
+    "last_changed": "2026-02-19T22:06:24.863000+00:00",
+    "last_reported": "2026-02-19T22:06:24.863000+00:00",
+    "last_updated": "2026-02-19T22:06:24.863000+00:00",
+    "context": {
+      "id": "01KHVZ18JZ8XZX9P0EXF9BKHF6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.s6_al_2_all",
+    "state": "on",
+    "attributes": {
+      "id": "1704030221748",
+      "last_triggered": "2024-06-30T14:13:50.203304+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "S6 AL 2 All"
+    },
+    "last_changed": "2026-02-19T22:06:24.863121+00:00",
+    "last_reported": "2026-02-19T22:06:24.863121+00:00",
+    "last_updated": "2026-02-19T22:06:24.863121+00:00",
+    "context": {
+      "id": "01KHVZ18JZ1HEH349XHVKM2033",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.upup3",
+    "state": "off",
+    "attributes": {
+      "id": "1704127027677",
+      "last_triggered": "2024-01-01T19:16:52.691861+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Upup3"
+    },
+    "last_changed": "2026-02-19T22:06:24.863235+00:00",
+    "last_reported": "2026-02-19T22:06:24.863235+00:00",
+    "last_updated": "2026-02-19T22:06:24.863235+00:00",
+    "context": {
+      "id": "01KHVZ18JZ6RFAEFBXEEN0KCB6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.akku_akustik",
+    "state": "on",
+    "attributes": {
+      "id": "1704210335491",
+      "last_triggered": "2025-02-02T13:35:14.443569+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Akku akustik"
+    },
+    "last_changed": "2026-02-19T22:06:24.863354+00:00",
+    "last_reported": "2026-02-19T22:06:24.863354+00:00",
+    "last_updated": "2026-02-19T22:06:24.863354+00:00",
+    "context": {
+      "id": "01KHVZ18JZ4AEMV7PG6YMDWS7T",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.akku_50_alarm_aus",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1704210697138",
+      "friendly_name": "Akku 50 > Alarm aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.863511+00:00",
+    "last_reported": "2026-02-19T22:06:24.863511+00:00",
+    "last_updated": "2026-02-19T22:06:24.863511+00:00",
+    "context": {
+      "id": "01KHVZ18JZ0KY66AHSGBTSJEH0",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.magic_cube_actions",
+    "state": "on",
+    "attributes": {
+      "id": "1704279420477",
+      "last_triggered": "2026-02-19T21:57:25.772778+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Magic Cube Actions"
+    },
+    "last_changed": "2026-02-19T22:06:24.863665+00:00",
+    "last_reported": "2026-02-19T22:06:24.863665+00:00",
+    "last_updated": "2026-02-19T22:06:24.863665+00:00",
+    "context": {
+      "id": "01KHVZ18JZBJ9A9DHTS6YAVZWH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.badezeit_auto_an",
+    "state": "off",
+    "attributes": {
+      "id": "1704366712047",
+      "last_triggered": "2024-11-02T07:44:35.554870+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Badezeit Auto an"
+    },
+    "last_changed": "2026-02-19T22:06:24.863786+00:00",
+    "last_reported": "2026-02-19T22:06:24.863786+00:00",
+    "last_updated": "2026-02-19T22:06:24.863786+00:00",
+    "context": {
+      "id": "01KHVZ18JZ4HWXE6P12TSCPQGD",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_mediaplayer_20",
+    "state": "on",
+    "attributes": {
+      "id": "1704634712023",
+      "last_triggered": "2026-02-19T15:00:00.183232+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Mediaplayer > 20"
+    },
+    "last_changed": "2026-02-19T22:06:24.863907+00:00",
+    "last_reported": "2026-02-19T22:06:24.863907+00:00",
+    "last_updated": "2026-02-19T22:06:24.863907+00:00",
+    "context": {
+      "id": "01KHVZ18JZER3NE0MJ1X3FPRV3",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.999_check_wasser_auto_999",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1704740776402",
+      "friendly_name": "999 Check Wasser Auto 999"
+    },
+    "last_changed": "2026-02-19T22:06:24.864058+00:00",
+    "last_reported": "2026-02-19T22:06:24.864058+00:00",
+    "last_updated": "2026-02-19T22:06:24.864058+00:00",
+    "context": {
+      "id": "01KHVZ18K05JSDZWGSYR037881",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_bad_morgends",
+    "state": "on",
+    "attributes": {
+      "id": "1705568288826",
+      "last_triggered": "2026-02-10T10:57:45.806364+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Auto Bad morgends"
+    },
+    "last_changed": "2026-02-19T22:06:24.864191+00:00",
+    "last_reported": "2026-02-19T22:06:24.864191+00:00",
+    "last_updated": "2026-02-19T22:06:24.864191+00:00",
+    "context": {
+      "id": "01KHVZ18K0XN0AN3P5BE4GYQB9",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.dream_off_switch_off",
+    "state": "off",
+    "attributes": {
+      "id": "1707795076348",
+      "last_triggered": "2025-07-21T15:49:21.032669+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Dream off> Switch off"
+    },
+    "last_changed": "2026-02-19T22:06:24.864307+00:00",
+    "last_reported": "2026-02-19T22:06:24.864307+00:00",
+    "last_updated": "2026-02-19T22:06:24.864307+00:00",
+    "context": {
+      "id": "01KHVZ18K0YR9MSJ2V95E1GE0E",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.wasser_2",
+    "state": "off",
+    "attributes": {
+      "id": "1707865811761",
+      "last_triggered": "2024-09-18T18:37:41.393928+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Wasser 2"
+    },
+    "last_changed": "2026-02-19T22:06:24.864414+00:00",
+    "last_reported": "2026-02-19T22:06:24.864414+00:00",
+    "last_updated": "2026-02-19T22:06:24.864414+00:00",
+    "context": {
+      "id": "01KHVZ18K05Y7TFH9PS0345VSD",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.hoz_hot",
+    "state": "off",
+    "attributes": {
+      "id": "1707942791876",
+      "last_triggered": "2025-11-19T20:12:58.824396+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "HOZ HOT"
+    },
+    "last_changed": "2026-02-19T22:06:24.864522+00:00",
+    "last_reported": "2026-02-19T22:06:24.864522+00:00",
+    "last_updated": "2026-02-19T22:06:24.864522+00:00",
+    "context": {
+      "id": "01KHVZ18K0HVNMSDZ02SPNT1KX",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_usb_stecker_aus_95",
+    "state": "on",
+    "attributes": {
+      "id": "1708133381774",
+      "last_triggered": "2025-11-21T15:51:56.795329+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO USB stecker aus 95"
+    },
+    "last_changed": "2026-02-19T22:06:24.864635+00:00",
+    "last_reported": "2026-02-19T22:06:24.864635+00:00",
+    "last_updated": "2026-02-19T22:06:24.864635+00:00",
+    "context": {
+      "id": "01KHVZ18K0E9D7Z7ZKXX28T4HM",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_kuchenzeile_abends_an_aus",
+    "state": "off",
+    "attributes": {
+      "id": "1708193785536",
+      "last_triggered": "2025-08-28T19:27:26.239149+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO K\u00fcchenzeile Abends an"
+    },
+    "last_changed": "2026-02-19T22:06:24.864749+00:00",
+    "last_reported": "2026-02-19T22:06:24.864749+00:00",
+    "last_updated": "2026-02-19T22:06:24.864749+00:00",
+    "context": {
+      "id": "01KHVZ18K0RDZ3STVZ62XX3EPE",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_kuchenzeile_aus",
+    "state": "off",
+    "attributes": {
+      "id": "1708193889464",
+      "last_triggered": "2025-08-28T23:00:00.388239+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO K\u00fcchenzeile aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.864862+00:00",
+    "last_reported": "2026-02-19T22:06:24.864862+00:00",
+    "last_updated": "2026-02-19T22:06:24.864862+00:00",
+    "context": {
+      "id": "01KHVZ18K08D7ATZN3KY6RSZHT",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_mobile_usb_unter_30",
+    "state": "off",
+    "attributes": {
+      "id": "1708307842447",
+      "last_triggered": "2026-01-30T01:09:07.328670+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO Mobile USB unter 30"
+    },
+    "last_changed": "2026-02-19T22:06:24.864969+00:00",
+    "last_reported": "2026-02-19T22:06:24.864969+00:00",
+    "last_updated": "2026-02-19T22:06:24.864969+00:00",
+    "context": {
+      "id": "01KHVZ18K0M49A372R9PQ668CY",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_usb_night_load",
+    "state": "on",
+    "attributes": {
+      "id": "1708308105071",
+      "last_triggered": "2026-02-19T22:00:00.471437+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO USB Load "
+    },
+    "last_changed": "2026-02-19T22:06:24.865087+00:00",
+    "last_reported": "2026-02-19T22:06:24.865087+00:00",
+    "last_updated": "2026-02-19T22:06:24.865087+00:00",
+    "context": {
+      "id": "01KHVZ18K1948J2CNHSE9ZYG7J",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.nachtpinkeln",
+    "state": "off",
+    "attributes": {
+      "id": "1708565563001",
+      "last_triggered": "2025-03-27T02:57:36.785859+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nachtpinkeln"
+    },
+    "last_changed": "2026-02-19T22:06:24.865198+00:00",
+    "last_reported": "2026-02-19T22:06:24.865198+00:00",
+    "last_updated": "2026-02-19T22:06:24.865198+00:00",
+    "context": {
+      "id": "01KHVZ18K15TH89CRG1K0FAFAJ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.guten_morgen",
+    "state": "off",
+    "attributes": {
+      "id": "1709270293902",
+      "last_triggered": "2024-11-12T08:11:11.333049+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Guten Morgen"
+    },
+    "last_changed": "2026-02-19T22:06:24.865300+00:00",
+    "last_reported": "2026-02-19T22:06:24.865300+00:00",
+    "last_updated": "2026-02-19T22:06:24.865300+00:00",
+    "context": {
+      "id": "01KHVZ18K1GPZD21YFMFZV6XCV",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.ble_kuche_auto_on",
+    "state": "off",
+    "attributes": {
+      "id": "1709396552696",
+      "last_triggered": "2025-08-26T19:32:13.429806+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "BLE K\u00fcche Auto on"
+    },
+    "last_changed": "2026-02-19T22:06:24.865406+00:00",
+    "last_reported": "2026-02-19T22:06:24.865406+00:00",
+    "last_updated": "2026-02-19T22:06:24.865406+00:00",
+    "context": {
+      "id": "01KHVZ18K18T97W3YQ9QKF3320",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.zone_notification",
+    "state": "off",
+    "attributes": {
+      "id": "1709464431300",
+      "last_triggered": "2024-03-06T15:05:18.418608+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Zone Notification"
+    },
+    "last_changed": "2026-02-19T22:06:24.865525+00:00",
+    "last_reported": "2026-02-19T22:06:24.865525+00:00",
+    "last_updated": "2026-02-19T22:06:24.865525+00:00",
+    "context": {
+      "id": "01KHVZ18K1H5F446590FQFNN19",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.666_tag_led_detail_aus",
+    "state": "off",
+    "attributes": {
+      "id": "1710166835524",
+      "last_triggered": "2024-09-07T15:00:00.251230+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:format-header-6",
+      "friendly_name": "666 DayOff"
+    },
+    "last_changed": "2026-02-19T22:06:24.865633+00:00",
+    "last_reported": "2026-02-19T22:06:24.865633+00:00",
+    "last_updated": "2026-02-19T22:06:24.865633+00:00",
+    "context": {
+      "id": "01KHVZ18K17XJ56W92564HCHRH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.florentine",
+    "state": "off",
+    "attributes": {
+      "id": "1710469601121",
+      "last_triggered": "2025-01-29T08:33:11.448895+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "Florentine"
+    },
+    "last_changed": "2026-02-19T22:06:24.865735+00:00",
+    "last_reported": "2026-02-19T22:06:24.865735+00:00",
+    "last_updated": "2026-02-19T22:06:24.865735+00:00",
+    "context": {
+      "id": "01KHVZ18K14J8P1KYV2ZQEB485",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.666_check_mth_else_off",
+    "state": "on",
+    "attributes": {
+      "id": "1710496431295",
+      "last_triggered": "2025-10-09T11:40:00.275439+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "666 Check MTH else off"
+    },
+    "last_changed": "2026-02-19T22:06:24.865846+00:00",
+    "last_reported": "2026-02-19T22:06:24.865846+00:00",
+    "last_updated": "2026-02-19T22:06:24.865846+00:00",
+    "context": {
+      "id": "01KHVZ18K1B37HWEVJV1VP98HE",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.low_light_mode_template",
+    "state": "off",
+    "attributes": {
+      "id": "1711382508663",
+      "last_triggered": "2024-09-02T15:12:00.153142+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:lightbulb-auto-outline",
+      "friendly_name": "Low Light Mode Template"
+    },
+    "last_changed": "2026-02-19T22:06:24.865950+00:00",
+    "last_reported": "2026-02-19T22:06:24.865950+00:00",
+    "last_updated": "2026-02-19T22:06:24.865950+00:00",
+    "context": {
+      "id": "01KHVZ18K181ZB0PH31FEQ2RDW",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_check_mth_in_h91",
+    "state": "on",
+    "attributes": {
+      "id": "1712746565396",
+      "last_triggered": "2026-02-19T19:30:00.462247+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO Check Mth still in H91"
+    },
+    "last_changed": "2026-02-19T22:06:24.866064+00:00",
+    "last_reported": "2026-02-19T22:06:24.866064+00:00",
+    "last_updated": "2026-02-19T22:06:24.866064+00:00",
+    "context": {
+      "id": "01KHVZ18K23PXMK0FN20V6S06S",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.mqtt_restart",
+    "state": "on",
+    "attributes": {
+      "id": "1712946536524",
+      "last_triggered": "2026-02-19T22:07:04.798082+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "MQTT Restart"
+    },
+    "last_changed": "2026-02-19T22:06:24.866178+00:00",
+    "last_reported": "2026-02-19T22:08:57.347809+00:00",
+    "last_updated": "2026-02-19T22:08:57.347809+00:00",
+    "context": {
+      "id": "01KHVZ5XG3TR9RXG1850DF61A1",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.wenn_sich_bright_to_all_andert_zu_an_fur_1_00",
+    "state": "on",
+    "attributes": {
+      "id": "1713615250434",
+      "last_triggered": "2025-03-10T19:08:45.881764+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Wenn sich Bright to all \u00e4ndert zu An f\u00fcr 1:00"
+    },
+    "last_changed": "2026-02-19T22:06:24.866289+00:00",
+    "last_reported": "2026-02-19T22:06:24.866289+00:00",
+    "last_updated": "2026-02-19T22:06:24.866289+00:00",
+    "context": {
+      "id": "01KHVZ18K20QQNF25J1J9EVMR7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.al_main_auto_switch_rgb_coltemp",
+    "state": "on",
+    "attributes": {
+      "id": "1715209876165",
+      "last_triggered": "2026-02-18T18:18:40.518649+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AL Main Auto switch RGB > ColTemp"
+    },
+    "last_changed": "2026-02-19T22:06:24.866410+00:00",
+    "last_reported": "2026-02-19T22:06:24.866410+00:00",
+    "last_updated": "2026-02-19T22:06:24.866410+00:00",
+    "context": {
+      "id": "01KHVZ18K2PRSX8X1H3BKMFY2X",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.000_badezeit_neu",
+    "state": "on",
+    "attributes": {
+      "id": "1715764990621",
+      "last_triggered": "2025-10-02T15:14:13.212595+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "000 Badezeit neu"
+    },
+    "last_changed": "2026-02-19T22:06:24.866524+00:00",
+    "last_reported": "2026-02-19T22:06:24.866524+00:00",
+    "last_updated": "2026-02-19T22:06:24.866524+00:00",
+    "context": {
+      "id": "01KHVZ18K27MNE2SYYTGPQG358",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.60_min_to_go",
+    "state": "on",
+    "attributes": {
+      "id": "1715813242533",
+      "last_triggered": "2024-07-22T22:30:09.131887+00:00",
+      "mode": "single",
+      "current": 0,
+      "icon": "mdi:fast-forward-60",
+      "friendly_name": "60 min to Go"
+    },
+    "last_changed": "2026-02-19T22:06:24.866630+00:00",
+    "last_reported": "2026-02-19T22:06:24.866630+00:00",
+    "last_updated": "2026-02-19T22:06:24.866630+00:00",
+    "context": {
+      "id": "01KHVZ18K2HXV1CAH4Q89PRENJ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.999_check_ausuraus_auto",
+    "state": "on",
+    "attributes": {
+      "id": "1715944164321",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "999 Check ausuraus Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.866746+00:00",
+    "last_reported": "2026-02-19T22:06:24.866746+00:00",
+    "last_updated": "2026-02-19T22:06:24.866746+00:00",
+    "context": {
+      "id": "01KHVZ18K20ZT6QBT0WPGPT9KM",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.abfanger_al_to_all_bett",
+    "state": "on",
+    "attributes": {
+      "id": "1716313189847",
+      "last_triggered": "2024-07-30T18:17:30.806061+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Abf\u00e4nger> AL to ALL> Bett"
+    },
+    "last_changed": "2026-02-19T22:06:24.866859+00:00",
+    "last_reported": "2026-02-19T22:06:24.866859+00:00",
+    "last_updated": "2026-02-19T22:06:24.866859+00:00",
+    "context": {
+      "id": "01KHVZ18K2NKE2EVNVXMK87GHQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_arcustic_welcome",
+    "state": "on",
+    "attributes": {
+      "id": "1717579129893",
+      "last_triggered": "2024-10-24T15:15:07.696017+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Arcustic welcome"
+    },
+    "last_changed": "2026-02-19T22:06:24.866975+00:00",
+    "last_reported": "2026-02-19T22:06:24.866975+00:00",
+    "last_updated": "2026-02-19T22:06:24.866975+00:00",
+    "context": {
+      "id": "01KHVZ18K2WF8Q0H188WMZCJHS",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.last_reboot_counter",
+    "state": "on",
+    "attributes": {
+      "id": "1718036217245",
+      "last_triggered": "2026-02-19T22:07:04.802445+00:00",
+      "mode": "single",
+      "current": 1,
+      "friendly_name": "Last Reboot counter"
+    },
+    "last_changed": "2026-02-19T22:06:24.867085+00:00",
+    "last_reported": "2026-02-19T22:07:04.803892+00:00",
+    "last_updated": "2026-02-19T22:07:04.802480+00:00",
+    "context": {
+      "id": "01KHVZ2FK2A1ZY09Z48Y50AVQH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.flur_100",
+    "state": "on",
+    "attributes": {
+      "id": "1718050753619",
+      "last_triggered": "2024-06-10T20:21:18.280612+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Flur < 100%"
+    },
+    "last_changed": "2026-02-19T22:06:24.867568+00:00",
+    "last_reported": "2026-02-19T22:06:24.867568+00:00",
+    "last_updated": "2026-02-19T22:06:24.867568+00:00",
+    "context": {
+      "id": "01KHVZ18K38D73YQN2ZFNSSKA8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_wach_um_schalter",
+    "state": "off",
+    "attributes": {
+      "id": "1722265767969",
+      "last_triggered": "2024-09-10T22:05:00.424214+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO Wach UM Schalter"
+    },
+    "last_changed": "2026-02-19T22:06:24.867695+00:00",
+    "last_reported": "2026-02-19T22:06:24.867695+00:00",
+    "last_updated": "2026-02-19T22:06:24.867695+00:00",
+    "context": {
+      "id": "01KHVZ18K3YE8V70Y5NY1B9N1D",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_nachtkuhlung_ventilator",
+    "state": "off",
+    "attributes": {
+      "id": "1723243096695",
+      "last_triggered": "2024-09-02T03:55:55.130754+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Nachtk\u00fchlung Ventilator"
+    },
+    "last_changed": "2026-02-19T22:06:24.868096+00:00",
+    "last_reported": "2026-02-19T22:06:24.868096+00:00",
+    "last_updated": "2026-02-19T22:06:24.868096+00:00",
+    "context": {
+      "id": "01KHVZ18K4D3M5CCMFP32TYCVM",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_check_kuhlschrank_an",
+    "state": "on",
+    "attributes": {
+      "id": "1724097582707",
+      "last_triggered": "2026-02-10T12:52:46.561378+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Check K\u00dchlschrank an"
+    },
+    "last_changed": "2026-02-19T22:06:24.868222+00:00",
+    "last_reported": "2026-02-19T22:06:24.868222+00:00",
+    "last_updated": "2026-02-19T22:06:24.868222+00:00",
+    "context": {
+      "id": "01KHVZ18K4GRW3FT18F48SSDAN",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.camera_bild_auto",
+    "state": "off",
+    "attributes": {
+      "id": "1724761317142",
+      "last_triggered": "2025-09-12T13:57:15.302493+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Camera Bild Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.868344+00:00",
+    "last_reported": "2026-02-19T22:06:24.868344+00:00",
+    "last_updated": "2026-02-19T22:06:24.868344+00:00",
+    "context": {
+      "id": "01KHVZ18K4W5FXYR9C4S3CA1NB",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bewegungsmelder",
+    "state": "off",
+    "attributes": {
+      "id": "1724764743410",
+      "last_triggered": "2024-09-25T15:20:03.615816+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bewegungsmelder"
+    },
+    "last_changed": "2026-02-19T22:06:24.868456+00:00",
+    "last_reported": "2026-02-19T22:06:24.868456+00:00",
+    "last_updated": "2026-02-19T22:06:24.868456+00:00",
+    "context": {
+      "id": "01KHVZ18K49Y57J8J2S3WDQPZT",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.birne_not_aus",
+    "state": "off",
+    "attributes": {
+      "id": "1725919974991",
+      "last_triggered": "2024-10-06T07:09:24.289566+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Birne Not aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.868560+00:00",
+    "last_reported": "2026-02-19T22:06:24.868560+00:00",
+    "last_updated": "2026-02-19T22:06:24.868560+00:00",
+    "context": {
+      "id": "01KHVZ18K499AGSMPPWBA0FRKG",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.not_aus_birne",
+    "state": "off",
+    "attributes": {
+      "id": "1727812994198",
+      "last_triggered": "2024-10-03T06:17:26.094300+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "NOT AUS BIRNE"
+    },
+    "last_changed": "2026-02-19T22:06:24.868664+00:00",
+    "last_reported": "2026-02-19T22:06:24.868664+00:00",
+    "last_updated": "2026-02-19T22:06:24.868664+00:00",
+    "context": {
+      "id": "01KHVZ18K4JB7AH0YMWVBF74RZ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_ausuraus",
+    "state": "on",
+    "attributes": {
+      "id": "1727875310090",
+      "last_triggered": "2026-02-19T19:36:10.469599+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "111 - AUTO AUSURAUS "
+    },
+    "last_changed": "2026-02-19T22:06:24.868781+00:00",
+    "last_reported": "2026-02-19T22:06:24.868781+00:00",
+    "last_updated": "2026-02-19T22:06:24.868781+00:00",
+    "context": {
+      "id": "01KHVZ18K413V40T2S0E5S4W81",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.force_h91_off",
+    "state": "on",
+    "attributes": {
+      "id": "1727875764333",
+      "last_triggered": "2026-02-08T01:18:47.939199+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "FORCE H91 OFF"
+    },
+    "last_changed": "2026-02-19T22:06:24.868891+00:00",
+    "last_reported": "2026-02-19T22:06:24.868891+00:00",
+    "last_updated": "2026-02-19T22:06:24.868891+00:00",
+    "context": {
+      "id": "01KHVZ18K4VMZHG1FDGS1Q805B",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.new_welcome_hook",
+    "state": "on",
+    "attributes": {
+      "id": "1728403419871",
+      "last_triggered": "2026-02-19T20:02:14.424704+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "NEW Welcome Hook"
+    },
+    "last_changed": "2026-02-19T22:06:24.869010+00:00",
+    "last_reported": "2026-02-19T22:06:24.869010+00:00",
+    "last_updated": "2026-02-19T22:06:24.869010+00:00",
+    "context": {
+      "id": "01KHVZ18K58W60T4H1MC9CGXN6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.neue_automatisierung",
+    "state": "on",
+    "attributes": {
+      "id": "1728586325619",
+      "last_triggered": "2026-02-17T18:28:31.541347+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Reinigungs z\u00e4hler"
+    },
+    "last_changed": "2026-02-19T22:06:24.869122+00:00",
+    "last_reported": "2026-02-19T22:06:24.869122+00:00",
+    "last_updated": "2026-02-19T22:06:24.869122+00:00",
+    "context": {
+      "id": "01KHVZ18K5CFJKH3GGNK32VRZ5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.tageswechsel",
+    "state": "on",
+    "attributes": {
+      "id": "1728586513472",
+      "last_triggered": "2026-02-18T23:00:05.244504+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Tageswechsel"
+    },
+    "last_changed": "2026-02-19T22:06:24.869247+00:00",
+    "last_reported": "2026-02-19T22:06:24.869247+00:00",
+    "last_updated": "2026-02-19T22:06:24.869247+00:00",
+    "context": {
+      "id": "01KHVZ18K5TEPJZMR3JTZ2SV2W",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bewegungsmelder_auto_reinigung",
+    "state": "on",
+    "attributes": {
+      "id": "1729163564045",
+      "last_triggered": "2026-02-19T19:36:32.844023+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bewegungsmelder/ AUto Reinigung"
+    },
+    "last_changed": "2026-02-19T22:06:24.869363+00:00",
+    "last_reported": "2026-02-19T22:06:24.869363+00:00",
+    "last_updated": "2026-02-19T22:06:24.869363+00:00",
+    "context": {
+      "id": "01KHVZ18K5R51C2J9053H61EGC",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.ks_auto_reset",
+    "state": "on",
+    "attributes": {
+      "id": "1729189865263",
+      "last_triggered": "2026-02-19T22:15:00.392551+00:00",
+      "mode": "queued",
+      "current": 0,
+      "max": 3,
+      "friendly_name": "KS AUTO RESET"
+    },
+    "last_changed": "2026-02-19T22:06:24.869475+00:00",
+    "last_reported": "2026-02-19T22:15:01.785647+00:00",
+    "last_updated": "2026-02-19T22:15:01.785647+00:00",
+    "context": {
+      "id": "01KHVZH0189NFBC2XABFJNGREH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_pisslicht",
+    "state": "on",
+    "attributes": {
+      "id": "1729190802124",
+      "last_triggered": "2026-02-19T04:17:50.321148+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Pisslicht"
+    },
+    "last_changed": "2026-02-19T22:06:24.869591+00:00",
+    "last_reported": "2026-02-19T22:06:24.869591+00:00",
+    "last_updated": "2026-02-19T22:06:24.869591+00:00",
+    "context": {
+      "id": "01KHVZ18K5KAKZR6968FBB7JM7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.abfangen_reinigung_bewegung_welcome",
+    "state": "on",
+    "attributes": {
+      "id": "1729198139406",
+      "last_triggered": "2026-01-25T11:02:08.251908+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Abfangen Reinigung Bewegung Welcome"
+    },
+    "last_changed": "2026-02-19T22:06:24.869708+00:00",
+    "last_reported": "2026-02-19T22:06:24.869708+00:00",
+    "last_updated": "2026-02-19T22:06:24.869708+00:00",
+    "context": {
+      "id": "01KHVZ18K5FSBYB2K6S54673TV",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.docking_bewegungsmelder_an",
+    "state": "off",
+    "attributes": {
+      "id": "1729782609328",
+      "last_triggered": "2025-11-03T18:04:18.861723+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Docking > Bewegungsmelder an"
+    },
+    "last_changed": "2026-02-19T22:06:24.869817+00:00",
+    "last_reported": "2026-02-19T22:06:24.869817+00:00",
+    "last_updated": "2026-02-19T22:06:24.869817+00:00",
+    "context": {
+      "id": "01KHVZ18K5QPA9QS509BSJP1CA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_zeitraffer",
+    "state": "off",
+    "attributes": {
+      "id": "1731581367630",
+      "last_triggered": "2025-04-01T15:08:06.289009+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S Zeitraffer"
+    },
+    "last_changed": "2026-02-19T22:06:24.869932+00:00",
+    "last_reported": "2026-02-19T22:06:24.869932+00:00",
+    "last_updated": "2026-02-19T22:06:24.869932+00:00",
+    "context": {
+      "id": "01KHVZ18K53A7RA4F82JD6XAPC",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.druckfehler",
+    "state": "off",
+    "attributes": {
+      "id": "1732124047857",
+      "last_triggered": "2025-02-06T21:10:50.185311+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Druckfehler"
+    },
+    "last_changed": "2026-02-19T22:06:24.870034+00:00",
+    "last_reported": "2026-02-19T22:06:24.870034+00:00",
+    "last_updated": "2026-02-19T22:06:24.870034+00:00",
+    "context": {
+      "id": "01KHVZ18K6SDRA3XYQZAB4HYTH",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.3d_statue_licht_an",
+    "state": "on",
+    "attributes": {
+      "id": "1733234069415",
+      "last_triggered": "2025-12-25T12:01:20.091991+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "3d Fan Auto Off"
+    },
+    "last_changed": "2026-02-19T22:06:24.870149+00:00",
+    "last_reported": "2026-02-19T22:06:24.870149+00:00",
+    "last_updated": "2026-02-19T22:06:24.870149+00:00",
+    "context": {
+      "id": "01KHVZ18K6PK4J2VA05GPEYR5Q",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_auto_licht_aus",
+    "state": "on",
+    "attributes": {
+      "id": "1733277711907",
+      "last_triggered": "2026-02-11T03:21:04.790055+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S Auto Licht aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.870258+00:00",
+    "last_reported": "2026-02-19T22:06:24.870258+00:00",
+    "last_updated": "2026-02-19T22:06:24.870258+00:00",
+    "context": {
+      "id": "01KHVZ18K6DGKKSQPQWTQMX46P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.3d_auto_fertig7_error",
+    "state": "off",
+    "attributes": {
+      "id": "1733414420258",
+      "last_triggered": "2025-04-25T21:51:53.598162+00:00",
+      "mode": "restart",
+      "current": 0,
+      "friendly_name": "3d Auto fertig7 error"
+    },
+    "last_changed": "2026-02-19T22:06:24.870364+00:00",
+    "last_reported": "2026-02-19T22:06:24.870364+00:00",
+    "last_updated": "2026-02-19T22:06:24.870364+00:00",
+    "context": {
+      "id": "01KHVZ18K6MQWF8T0S6H0QB1G5",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_check_mth_in_h91_2",
+    "state": "on",
+    "attributes": {
+      "id": "1736273486207",
+      "last_triggered": "2025-07-20T17:40:00.096324+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO Check Mth in H91 TT"
+    },
+    "last_changed": "2026-02-19T22:06:24.870478+00:00",
+    "last_reported": "2026-02-19T22:06:24.870478+00:00",
+    "last_updated": "2026-02-19T22:06:24.870478+00:00",
+    "context": {
+      "id": "01KHVZ18K6Q3HAE2E245X1EJT7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.al_all_auto",
+    "state": "on",
+    "attributes": {
+      "id": "1737406610112",
+      "last_triggered": "2026-02-19T21:00:00.003510+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AL All Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.870593+00:00",
+    "last_reported": "2026-02-19T22:06:24.870593+00:00",
+    "last_updated": "2026-02-19T22:06:24.870593+00:00",
+    "context": {
+      "id": "01KHVZ18K6PAQH25ZQQH9BJ8GP",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bad_ks_impro",
+    "state": "off",
+    "attributes": {
+      "id": "1737818313059",
+      "last_triggered": "2025-11-04T20:11:32.442819+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bad KS Impro"
+    },
+    "last_changed": "2026-02-19T22:06:24.870697+00:00",
+    "last_reported": "2026-02-19T22:06:24.870697+00:00",
+    "last_updated": "2026-02-19T22:06:24.870697+00:00",
+    "context": {
+      "id": "01KHVZ18K6QSW6DPDJ0729GZ3S",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.al_auto_dimmreset",
+    "state": "on",
+    "attributes": {
+      "id": "1737997525903",
+      "last_triggered": "2026-02-19T21:58:02.228442+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AL Auto DimmRESET"
+    },
+    "last_changed": "2026-02-19T22:06:24.870816+00:00",
+    "last_reported": "2026-02-19T22:06:24.870816+00:00",
+    "last_updated": "2026-02-19T22:06:24.870816+00:00",
+    "context": {
+      "id": "01KHVZ18K62XX1W03ZPFVE74Z8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_check_h91",
+    "state": "on",
+    "attributes": {
+      "id": "1738429510520",
+      "last_triggered": "2025-02-01T17:05:53.392727+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto Check H91"
+    },
+    "last_changed": "2026-02-19T22:06:24.870926+00:00",
+    "last_reported": "2026-02-19T22:06:24.870926+00:00",
+    "last_updated": "2026-02-19T22:06:24.870926+00:00",
+    "context": {
+      "id": "01KHVZ18K6MNP4ZRB5PVYY0S0C",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.staubsauger_auto_saugkraft_max",
+    "state": "on",
+    "attributes": {
+      "id": "1738503009523",
+      "last_triggered": "2026-02-19T19:36:32.860074+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Staubsauger Auto Saugkraft max"
+    },
+    "last_changed": "2026-02-19T22:06:24.871052+00:00",
+    "last_reported": "2026-02-19T22:06:24.871052+00:00",
+    "last_updated": "2026-02-19T22:06:24.871052+00:00",
+    "context": {
+      "id": "01KHVZ18K7CPA0MFHE3DDKC2H6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_kuhl_check_an",
+    "state": "on",
+    "attributes": {
+      "id": "1740705684850",
+      "last_triggered": "2025-12-23T17:52:02.639336+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Auto K\u00fchl Check An"
+    },
+    "last_changed": "2026-02-19T22:06:24.871253+00:00",
+    "last_reported": "2026-02-19T22:06:24.871253+00:00",
+    "last_updated": "2026-02-19T22:06:24.871253+00:00",
+    "context": {
+      "id": "01KHVZ18K7448T4CEFBYY3R70R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.nerv_bett_pro",
+    "state": "off",
+    "attributes": {
+      "id": "1741796988930",
+      "last_triggered": "2025-03-23T12:31:13.980406+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nerv Bett Pro"
+    },
+    "last_changed": "2026-02-19T22:06:24.871368+00:00",
+    "last_reported": "2026-02-19T22:06:24.871368+00:00",
+    "last_updated": "2026-02-19T22:06:24.871368+00:00",
+    "context": {
+      "id": "01KHVZ18K7VQCYQDS679KMDBE4",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.nerv_bett_pro_2",
+    "state": "off",
+    "attributes": {
+      "id": "1741797007420",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Nerv Bett Pro"
+    },
+    "last_changed": "2026-02-19T22:06:24.871480+00:00",
+    "last_reported": "2026-02-19T22:06:24.871480+00:00",
+    "last_updated": "2026-02-19T22:06:24.871480+00:00",
+    "context": {
+      "id": "01KHVZ18K7VE0C00ADWZG67PT8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.past_120_record",
+    "state": "off",
+    "attributes": {
+      "id": "1742653499576",
+      "last_triggered": "2025-04-13T22:42:00.281310+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Past 120 Record"
+    },
+    "last_changed": "2026-02-19T22:06:24.871599+00:00",
+    "last_reported": "2026-02-19T22:06:24.871599+00:00",
+    "last_updated": "2026-02-19T22:06:24.871599+00:00",
+    "context": {
+      "id": "01KHVZ18K731WGBTE09BG44WKV",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.zylon_dock_welcome_on",
+    "state": "on",
+    "attributes": {
+      "id": "1743001349564",
+      "last_triggered": "2026-01-18T20:03:10.667066+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Zylon Dock > welcome on"
+    },
+    "last_changed": "2026-02-19T22:06:24.871723+00:00",
+    "last_reported": "2026-02-19T22:06:24.871723+00:00",
+    "last_updated": "2026-02-19T22:06:24.871723+00:00",
+    "context": {
+      "id": "01KHVZ18K71N0DS566X16SBEA0",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_image_to_cam",
+    "state": "off",
+    "attributes": {
+      "id": "1743670397164",
+      "last_triggered": "2025-04-03T12:56:49.818202+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1s Image to Cam"
+    },
+    "last_changed": "2026-02-19T22:06:24.871840+00:00",
+    "last_reported": "2026-02-19T22:06:24.871840+00:00",
+    "last_updated": "2026-02-19T22:06:24.871840+00:00",
+    "context": {
+      "id": "01KHVZ18K7JGSDC7XBQR7BZABA",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bad_tur",
+    "state": "on",
+    "attributes": {
+      "id": "1747163322763",
+      "last_triggered": "2026-01-27T17:45:56.006926+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bad T\u00fcr"
+    },
+    "last_changed": "2026-02-19T22:06:24.871958+00:00",
+    "last_reported": "2026-02-19T22:06:24.871958+00:00",
+    "last_updated": "2026-02-19T22:06:24.871958+00:00",
+    "context": {
+      "id": "01KHVZ18K77KET1EPJZD6NDCFY",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bad_tur_zu",
+    "state": "on",
+    "attributes": {
+      "id": "1747171751690",
+      "last_triggered": "2026-02-14T01:38:38.459326+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bad T\u00fcr zu"
+    },
+    "last_changed": "2026-02-19T22:06:24.872077+00:00",
+    "last_reported": "2026-02-19T22:06:24.872077+00:00",
+    "last_updated": "2026-02-19T22:06:24.872077+00:00",
+    "context": {
+      "id": "01KHVZ18K89RFMWKSXZCMBYEFF",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.auto_stimmung_speichern",
+    "state": "on",
+    "attributes": {
+      "id": "1747793143479",
+      "last_triggered": "2026-02-19T22:00:00.178050+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "AUTO Stimmung speichern "
+    },
+    "last_changed": "2026-02-19T22:06:24.872197+00:00",
+    "last_reported": "2026-02-19T22:06:24.872197+00:00",
+    "last_updated": "2026-02-19T22:06:24.872197+00:00",
+    "context": {
+      "id": "01KHVZ18K85XNVQR25611BYZV6",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.1000er_marke_3d",
+    "state": "off",
+    "attributes": {
+      "id": "1748712755757",
+      "last_triggered": "2025-08-26T08:02:28.773553+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "1000er Marke 3d"
+    },
+    "last_changed": "2026-02-19T22:06:24.872305+00:00",
+    "last_reported": "2026-02-19T22:06:24.872305+00:00",
+    "last_updated": "2026-02-19T22:06:24.872305+00:00",
+    "context": {
+      "id": "01KHVZ18K829ZBGBDEBEHNQM52",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.bad_trigger_power_state",
+    "state": "on",
+    "attributes": {
+      "id": "1748958681328",
+      "last_triggered": "2025-07-25T17:01:13.111353+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Bad Trigger Power State"
+    },
+    "last_changed": "2026-02-19T22:06:24.872419+00:00",
+    "last_reported": "2026-02-19T22:06:24.872419+00:00",
+    "last_updated": "2026-02-19T22:06:24.872419+00:00",
+    "context": {
+      "id": "01KHVZ18K8YN22ZDB4WH188R6D",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.ev_auto_aus",
+    "state": "on",
+    "attributes": {
+      "id": "1748967614823",
+      "last_triggered": "2026-02-14T02:15:00.184691+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "EV Auto aus"
+    },
+    "last_changed": "2026-02-19T22:06:24.872713+00:00",
+    "last_reported": "2026-02-19T22:06:24.872713+00:00",
+    "last_updated": "2026-02-19T22:06:24.872713+00:00",
+    "context": {
+      "id": "01KHVZ18K89YFS7XY9N8X56EE0",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_pause_bei_schicht_x",
+    "state": "off",
+    "attributes": {
+      "id": "1749633104020",
+      "last_triggered": "2025-10-22T16:23:05.846724+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S Pause bei Schicht X"
+    },
+    "last_changed": "2026-02-19T22:06:24.872836+00:00",
+    "last_reported": "2026-02-19T22:06:24.872836+00:00",
+    "last_updated": "2026-02-19T22:06:24.872836+00:00",
+    "context": {
+      "id": "01KHVZ18K8XGRS6JF0EHA7TGQE",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.center_auto_off",
+    "state": "on",
+    "attributes": {
+      "id": "1749688062120",
+      "last_triggered": "2025-12-17T11:27:29.908631+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Center AUTO OFF"
+    },
+    "last_changed": "2026-02-19T22:06:24.872954+00:00",
+    "last_reported": "2026-02-19T22:06:24.872954+00:00",
+    "last_updated": "2026-02-19T22:06:24.872954+00:00",
+    "context": {
+      "id": "01KHVZ18K8JCDES3MYWKKKSQ29",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.moin",
+    "state": "on",
+    "attributes": {
+      "id": "1749854104484",
+      "last_triggered": "2026-02-19T08:00:11.079563+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Moin"
+    },
+    "last_changed": "2026-02-19T22:06:24.873072+00:00",
+    "last_reported": "2026-02-19T22:06:24.873072+00:00",
+    "last_updated": "2026-02-19T22:06:24.873072+00:00",
+    "context": {
+      "id": "01KHVZ18K9Q0QABHW13H7ANA17",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.kodi_power_off",
+    "state": "off",
+    "attributes": {
+      "id": "1750507291287",
+      "last_triggered": "2025-10-09T14:56:40.671690+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Kodi Power OFF"
+    },
+    "last_changed": "2026-02-19T22:06:24.873183+00:00",
+    "last_reported": "2026-02-19T22:06:24.873183+00:00",
+    "last_updated": "2026-02-19T22:06:24.873183+00:00",
+    "context": {
+      "id": "01KHVZ18K9CAPXJQVCYK0R1P4T",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_hms_fehlermeldung",
+    "state": "on",
+    "attributes": {
+      "id": "1752016542404",
+      "last_triggered": "2025-12-27T19:09:14.070110+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S HMS Fehlermeldung"
+    },
+    "last_changed": "2026-02-19T22:06:24.873299+00:00",
+    "last_reported": "2026-02-19T22:06:24.873299+00:00",
+    "last_updated": "2026-02-19T22:06:24.873299+00:00",
+    "context": {
+      "id": "01KHVZ18K94X9NEKB4GWZM78CQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.dream_strom_auto",
+    "state": "off",
+    "attributes": {
+      "id": "1752058831267",
+      "last_triggered": "2025-11-05T17:58:06.082382+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Dream Strom Auto"
+    },
+    "last_changed": "2026-02-19T22:06:24.873406+00:00",
+    "last_reported": "2026-02-19T22:06:24.873406+00:00",
+    "last_updated": "2026-02-19T22:06:24.873406+00:00",
+    "context": {
+      "id": "01KHVZ18K943SAV95CZF6XKP8N",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_druckstatus_beendet",
+    "state": "on",
+    "attributes": {
+      "id": "1752278451975",
+      "last_triggered": "2026-02-10T19:35:42.918200+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S Druckstatus beendet"
+    },
+    "last_changed": "2026-02-19T22:06:24.873513+00:00",
+    "last_reported": "2026-02-19T22:06:24.873513+00:00",
+    "last_updated": "2026-02-19T22:06:24.873513+00:00",
+    "context": {
+      "id": "01KHVZ18K95727AT1GJMP03XKM",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_pausendurchsage",
+    "state": "on",
+    "attributes": {
+      "id": "1752568060003",
+      "last_triggered": "2026-01-10T14:57:06.653564+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1S Pausendurchsage"
+    },
+    "last_changed": "2026-02-19T22:06:24.873627+00:00",
+    "last_reported": "2026-02-19T22:06:24.873627+00:00",
+    "last_updated": "2026-02-19T22:06:24.873627+00:00",
+    "context": {
+      "id": "01KHVZ18K94J49XDYC0CA08XD7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.tapo_alarm_ansicht",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1752591493910",
+      "friendly_name": "Tapo Alarm Ansicht"
+    },
+    "last_changed": "2026-02-19T22:06:24.873819+00:00",
+    "last_reported": "2026-02-19T22:06:24.873819+00:00",
+    "last_updated": "2026-02-19T22:06:24.873819+00:00",
+    "context": {
+      "id": "01KHVZ18K9QRBNNN25BM3K1Y0P",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.p1s_skip_pause",
+    "state": "off",
+    "attributes": {
+      "id": "1753881530680",
+      "last_triggered": "2025-07-30T14:02:09.570294+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "P1s skip Pause"
+    },
+    "last_changed": "2026-02-19T22:06:24.873943+00:00",
+    "last_reported": "2026-02-19T22:06:24.873943+00:00",
+    "last_updated": "2026-02-19T22:06:24.873943+00:00",
+    "context": {
+      "id": "01KHVZ18K98RW9Y2GW5CWY4P2R",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.temp_warn",
+    "state": "on",
+    "attributes": {
+      "id": "1755236572361",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Temp warn"
+    },
+    "last_changed": "2026-02-19T22:06:24.874065+00:00",
+    "last_reported": "2026-02-19T22:06:24.874065+00:00",
+    "last_updated": "2026-02-19T22:06:24.874065+00:00",
+    "context": {
+      "id": "01KHVZ18KAQJFAP08YQR7A6QS0",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.licht_fruher_abend",
+    "state": "off",
+    "attributes": {
+      "id": "1757685739404",
+      "last_triggered": "2025-11-17T14:43:47.009385+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Licht fr\u00fcher Abend"
+    },
+    "last_changed": "2026-02-19T22:06:24.874169+00:00",
+    "last_reported": "2026-02-19T22:06:24.874169+00:00",
+    "last_updated": "2026-02-19T22:06:24.874169+00:00",
+    "context": {
+      "id": "01KHVZ18KAFRV4V0S3M7T2Q6PX",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.licht_abend",
+    "state": "on",
+    "attributes": {
+      "id": "1757782379605",
+      "last_triggered": "2026-02-19T17:57:06.499994+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Licht Abend"
+    },
+    "last_changed": "2026-02-19T22:06:24.874290+00:00",
+    "last_reported": "2026-02-19T22:06:24.874290+00:00",
+    "last_updated": "2026-02-19T22:06:24.874290+00:00",
+    "context": {
+      "id": "01KHVZ18KAQ2N3GQSPV3DDSX9E",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.whatsapp",
+    "state": "off",
+    "attributes": {
+      "id": "1759754917022",
+      "last_triggered": "2025-10-09T20:32:12.756519+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "WhatsApp"
+    },
+    "last_changed": "2026-02-19T22:06:24.874404+00:00",
+    "last_reported": "2026-02-19T22:06:24.874404+00:00",
+    "last_updated": "2026-02-19T22:06:24.874404+00:00",
+    "context": {
+      "id": "01KHVZ18KAY8VBGSR8JPHNFEQ7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.neue_automational_bad_auto_30min_an",
+    "state": "off",
+    "attributes": {
+      "id": "1761254830386",
+      "last_triggered": "2025-11-04T23:00:00.170600+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Neue AutomationAL BAd Auto 30min an"
+    },
+    "last_changed": "2026-02-19T22:06:24.874506+00:00",
+    "last_reported": "2026-02-19T22:06:24.874506+00:00",
+    "last_updated": "2026-02-19T22:06:24.874506+00:00",
+    "context": {
+      "id": "01KHVZ18KASVRJSZ5NQVVMV8X8",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.mth_realy_not_in_h91",
+    "state": "on",
+    "attributes": {
+      "id": "1762214755077",
+      "last_triggered": "2025-12-17T00:50:00.285559+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "MtH realy Not in H91?"
+    },
+    "last_changed": "2026-02-19T22:06:24.874617+00:00",
+    "last_reported": "2026-02-19T22:06:24.874617+00:00",
+    "last_updated": "2026-02-19T22:06:24.874617+00:00",
+    "context": {
+      "id": "01KHVZ18KA5WRTVB6R8ZNBPBXQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.tannenbaum",
+    "state": "on",
+    "attributes": {
+      "id": "1766574358774",
+      "last_triggered": "2026-02-19T15:16:00.464466+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Tannenbaum"
+    },
+    "last_changed": "2026-02-19T22:06:24.874728+00:00",
+    "last_reported": "2026-02-19T22:06:24.874728+00:00",
+    "last_updated": "2026-02-19T22:06:24.874728+00:00",
+    "context": {
+      "id": "01KHVZ18KAZF2QVVYNDMBMCJ5Q",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.toilette_nachtlicht",
+    "state": "off",
+    "attributes": {
+      "id": "1766878784020",
+      "last_triggered": "2025-12-28T23:13:21.081269+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Toilette Nachtlicht"
+    },
+    "last_changed": "2026-02-19T22:06:24.874839+00:00",
+    "last_reported": "2026-02-19T22:06:24.874839+00:00",
+    "last_updated": "2026-02-19T22:06:24.874839+00:00",
+    "context": {
+      "id": "01KHVZ18KAT5YSW4QRPMXDKXK7",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.unitec_steckdose_auto_on_nach_strom_weg",
+    "state": "unavailable",
+    "attributes": {
+      "id": "1767279326430",
+      "friendly_name": "Unitec Steckdose AUTO On nach Strom-weg"
+    },
+    "last_changed": "2026-02-19T22:06:24.875015+00:00",
+    "last_reported": "2026-02-19T22:06:24.875015+00:00",
+    "last_updated": "2026-02-19T22:06:24.875015+00:00",
+    "context": {
+      "id": "01KHVZ18KB6RGKKAZX13KEA9FW",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.wake_up_light_alarm_with_sunrise_effect",
+    "state": "off",
+    "attributes": {
+      "id": "1767391920129",
+      "last_triggered": "2026-01-10T15:06:00.131441+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Wake-up light alarm with sunrise effect"
+    },
+    "last_changed": "2026-02-19T22:06:24.875131+00:00",
+    "last_reported": "2026-02-19T22:06:24.875131+00:00",
+    "last_updated": "2026-02-19T22:06:24.875131+00:00",
+    "context": {
+      "id": "01KHVZ18KB573K1Z6AGSE671NJ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.stehlampe_aufleuchten_lassen",
+    "state": "on",
+    "attributes": {
+      "id": "1769094278709",
+      "last_triggered": "2026-02-19T20:06:04.541937+00:00",
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Stehlampe aufleuchten lassen"
+    },
+    "last_changed": "2026-02-19T22:06:24.875250+00:00",
+    "last_reported": "2026-02-19T22:06:24.875250+00:00",
+    "last_updated": "2026-02-19T22:06:24.875250+00:00",
+    "context": {
+      "id": "01KHVZ18KBTMCEDC0BFFV93YVQ",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.home_wlcome_on",
+    "state": "on",
+    "attributes": {
+      "id": "1769534195756",
+      "last_triggered": null,
+      "mode": "single",
+      "current": 0,
+      "friendly_name": "Home > Wlcome on"
+    },
+    "last_changed": "2026-02-19T22:06:24.875628+00:00",
+    "last_reported": "2026-02-19T22:06:24.875628+00:00",
+    "last_updated": "2026-02-19T22:06:24.875628+00:00",
+    "context": {
+      "id": "01KHVZ18KBNM5AKVJG9C0KBSVW",
+      "parent_id": null,
+      "user_id": null
+    }
+  },
+  {
+    "entity_id": "automation.test_temp",
+    "state": "unavailable",
+    "attributes": {
+      "restored": true,
+      "id": "1692761662473",
+      "friendly_name": "Test Temp",
+      "supported_features": 0
+    },
+    "last_changed": "2026-02-19T22:07:02.847998+00:00",
+    "last_reported": "2026-02-19T22:07:02.847998+00:00",
+    "last_updated": "2026-02-19T22:07:02.847998+00:00",
+    "context": {
+      "id": "01KHVZ2DNZVYVFKM7BKPV21F9Z",
+      "parent_id": null,
+      "user_id": null
+    }
+  }
+]

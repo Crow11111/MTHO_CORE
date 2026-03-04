@@ -1,0 +1,9 @@
+{
+  "id": "2ba5771a-f9bc-4950-b183-699a0052cd0c",
+  "source": "atlas",
+  "node_id": "dreadnought",
+  "event_type": "orchestrator_verify",
+  "timestamp": "2026-02-28T15:34:12Z",
+  "priority": "low",
+  "data": {}
+}
