@@ -2,12 +2,16 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel
+from src.api.middleware.council_gate import CouncilGateMiddleware
 
 app = FastAPI(
     title="ATLAS_CORE API",
     description="Main Backend Interface for ATLAS Operations",
     version="1.0.0"
 )
+
+# Council Gate: Veto-Middleware für kritische Operationen (DELETE, Config, Token, Backup)
+app.add_middleware(CouncilGateMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

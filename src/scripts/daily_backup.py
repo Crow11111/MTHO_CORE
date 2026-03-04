@@ -97,6 +97,15 @@ def main() -> int:
         logger.error("VPS_HOST oder VPS_USER in .env fehlt – Backup abgebrochen.")
         return 1
 
+    # 0) ChromaDB + PostgreSQL vom VPS (lokal in backups/vps/)
+    try:
+        from src.scripts.backup_vps import run_backup as run_vps_backup
+        vps_results = run_vps_backup()
+        if not all(vps_results.values()):
+            logger.warning("VPS-Backup teilweise fehlgeschlagen: %s", vps_results)
+    except Exception as e:
+        logger.warning("VPS-Backup (ChromaDB/Postgres) übersprungen: %s", e)
+
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
     archive_name = f"atlas_backup_{timestamp}.tar.gz"
 

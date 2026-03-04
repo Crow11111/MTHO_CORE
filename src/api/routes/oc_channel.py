@@ -4,11 +4,18 @@ Schnittstelle ATLAS ↔ OC (OpenClaw) im laufenden Backend.
 Wird mit dem Backend angeboten; Cursor-Orchestrator oder andere Komponenten können
 damit testweise Nachrichten austauschen und Einreichungen abholen, ohne
 Skripte von Hand zu starten.
+
+GQA F2 - oc-webhook-push: OC Brain pusht Einreichungen per POST statt SFTP-Polling.
 """
 from __future__ import annotations
 
+import json
+import uuid
+from datetime import datetime, timezone
+from pathlib import Path
+
 from fastapi import APIRouter, HTTPException, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from src.api.auth_webhook import verify_oc_auth
 
@@ -19,6 +26,43 @@ class SendBody(BaseModel):
     text: str
     agent_id: str = "main"
     user: str | None = None
+
+
+class OCSubmissionPayload(BaseModel):
+    """Schema für OC → ATLAS Webhook-Push (rat_submission)."""
+    from_: str = Field(default="oc", alias="from")
+    type: str = Field(default="rat_submission")  # rat_submission | info | question
+    created: str | None = None
+    payload: dict = Field(default_factory=dict)
+
+    model_config = {"populate_by_name": True}
+
+
+def _get_rat_submissions_dir() -> Path:
+    root = Path(__file__).resolve().parents[3]  # ATLAS_CORE project root
+    return root / "data" / "rat_submissions"
+
+
+@router.post("/webhook")
+def oc_webhook_push(body: OCSubmissionPayload, _auth: None = Depends(verify_oc_auth)):
+    """
+    GQA F2 - oc-webhook-push: OC Brain pusht Einreichungen direkt an ATLAS.
+    Ersetzt SFTP-Polling durch sofortige Verarbeitung.
+    Auth: X-API-Key oder Bearer (OPENCLAW_GATEWAY_TOKEN).
+    """
+    local_dir = _get_rat_submissions_dir()
+    local_dir.mkdir(parents=True, exist_ok=True)
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    short_id = uuid.uuid4().hex[:8]
+    filename = f"oc_webhook_{ts}_{short_id}.json"
+    local_path = local_dir / filename
+    data = body.model_dump(by_alias=True)
+    if not data.get("created"):
+        data["created"] = datetime.now(timezone.utc).isoformat()
+    with open(local_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    topic = (body.payload or {}).get("topic", body.type)
+    return {"ok": True, "file": filename, "topic": str(topic)[:200]}
 
 
 @router.get("/status")
@@ -49,7 +93,7 @@ def oc_send(body: SendBody, _auth: None = Depends(verify_oc_auth)):
 
 @router.post("/fetch")
 def oc_fetch(_auth: None = Depends(verify_oc_auth)):
-    """Holt Einreichungen von OC (OC → ATLAS): liest rat_submissions vom VPS, speichert lokal."""
+    """Holt Einreichungen von OC (OC → ATLAS): SFTP-Polling-Fallback, wenn Webhook-Push nicht genutzt wird."""
     from src.scripts.fetch_oc_submissions import run_fetch
 
     ok, count, items = run_fetch(dry_run=False)
@@ -60,7 +104,7 @@ def oc_fetch(_auth: None = Depends(verify_oc_auth)):
 
 @router.get("/fetch")
 def oc_fetch_get(_auth: None = Depends(verify_oc_auth)):
-    """Wie POST /fetch – gleiche Aktion, GET für einfachen Aufruf."""
+    """Wie POST /fetch – SFTP-Polling-Fallback, GET für einfachen Aufruf."""
     from src.scripts.fetch_oc_submissions import run_fetch
 
     ok, count, items = run_fetch(dry_run=False)

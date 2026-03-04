@@ -17,6 +17,9 @@ dist/
 build/
 *.egg
 
+# === mTLS Zertifikate (niemals committen) ===
+data/certs/
+
 # === Datenbank (lokal, wird nicht versioniert) ===
 data/argos_db/*.sqlite
 data/argos_db/*.sqlite-wal

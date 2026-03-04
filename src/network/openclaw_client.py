@@ -2,7 +2,7 @@
 OpenClaw Gateway Client (Hostinger).
 Liest VPS_HOST und OPENCLAW_GATEWAY_TOKEN aus .env.
 - ATLAS → OC: send_message_to_agent() (POST /v1/responses)
-- OC → ATLAS: OC schreibt in workspace/rat_submissions/; ATLAS liest per fetch_oc_submissions.
+- OC → ATLAS: GQA F2 Webhook-Push (POST /api/oc/webhook) oder Fallback fetch_oc_submissions (SFTP).
 """
 import os
 from dotenv import load_dotenv
