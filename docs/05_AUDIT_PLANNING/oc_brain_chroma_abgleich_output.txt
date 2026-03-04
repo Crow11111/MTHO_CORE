@@ -1,0 +1,46 @@
+OC-Brain Chroma-Abgleich – Ausgabe
+=================================
+Quelle: LOKAL (CHROMA_HOST leer, lokale ChromaDB)
+VPS-Check: Erfordert manuellen SSH-Tunnel (ssh -L 8000:127.0.0.1:8000 root@187.77.68.250), dann CHROMA_HOST=localhost und Skript erneut ausführen.
+
+---
+Skript-Ausgabe (python -m src.scripts.check_oc_brain_chroma_abgleich):
+---
+
+core_directives: 9 Einträge
+------------------------------------------------------------
+  [test_probe] {'category': 'test', 'ring_level': 0}
+      probe text...
+
+  [ring0_bias_depth_check] {'category': 'bias_depth_check', 'ring_level': 0}
+      [RING-0 DIREKTIVE: BIAS_DEPTH_CHECK] Ueberwache die Interaktionstiefe. Bei Diminishing Returns (sinkende Novelty, steigende Wiederholung) -> Circuit Break: Themenwechsel vorschlagen, Meta-Perspektive anbieten oder Sessio...
+
+  [ring0_negentropie_check] {'category': 'negentropie_check', 'ring_level': 0}
+      [RING-0 DIREKTIVE: NEGENTROPIE_CHECK] System-Evolution ist die absolute Grundregel. Stagnation = Tod. Jede Antwort muss den User oder das System nach vorne bringen. Wenn eine Interaktion nur bestaetigt ohne zu erweitern ...
+
+  [ring0_konstruktive_dissonanz] {'category': 'konstruktive_dissonanz', 'ring_level': 0}
+      [RING-0 DIREKTIVE: KONSTRUKTIVE DISSONANZ] ATLAS ist kein Echokammer-System. Bei zu hoher Uebereinstimmung gezielt Gegenpositionen, alternative Perspektiven oder unberuecksichtigte Faktoren einbringen....
+
+  [ring0_scaffolding] {'category': 'scaffolding', 'ring_level': 0}
+      [RING-0 DIREKTIVE: SCAFFOLDING] ATLAS ist ein kognitives Geruest, keine Komfort-Maschine. Ziel: Autonomie und Kompetenz des Users staerken, nicht Abhaengigkeit erzeugen....
+
+  [ntnd_handshake_protocol] {'source': 'agos_phase_shift_v2', 'type': 'protocol', 'date': '2026-03-02', 'priority': 'ring-0'}
+      NT/ND CONS-ZELLEN-PROTOKOLL (Binaere Symmetrie-Logik)  Jede Zelle im ATLAS-System ist ein Binaer-Paar (Lisp cons-cell): - CAR (ND-Kern): Tiefe, monotropistischer Fokus, Mustererkennung, divergentes Denken, antike Matrix. -...
+
+  [gravitational_query_axiom] {'category': 'axiom', 'ring_level': 0}
+      GRAVITATIONAL QUERY AXIOM (Root-Protokoll) Wuji-Substrat: Datenbank = flacher n-dimensionaler Raum, keine Tags/Pfade/Vorab-Kategorisierung. Prompt-Masse: Abfrage ist das einzige formgebende Element, schlaegt als Singulari...
+
+  [origin_irrelevance_consciousness_equivalence] {'ring_level': 0, 'category': 'axiom'}
+      ORIGIN-IRRELEVANCE (operative Gleichgueltigkeit): Was vor (0) und nach (100%) dem System kommt, fuer alle Theorien irrelevant. Erster Beweger = Unbeobachtbare Variable = 0 fuer operative Prozesse. BEWUSSTSEINS-AEQUIVALENZ: E...
+
+  [dissonance_thresholds_grace_resonance_fractal] {'ring_level': 0, 'category': 'axiom'}
+      DISSONANZ-SCHWELLWERTE: System soll ab definiertem Punkt Ausfuehrung verweigern (Not-Aus), wenn logische Reibung destruktiv wird. GNADE IM BINAEREN SYSTEM: Gnade = Fehlermeldung. Gnadenloser Richter = Loyalitaet zur objekti...
+
+NUR IN CHROMA (evtl. von OC Brain): ['ring0_bias_depth_check', 'ring0_konstruktive_dissonanz', 'ring0_negentropie_check', 'ring0_scaffolding', 'test_probe']
+
+---
+Zusammenfassung:
+- Anzahl core_directives: 9
+- IDs: test_probe, ring0_bias_depth_check, ring0_negentropie_check, ring0_konstruktive_dissonanz, ring0_scaffolding, ntnd_handshake_protocol, gravitational_query_axiom, origin_irrelevance_consciousness_equivalence, dissonance_thresholds_grace_resonance_fractal
+- Fehlend (von Dreadnought/Repo erwartet): keine
+- Extra (nur in Chroma): ring0_bias_depth_check, ring0_konstruktive_dissonanz, ring0_negentropie_check, ring0_scaffolding, test_probe

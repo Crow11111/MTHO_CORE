@@ -1,0 +1,26 @@
+---
+description: Parallelisierung und Selbstausführung – interne Prozesse (Cursor, Team-Lead, Strang-Agenten). Dev-Agent wurde entfernt; alle Trigger laufen über Cursor/Orchestrator.
+globs: 
+alwaysApply: false
+---
+
+# Task-Parallelisierung (interne Prozesse)
+
+**Hinweis:** Der frühere „Dev-Agent“ (Streamlit) wurde entfernt. Alle Priorisierungen und Parallelisierungen laufen über **Cursor-Orchestrator, Team-Lead (Schicht 2) und Strang-Agenten (Agency, Council, Forge, Archive)**.
+
+## Selbst ausführen
+- Alles, was der Cursor-Agent selbst tun kann, tut er selbst. Nicht den User fragen oder sagen, er solle etwas machen – ausführen.
+- **Scripte:** Im Zuge eines Auftrags Scripte (z. B. `python -m src.scripts.*`) selbst ausführen, nicht an den User delegieren.
+
+## Interne Prozesse (Priorisierung)
+- **Orchestrator (L1):** Entscheidet, ob delegiert wird (Team-Lead, Strang 1–4). Takt 0: Systemzustand prüfen; günstigste Lösung zuerst.
+- **Team-Lead (L2):** Stellt Teams zusammen, verteilt Sub-Budgets, setzt db-expert, api-interface-expert, system-architect etc. ein. Implementiert nicht selbst.
+- **Strang-Agenten:** Agency (Execution), Council (Validation), Forge (Innovation), Archive (Retention). Holschuld bei Blockierung; Bringschuld bei Completion.
+- **Timeout:** Reagiert ein Subagent nicht rechtzeitig: ohne ihn weiterlaufen, nicht blockieren.
+
+## Beschäftigte Agents
+- Ist ein Cursor-Agent oder Subagent bereits mit einem Task beauftragt: einbeziehen (Warteschlange), selbst durchführen oder weiteren Agenten für Teilaufgabe einsetzen.
+- Rollen (.cursor/agents/*.md, .cursor/skills/) nutzen; bei Bedarf gezielt Agenten losschicken.
+
+## Teilergebnisse und Tests
+- Sobald etwas teilfertig und testbar ist: Test-/Review-Rolle damit beauftragen. Parallelisierung nutzen, Tasks parallel erledigen.

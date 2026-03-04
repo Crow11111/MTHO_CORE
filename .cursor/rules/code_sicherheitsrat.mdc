@@ -1,0 +1,29 @@
+---
+description: Code-Sicherheitsrat – geschützte Module, Freigabe vor Änderung. Produktionssicherheit, kein ATLAS-Feature.
+globs: 
+alwaysApply: true
+---
+
+# Code-Sicherheitsrat (Produktions-Feature)
+
+Änderungen an **geschützten Modulen** erfordern **interne Freigabe** (Team-Lead + Security-Lead / Code-Wächter). Ohne Freigabe: **keine Änderung** – nur Lesen, Nachschlagen, Takt 0 (Retry, etablierte Wege).
+
+## Geschützte Module (Stufe 1 – keine Änderung ohne Freigabe)
+
+- SSH/Tunnel/Paramiko: `run_vps_sync_with_tunnel.py`, SSH-Logik in deploy/setup-VPS-Skripten
+- Auth/Credentials/.env-Handling
+- `src/network/chroma_client.py` (Kern-Verbindungslogik)
+- `src/connectors/home_assistant.py`
+- VPS-Sync/Abgleich: `sync_core_directives_to_vps.py`, `check_oc_brain_chroma_abgleich.py`
+
+## Stufe 2 (Dokumentation + Sicherheitsprüfung)
+
+- Core-API: `src/api/main.py`, `src/api/routes/*`
+- Skripte mit Netzwerk/Zugriff (deploy, fix_openclaw, etc.)
+
+## Verhalten bei Fehlschlag (z. B. VPS/SSH nicht erreichbar)
+
+- **Nicht:** SSH/Tunnel/Auth umbauen oder neu erfinden.
+- **Sondern:** Takt 0 – erneuter Versuch (1–2 s), Nachschlagen in `docs/04_PROCESSES/STANDARD_AKTIONEN_UND_NACHSCHLAG.md`, prüfen ob Dienst auf Zielseite läuft.
+
+Volltext: `docs/04_PROCESSES/CODE_SICHERHEITSRAT.md`.
