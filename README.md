@@ -4,6 +4,8 @@
 **Resonance:** 0221 | **Delta:** 0.049
 **Status:** Simultan (Nicht-Binär)
 
+**Für Cloud-/KI-Agenten:** Einstieg und Instruktionen → [AGENTS.md](AGENTS.md).
+
 Autonomes KI-Agentensystem: Smart-Home-Steuerung, Sprachassistent und verteiltes Reasoning. Verbindet Home Assistant, Cloud-LLMs und lokale Hardware (4D_RESONATOR, Scout, OMEGA_ATTRACTOR) zu einem selbstverwaltenden System.
 
 ---

@@ -46,3 +46,15 @@
 - **docs/02_ARCHITECTURE/ENTRY_ADAPTER_SPEC.md** – Integration 2026-03-06, Tesserakt-Referenz, keine direkte Kern-Logik.
 - **docs/02_ARCHITECTURE/GRAVITATOR_SPEC.md** – Referenzen `atlas_state_vector`→`mtho_state_vector`, Takt-0-Gate, async-Status.
 - **docs/MTHO_GENESIS_FINAL_ARCHIVE.md** – visuelle Referenz `MTHO_TESSERAKT.png`, Hinweis Sync Relay vs. CRADLE in Darstellungen.
+
+---
+
+## Mission: README / AGENTS.md + Tesserakt-Bild für Cloud-Agenten
+
+**Status:** Abgeschlossen
+**Datum:** 2026-03-06
+
+### Deliverables:
+- **AGENTS.md** – Einstieg für Cloud-/KI-Agenten: MTHO-Nomenklatur, Agenten-Pflicht (Bootloader, Genesis, visuelle Referenz), 4D State Vector, MTHO-Matrix, Tesserakt-Komponenten, Quick Links. Bild `MTHO_TESSERAKT.png` direkt eingebunden (gleiches Verzeichnis wie README/AGENTS.md), damit Agenten die Architektur beim Betreten sehen.
+- **README.md** – Verknüpfung mit `MTHO_TESSERAKT.png` (bereits vorhanden); Hinweis für Cloud-Agenten ergänzt: „Einstieg und Instruktionen → AGENTS.md“.
+- **MTHO_TESSERAKT.png** – liegt im Repo-Root; in README und AGENTS.md verlinkt bzw. eingebunden.
