@@ -12,7 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events
+from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook
 from src.api.middleware.council_gate import CouncilGateMiddleware
 
 _event_bus = None
@@ -55,7 +55,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
                 from src.network.mtho_sync_relay import app as cradle_app
                 loop = _aio.new_event_loop()
                 _aio.set_event_loop(loop)
-                loop.run_until_complete(_aio_web.run_app(cradle_app, port=8049, print=lambda *a: None))
+                loop.run_until_complete(_aio_web.run_app(cradle_app, port=8049, handle_signals=False, print=lambda *a: None))
 
             _cradle_thread = threading.Thread(target=_run_cradle, daemon=True, name="mtho-cradle")
             _cradle_thread.start()
@@ -107,6 +107,7 @@ app.include_router(oc_channel.router)
 app.include_router(mtho_knowledge.router)
 app.include_router(mtho_voice.router)
 app.include_router(mtho_events.router)
+app.include_router(github_webhook.router)
 
 @app.get("/")
 def read_root():

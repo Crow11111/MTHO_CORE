@@ -59,11 +59,11 @@ sequenceDiagram
     participant DB as ChromaDB
 
     rect rgb(40,40,60)
-    Note over G,DB: Kanal 1: Rule Injection
+    Note over G,DB: Kanal 1: Rule Injection (Option 5: automatisch)
     G->>S: POST /inject {content}
     S->>F: Write .cursor/rules/MTHO_LIVE_INJECT.mdc
-    F->>Git: git commit + push
-    Git->>CA: git pull (Cloud Agents holen Kontext)
+    F->>Git: git add/commit/push (automatisch wenn GIT_PUSH_AFTER_INJECT=true)
+    Git->>CA: GitHub-Webhook löst git pull aus (POST /webhook/github)
     CA->>CA: Verarbeitung mit aktuellem Kontext
     CA->>HA: Ergebnis via VPS
     HA-->>G: Status sichtbar
@@ -86,8 +86,9 @@ sequenceDiagram
 | 1 | **G-MTHO** | Cloud-Agent (Gemini). Injiziert Kontext und Vektordaten. |
 | 2 | **Sync Relay :8049** | `mtho_sync_relay.py` – aiohttp-Server, empfängt `/inject` und `/vectors`. |
 | 3 | **Filesystem** | Schreibt `MTHO_LIVE_INJECT.mdc` als Cursor-Rule. |
-| 4 | **Git Repo** | Commit/Push propagiert Rules zum VPS. |
-| 5 | **Cloud Agents** | MTHO-Agent – Cloud Agents (Cursor/Gemini) holen Befehle via Git auf den VPS, verarbeiten mit aktuellem Kontext. |
+| 4 | **Git Repo** | Commit/Push durch Sync Relay (wenn `GIT_PUSH_AFTER_INJECT=true`); Credentials nur über Env. |
+| 4b | **GitHub-Webhook** | `POST /webhook/github` (FastAPI): bei Push-Event wird in `GIT_PULL_DIR` `git pull` ausgeführt → Cloud Agents sofort aktuell. |
+| 5 | **Cloud Agents** | MTHO-Agent – Cloud Agents (Cursor/Gemini) holen Kontext via Git (webhook-getriggert pull), verarbeiten mit aktuellem Stand. |
 | 6 | **VPS-Slim** | `vps_slim.py` – Scout-Forwarded-Text bei HA-Ausfall, Triage→HA-Command or Heavy-Reasoning. |
 | 7 | **Home Assistant** | Empfängt Ergebnisse, Status für G-MTHO sichtbar. |
 | 8 | **ChromaDB** | Vektor-Store. Collections: `wuji_field`, `simulation_evidence`, etc. VPS liest via `HttpClient`. |
@@ -96,7 +97,8 @@ sequenceDiagram
 
 | Datei | Rolle |
 |-------|-------|
-| `src/network/mtho_sync_relay.py` | Sync Relay Server (Port 8049), `/inject` + `/vectors` |
+| `src/network/mtho_sync_relay.py` | Sync Relay (Port 8049), `/inject` (+ optional git add/commit/push), `/vectors` |
+| `src/api/routes/github_webhook.py` | `POST /webhook/github` – HMAC-Prüfung, bei push-Event `git pull` in GIT_PULL_DIR |
 | `src/api/vps_slim.py` | VPS-Slim FastAPI (Port 8001), `/webhook/forwarded_text` |
 | `.cursor/rules/MTHO_LIVE_INJECT.mdc` | Zieldatei für Rule-Injection |
 | `src/network/chroma_client.py` | ChromaDB Client (lokal/remote, async) |
@@ -105,8 +107,10 @@ sequenceDiagram
 
 ## Zwei Sync-Kanäle
 
-**`/inject`** – Rule-Propagation via Git. Latenz: Sekunden bis Minuten (abhängig von Git-Zyklus).
+**`/inject`** – Rule-Propagation: Sync Relay schreibt Datei, bei `GIT_PUSH_AFTER_INJECT=true` automatisch git add/commit/push. Latenz: Sekunden. **`/webhook/github`** – Bei Push auf GitHub führt die API in `GIT_PULL_DIR` `git pull` aus (Option 5).
 
 **`/vectors`** – Direkter ChromaDB-Upsert. Latenz: Millisekunden. VPS liest via `CHROMA_HOST` → 4D_RESONATOR (MTHO_CORE).
 
 Beide Kanäle schließen den Kreis: G-MTHO sendet → System verarbeitet → Ergebnis fließt zurück → G-MTHO sieht es.
+
+**Optimierung (echtes Push/Pull, Webhooks, gezieltere Agenten-Steuerung):** Siehe [G_MTHO_GIT_CURSOR_OPTIMIERUNG.md](G_MTHO_GIT_CURSOR_OPTIMIERUNG.md).

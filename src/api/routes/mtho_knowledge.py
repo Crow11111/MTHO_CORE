@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from src.mtho_core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
 # ============================================================
 # MTHO-GENESIS: Marc Tobias ten Hoevel
@@ -15,7 +17,6 @@ GET  /api/mtho/knowledge/temporal/validate – Temporale Konsistenz
 
 Ring-1 Perf: collection=all → 3 ChromaDB-Queries parallel (asyncio.gather).
 """
-from __future__ import annotations
 
 import asyncio
 import math

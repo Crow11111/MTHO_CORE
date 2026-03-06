@@ -7,6 +7,7 @@
 import os
 import sys
 import logging
+import asyncio
 from aiohttp import web
 from dotenv import load_dotenv
 
@@ -27,6 +28,9 @@ logging.basicConfig(level=logging.INFO, format='[OMEGA SYNC] %(message)s')
 
 SECRET = os.getenv("MTHO_WEBHOOK_SECRET")
 TARGET_FILE = ".cursor/rules/MTHO_LIVE_INJECT.mdc"
+GIT_PUSH_AFTER_INJECT = os.getenv("GIT_PUSH_AFTER_INJECT", "").strip().lower() in ("1", "true", "yes")
+GIT_REMOTE = os.getenv("GIT_REMOTE", "origin").strip() or "origin"
+GIT_BRANCH = os.getenv("GIT_BRANCH", "master").strip() or "master"
 
 if not SECRET:
     logging.warning("MTHO_WEBHOOK_SECRET not found in .env! Relay is insecure/broken.")
@@ -56,20 +60,63 @@ async def handle_inject(request):
     try:
         # Ensure directory exists
         os.makedirs(os.path.dirname(TARGET_FILE), exist_ok=True)
-        
+
         # Write content
         with open(TARGET_FILE, 'w', encoding='utf-8') as f:
             f.write(content)
-        
+
         bytes_written = len(content.encode('utf-8'))
         logging.info(f"Injected bytes: {bytes_written}")
-        
-        return web.json_response({
-            "status": "success", 
+
+        response = {
+            "status": "success",
             "bytes_written": bytes_written,
-            "target": TARGET_FILE
-        })
-        
+            "target": TARGET_FILE,
+        }
+
+        if GIT_PUSH_AFTER_INJECT:
+            try:
+                add_proc = await asyncio.create_subprocess_exec(
+                    "git", "add", TARGET_FILE,
+                    cwd=ROOT,
+                    stdout=asyncio.subprocess.DEVNULL,
+                    stderr=asyncio.subprocess.PIPE,
+                )
+                _, stderr = await add_proc.communicate()
+                if add_proc.returncode != 0:
+                    logging.warning(f"git add failed: {stderr.decode() if stderr else 'unknown'}")
+                else:
+                    commit_proc = await asyncio.create_subprocess_exec(
+                        "git", "commit", "-m", "chore(sync): MTHO_LIVE_INJECT.mdc via /inject",
+                        cwd=ROOT,
+                        stdout=asyncio.subprocess.DEVNULL,
+                        stderr=asyncio.subprocess.PIPE,
+                    )
+                    _, stderr = await commit_proc.communicate()
+                    if commit_proc.returncode != 0:
+                        if b"nothing to commit" in (stderr or b""):
+                            logging.info("git commit: nothing to commit (no change)")
+                        else:
+                            logging.warning(f"git commit failed: {stderr.decode() if stderr else 'unknown'}")
+                    else:
+                        push_proc = await asyncio.create_subprocess_exec(
+                            "git", "push", GIT_REMOTE, GIT_BRANCH,
+                            cwd=ROOT,
+                            stdout=asyncio.subprocess.DEVNULL,
+                            stderr=asyncio.subprocess.PIPE,
+                        )
+                        _, stderr = await push_proc.communicate()
+                        if push_proc.returncode != 0:
+                            logging.warning(f"git push failed: {stderr.decode() if stderr else 'unknown'}")
+                        else:
+                            logging.info(f"git push {GIT_REMOTE} {GIT_BRANCH} ok")
+                            response["git_pushed"] = True
+            except Exception as e:
+                logging.warning(f"Git push after inject failed: {e}")
+                response["git_pushed"] = False
+
+        return web.json_response(response)
+
     except Exception as e:
         logging.error(f"Write failed: {e}")
         return web.Response(status=500, text=f"Internal Write Error: {str(e)}")

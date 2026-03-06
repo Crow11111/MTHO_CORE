@@ -20,7 +20,7 @@ Visuelle Referenz: **`MTHO_TESSERAKT.png`** (Root).
 | **4D_RESONATOR (MTHO_CORE)** | Lokaler Node (H-Vektor). StateAnchor, ChromaDB, TTS, Vision. | Dreadnought / Backend :8000 |
 | **OMEGA_ATTRACTOR** | Governance, Veto, Wuji-Kern (O-Vektor). Schwellwert 0.049. | OpenClaw/VPS |
 | **ChromaDB (StateAnchor)** | Physischer StateAnchor des 4D_RESONATORs. Collections: simulation_evidence, core_directives, session_logs, wuji_field, … | Lokal oder VPS (CHROMA_HOST) |
-| **Sync Relay** | Rule-Injection + Vector-Sync (/inject, /vectors). *In älteren Diagrammen ggf. noch als „CRADLE“ bezeichnet; in Code und Doku einheitlich **Sync Relay**.* | `src/network/mtho_sync_relay.py` :8049 |
+| **Sync Relay** | Rule-Injection + Vector-Sync (/inject, /vectors). Optional nach /inject: git add/commit/push (GIT_PUSH_AFTER_INJECT). *Ältere Bezeichnung „CRADLE“ obsolet.* | `src/network/mtho_sync_relay.py` :8049 |
 
 ---
 
@@ -39,6 +39,7 @@ Referenz: `src/network/chroma_client.py` (async API).
 |-------|--------|
 | `/webhook/whatsapp` | WhatsApp über HA → Entry Adapter → NormalizedEntry → Takt 0 → Triage/Gravitator |
 | `/webhook/ha_action` | HA Action/Assist → Entry Adapter → Takt 0 → ScoutDirectHandler / Legacy-Pipeline |
+| `/webhook/github` | GitHub-Webhook (Option 5): HMAC-Prüfung, bei push-Event `git pull` in GIT_PULL_DIR → Cloud Agents aktuell. |
 | `/api/mtho/*` | State, Veto, Query (siehe `src/api/routes/mtho_*.py`) |
 
 ---
