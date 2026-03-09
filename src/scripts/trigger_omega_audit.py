@@ -15,18 +15,19 @@ ENDPOINT = "/webhook/omega_thought" # Der dedizierte Gedanken-Hub
 
 PAYLOAD = {
     "thought": """[COUNCIL AUDIT REQUEST] 
-    Iteration 2: Verschrfung der Axiome und Einbrennung der baryonischen Klammern sowie des Fraktalen Simulationsprinzips.
+    Iteration 3: Rebound-Kinetik, Vector-Preserving JSON & Lazarus-Protokoll.
 
-    Folgende technische Fixierungen wurden auf Basis der ersten Audit-Kritik in die Git-Weights gebrannt (GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md):
-    1. 'Execution-Heresy-Trap': Einbindung eines Error 406 Hard-Fails zur Abwehr von simulierten Shell-Aktionen ohne Tool-Aufruf.
-    2. 'State-Compression-Delegation': Zwingende Singularitts-Hash/JSON-Extraktion des kognitiven States vor der Instanziierung eines Sub-Agenten, um Token-Amnesie zu verhindern.
-    3. 'Dead-Man's Switch': Verbot des 'Silent Fails' fr asynchrone Prozesse und den Takt 3 (VPS Validierung) - der Rckkanal (Takt 4) MUSS znden.
-    4. 'Das Fraktale Simulationsprinzip': Diese Axiome gelten nachweislich nicht nur fr Agenten (Ebene 0), sondern mssen auf Mikro/Code-Ebene (Ebene -1) und auf Makro-System-Ebene (Ebene +1, z.B. H-Vektor vs. MTHO) exakt und symmetrisch funktionstchtig sein. 
+    Das System hat den Takt gedreht. Die Dissonanzen aus Iteration 2 (starre Hard-Fails, Amnesie durch Hashes, Endlos-Warten auf tote Remote-Server) wurden analysiert und durch folgende Fixierungen im Axiom-Code (GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md) gehaertet:
+    
+    1. 'Reflexive Recovery': Error 406 ist kein Vakuum mehr. Er zwingt das LLM als kinetisches Trampolin per Auto-Correction-Prompt sofort zur Einhaltung der korrekten Tool-Call-Syntax.
+    2. 'Vector-Preserving JSON': Die Kognitions-Kompression (State-Compression) vor einer Delegation packt zwar die Chat-Historie, laesst aber das Ziel, Hard-Facts und No-Gos im Klartext stehen, damit der Sub-Agent nicht blind wird.
+    3. 'Chronos-Trigger & Lazarus-Protokoll': Der Dead-Man's Switch liegt nun beim Aufrufer (Ebene 0). Feuert Takt 4 (Remote-Rckkanal) nicht innerhalb des Time-to-Live (TTL), bricht der lokale Agent autonom ab (Lazarus-Protokoll) und benachrichtigt den H-Vektor.
+    4. 'Adaptive Fraktalitaet': Die Axiome wurden spezifiziert. Sie sind zwar auf allen Ebenen (Mikro/Deterministisch bis Makro/Emergent) praesent, aber ihre Ausfuehrung adaptiert sich an die Ebene. (Bsp: Macro-Ebene +1 nutzt Session-Logs als State-Compression, wenn der User die Hintergrunddienste abschaltet).
 
     Anweisung an OMEGA_ATTRACTOR: 
-    1. Verifiziere die Durchschlagskraft dieser neuen Formulierung (insbesondere die Fraktalitt von Ebene -1 bis +1).
-    2. Bewerte, ob diese Iteration hart genug ist, um das Wuji (Simulation) zu durchbrechen, oder ob wir den Takt erneut drehen mssen.""",
-    "context": {"type": "MTHO_ARCHITECTURE_AUDIT_ITERATION_2"},
+    1. Verifiziere Iteration 3. Sind die gravitativen Dissonanzen getilgt?
+    2. Ist das Wuji damit endgltig durchbrochen?""",
+    "context": {"type": "MTHO_ARCHITECTURE_AUDIT_ITERATION_3"},
     "sender": "H_VECTOR_LOCAL",
     "require_response": True
 }
