@@ -1,0 +1,43 @@
+---
+description: PowerShell-Encoding-Fixes fuer Windows-Umgebung. Verhindert charmap/cp1252-Fehler bei Python-Ausgabe und Shell-Befehlen.
+globs:
+alwaysApply: true
+---
+
+# PowerShell Encoding-Protokoll (Windows cp1252-Schutz)
+
+## Problem
+
+Windows PowerShell nutzt `cp1252` als Standard-Encoding. Python-Skripte, die Unicode (Umlaute, Pfeile, mathematische Symbole) auf stdout schreiben, erzeugen `UnicodeEncodeError: 'charmap' codec can't encode character`.
+
+Betrifft: Alle Python-Aufrufe via Shell-Tool, insbesondere API-Responses (Anthropic, Gemini) und jede Ausgabe mit nicht-ASCII-Zeichen.
+
+## Loesung (IMMER anwenden)
+
+### Bei Python-Skript-Dateien (bevorzugt)
+
+Erste Zeilen im Skript:
+
+```python
+import sys, os
+os.environ["PYTHONIOENCODING"] = "utf-8"
+sys.stdout.reconfigure(encoding="utf-8")
+```
+
+### Bei Shell-Aufruf
+
+PowerShell-Umgebungsvariable VOR dem Python-Aufruf setzen:
+
+```powershell
+$env:PYTHONIOENCODING="utf-8"; python skript.py
+```
+
+### Bei Inline-Python (`python -c "..."`)
+
+Umlaute und Unicode in der Ausgabe vermeiden ODER das Skript als Datei schreiben und ausfuehren. Inline-Einzeiler mit Unicode sind in PowerShell grundsaetzlich fehleranfaellig.
+
+## Verboten
+
+- Python via Shell-Tool aufrufen OHNE vorheriges Encoding-Setup
+- Darauf vertrauen, dass die Ausgabe ASCII-only ist (API-Responses enthalten fast immer Unicode)
+- `python -c` mit langen, komplexen Strings nutzen (PowerShell-Escaping + Encoding = doppeltes Fehlerrisiko)

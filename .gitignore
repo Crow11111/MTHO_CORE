@@ -3,6 +3,7 @@
 
 # Environments & Secrets
 .env
+.secrets.mth
 openclaw_admin_config.json
 .venv/
 venv/
@@ -24,6 +25,8 @@ agent-transcripts/
 *.log
 *.tmp
 *.bak
+temp_*.py
+test_webhook.sh
 
 # Dependencies
 node_modules/
