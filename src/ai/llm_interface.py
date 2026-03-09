@@ -24,7 +24,7 @@ class LLMInterface:
         # Tier 3 / Tier 4 SLM (Ollama)
         ollama_base_url = os.getenv("OLLAMA_HOST", "http://localhost:11434")
         ollama_model = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
-        
+
         self.triage_slm = ChatOllama(
             model=ollama_model,
             base_url=ollama_base_url,
@@ -49,7 +49,7 @@ class LLMInterface:
         """
         user_input_lower = user_input.lower()
         logger.info(f"Running Triage on input: '{user_input}'")
-        
+
         # --- FAST PATH LEXICAL TRIAGE ---
         # For the 20-30 most common commands, bypass the AI completely for 100% reliability & speed.
         fast_path_entities = {
@@ -69,14 +69,14 @@ class LLMInterface:
             "regal": "light.regal",
             "sofa": "light.sofa",
         }
-        
+
         # Check if any known entity is in the string
         found_entity = None
         for key, entity in fast_path_entities.items():
             if key in user_input_lower:
                 found_entity = entity
                 break
-                
+
         if found_entity:
             # We found an entity. Now determine action.
             action = "turn_on" # default
@@ -84,18 +84,19 @@ class LLMInterface:
                 action = "turn_off"
             elif "toggle" in user_input_lower or "umschalten" in user_input_lower:
                 action = "toggle"
-                
+
             logger.info(f"Fast-Path Lexical Match: intent='command', target='{found_entity}', action='{action}'")
             return TriageResult(intent="command", target_entity=found_entity, action=action)
-            
+
         # --- HEAVY LAYER / SLM TRIAGE ---
         try:
             prompt = (
-                "You are an NLP routing agent for a smart home. You MUST output a strictly factual classification.\n\n"
+                "You are an NLP routing agent for a smart home and complex reasoning system. You MUST output a strictly factual classification.\n\n"
                 "RULES:\n"
-                "1. If the user wants to turn something on/off/toggle, the 'intent' is ALWAYS 'command'.\n"
-                "2. The 'action' MUST be one of: 'turn_on', 'turn_off', 'toggle'.\n"
-                "3. The 'target_entity' MUST be EXACTLY chosen from this list:\n"
+                "1. If the user wants to turn a smart home device on/off/toggle, the 'intent' is 'command'.\n"
+                "2. If the user asks a complex question, provides architecture details, requests code, or writes a long text, the 'intent' MUST be 'deep_reasoning'.\n"
+                "3. If 'command', the 'action' MUST be one of: 'turn_on', 'turn_off', 'toggle'.\n"
+                "4. If 'command', the 'target_entity' MUST be EXACTLY chosen from this list:\n"
                 "   - Bad / Badezimmer -> light.bad\n"
                 "   - Küche / Kuche / Kueche -> light.kueche\n"
                 "   - Deckenlampe / Wohnzimmer Decke -> light.deckenlampe\n"
@@ -103,7 +104,7 @@ class LLMInterface:
                 "   - Flur -> light.flur\n"
                 "If no entity explicitly matches, guess the closest one string from the right side of the arrows.\n\n"
                 "EXAMPLE 1: 'Mach das Bad Licht an' -> intent='command', action='turn_on', target_entity='light.bad'\n"
-                "EXAMPLE 2: 'Licht Küche aus' -> intent='command', action='turn_off', target_entity='light.kueche'\n\n"
+                "EXAMPLE 2: 'Wir müssen die Architektur anpassen und Axiom 4 umschreiben' -> intent='deep_reasoning', action='', target_entity=''\n\n"
                 f"User Input: '{user_input}'"
             )
             result = self.triage_slm.invoke([
@@ -121,7 +122,7 @@ class LLMInterface:
         """
         if not self.heavy_llm:
             return "Fehler: Tier 5 (Heavy Reasoning) ist offline. Kein API Key."
-            
+
         logger.info("Invoking Tier 5 Heavy Reasoning (Virtual Marc / Deep Analysis)...")
         try:
             messages = [
