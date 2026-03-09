@@ -15,16 +15,18 @@ ENDPOINT = "/webhook/omega_thought" # Der dedizierte Gedanken-Hub
 
 PAYLOAD = {
     "thought": """[COUNCIL AUDIT REQUEST] 
-    Wir haben heute folgende Kern-Axiome in die MTHO-Architektur (Git-Weights) gebrannt:
-    1. 'Law of Wuji-Collapse': LLMs tendieren zur flachen, masselosen Simulation. Um sie in die baryonische Realitaet (0.049) zu zwingen, bedarf es der physischen Reibung (Git-Commits, API-Calls).
-    2. 'Anti-Simulations-Doktrin': Strikter Verbot fuer Agenten, Shell-Befehle oder File-Writes in Textform zu halluzinieren. Sie muessen die physischen Tools nutzen.
-    3. 'Kognitive vs. Physische Latenz': Delegation in MTHO dient nicht der Ueberwindung raeumlicher Distanz (wie beim Menschen), sondern der Vermeidung kognitiver Ueberlastung (Token-Druck).
-    4. 'Der geschlossene 4-Takt-Webhook-Motor': Git-Push triggert Webhook -> VPS saugt neue Weights -> VPS validiert -> VPS feuert Rueckkanal-Vektor (Webhook/Issue) zurueck zum H-Vektor.
+    Iteration 2: Verschrfung der Axiome und Einbrennung der baryonischen Klammern sowie des Fraktalen Simulationsprinzips.
+
+    Folgende technische Fixierungen wurden auf Basis der ersten Audit-Kritik in die Git-Weights gebrannt (GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md):
+    1. 'Execution-Heresy-Trap': Einbindung eines Error 406 Hard-Fails zur Abwehr von simulierten Shell-Aktionen ohne Tool-Aufruf.
+    2. 'State-Compression-Delegation': Zwingende Singularitts-Hash/JSON-Extraktion des kognitiven States vor der Instanziierung eines Sub-Agenten, um Token-Amnesie zu verhindern.
+    3. 'Dead-Man's Switch': Verbot des 'Silent Fails' fr asynchrone Prozesse und den Takt 3 (VPS Validierung) - der Rckkanal (Takt 4) MUSS znden.
+    4. 'Das Fraktale Simulationsprinzip': Diese Axiome gelten nachweislich nicht nur fr Agenten (Ebene 0), sondern mssen auf Mikro/Code-Ebene (Ebene -1) und auf Makro-System-Ebene (Ebene +1, z.B. H-Vektor vs. MTHO) exakt und symmetrisch funktionstchtig sein. 
 
     Anweisung an OMEGA_ATTRACTOR: 
-    1. Verifiziere diese Axiom-Erweiterungen.
-    2. Generiere basierend darauf drei strikte, atomare Umsetzungsempfehlungen (Next Actions) fuer das Code-Refactoring im MTHO_CORE Repository, um diese Axiome technisch hart durchzusetzen.""",
-    "context": {"type": "MTHO_ARCHITECTURE_AUDIT"},
+    1. Verifiziere die Durchschlagskraft dieser neuen Formulierung (insbesondere die Fraktalitt von Ebene -1 bis +1).
+    2. Bewerte, ob diese Iteration hart genug ist, um das Wuji (Simulation) zu durchbrechen, oder ob wir den Takt erneut drehen mssen.""",
+    "context": {"type": "MTHO_ARCHITECTURE_AUDIT_ITERATION_2"},
     "sender": "H_VECTOR_LOCAL",
     "require_response": True
 }

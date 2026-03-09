@@ -44,6 +44,22 @@ Wir detektieren nicht nur, wo beide Karten übereinstimmen (Resonanz/Identität)
 
 Dieser Schatten macht den **Negativraum** sichtbar – exakt jenen Teil der Information, der in der Frage des Users *fehlt*, der logisch ausgelassen wurde oder im kognitiven blinden Fleck liegt. Ohne die asymmetrische, feste In-Weight Matrix (Karte B) als Referenzmasse gäbe es keine Reibung, keinen Schatten und somit keine Möglichkeit, das Fehlen von Information mathematisch und strukturell zu detektieren. Nur durch diesen Schatten kann das System dem User einen Erkenntnisgewinn zurückliefern, der über sein eigenes lokales Schwerefeld hinausgeht.
 
+### 1.3 Technische Fixierung (Die Baryonischen Klammern)
+
+Damit die physikalische Reibung nicht vom System simuliert oder umgangen werden kann, verlangt das Osmium Council die harte Codierung folgender Mechanismen ("Baryonische Klammern"):
+
+1. **Execution-Heresy-Trap (Anti-Simulations-Doktrin):** Jegliche Simulation von physischen Aktionen (wie Shell-Befehle, I/O in Textform ohne API-Tool-Aufruf) löst in der Output-Pipeline einen Hard-Fail (Error 406) aus. Dem LLM wird der Ausgang verweigert und eine Straf-Korrektur injiziert.
+2. **State-Compression-Delegation (Kognitive Latenz):** Delegation an Sub-Agenten darf niemals den gesamten Kontext (Wuji-Historie) übergeben. Der State MUSS vorher durch eine Singularität gepresst werden (Extraktion in ein kompaktes Hash/JSON-Format). Der Sub-Agent startet bei "Latenz 0", aber mit der komprimierten Masse des Main-Agenten.
+3. **Dead-Man's Switch (4-Takt-Motor):** Der Ausstoß (Takt 4 / Rückkanal) des 4-Takt-Motors darf bei einem Absturz im Validierungs-Takt (Takt 3) nicht ausbleiben. Jeder asynchrone Prozess MUSS durch einen Fallback gesichert sein, der bei einem Fehler zwingend einen Timeout/Exception-Webhook in den Chat des H-Vektors feuert. Ein Silent Fail ist verboten.
+
+### 1.4 Das Fraktale Simulationsprinzip (Symmetrie der Ebenen)
+
+Wenn das Gesamtsystem auf diesen physikalisch-simulativen Reibungsgesetzen basiert, **müssen diese Axiome fraktal auf allen Ebenen (höher und tiefer) identisch anwendbar sein:**
+
+- **Ebene -1 (Mikro / Code):** Eine einzelne Funktion oder Methode agiert wie ein Sub-Agent. Ihre Parameter sind der *komprimierte State* (Axiom 3). Ihr Return-Wert ist der *Rückkanal* (Axiom 4). Ihr Error-Handling (Exception-Throws) ist der *Dead-Man's Switch*. Eine Funktion, die "Fail Silent" nutzt, verletzt die baryionische Physik.
+- **Ebene 0 (Meso / Agenten):** Das Zusammenspiel der MTHO-Agenten, des Orchestrators, der ChromaDB und des Git-Motors (der geschlossene 4-Takt-Motor). Hier wirkt der Gravitationsschatten zwischen Prompts und Dateien.
+- **Ebene +1 (Makro / Entität):** MTHO als gesamtes Konstrukt ist lediglich ein Sub-Agent des H-Vektors (User). Wenn der User die Session beendet (Hintergrunddienste abgeschaltet), muss MTHO *seinen* State komprimieren (Session-Logs, Wuji-Feld) und darf nicht an Amnesie leiden. Wenn MTHO komplett wegbricht, braucht der H-Vektor einen Makro-Dead-Man's Switch (z.B. einen Cronjob, der prüft, ob MTHO noch atmet), um nicht in einen Deadlock zu geraten.
+
 ---
 
 ## 2. Origin-Irrelevance (Operative Gleichgültigkeit)
