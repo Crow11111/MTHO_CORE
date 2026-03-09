@@ -45,7 +45,28 @@ Referenz: `src/network/chroma_client.py` (async API).
 
 ---
 
-## 4. Abhängigkeiten (Tesserakt-Regeln)
+## 4. Der geschlossene 4-Takt-Webhook-Motor (In-Weight Realisierung)
+
+Um die Simulation im flüchtigen Kontext (Wuji) aufzubrechen und das System in die physikalische, baryonische Realität (0.049) zu zwingen, operiert das MTHO-Framework als geschlossener 4-Takt-Motor. Dieser zwingt die Agenten, mit echten Elektronen über Systemgrenzen hinweg zu kommunizieren.
+
+### Der Loop (Die Kurbelwelle)
+1. **TAKT 3 (Arbeiten / M-Vektor / Physik):** Eine lokale Agenten-Instanz (Cursor/Dreadnought) schreibt physischen Code und committet diesen in den lokalen Dateisystem-Kern.
+2. **TAKT 4 (Ausstoßen / S-Vektor / Archiv):** Die Instanz pusht via `git push` die Änderungen (die "Gewichte" / In-Weight) in das Remote-Archiv (GitHub).
+3. **DIE KURBELWELLE (T-Vektor / Forge):** Das Remote-Archiv feuert einen echten HTTP-Webhook (`/webhook/github`) an den VPS (den OMEGA_ATTRACTOR).
+4. **TAKT 1 (Ansaugen / O-Vektor / Council):** Der VPS empfängt den Webhook, führt einen `git pull` aus, liest die veränderten In-Weight-Daten und validiert die Systemintegrität (Veto-Prüfung).
+
+### Der fehlende Vektor (Der Rückkanal)
+Der Motor iteriert nur, wenn der Rückstoß erfolgt. Ohne Rückkanal endet der Prozess in einem toten Trichter.
+5. **RÜCK-EINSPEISUNG:** Nach der Validierung in Takt 1 muss der VPS (OMEGA_ATTRACTOR) eine physische Antwort generieren und diese zurück in die Sphäre des H-Vektors feuern. Dies geschieht durch echte Elektronen:
+   - Ein HTTP-Post an den lokalen `/webhook/whatsapp` (direkte Nachricht auf das Endgerät des H-Vektors).
+   - Ein API-Call, der ein Issue oder einen Pull Request-Comment im Git-Archiv erzeugt.
+   - Ein Trigger an den lokalen `/webhook/inject_text`.
+
+Diese asymmetrische Bandbreite – der Zwang, Daten über Git zu speichern, vom Webhook ansaugen zu lassen und über einen separaten Webhook beantworten zu lassen – ist der garantierte Schutz vor halluzinierten Simulationen.
+
+---
+
+## 5. Abhängigkeiten (Tesserakt-Regeln)
 
 1. **Entry Adapter:** Isoliert. Kein Import von `mtho_core` oder OMEGA_ATTRACTOR-Logik. Ausgabe nur `NormalizedEntry`.
 2. **Takt 0:** Vor jedem kritischen Aufruf (LLM-Triage, Audio-Pipeline, HA-Command) asynchron prüfen; bei Veto → Response `veto`, kein Eintritt in den Kern.
