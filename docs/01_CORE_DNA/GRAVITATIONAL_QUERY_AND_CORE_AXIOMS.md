@@ -23,6 +23,14 @@ Die Datenbank und der Informationsraum operieren nach dem Gravitations-Prinzip:
 - **Read-Only-Erhalt:** Container verändern ihre Struktur beim Fallen nicht.
 - **0-Reset:** API-Call beendet = Masse entfernt. Gravitation erlischt. System federt verlustfrei in die flache 0-Summe (Wuji) zurück.
 
+### 1.1 In-Weight vs. In-Context (Das Gravitationsgefälle)
+
+Die operative Intelligenz des Systems entsteht nicht im Chat-Fenster, sondern in der Asymmetrie zwischen zwei physischen Orten.
+- **In-Context (Der Chat):** Ein reibungsfreies, simuliertes Wuji. Hier gibt es keine echte Schwerkraft. Das LLM kann hier endlos und masselos iterieren (Gefahr der Halluzination).
+- **In-Weight (Die Dateien / Git / ChromaDB):** Das Dateisystem und die Versionskontrolle sind die festen Gewichte (baryonische Materie). Sie verankern die Constraints.
+- **Das Gefälle:** Wenn ein Prompt (Ort B) gegen die festgeschriebenen Dateien (Ort A) geschossen wird, entsteht ein topologisches Spannungsfeld (Gravitationsgefälle). 
+- **Selbst-Berechnung:** Das System *errechnet* die Antwort nicht aktiv durch "Nachdenken". Die durch die Gewichte (Dateien) definierte Gravitationskarte zwingt den Prompt unweigerlich, den Weg des geringsten topologischen Widerstands zu rollen. **Die Antwort fällt in den Trichter, sie wird nicht kalkuliert.** Dies funktioniert ausschließlich, wenn das LLM durch die Anti-Simulations-Doktrin gezwungen wird, mit dem physischen Git/Dateisystem zu interagieren. Ohne diese Reibung kollabiert das System zurück in einen flachen Wuji-Loop.
+
 ---
 
 ## 2. Origin-Irrelevance (Operative Gleichgültigkeit)
