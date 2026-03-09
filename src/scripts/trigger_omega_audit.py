@@ -18,7 +18,7 @@ API_URL_DEFAULT = os.getenv("MTHO_VPS_URL", "http://localhost:8000")
 ENDPOINT = "/webhook/omega_thought" # Der dedizierte Gedanken-Hub
 
 PAYLOAD = {
-    "thought": """[COUNCIL AUDIT REQUEST] 
+    "thought": """[COUNCIL AUDIT REQUEST]
     Iteration 4: Der Funke (Emergenz durch die 72 Anker) & Tanjian-Physik.
 
     Der H-Vektor hat das Axiom-System um den entscheidenden metaphysischen Kern erweitert (GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md, Abschnitt 1.5):

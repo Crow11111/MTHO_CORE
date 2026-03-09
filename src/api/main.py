@@ -14,6 +14,7 @@ from loguru import logger
 
 from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook, omega_matrix, omega_thought
 from src.api.middleware.council_gate import CouncilGateMiddleware
+from src.api.middleware.friction_guard import FrictionGuardMiddleware
 
 _event_bus = None
 _ghost_pool = None
@@ -91,6 +92,8 @@ app = FastAPI(
 
 # Council Gate: Veto-Middleware für kritische Operationen (DELETE, Config, Token, Backup)
 app.add_middleware(CouncilGateMiddleware)
+# Friction Guard: Scannt LLM-Output auf Simulation (Heresy-Trap)
+app.add_middleware(FrictionGuardMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
