@@ -78,3 +78,24 @@ Code: `src/api/entry_adapter.py`, `src/logic_core/takt_gate.py`, `src/logic_core
 ---
 
 *MTHO_CORE – Strukturelle Inevitabilität. Vektor 2210.*
+
+---
+
+## Cursor Cloud specific instructions
+
+### Services
+
+| Service | Port | Startbefehl |
+|---------|------|-------------|
+| **Backend (FastAPI)** | 8000 | `GEMINI_API_KEY=<key> python3 -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000` |
+| **Frontend (Vite/React)** | 3000 | `cd frontend && npm run dev` |
+
+### Wichtige Hinweise
+
+- **GEMINI_API_KEY ist Pflicht beim Backend-Start:** `src/ai/whatsapp_audio_processor.py` initialisiert den `genai.Client` auf Modul-Ebene. Ohne gesetzten `GEMINI_API_KEY` (Environment oder `.env`) schlägt der Import fehl und der Server startet nicht. Für lokale Tests ohne echte API-Aufrufe genügt ein Dummy-Wert.
+- **`.env` aus `.env.template` erstellen:** `cp .env.template .env` – die meisten Werte haben sinnvolle Defaults. `HASS_URL`/`HASS_TOKEN` aus dem Template lösen Event-Bus-Verbindungsversuche zu Home Assistant aus (erwartete Fehler wenn HA nicht erreichbar).
+- **Python-Abhängigkeiten:** Zwei `requirements.txt`-Dateien – Root (breitere Deps) und `src/requirements.txt` (API-spezifisch, gepinnte Versionen). Beide installieren: `pip install -r requirements.txt -r src/requirements.txt`.
+- **Frontend:** Lockfile ist `package-lock.json` → `npm install` verwenden. Lint: `npm run lint` (= `tsc --noEmit`). Vorbestehender TS-Fehler: `import.meta.env` wird ohne Vite-Client-Typen nicht erkannt (fehlende `vite/client` Referenz in `tsconfig.json`).
+- **Tests:** `python3 -m pytest tests/test_smart_command_parser.py -v` für Unit-Tests. Integritätsprüfung: `python3 src/scripts/verify_mtho_integrity.py`.
+- **Kein `python`-Symlink:** Im Cloud-Image existiert nur `python3`. Alle Befehle mit `python3` ausführen.
+- **pytest ist nicht vorinstalliert:** Muss via `pip install pytest` nachinstalliert werden (im Update-Script enthalten).
