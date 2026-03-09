@@ -41,6 +41,7 @@ Referenz: `src/network/chroma_client.py` (async API).
 | `/webhook/ha_action` | HA Action/Assist → Entry Adapter → Takt 0 → ScoutDirectHandler / Legacy-Pipeline |
 | `/webhook/github` | GitHub-Webhook (Option 5): HMAC-Prüfung, bei push-Event `git pull` in GIT_PULL_DIR → Cloud Agents aktuell. |
 | `/api/mtho/*` | State, Veto, Query (siehe `src/api/routes/mtho_*.py`) |
+| `/api/mtho/omega/mirror?value=` | Omega-Identitaets-Matrix: Spiegelung gegen 4D-Matrix (keine physikalische Verarbeitung), Identitaet X=1 durch Divisor-Korrektur. Siehe `docs/02_ARCHITECTURE/OMEGA_IDENTITAETS_MATRIX.md`. |
 
 ---
 

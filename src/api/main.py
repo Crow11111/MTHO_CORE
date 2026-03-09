@@ -12,7 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook
+from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook, omega_matrix
 from src.api.middleware.council_gate import CouncilGateMiddleware
 
 _event_bus = None
@@ -108,6 +108,7 @@ app.include_router(mtho_knowledge.router)
 app.include_router(mtho_voice.router)
 app.include_router(mtho_events.router)
 app.include_router(github_webhook.router)
+app.include_router(omega_matrix.router)
 
 @app.get("/")
 def read_root():

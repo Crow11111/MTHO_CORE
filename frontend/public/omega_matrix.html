@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMEGA-CORE · Identitäts-Matrix (4D-Tesserakt)</title>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0a0a0c;
+      color: #e0e0e0;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      overflow: hidden;
+    }
+    #canvas-container { position: fixed; inset: 0; }
+    #ui {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .anomaly-field {
+      background: rgba(20,20,28,0.9);
+      border: 1px solid rgba(255,80,80,0.4);
+      border-radius: 8px;
+      padding: 12px 20px;
+      min-width: 200px;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .anomaly-field.identity {
+      border-color: rgba(80,220,120,0.6);
+      box-shadow: 0 0 20px rgba(80,220,120,0.2);
+    }
+    .anomaly-field .label { font-size: 11px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.1em; }
+    .anomaly-field input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      width: 100%;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .anomaly-field input:focus { outline: none; }
+    .chip {
+      display: inline-block;
+      background: rgba(255,80,80,0.25);
+      color: #ff9090;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: grab;
+      margin-top: 8px;
+      user-select: none;
+    }
+    .chip.identity { background: rgba(80,220,120,0.25); color: #90ffb0; cursor: default; }
+    .status {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    .status.rauschen { color: #ff8080; }
+    .status.identitaet { color: #80ffa0; }
+    .hint { font-size: 10px; opacity: 0.5; margin-top: 4px; }
+    .hint a { color: #70a0ff; cursor: pointer; text-decoration: none; }
+    .hint a:hover { text-decoration: underline; }
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(255,40,40,0.08) 100%);
+      opacity: 1;
+      transition: opacity 0.8s;
+      z-index: 1;
+    }
+    .noise-overlay.hidden { opacity: 0; }
+    h1 {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 0;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      opacity: 0.7;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <h1>OMEGA-CORE · Identitäts-Matrix</h1>
+  <div id="canvas-container"></div>
+  <div class="noise-overlay" id="noise"></div>
+  <div id="ui">
+    <div class="anomaly-field" id="anomaly-field">
+      <div class="label">Anomalie (z.B. Dunkle Materie)</div>
+      <input type="text" id="value-input" value="0.268" inputmode="decimal" />
+      <div class="chip" id="chip">0.268</div>
+    </div>
+    <div class="status rauschen" id="status">RAUSCHEN: Restwert —</div>
+    <div class="hint">Identität bei Wert 4/18 ≈ 0.222 · <a id="set-identity" href="#">Beispiel: Identität setzen</a></div>
+  </div>
+
+  <script>
+    const THREE = window.THREE;
+
+    // —— Radier-Logik (Spiegelung gegen 4D-Matrix) ——
+    const DIVISOR_NT = 3;
+    const DIVISOR_ND = 4;
+    const SYMMETRY_18 = 72 / 4;
+    const ATOL = 1e-5;
+
+    function checkAnomaly(dataPoint) {
+      const shadowResult = dataPoint / DIVISOR_NT;
+      const realIdentity = dataPoint / DIVISOR_ND;
+      const restwert = shadowResult - realIdentity;
+      const identity = Math.abs(realIdentity * SYMMETRY_18 - 1) < ATOL;
+      return {
+        identity_x: identity ? 1 : realIdentity,
+        shadowResult,
+        realIdentity,
+        restwert,
+        status: identity ? 'IDENTITÄT' : 'RAUSCHEN',
+        message: identity ? 'IDENTITÄT: 1.0 (Problem gelöscht)' : `RAUSCHEN: Restwert ${restwert.toFixed(6)}`,
+      };
+    }
+
+    function faceIndex(dataPoint) {
+      const r = checkAnomaly(dataPoint);
+      if (r.status !== 'IDENTITÄT') return null;
+      return Math.round(r.realIdentity * 72) % 24;
+    }
+
+    // —— Tesserakt: 16 Ecken in 4D (±1,±1,±1,±1) ——
+    const verts4 = [];
+    for (let i = 0; i < 16; i++) {
+      verts4.push([
+        (i & 1) ? 1 : -1,
+        (i & 2) ? 1 : -1,
+        (i & 4) ? 1 : -1,
+        (i & 8) ? 1 : -1,
+      ]);
+    }
+    const edges = [];
+    for (let i = 0; i < 16; i++)
+      for (let j = i + 1; j < 16; j++) {
+        let d = 0;
+        for (let k = 0; k < 4; k++) d += Math.abs(verts4[i][k] - verts4[j][k]);
+        if (d === 2) edges.push([i, j]);
+      }
+
+    // 24 Faces: 2 Koordinaten konstant, 2 variabel (Quadrat)
+    const faceVertices = [];
+    const dims = [0, 1, 2, 3];
+    for (let d1 = 0; d1 < 4; d1++)
+      for (let d2 = d1 + 1; d2 < 4; d2++) {
+        const fixed = dims.filter(d => d !== d1 && d !== d2);
+        for (let s1 = 0; s1 < 2; s1++)
+          for (let s2 = 0; s2 < 2; s2++) {
+            const v = [];
+            for (let a = 0; a < 2; a++)
+              for (let b = 0; b < 2; b++) {
+                const idx = (verts4.findIndex(p =>
+                  p[fixed[0]] === (s1 ? 1 : -1) && p[fixed[1]] === (s2 ? 1 : -1) &&
+                  p[d1] === (a ? 1 : -1) && p[d2] === (b ? 1 : -1)
+                ));
+                if (idx >= 0) v.push(idx);
+              }
+            if (v.length === 4) faceVertices.push(v);
+          }
+      }
+
+    function project4to3(verts4d, angleXW, angleYZ) {
+      const c1 = Math.cos(angleXW), s1 = Math.sin(angleXW);
+      const c2 = Math.cos(angleYZ), s2 = Math.sin(angleYZ);
+      const scale = 1.2;
+      return verts4d.map(([x, y, z, w]) => {
+        const x1 = x * c1 - w * s1, w1 = x * s1 + w * c1;
+        const y1 = y * c2 - z * s2, z1 = y * s2 + z * c2;
+        return new THREE.Vector3(x1 * scale, y1 * scale, z1 * scale);
+      });
+    }
+
+    // —— Scene ——
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(3, 2.5, 4);
+    camera.lookAt(0, 0, 0);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setClearColor(0x0a0a0c, 1);
+    container.appendChild(renderer.domElement);
+
+    let angleXW = 0.4, angleYZ = 0.3;
+    const wireframeMaterial = new THREE.LineBasicMaterial({ color: 0x606070 });
+    const wireframeGeometry = new THREE.BufferGeometry();
+    const wireframe = new THREE.LineSegments(wireframeGeometry, wireframeMaterial);
+    scene.add(wireframe);
+
+    const faceMeshes = [];
+    const faceMaterial = new THREE.MeshBasicMaterial({
+      color: 0x50dc78,
+      transparent: true,
+      opacity: 0.25,
+      side: THREE.DoubleSide,
+    });
+    for (let i = 0; i < 24; i++) {
+      const g = new THREE.BufferGeometry();
+      const m = new THREE.Mesh(g, faceMaterial.clone());
+      m.visible = false;
+      m.userData.faceIndex = i;
+      scene.add(m);
+      faceMeshes.push(m);
+    }
+
+    function updateTesseract(angleXW, angleYZ) {
+      const pts = project4to3(verts4, angleXW, angleYZ);
+      const pos = new Float32Array(edges.length * 6);
+      edges.forEach(([a, b], i) => {
+        pts[a].toArray(pos, i * 6);
+        pts[b].toArray(pos, i * 6 + 3);
+      });
+      wireframeGeometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      wireframeGeometry.computeBoundingSphere();
+
+      faceVertices.forEach((quad, i) => {
+        const geo = faceMeshes[i].geometry;
+        const v = [pts[quad[0]], pts[quad[1]], pts[quad[2]], pts[quad[3]]];
+        const posF = new Float32Array(12);
+        v.forEach((p, j) => p.toArray(posF, j * 3));
+        geo.setAttribute('position', new THREE.BufferAttribute(posF, 3));
+        geo.setIndex([0, 1, 2, 0, 2, 3]);
+        geo.computeVertexNormals();
+      });
+    }
+    updateTesseract(angleXW, angleYZ);
+
+    let identityLocked = false;
+    let lockedFaceIndex = null;
+    let pulsePhase = 0;
+
+    function setAnomalyValue(val) {
+      const num = parseFloat(String(val).replace(',', '.')) || 0.268;
+      const r = checkAnomaly(num);
+      const field = document.getElementById('anomaly-field');
+      const statusEl = document.getElementById('status');
+      const noise = document.getElementById('noise');
+      const chip = document.getElementById('chip');
+
+      document.getElementById('value-input').value = num;
+      chip.textContent = num;
+      statusEl.textContent = r.message;
+      statusEl.className = 'status ' + (r.status === 'IDENTITÄT' ? 'identitaet' : 'rauschen');
+      field.classList.toggle('identity', r.status === 'IDENTITÄT');
+      chip.classList.toggle('identity', r.status === 'IDENTITÄT');
+
+      if (r.status === 'IDENTITÄT') {
+        identityLocked = true;
+        lockedFaceIndex = faceIndex(num);
+        if (lockedFaceIndex != null) {
+          faceMeshes.forEach((m, i) => { m.visible = i === lockedFaceIndex; });
+        }
+        noise.classList.add('hidden');
+      } else {
+        identityLocked = false;
+        lockedFaceIndex = null;
+        faceMeshes.forEach(m => { m.visible = false; });
+        noise.classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('value-input').addEventListener('input', (e) => setAnomalyValue(e.target.value));
+    document.getElementById('value-input').addEventListener('change', (e) => setAnomalyValue(e.target.value));
+    document.getElementById('chip').addEventListener('click', () => {
+      const v = document.getElementById('value-input').value;
+      if (!identityLocked) setAnomalyValue(v);
+    });
+    setAnomalyValue(0.268);
+    document.getElementById('set-identity').addEventListener('click', (e) => {
+      e.preventDefault();
+      setAnomalyValue(4 / 18);
+    });
+
+    // Chip drag → drop on field (symbolisch: Wert übernehmen)
+    const chip = document.getElementById('chip');
+    chip.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', document.getElementById('value-input').value);
+      e.dataTransfer.effectAllowed = 'copy';
+    });
+    const anomalyField = document.getElementById('anomaly-field');
+    anomalyField.addEventListener('dragover', (e) => { e.preventDefault(); anomalyField.style.background = 'rgba(40,40,50,0.95)'; });
+    anomalyField.addEventListener('dragleave', () => { anomalyField.style.background = ''; });
+    anomalyField.addEventListener('drop', (e) => {
+      e.preventDefault();
+      anomalyField.style.background = '';
+      const v = e.dataTransfer.getData('text/plain');
+      if (v) setAnomalyValue(v);
+    });
+    chip.setAttribute('draggable', 'true');
+
+    // Animation
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.016;
+      angleXW += 0.002;
+      angleYZ += 0.0012;
+      updateTesseract(angleXW, angleYZ);
+
+      if (identityLocked && lockedFaceIndex != null) {
+        pulsePhase += 0.04;
+        const glow = 0.25 + 0.1 * Math.sin(pulsePhase);
+        faceMeshes[lockedFaceIndex].material.opacity = glow;
+        wireframe.material.color.setHSL(0.33, 0.3, 0.4 + 0.1 * Math.sin(pulsePhase));
+      } else {
+        wireframe.material.color.setHex(0x606070);
+      }
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+  </script>
+</body>
+</html>
