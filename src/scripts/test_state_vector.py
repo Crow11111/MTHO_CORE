@@ -143,18 +143,19 @@ def test_phi_balance() -> list[str]:
         INV_PHI,
         COMP_PHI,
         BASE_STATE,
+        BARYONIC_DELTA,
     )
 
     errors = []
     # Bei INV_PHI sollte True sein
-    v_inv = MTHOStateVector(INV_PHI, 0, 0.5, 0)
+    v_inv = MTHOStateVector(INV_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if not v_inv.is_in_phi_balance():
         errors.append(f"x={INV_PHI} sollte phi_balance=True liefern")
     else:
         print("  is_in_phi_balance(INV_PHI) OK")
 
     # Bei COMP_PHI sollte True sein
-    v_comp = MTHOStateVector(COMP_PHI, 0, 0.5, 0)
+    v_comp = MTHOStateVector(COMP_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if not v_comp.is_in_phi_balance():
         errors.append(f"x={COMP_PHI} sollte phi_balance=True liefern")
     else:
@@ -171,22 +172,22 @@ def test_phi_balance() -> list[str]:
 
 def test_symmetry_broken() -> list[str]:
     """Prueft is_symmetry_broken()."""
-    from src.config.mtho_state_vector import MTHOStateVector, SYMMETRY_BREAK
+    from src.config.mtho_state_vector import MTHOStateVector, SYMMETRY_BREAK, BARYONIC_DELTA
 
     errors = []
     # Bei y=0.49 sollte True sein
-    v = MTHOStateVector(0.5, SYMMETRY_BREAK, 0.5, 0)
+    v = MTHOStateVector(0.49, SYMMETRY_BREAK, 0.51, BARYONIC_DELTA)
     if not v.is_symmetry_broken():
         errors.append(f"y={SYMMETRY_BREAK} sollte symmetry_broken=True liefern")
     else:
         print("  is_symmetry_broken(0.49) OK")
 
-    # Bei y=0 sollte False sein
-    v0 = MTHOStateVector(0.5, 0.0, 0.5, 0)
+    # Bei y nahe 0 (BARYONIC_DELTA) sollte False sein
+    v0 = MTHOStateVector(0.49, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if v0.is_symmetry_broken():
-        errors.append("y=0 sollte symmetry_broken=False liefern")
+        errors.append("y=BARYONIC_DELTA sollte symmetry_broken=False liefern")
     else:
-        print("  is_symmetry_broken(0) False OK")
+        print("  is_symmetry_broken(BARYONIC_DELTA) False OK")
 
     return errors
 
@@ -303,6 +304,50 @@ def test_drift_veto_override() -> list[str]:
     return errors
 
 
+def test_axiom_a5_guards() -> list[str]:
+    """Axiom A5/A6: 0.0, 1.0, 0.5 muessen ValueError werfen; int muss TypeError werfen."""
+    from src.config.mtho_state_vector import MTHOStateVector
+
+    errors = []
+    # ValueError: 0.0
+    try:
+        MTHOStateVector(0.49, 0.0, 0.51, 0.049)
+        errors.append("y=0.0 sollte ValueError werfen")
+    except ValueError:
+        print("  Axiom A5: y=0.0 -> ValueError OK")
+    except Exception as e:
+        errors.append(f"y=0.0: erwartet ValueError, bekam {type(e).__name__}: {e}")
+
+    # ValueError: 1.0
+    try:
+        MTHOStateVector(0.49, 0.049, 1.0, 0.049)
+        errors.append("z=1.0 sollte ValueError werfen")
+    except ValueError:
+        print("  Axiom A5: z=1.0 -> ValueError OK")
+    except Exception as e:
+        errors.append(f"z=1.0: erwartet ValueError, bekam {type(e).__name__}: {e}")
+
+    # ValueError: 0.5
+    try:
+        MTHOStateVector(0.5, 0.049, 0.51, 0.049)
+        errors.append("x=0.5 sollte ValueError werfen")
+    except ValueError:
+        print("  Axiom A5: x=0.5 -> ValueError OK")
+    except Exception as e:
+        errors.append(f"x=0.5: erwartet ValueError, bekam {type(e).__name__}: {e}")
+
+    # TypeError: int
+    try:
+        MTHOStateVector(0.49, 0, 0.51, 0.049)
+        errors.append("y=int sollte TypeError werfen")
+    except TypeError:
+        print("  Axiom A6: y=int -> TypeError OK")
+    except Exception as e:
+        errors.append(f"y=int: erwartet TypeError, bekam {type(e).__name__}: {e}")
+
+    return errors
+
+
 def test_magnitude() -> list[str]:
     """Prueft magnitude()."""
     from src.config.mtho_state_vector import MTHOStateVector, BASE_STATE
@@ -329,9 +374,10 @@ def main() -> int:
         ("3. Simultan-Kaskade-Zyklus", test_agos_cycle),
         ("4. Phi-Balance", test_phi_balance),
         ("5. Symmetriebruch", test_symmetry_broken),
-        ("6. get_current_state()", test_get_current_state),
-        ("7. Ring-0-Veto-Override", test_drift_veto_override),
-        ("8. Magnitude", test_magnitude),
+        ("6. Axiom A5/A6 Guards", test_axiom_a5_guards),
+        ("7. get_current_state()", test_get_current_state),
+        ("8. Ring-0-Veto-Override", test_drift_veto_override),
+        ("9. Magnitude", test_magnitude),
     ]
 
     for title, fn in sections:

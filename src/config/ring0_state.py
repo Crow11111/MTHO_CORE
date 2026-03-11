@@ -11,13 +11,15 @@ Drift Veto kann z_widerstand erhöhen; get_current_state() liest diesen Override
 """
 from __future__ import annotations
 
+from src.config.mtho_state_vector import BARYONIC_DELTA
+
 _z_widerstand_override: float | None = None
 
 
 def set_drift_veto(z: float) -> None:
-    """Setzt z_widerstand-Override (0..1). Wird von get_current_state() verwendet."""
+    """Setzt z_widerstand-Override (Δ..1-Δ). Wird von get_current_state() verwendet."""
     global _z_widerstand_override
-    _z_widerstand_override = max(0.0, min(1.0, z))
+    _z_widerstand_override = max(BARYONIC_DELTA, min(1.0 - BARYONIC_DELTA, z))
 
 
 def clear_drift_veto() -> None:
@@ -32,6 +34,6 @@ def get_drift_veto_override() -> float | None:
 
 
 # Backward-Kompatibilitaet
-set_munin_veto = set_drift_veto
-clear_munin_veto = clear_drift_veto
-get_munin_veto_override = get_drift_veto_override
+set_context_veto = set_drift_veto
+clear_context_veto = clear_drift_veto
+get_context_veto_override = get_drift_veto_override

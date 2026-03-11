@@ -99,9 +99,13 @@ app.add_middleware(VetoGateMiddleware)
 # Friction Guard: Scannt LLM-Output auf Simulation (Heresy-Trap)
 app.add_middleware(FrictionGuardMiddleware)
 
+ALLOWED_ORIGINS = [
+    o.strip() for o in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000").split(",")
+    if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Komplett offen für lokale Entwicklung
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

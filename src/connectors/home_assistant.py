@@ -5,6 +5,7 @@
 # ============================================================
 
 import os
+import httpx
 from httpx import AsyncClient, Timeout
 from src.utils.time_metric import get_friction_timeout
 from dotenv import load_dotenv
@@ -12,6 +13,12 @@ from loguru import logger
 
 # Load environment variables
 load_dotenv()
+
+
+def _should_skip_ssl(url: str) -> bool:
+    """SSL-Verifizierung für lokale/private IPs deaktivieren."""
+    return "://192.168." in url or "://10." in url or "://172." in url
+
 
 class HomeAssistantClient:
     def __init__(self):
@@ -53,8 +60,7 @@ class HomeAssistantClient:
     async def call_service(self, domain, service, service_data=None):
         """Call a Home Assistant service."""
         try:
-            # SSL-Verifizierung für lokale IPs deaktivieren
-            verify_ssl = not (self.base_url.startswith("http://192.168") or self.base_url.startswith("http://localhost"))
+            verify_ssl = not _should_skip_ssl(self.base_url)
             timeout = get_friction_timeout(10.0)
             async with AsyncClient(timeout=Timeout(timeout), verify=verify_ssl) as client:
                 url = f"{self.base_url}/api/services/{domain}/{service}"
@@ -87,7 +93,7 @@ class HomeAssistantClient:
         ]
         
         last_error = None
-        verify_ssl = not (self.base_url.startswith("https://192.168") or self.base_url.startswith("https://localhost"))
+        verify_ssl = not _should_skip_ssl(self.base_url)
         for service_call in tts_services_to_try:
             domain, service = service_call.split('.')
             try:
@@ -116,8 +122,7 @@ class HomeAssistantClient:
     async def _get_request(self, endpoint):
         """Helper for GET requests."""
         try:
-            # SSL-Verifizierung für lokale IPs deaktivieren
-            verify_ssl = not (self.base_url.startswith("https://192.168") or self.base_url.startswith("https://localhost"))
+            verify_ssl = not _should_skip_ssl(self.base_url)
             timeout = get_friction_timeout(10.0)
             async with AsyncClient(timeout=Timeout(timeout), verify=verify_ssl) as client:
                 response = await client.get(f"{self.base_url}/api/{endpoint}", headers=self.headers)

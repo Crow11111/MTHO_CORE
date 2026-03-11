@@ -2,7 +2,8 @@
 # MTHO-GENESIS: CORE COCKPIT CHAT ENDPOINT
 # ============================================================
 
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+import os
+from fastapi import APIRouter, Depends, HTTPException, Request, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from loguru import logger
 import asyncio
@@ -11,11 +12,45 @@ from src.services.scout_direct_handler import process_text_async
 
 router = APIRouter()
 
+MTHO_API_TOKEN = os.getenv("MTHO_API_TOKEN", "")
+
+
+async def verify_api_token(request: Request):
+    """Optional: Bearer-Token-Pruefung. Kein Token = Entwicklungsmodus ohne Auth."""
+    if not MTHO_API_TOKEN:
+        return
+    auth = request.headers.get("Authorization", "")
+    if not auth.startswith("Bearer ") or auth[7:] != MTHO_API_TOKEN:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+
+def _get_ws_auth(websocket: WebSocket) -> str:
+    """Authorization aus Header oder Query ?token=xxx (Browser-WS kann keine Header setzen)."""
+    for key, value in websocket.scope.get("headers", []):
+        if key.lower() == b"authorization":
+            v = value.decode() if isinstance(value, bytes) else value
+            return v or ""
+    token = websocket.query_params.get("token", "")
+    return f"Bearer {token}" if token else ""
+
+
+async def _verify_ws_token(websocket: WebSocket) -> bool:
+    """Gleiche Pruefung wie verify_api_token, fuer WebSocket connect-Handler. True=OK, False=abgelehnt."""
+    if not MTHO_API_TOKEN:
+        return True
+    auth = _get_ws_auth(websocket)
+    if not auth.startswith("Bearer ") or auth[7:] != MTHO_API_TOKEN:
+        await websocket.close(code=4001)
+        return False
+    return True
+
+
 class ChatMessage(BaseModel):
     message: str
     mode: str = "fast"
 
-@router.post("/api/chat")
+
+@router.post("/api/chat", dependencies=[Depends(verify_api_token)])
 async def handle_chat_message(payload: ChatMessage):
     """
     Nimmt eine Chat-Nachricht vom Frontend entgegen und verarbeitet sie.
@@ -33,6 +68,8 @@ async def websocket_endpoint(websocket: WebSocket):
     """
     WebSocket-Endpunkt für Echtzeit-Kommunikation.
     """
+    if not await _verify_ws_token(websocket):
+        return
     await websocket.accept()
     logger.info("[WS] WebSocket-Verbindung akzeptiert.")
     try:

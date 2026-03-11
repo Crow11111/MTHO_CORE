@@ -11,10 +11,10 @@ Dieser Vektor ist der "Bootloader" - er enthaelt den gesamten Systemkontext
 in einer Form die direkt als Embedding/Query verwendet werden kann.
 
 Dimensionen:
-    X: CAR/CDR Balance (0=pure NT, 1=pure ND)
-    Y: Gravitation (0=flat, 1=Kollaps/Attraktor)
-    Z: Widerstand (0=Nachgeben, 1=Veto)
-    W: Takt (0-4 im Simultan-Kaskade-Zyklus)
+    X: CAR/CDR Balance (Δ..1-Δ, Skala NT↔ND)
+    Y: Gravitation (Δ=Basis/flat, 1-Δ=Kollaps)
+    Z: Widerstand (Δ=Nachgeben, 1-Δ=Veto)
+    W: Takt (Δ-offset pro Stufe, NICHT ganzzahlig)
 """
 
 from dataclasses import dataclass
@@ -41,9 +41,9 @@ BARYONIC_DELTA = BARYONIC_LIMIT
 class MTHOStateVector:
     """4D Zustandsvektor des MTHO-Systems."""
 
-    x_car_cdr: float  # 0=NT, 1=ND
-    y_gravitation: float  # 0=flat, 1=Kollaps
-    z_widerstand: float  # 0=Nachgeben, 1=Veto
+    x_car_cdr: float  # Δ=NT-Pol, 1-Δ=ND-Pol
+    y_gravitation: float  # Δ=Basis/flat, 1-Δ=Kollaps
+    z_widerstand: float  # Δ=Nachgeben, 1-Δ=Veto
     w_takt: float  # 0-4 Simultan-Kaskade-Zyklus (jetzt float wg. asymmetrischem Offset)
 
     def __post_init__(self):

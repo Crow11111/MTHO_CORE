@@ -51,7 +51,7 @@ class TelemetryResponse(BaseModel):
     z_damper: Optional[dict] = None
 
 
-@router.get("/telemetry")
+@router.get("/telemetry", dependencies=[Depends(_verify_bearer)])
 async def get_telemetry():
     """Aggregierte System-Telemetrie (5s Cache empfohlen)."""
 
