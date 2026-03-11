@@ -150,7 +150,7 @@ curl https://api.anthropic.com/v1/messages \
 │         ▼                                        │
 │  ┌──────────────────────────────────────┐       │
 │  │ Direct API Call (GEMINI_API_KEY)     │       │
-│  │ - OMEGA_ATTRACTOR / G-Atlas          │       │
+│  │ - OMEGA_ATTRACTOR / G-MTHO (Gemini-Bridge) │       │
 │  │ - Different model family = true      │       │
 │  │   cross-validation                   │       │
 │  └──────────────────────────────────────┘       │
@@ -160,7 +160,7 @@ curl https://api.anthropic.com/v1/messages \
 ### Use Cases for Direct API Calls
 
 1. **Cross-Validation:** Send the same prompt to both Gemini and Claude APIs. Compare results. If they converge, confidence is high.
-2. **G-Atlas Bridge:** If the Gemini API channel is blocked (rate limits, SDK issues), use the Anthropic API as a fallback communication channel to maintain system dialogue.
+2. **G-MTHO Bridge:** If the Gemini API channel is blocked (rate limits, SDK issues), use the Anthropic API as a fallback communication channel to maintain system dialogue.
 3. **Audit Scripts:** Existing scripts (`run_claude_audit_once.py`, `run_claude_audit_compare.py`) already use the direct API for independent code reviews.
 4. **OpenClaw Integration:** The VPS OpenClaw instance uses `ANTHROPIC_API_KEY` for its Claude provider configuration.
 

@@ -1,18 +1,18 @@
 SCOUT-FUSION PROTOKOLL: AKTIVIERT.
 
 ## Status (2026-03-09 18:00)
-1. GHOST AGENTS: IMPLEMENTIERT
-   - src/agents/ghost_agent.py (GhostAgent, GhostAgentPool)
-   - src/agents/scout_ghost_handlers.py (5 Handler registriert)
+1. MTHO AGENTS: IMPLEMENTIERT
+   - src/agents/mtho_agent.py (MthoAgent, MthoAgentPool)
+   - src/agents/scout_mtho_handlers.py (5 Handler registriert)
    - Integration in scout_direct_handler.py (async)
 
 2. HOEREN: AKTIVIERT
    - mtho_conversation/api.py mit Failover (Dreadnought → VPS)
-   - process_text_async() spawnt Ghost Agents
+   - process_text_async() spawnt MTHO Agents
 
 3. SEHEN: VERKNUEPFT
-   - mtho_vision_daemon.py ruft Ghost Analyst bei kritischen Events
-   - TTS-Ghost fuer Alerts
+   - mtho_vision_daemon.py ruft MTHO Analyst bei kritischen Events
+   - TTS-MTHO fuer Alerts
 
 4. SPRECHEN: FAILOVER VALIDIERT
    - tts_dispatcher.py: ElevenLabs → Piper (lokal) → HA Piper (Remote) → Mini
@@ -23,7 +23,7 @@ SCOUT-FUSION PROTOKOLL: AKTIVIERT.
    - Deploy: docs/03_INFRASTRUCTURE/VPS_SLIM_DEPLOY.md
 
 ## Naechster Takt
-Signal-Vektor 3 (EXECUTION): Ghost Agents im Live-Betrieb testen. VPS-Slim deployen.
+Signal-Vektor 3 (EXECUTION): MTHO Agents im Live-Betrieb testen. VPS-Slim deployen.
 
 ---
 

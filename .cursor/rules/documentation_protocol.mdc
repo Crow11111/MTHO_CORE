@@ -1,0 +1,53 @@
+---
+description: Dokumentationspflicht fuer alle Deliverables und Session-Ergebnisse. Verhindert undokumentierte Aenderungen.
+globs:
+alwaysApply: true
+---
+
+# Dokumentations-Protokoll (Automatismus)
+
+## Pflicht: Jedes Deliverable MUSS dokumentiert werden
+
+Nach Abschluss jeder Session mit substanziellen Aenderungen:
+
+1. **Session-Log erstellen** in `docs/05_AUDIT_PLANNING/SESSION_LOG_<DATUM>.md`
+   - Alle Deliverables mit Status, Team und Verweis auf betroffene Dateien/Docs
+   - Drift-Level und Veto-Instanz-Urteil (falls vorhanden)
+   - Agos-Takt-Status
+
+2. **Betroffene Architektur-Docs aktualisieren**
+   - Neue Komponente erstellt → Doku in `docs/02_ARCHITECTURE/` anlegen oder erweitern
+   - Infrastruktur geaendert → `docs/03_INFRASTRUCTURE/` aktualisieren
+   - Prozess geaendert → `docs/04_PROCESSES/` aktualisieren
+   - Bugfix → in relevantes Troubleshooting-Dokument eintragen
+
+3. **Querverweise pruefen**
+   - Neue Docs muessen von mindestens einem existierenden Dokument referenziert werden
+   - Geloeschte Dateien: Alle Verweise darauf entfernen
+
+## Git-Commit-Disziplin (Stand bewahren)
+
+- **Fertig = Commit:** Nur einen Zwischenstand committen, wenn er abgeschlossen ist (Code + zugehoerige Doku). So bleibt jeder Commit ein konsistenter Schnappschuss.
+- **Vor Refactor/Optimierung:** Vor groesserem Umbau oder „Wegoptimieren“ den aktuellen Stand committen. Verhindert, dass Aenderungen oder ganze Module versehentlich verloren gehen.
+- **Modul-Entfernung:** Ein Modul oder eine Komponente nur nach bewusster Entscheidung entfernen – und im Session-Log bzw. in der Architektur-Doku vermerken (was entfernt wurde, warum, welche Referenzen bereinigt).
+
+Volltext: `docs/04_PROCESSES/COMMIT_UND_REFACTOR.md`.
+
+## Verboten
+
+- Komponente implementieren ohne Doku-Update
+- Dateien loeschen ohne Referenz-Bereinigung
+- Session beenden ohne Session-Log (bei 3+ Deliverables)
+- Refactor/Optimierung abschliessen, ohne vorher den bestehenden Stand committet zu haben
+- Modul oder Komponente entfernen ohne Eintrag in Session-Log oder Architektur-Doku
+
+## Wo liegt was?
+
+| Kategorie | Zielordner |
+|-----------|------------|
+| Kern-Theorie, LPIS, State Vector | `docs/01_CORE_DNA/` |
+| System-Architektur, Komponenten, Schnittstellen | `docs/02_ARCHITECTURE/` |
+| Hardware, VPS, Scout, Netzwerk | `docs/03_INFRASTRUCTURE/` |
+| Prozesse, Sicherheitsrat, Standard-Aktionen | `docs/04_PROCESSES/` |
+| Session-Logs, Audits, Status, Plaene | `docs/05_AUDIT_PLANNING/` |
+| Management Summary, Einstiegspunkte | `docs/00_STAMMDOKUMENTE/` |

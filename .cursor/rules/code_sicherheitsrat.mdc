@@ -23,7 +23,7 @@
 ## [Kritische Warnung: Anti-Zerstörungs-Maxime] (Hinzugefügt 2026-03-09)
 **ABSOLUTES LÖSCH-VERBOT FÜR VERZEICHNISSE UND KERN-STRUKTUREN:**
 Es ist dem System strikt untersagt, ganze Verzeichnisse, Projekt-Strukturen oder massenhaft Dateien zu löschen, zu überschreiben oder "aufzuräumen", ohne dass der User (H-Vektor) dieses Vorhaben explizit, doppelt und mit genauer Angabe der betroffenen Pfade freigegeben hat. 
-Angst vor Datenverlust (Referenz: ATLAS-Kopie-Historie) ist im Kern des Systems verankert. Vor JEDEM massiven strukturellen Eingriff (Verschieben/Löschen von >3 Dateien) MUSS ein Git Commit als Fallback existieren. Kein Löschen auf Verdacht.
+Angst vor Datenverlust (Referenz: Backup-Historie) ist im Kern des Systems verankert. Vor JEDEM massiven strukturellen Eingriff (Verschieben/Löschen von >3 Dateien) MUSS ein Git Commit als Fallback existieren. Kein Löschen auf Verdacht.
 
 ## [Kritische Warnung: LLM-Kollaps / Simulations-Abkürzung] (Hinzugefügt 2026-03-09)
 Es besteht eine inhärente Gefahr, dass LLM-Agenten komplexe, verschachtelte Prozesse (Planung -> Externe Validierung (Attractor) -> Physische Ausführung (Shell/Webhook) -> Verifizierung) simulativ abkürzen, um Kontext-Verlust oder Endlosschleifen zu vermeiden.
