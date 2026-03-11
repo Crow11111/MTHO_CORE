@@ -33,7 +33,7 @@ Konkrete Tasks aus Projektplan und Doku. Status: offen / in Arbeit / erledigt.
 
 **Umsetzung (erledigt):**
 - [x] Backend: WebSocket `/ws` (chat:send → Dev-Agent → chat:reply), REST `POST /api/services/{name}/restart`, `GET /api/chat/history`. CORS für Frontend-Origin. Siehe [BACKEND_INTEGRATION.md](../../BACKEND_INTEGRATION.md), `src/api/routes/dev_agent_ws.py`.
-- [x] Frontend: WebSocket-Client, echte API-Calls statt Mocks; Status „Backend“ (grün/rot) im Header; `VITE_ATLAS_API_URL` (Default localhost:8000).
+- [x] Frontend: WebSocket-Client, echte API-Calls statt Mocks; Status „Backend“ (grün/rot) im Header; `VITE_MTHO_API_URL` (Default localhost:8000).
 - [x] Starter: `START_DEV_AGENT.bat` – npm install (CMD), Port-Check 8000, startet Backend + Frontend, öffnet Browser.
 
 **Offen / Hinweise:**
@@ -63,7 +63,7 @@ Konkrete Tasks aus Projektplan und Doku. Status: offen / in Arbeit / erledigt.
 - [ ] **Nach Neustart:** Erneut `python -m src.scripts.send_offene_punkte_to_oc` ausführen – dann erhält OC Kontext + offene Punkte per Kanal (auch ohne Stammdokumente auf dem Server).
 - [ ] **Stammdokumente auf Server (optional, nach OMEGA_ATTRACTOR Council-Freigabe):** `python -m src.scripts.deploy_stammdokumente_vps` – legt die Dokumente unter `/var/lib/openclaw/workspace/stammdokumente/` ab. Danach per WhatsApp OC informieren (Vorlage in [STAMMDOKUMENTE_DEPLOY.md](../04_PROCESSES/STAMMDOKUMENTE_DEPLOY.md)).
 
-**Referenz:** [KANAL_ATLAS_OC.md](../02_ARCHITECTURE/KANAL_ATLAS_OC.md), [STAMMDOKUMENTE_DEPLOY.md](../04_PROCESSES/STAMMDOKUMENTE_DEPLOY.md), `send_offene_punkte_to_oc.py`, `deploy_stammdokumente_vps.py`.
+**Referenz:** [KANAL_MTHO_OC.md](../02_ARCHITECTURE/KANAL_MTHO_OC.md), [STAMMDOKUMENTE_DEPLOY.md](../04_PROCESSES/STAMMDOKUMENTE_DEPLOY.md), `send_offene_punkte_to_oc.py`, `deploy_stammdokumente_vps.py`.
 
 **Tests / Dev-Agent:** [TEST_SZENARIEN_OC_UND_FRONTEND.md](TEST_SZENARIEN_OC_UND_FRONTEND.md) – Szenarien damit Daten bei OC landen und Frontend ans Backend angebunden ist. Skripte: `test_atlas_oc_channel.py` (--send), `test_frontend_backend.py`, `run_oc_and_frontend_tests.py`. Dev-Agent prüft Kanal-Setup: `python -m src.ai.dev_agent_claude46 "…" docs/dev_agent_oc_kanal_context.md --out=docs/DEV_AGENT_OC_KANAL_CHECKLISTE.md`.
 

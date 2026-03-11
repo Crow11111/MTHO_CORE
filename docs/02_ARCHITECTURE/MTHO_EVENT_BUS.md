@@ -58,8 +58,8 @@ Nachts (22:00-06:00) werden Severity-Level eskaliert: INFO→WARNING, WARNING→
 | Komponente | Verbindung |
 |------------|------------|
 | `src/api/main.py` | Startet Event-Bus im Lifespan (asyncio Task) |
-| `src/agents/ghost_agent.py` | GhostAgentPool fuer DEEP_REASONING und TTS_DISPATCH |
-| `src/agents/scout_ghost_handlers.py` | Handler-Registrierung fuer MTHO Agent Intents |
+| `src/agents/mtho_agent.py` | EphemeralAgentPool fuer DEEP_REASONING und TTS_DISPATCH |
+| `src/agents/scout_mtho_handlers.py` | Handler-Registrierung fuer MTHO Agent Intents |
 | `src/network/chroma_client.py` | `add_event_to_chroma()` – Persistenz in `events` Collection |
 | `src/network/openclaw_client.py` | Forward von WARNING/CRITICAL an OMEGA_ATTRACTOR |
 
@@ -89,6 +89,6 @@ Der Event-Bus exponiert Metriken ueber die `.stats` Property:
 ## Referenzen
 
 - **Code:** `src/daemons/atlas_event_bus.py`
-- **Ghost Agents:** `docs/02_ARCHITECTURE/G_ATLAS_CIRCLE.md`
-- **ChromaDB Schema:** `docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md`
-- **Voice Architecture:** `docs/02_ARCHITECTURE/ATLAS_VOICE_ASSISTANT_ARCHITECTURE.md`
+- **Ephemeral Agents:** `docs/02_ARCHITECTURE/G_MTHO_CIRCLE.md`
+- **ChromaDB Schema:** `docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md`
+- **Voice Architecture:** `docs/02_ARCHITECTURE/MTHO_VOICE_ASSISTANT_ARCHITECTURE.md`

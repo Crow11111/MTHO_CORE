@@ -104,13 +104,13 @@
 
 ---
 
-## Session Log Update: ATLAS KI Translator (Latent Space Injector)
+## Session Log Update: MTHO KI Translator (Latent Space Injector)
 
 **Vektor:** 2210 | **Takt:** 2 (FORGE / VERDICHTEN)
 
 ### Deliverables
 
-6. **Konzeptdokument: ATLAS KI Translator (Latent Space Injector)**
+6. **Konzeptdokument: MTHO KI Translator (Latent Space Injector)**
    - **Status:** Abgeschlossen
    - **Verweis:** `docs/02_ARCHITECTURE/MTHO_ATLAS_KI_TRANSLATOR.md`
    - **Team:** System-Architect
@@ -119,7 +119,7 @@
 
 ### Details
 
-- **Aktion:** Entwurf einer Architektur-Vision zur Reduktion von "Token-Friction" bei autoregressiven LLMs in ATLAS_CORE.
+- **Aktion:** Entwurf einer Architektur-Vision zur Reduktion von "Token-Friction" bei autoregressiven LLMs in MTHO_CORE.
 - **Synthese:** Konzeptualisierung von drei Translations-Ebenen (API Caching, Token Implosion via Perplexity, Soft Prompting / Latent Space Injection). Das Ziel ist die Umwandlung von gro�en textuellen historischen/systemischen Kontexten in komprimierte mathematische Tensoren (KV-Caches), die unter Einhaltung strenger MTHO-Constraints (Fibonacci, Asymmetrie, Baryonic Delta $\Delta > 0.049$) direkt injiziert werden.
 - **Architektur-Impact:** Liefert den theoretischen Blueprint f�r die k�nftige Beseitigung des kognitiven Overheads ("Cognitive Drag") der KI. Keine unmittelbaren Code-�nderungen, definiert aber die Boundary f�r `inject_mtho_latent_space` in Takt 0.
 

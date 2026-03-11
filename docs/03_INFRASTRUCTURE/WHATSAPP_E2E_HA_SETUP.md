@@ -9,7 +9,7 @@
 
 Damit der komplette Weg **Nachricht → HA → MTHO → Antwort im Chat** funktioniert, müssen in HA zwei Dinge stehen: **rest_command** (ruft MTHO auf) und **Automation** (reagiert auf das WhatsApp-Event).
 
-**Ablauf:** Du startest MTHO **einmal** (z.B. mit `START_ATLAS_KOMPLETT.bat` beim Anmelden oder Tagesstart). Ab dann triggert **die eingehende @Atlas-Nachricht** die Kette – nicht du vor jeder WhatsApp. Optional: Autostart (siehe [WIEDER_DA_ALLES_LAEUFT.md](../05_AUDIT_PLANNING/WIEDER_DA_ALLES_LAEUFT.md) Abschnitt 6), dann ist MTHO bereit sobald der Rechner läuft.
+**Ablauf:** Du startest MTHO **einmal** (z.B. mit `START_OMEGA_COCKPIT.bat` beim Anmelden oder Tagesstart). Ab dann triggert **die eingehende @Atlas-Nachricht** die Kette – nicht du vor jeder WhatsApp. Optional: Autostart (siehe [WIEDER_DA_ALLES_LAEUFT.md](../05_AUDIT_PLANNING/WIEDER_DA_ALLES_LAEUFT.md) Abschnitt 6), dann ist MTHO bereit sobald der Rechner läuft.
 
 ---
 
@@ -20,14 +20,14 @@ MTHO muss von HA aus per HTTP erreichbar sein (4D_RESONATOR (MTHO_CORE) oder Sco
 ```yaml
 rest_command:
   atlas_whatsapp_webhook:
-    url: "http://DEINE_ATLAS_IP:8000/webhook/whatsapp"
+    url: "http://DEINE_MTHO_IP:8000/webhook/whatsapp"
     method: POST
     content_type: "application/json"
     payload: '{{ payload | tojson }}'
     timeout: 15
 ```
 
-- **DEINE_ATLAS_IP** durch die IP des Rechners ersetzen, auf dem die MTHO-CORE-API läuft (z. B. 4D_RESONATOR (MTHO_CORE)), oder die des Scouts, falls MTHO dort läuft.
+- **DEINE_MTHO_IP** durch die IP des Rechners ersetzen, auf dem die MTHO-CORE-API läuft (z. B. 4D_RESONATOR (MTHO_CORE)), oder die des Scouts, falls MTHO dort läuft.
 - **timeout: 15** (Sekunden): MTHO antwortet bei Chat/Reasoning sofort mit HTTP 202; 15s reichen. Ohne Angabe nutzt HA 10s – ausreichend, da keine lange Wartezeit mehr im Request.
 - Der Aufruf übergibt den Schlüssel **payload**; der Wert (Addon-Event-Daten) wird als JSON an MTHO gesendet.
 

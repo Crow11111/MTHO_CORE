@@ -731,7 +731,7 @@ Structured Output: `{domain, service, entity_id, data}`
 | Bug | Ursache | Fix | Datum |
 |-----|---------|-----|-------|
 | TTS Ghost Bug – Sprachausgabe bleibt stumm trotz korrektem Flow | `dispatch_tts()` wurde ohne `await` aufgerufen, asyncer Aufruf lief nicht durch | `await dispatch_tts(...)` in `scout_direct_handler.py` | 2026-03-05 |
-| stop_gc_loop Crash – Event-Bus stuerzt nach GC-Zyklus ab | `stop_gc_loop()` wurde auf nicht-gestarteten GC-Loop aufgerufen | Guard-Check `if self._gc_task:` vor `stop_gc_loop()` in `ghost_agent.py` | 2026-03-05 |
+| stop_gc_loop Crash – Event-Bus stuerzt nach GC-Zyklus ab | `stop_gc_loop()` wurde auf nicht-gestarteten GC-Loop aufgerufen | Guard-Check `if self._gc_task:` vor `stop_gc_loop()` in `mtho_agent.py` | 2026-03-05 |
 
 ---
 

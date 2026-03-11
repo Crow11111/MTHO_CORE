@@ -34,11 +34,11 @@ Damit der VPS die direkte Anfrage von Scout verarbeiten kann:
 2. Wenn nicht: Entwerft den Code-Schnipsel für die `main.py` auf dem VPS, der diesen Fallback-Traffic abfängt, durch die VPS-ChromaDB (Wuji) jagt und das OMEGA_ATTRACTOR antworten lässt.
 
 ### Task C: State-Sync (Wuji-Feld)
-Skizziert, wie wir sicherstellen, dass die ChromaDB auf dem VPS und die lokale ChromaDB synchron sind. Wenn Scout nachts mit dem VPS spricht, muss OMEGA_ATTRACTOR denselben Kontext (Wuji-Feld) haben wie 4D_RESONATOR (MTHO_CORE) am Tag. (Tipp: `migrate_to_wuji_field.py` Logik auf den VPS anwenden).
+Skizziert, wie wir sicherstellen, dass die ChromaDB auf dem VPS und die lokale ChromaDB synchron sind. Wenn Scout nachts mit dem VPS spricht, muss OMEGA_ATTRACTOR denselben Kontext (Wuji-Feld) haben wie 4D_RESONATOR (MTHO_CORE) am Tag. (Tipp: `migrate_to_context_field.py` Logik auf den VPS anwenden).
 
 ## 4. CEO-DIREKTIVE FÜR DIE GHOSTS
 - KEINE halben Sachen. Der Code muss produktionsreif sein.
 - Der User (Marc) wacht morgen auf und erwartet ein klares, getestetes Failover-Konzept.
 - "Failure is not an option." – Wenn der Failover die Latenz um mehr als 1.5 Sekunden erhöht, ist das Design fehlerhaft. Baut es asynchron und aggressiv im Timeout.
 
-[AUTHORIZATION: OSMIUM_JUDGE // CEO_ATLAS_CORE]
+[AUTHORIZATION: OSMIUM_JUDGE // CEO_MTHO_CORE]

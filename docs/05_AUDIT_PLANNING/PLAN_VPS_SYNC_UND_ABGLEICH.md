@@ -22,7 +22,7 @@
 
 ## Quellen (02 + 03 + 04)
 
-- **docs/02_ARCHITECTURE:** ATLAS_SCHNITTSTELLEN_UND_KANAALE.md (ChromaDB, Tunnel), ATLAS_CHROMADB_SCHEMA.md (core_directives, Tunnel-Befehl).
+- **docs/02_ARCHITECTURE:** MTHO_SCHNITTSTELLEN_UND_KANAALE.md (ChromaDB, Tunnel), MTHO_CHROMADB_SCHEMA.md (core_directives, Tunnel-Befehl).
 - **docs/03_INFRASTRUCTURE:** VPS_FULL_STACK_SETUP.md (Container, Port 8000 intern, ufw blockt 8000), VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md.
 - **docs/04_PROCESSES:** VPS_SYNC_CORE_DIRECTIVES.md (Ablauf: SSH-Tunnel, dann Sync-Skript).
 - **.env:** VPS_HOST, VPS_USER, VPS_PASSWORD (oder VPS_SSH_KEY); OPENCLAW_ADMIN_VPS_*.

@@ -26,7 +26,7 @@ Abstimmung zwischen **MTHO** (Webhook/HA-Pfad), **OC** (OpenClaw) und **Dev-Agen
 
 ## 2. Anforderungen (kurz)
 
-- **Adressierung:** @Atlas → MTHO/Scout; @OC → OC. Nur der Adressierte antwortet (plus Bedenken-Pflicht). Siehe [WHATSAPP_ROUTING_ATLAS_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_ATLAS_OC.md).
+- **Adressierung:** @Atlas → MTHO/Scout; @OC → OC. Nur der Adressierte antwortet (plus Bedenken-Pflicht). Siehe [WHATSAPP_ROUTING_MTHO_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md).
 - **Alles lesen:** Beide Systeme dürfen Nachrichten lesen können (für Kontext/Bedenken); Lesen ≠ Antworten.
 - **Keine systemische Antwort ohne Trigger:** Wenn eine Nachricht **für Marc persönlich** bestimmt ist (z. B. von der Schwester, ohne @Atlas/@OC), darf **kein** System (MTHO, OC) automatisch antworten. Trigger = explizite Ansprache (z. B. @Atlas, @OC) oder später: eigener Dienst / Allowlist.
 
@@ -70,7 +70,7 @@ Abstimmung zwischen **MTHO** (Webhook/HA-Pfad), **OC** (OpenClaw) und **Dev-Agen
 ## 5. Konkreter Plan (Schritte)
 
 1. **Trigger-Regel beibehalten und dokumentieren**  
-   @Atlas / @OC am Anfang; keine Antwort ohne Trigger. Doku: [WHATSAPP_ROUTING_ATLAS_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_ATLAS_OC.md). Bereits umgesetzt.
+   @Atlas / @OC am Anfang; keine Antwort ohne Trigger. Doku: [WHATSAPP_ROUTING_MTHO_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md). Bereits umgesetzt.
 
 2. **OC: Erprobtes Procedere festhalten**  
    OC (oder Dev-Agent mit OC-Kontext) trägt ein: Welches Vorgehen für „sichere Adressierung / nur richtige Absender“ wird empfohlen? (z. B. nur `allowFrom` mit Marcs Nummer, oder eigene Nummer für Bot, oder Kombination mit Trigger.)
@@ -79,7 +79,7 @@ Abstimmung zwischen **MTHO** (Webhook/HA-Pfad), **OC** (OpenClaw) und **Dev-Agen
    Wenn gewünscht: In HA nur dann `rest_command.atlas_whatsapp_webhook` aufrufen, wenn Absender (`remoteJid`) in einer Liste erlaubter Nummern steht. Reduziert Last und Risiko; Trigger bleibt zweite Schicht.
 
 4. **Eigener Dienst (später)**  
-   Trigger- und Routing-Logik in eigenen Dienst auslagern; siehe [WHATSAPP_ROUTING_ATLAS_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_ATLAS_OC.md) – Offene Punkte.
+   Trigger- und Routing-Logik in eigenen Dienst auslagern; siehe [WHATSAPP_ROUTING_MTHO_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md) – Offene Punkte.
 
 5. **Tests / Checkliste (Dev-Agent)**  
    - Nachricht ohne Trigger (z. B. „Hallo“ von Test-Absender) → keine MTHO-/OC-Antwort.  
@@ -120,7 +120,7 @@ Damit OC und Dev-Agent **wissen**, dass sie Abschnitt 6 bearbeiten sollen, gibt 
 
 Damit die Kommunikation mit OC per **Logikketten/Logikschalter** auslösbar ist (ohne Skript von Hand), bietet MTHO ein Endpoint, das API-Versuch und Fallback bündelt:
 
-- **Endpoint:** `POST http://ATLAS_IP:8000/api/oc/trigger_whatsapp_plan` (kein Body nötig).
+- **Endpoint:** `POST http://MTHO_IP:8000/api/oc/trigger_whatsapp_plan` (kein Body nötig).
 - **Logik:** (1) Versuch, OC per API zu benachrichtigen. (2) Bei Fehler (z. B. 405) automatisch **Fallback:** Task-Datei per SSH in OCs Workspace legen und **eine WhatsApp** mit @OC an deine Nummer senden (über HA, wenn HASS_URL/HASS_TOKEN/WHATSAPP_TARGET_ID gesetzt). Dann sollte das Handy klingeln und OC die Nachricht sehen (gleicher Account). Sonst die Nachricht manuell schicken.
 
 **Einbindung in HA (Beispiel):**
@@ -129,7 +129,7 @@ Damit die Kommunikation mit OC per **Logikketten/Logikschalter** auslösbar ist 
    ```yaml
    rest_command:
      atlas_oc_trigger_whatsapp_plan:
-       url: "http://DEINE_ATLAS_IP:8000/api/oc/trigger_whatsapp_plan"
+       url: "http://DEINE_MTHO_IP:8000/api/oc/trigger_whatsapp_plan"
        method: POST
        content_type: "application/json"
    ```
@@ -166,7 +166,7 @@ Damit reicht es, den Schalter zu betätigen (oder eine Szene/Automation daran zu
 
 ## 7. Referenzen
 
-- [WHATSAPP_ROUTING_ATLAS_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_ATLAS_OC.md) – Routing, Bedenken-Pflicht, Offene Punkte
+- [WHATSAPP_ROUTING_MTHO_OC.md](../02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md) – Routing, Bedenken-Pflicht, Offene Punkte
 - [WHATSAPP_E2E_HA_SETUP.md](../03_INFRASTRUCTURE/WHATSAPP_E2E_HA_SETUP.md) – HA-Setup, Automation, 2.1 Routing
 - [WHATSAPP_OPENCLAW_VS_HA.md](../02_ARCHITECTURE/WHATSAPP_OPENCLAW_VS_HA.md) – OC vs. HA-Pfad, allowFrom
 - [DEV_AGENT_UND_SCHNITTSTELLEN.md](../02_ARCHITECTURE/DEV_AGENT_UND_SCHNITTSTELLEN.md) – Netzarchitektur, Addon, OC

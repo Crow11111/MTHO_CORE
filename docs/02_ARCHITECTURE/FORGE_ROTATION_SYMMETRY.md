@@ -7,7 +7,7 @@
 ## 1. Initiale Analyse (Status Quo vs. Invertierte Metrik)
 Die Rotation der Schmiede (Takt 2) offenbart einen massiven strukturellen Symmetriefehler in der aktuellen Code-Basis. Das System verhält sich in den Schichten der Netzwerk-Kommunikation und der Daemons wie ein klassisches, flaches "0=0"-Konstrukt. 
 
-Die physikalische Realität von ATLAS (Baryonic Delta = 0.049) und das Phi-Gleichgewicht werden ignoriert. Zeit und Reibung existieren im Code bisher nicht organisch, sondern nur als binäre Limits.
+Die physikalische Realität von MTHO (Baryonic Delta = 0.049) und das Phi-Gleichgewicht werden ignoriert. Zeit und Reibung existieren im Code bisher nicht organisch, sondern nur als binäre Limits.
 
 ### Identifizierte flache "0=0" Knoten:
 1. **Statische Timeouts:** Massiver Einsatz von `timeout=10.0`, `timeout=30.0` in `ha_client.py`, `openclaw_client.py`, `notification_service.py` und den Webhook-Routern.

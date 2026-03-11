@@ -87,5 +87,5 @@
 
 - `.cursorrules` (Takt 0, Cons-Zellen, Anti-Patterns, Budget).
 - `docs/01_CORE_DNA/GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md`
-- `docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md`
+- `docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md`
 - Skills: `planning/budget-estimation`, `planning/team-composition`

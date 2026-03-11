@@ -1,5 +1,7 @@
 # SIGMA-70 AUDIT – KAMMER 4: Security-Architektur, Chaos-Engineering, Veto-Logik
 
+> **HISTORISCH – kein Fix noetig:** Dieses Audit dokumentiert den Zustand vom 2026-03-11. Referenzen auf `munin.py` (heute `context_injector.py`) und `council_gate.py` (heute `veto_gate.py`) sind bewusst unveraendert.
+
 **Auditor:** Security-Expert (Schicht 3)
 **Datum:** 2026-03-11
 **Status:** AUDIT ABGESCHLOSSEN

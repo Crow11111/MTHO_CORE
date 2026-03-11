@@ -60,7 +60,7 @@ python -m src.scripts.test_voice_e2e
 
 | Dokument | Pfad |
 |----------|------|
-| Architektur | `docs/02_ARCHITECTURE/ATLAS_VOICE_ASSISTANT_ARCHITECTURE.md` |
+| Architektur | `docs/02_ARCHITECTURE/MTHO_VOICE_ASSISTANT_ARCHITECTURE.md` |
 | Troubleshooting | `docs/04_PROCESSES/VOICE_TROUBLESHOOTING.md` |
 | Smart Command Patterns | `docs/04_PROCESSES/VOICE_SMART_COMMAND_PATTERNS.md` |
 | Scout Assist Pipeline | `docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md` |

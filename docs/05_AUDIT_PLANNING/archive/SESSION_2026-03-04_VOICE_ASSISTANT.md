@@ -138,7 +138,7 @@ Diese Session umfasste die vollständige Integration des MTHO Voice Assistant Sy
 |---------|------|------|
 | MTHO API | `8088` | 4D_RESONATOR (MTHO_CORE) |
 | HA REST API | `8123` (HTTPS) | Scout |
-| TTS Stream | `8002` | 4D_RESONATOR (MTHO_CORE) (ATLAS_HOST_IP) |
+| TTS Stream | `8002` | 4D_RESONATOR (MTHO_CORE) (MTHO_HOST_IP) |
 
 ### 4.3 Umgebungsvariablen (.env auf 4D_RESONATOR (MTHO_CORE))
 
@@ -151,7 +151,7 @@ Diese Session umfasste die vollständige Integration des MTHO Voice Assistant Sy
 | `TTS_TARGET` | TTS-Ziel | `mini`, `elevenlabs`, `both` |
 | `TTS_CONFIRMATION_ENTITY` | media_player für TTS | `media_player.schreibtisch` |
 | `ELEVENLABS_API_KEY` | ElevenLabs API | Optional |
-| `ATLAS_HOST_IP` | IP für Audio-Stream | `192.168.178.110` |
+| `MTHO_HOST_IP` | IP für Audio-Stream | `192.168.178.110` |
 | `TTS_STREAM_PORT` | HTTP-Port für Audio-Stream | `8002` |
 
 ### 4.4 HA-Konfiguration (Scout)
@@ -270,7 +270,7 @@ Erwartete Antwort:
 
 | Dokument | Pfad |
 |----------|------|
-| Voice Architecture | `docs/02_ARCHITECTURE/ATLAS_VOICE_ASSISTANT_ARCHITECTURE.md` |
+| Voice Architecture | `docs/02_ARCHITECTURE/MTHO_VOICE_ASSISTANT_ARCHITECTURE.md` |
 | Scout Pipeline | `docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md` |
 | Integration README | `ha_integrations/atlas_conversation/README.md` |
 | Webhook Routes | `src/api/routes/ha_webhook.py` |

@@ -263,7 +263,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
             "src.network.chroma_client.query_context_field",
             return_value=mock_context_result,
         ), mock.patch(
-            "src.logic_core.munin._get_embedding_function",
+            "src.logic_core.context_injector._get_embedding_function",
             return_value=MockEmbeddingFunction(),
         ):
             # Context Injection: fetch_context
@@ -282,7 +282,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 
         # Semantic Drift (ohne Chroma, nur Embedding-Mock)
         with mock.patch(
-            "src.logic_core.munin._get_embedding_function",
+            "src.logic_core.context_injector._get_embedding_function",
             return_value=MockEmbeddingFunction(),
         ):
             # Gleicher Kontext/Output → kein Veto

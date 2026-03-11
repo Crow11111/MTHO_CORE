@@ -78,7 +78,7 @@ OC nutzt **keine eigene WhatsApp-Business-Nummer** und erscheint **nicht** als s
 
 - **@Atlas** am Anfang → MTHO/Scout antworten mit **[MTHO]** bzw. **[Scout]**.
 - **@OC** am Anfang → nur OC antwortet mit **[OC]** oder @OC; MTHO (HA-Pfad) reagiert nicht.
-- Nur der adressierte Adressat reagiert; bei @Atlas + @OC später in der Nachricht gilt der Teil für den anderen bzw. beide. Vollständige Regeln und OC-Prozedere: **docs/WHATSAPP_ROUTING_ATLAS_OC.md**.
+- Nur der adressierte Adressat reagiert; bei @Atlas + @OC später in der Nachricht gilt der Teil für den anderen bzw. beide. Vollständige Regeln und OC-Prozedere: **docs/02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md**.
 
 ---
 

@@ -94,7 +94,7 @@ Nur referenziert. Ausführliche Diagnose und Maßnahmen: **`docs/03_INFRASTRUCTU
 | WELTFORMEL_KURZBEWERTUNG.md | erstellt | Validität, offene Enden, Ethik/Risiko/Kosten-Nutzen |
 | ZUSAMMENFASSUNG_CEO_PLAN_ABSTIMMUNG.md | erstellt | Diese Zusammenfassung; abgleichbar mit Vergleichsdokument |
 
-**Referenziert (unverändert):** docs/03_INFRASTRUCTURE/OC_BRAIN_LEERE_NACHRICHTEN_DIAGNOSE.md, docs/01_CORE_DNA/GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md, docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md.
+**Referenziert (unverändert):** docs/03_INFRASTRUCTURE/OC_BRAIN_LEERE_NACHRICHTEN_DIAGNOSE.md, docs/01_CORE_DNA/GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md, docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md.
 
 ---
 

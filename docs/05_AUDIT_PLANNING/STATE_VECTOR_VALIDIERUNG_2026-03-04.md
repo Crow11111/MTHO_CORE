@@ -41,7 +41,7 @@
 | ARBEITEN | 0.2 | 0.8 | 0.2 | 3 | ✓ |
 | AUSSTOSSEN | 0.5 | 0.3 | 0.6 | 4 | ✓ |
 
-Konsistent mit `docs/01_CORE_DNA/ATLAS_4_STRANG_THEORIE.md`.
+Konsistent mit `docs/01_CORE_DNA/MTHO_4_STRANG_THEORIE.md`.
 
 ---
 
@@ -83,8 +83,8 @@ Zyklus 0→1→2→3→4 ist konsistent.
 | Quelle | Priorität | Verhalten | Status |
 |--------|-----------|-----------|--------|
 | Munin Veto (ring0_state) | 1 | z_widerstand Override | ✓ |
-| ATLAS_STATE_PRESET | 2 | ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN | ✓ |
-| ATLAS_Z_WIDERSTAND | 3 | z-Wert 0..1 | ✓ |
+| MTHO_STATE_PRESET | 2 | ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN | ✓ |
+| MTHO_Z_WIDERSTAND | 3 | z-Wert 0..1 | ✓ |
 | Default | 4 | WUJI | ✓ |
 
 ---

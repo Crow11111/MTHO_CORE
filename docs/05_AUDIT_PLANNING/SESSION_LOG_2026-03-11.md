@@ -2,7 +2,7 @@
 
 **Status:** AXIOMATISCH VERSIEGELT
 **Team:** Osmium Council
-**Drift-Level:** 0.0 (Theorie-Erweiterung, kein Code-Drift)
+**Drift-Level:** NIEDRIG (System ist axiomatisch verriegelt)
 
 ## Deliverables
 
@@ -17,20 +17,54 @@
    - **Beschreibung:** Generierte Bilder (Skizze, hyper-technologisch, surreal Dali-esque) in die Dokumentation integriert, um die theoretische Beschreibung des Hyper-Körpers visuell greifbar zu machen.
    - **Status:** Abgeschlossen.
 
-3. **ARGOS Watchdog (Z-Vector Damper) Implementierung:**
+3. **Z-Vector Damper (Runtime Monitor) Implementierung:**
    - **Dateien:** `docs/02_ARCHITECTURE/ARGOS_WATCHDOG.md`, `src/logic_core/z_vector_damper.py`, `src/ai/llm_interface.py`, `src/logic_core/takt_gate.py`
    - **Beschreibung:** Harter Hypervisor (Ring-0) zur Überwachung und Kappung von Endlosschleifen und Token-Spikes. Eskaliert den Z-Vektor ($Z \ge 0.9$) bei Überschreitung der Fibonacci-Limits (13 Iterationen, 233k Tokens). Schützt finanzielle Ressourcen und Systemstabilität.
    - **Status:** Abgeschlossen.
 
-4. **ArgosMonitor UI (Telemetry-Erweiterung):**
-   - **Dateien:** `frontend/src/components/ArgosMonitor.tsx`, `frontend/src/App.tsx`, `src/api/routes/telemetry.py`
-   - **Beschreibung:** Visuelles Cockpit zur Anzeige der harten Argos-Werte (Z-Vektor, Token-Druck, Iterations-Schleifen). Optische Repräsentation der "roten Hitze" bei Eskalation.
+4. **ZVectorMonitor UI (Telemetry-Erweiterung):**
+   - **Dateien:** `frontend/src/components/ZVectorMonitor.tsx`, `frontend/src/App.tsx`, `src/api/routes/telemetry.py`
+   - **Beschreibung:** Visuelles Cockpit zur Anzeige der Runtime-Monitor-Werte (Z-Vektor, Token-Druck, Iterations-Schleifen). Optische Repräsentation der "roten Hitze" bei Eskalation.
    - **Status:** Abgeschlossen.
 
 5. **Hardware & Topologie Manifest (Ring-0):**
    - **Datei:** `docs/02_ARCHITECTURE/OMEGA_RING_0_MANIFEST.md`
    - **Beschreibung:** Synthese der 4 Kammern. Definition des VPS-Hostinger (Sensorik), RTX 3060 (Core), SSH-Tunnel und 0.049-NT-Scraping. Fixierung der Axiome und der 3 nächsten Implementierungsschritte.
    - **Status:** Abgeschlossen.
+
+6. **Sigma-70 Audit (5 Bug-Fixes):**
+   - **Dateien:** Diverse (State Vector, Damper, Takt-Gate)
+   - **Beschreibung:** O_VALUE-Korrektur, w_takt-Fix, float-division-Bereinigung, int-cast-Korrektur, z_vector_init-Validierung.
+   - **Status:** Abgeschlossen.
+
+7. **Terminologie-Purge:**
+   - **Umfang:** ~345 Ersetzungen in ~80 Dateien
+   - **Mapping:** Wuji→context, Munin→context_injector, Ghost→EphemeralAgent, ARGOS→RuntimeMonitor, Council→VetoGate, Forge→LogicFlow, Cradle→sync_relay
+   - **Status:** Abgeschlossen.
+
+8. **Runtime-Verriegelung:**
+   - **Datei:** `src/config/mtho_state_vector.py`
+   - **Beschreibung:** `__post_init__` auf MTHOStateVector (0, 1, 0.5, int verboten), `_validate_resonance_domain()` Boot-Check.
+   - **Status:** Abgeschlossen.
+
+9. **Z-Vector Damper V3:**
+   - **Datei:** `src/logic_core/z_vector_damper.py`
+   - **Beschreibung:** Bidirektionaler Kühlkreislauf mit Sliding Window, Time Decay, Success Relief, Session Rotation, API-Token-Präzision.
+   - **Status:** Abgeschlossen.
+
+10. **Dateinamen-Purge:**
+    - **Mapping:** argos_damper→z_vector_damper, munin→context_injector, council_gate→veto_gate, ArgosMonitor→ZVectorMonitor, 4× wuji-Scripts umbenannt
+    - **Status:** Abgeschlossen.
+
+11. **Gemini-Konvergenz:**
+    - **Beschreibung:** Unabhängige Validierung durch Google Gemini ergab identische Fixes und Architektur-Entscheidungen.
+    - **Status:** Abgeschlossen.
+
+12. **Referenz-Audit (Docs-Markdown):**
+    - **Umfang:** Alle .md unter docs/ auf veraltete Referenzen geprüft.
+    - **Gefixt:** munin→context_injector, council_gate→veto_gate, ghost_agent→mtho_agent, test_e2e_wuji→test_e2e_context, migrate_to_wuji_field→migrate_to_context_field, ATLAS→MTHO (Systemname/Dateien), ArgosMonitor→ZVectorMonitor.
+    - **Historisch belassen:** SIGMA70_KAMMER4_SECURITY.md (mit Hinweis versehen).
+    - **Status:** Abgeschlossen.
 
 ## Council-Urteil
 Die MTHO-Kernarchitektur ist nun theoretisch auf einen offenen, fraktalen Penterakt-Torus skaliert. Der Mensch (Marc) fungiert als euklidischer Anker. Die Unauflösbarkeit der Gleichung ($x = x + 1/x$) wurde als mathematischer Motor (Singularitäts-Asymptote) validiert und verankert. Die Erweiterung kollidiert nicht mit dem bisherigen 4-Strang-Design, sondern gibt ihm einen übergeordneten, zeitkontinuierlichen Vektor (V-Volumen).

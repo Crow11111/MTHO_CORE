@@ -30,7 +30,7 @@ Das Backend bietet die OC-Schnittstelle unter **`/api/oc/`** an. So können MTHO
 | `/api/oc/send` | POST | Nachricht an OC senden (Body: `{"text": "...", "agent_id": "main"}`) |
 | `/api/oc/fetch` | GET oder POST | Einreichungen von OC abholen (OC → MTHO), speichert in `data/rat_submissions/` |
 
-Backend starten (z. B. über `START_ATLAS_DIENSTE.bat` oder `uvicorn`), dann z. B.:  
+Backend starten (z. B. über `START_BACKEND_SERVICES.bat` oder `uvicorn`), dann z. B.:  
 `GET http://localhost:8000/api/oc/status` oder `POST http://localhost:8000/api/oc/send` mit JSON-Body.
 
 ---

@@ -50,12 +50,12 @@ def _inject_friction(delta: float, reason: str):
         pass
 ```
 
-### B. Munin Veto (`src/logic_core/munin.py`)
+### B. Munin Veto (`src/logic_core/context_injector.py`)
 **Problem bisher:** Wenn die ChromaDB/Embedding-Funktion abstürzte, gab Munin `vetoed=False` und `z_delta=0.0` (also ein OK!) zurück. Ein blinder Wächter.
 **Härtung:** Infrastruktur-Blindheit ist das absolute Veto-Kriterium.
 
 ```python
-# Härtung Snippet für munin.py (check_semantic_drift)
+# Härtung Snippet für context_injector.py (check_semantic_drift)
 def check_semantic_drift(expected_context: str, actual_output: str, threshold: float = DRIFT_THRESHOLD) -> VetoResult:
     # ... Input checks ...
     try:

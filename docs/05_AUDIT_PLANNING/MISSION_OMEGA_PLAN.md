@@ -8,7 +8,7 @@
 # MISSION OMEGA: Autonome Intelligenz für MTHO
 
 **Status:** PLAN | **Datum:** 2026-03-05  
-**Referenz:** GHOST_AGENT_NIGHT_SHIFT_FAILOVER.md, ATLAS_AGI_ARCHITECTURE, ATLAS_NEOCORTEX_V1, AUTONOMOUS_VISION_LOOP
+**Referenz:** MTHO_AGENT_NIGHT_SHIFT_FAILOVER.md, MTHO_AGI_ARCHITECTURE, AUTONOMOUS_VISION_LOOP
 
 ---
 
@@ -273,7 +273,7 @@ Der VPS muss bereit sein:
 - ChromaDB liegt auf VPS (oder zentral)
 - 4D_RESONATOR (MTHO_CORE) nutzt bei lokalem Chroma: `CHROMA_LOCAL_PATH` oder SSH-Tunnel zu VPS
 - **Empfehlung:** ChromaDB nur auf VPS. 4D_RESONATOR (MTHO_CORE) und Scout-Requests (via VPS) nutzen dieselbe DB.
-- `sync_core_directives_to_vps.py` / `migrate_to_wuji_field.py` für Direktiven-Sync
+- `sync_core_directives_to_vps.py` / `migrate_to_context_field.py` für Direktiven-Sync
 
 ---
 
@@ -303,7 +303,7 @@ Der VPS muss bereit sein:
 
 - [ ] Predictive Matrix (action_log, ex_post_delta) auf VPS
 - [ ] Pattern-Detection: Wiederkehrende Events → automatische Aktionen
-- [ ] Evolution Request: Hardware-Eskalation bei Limits (ATLAS_AGI_ARCHITECTURE)
+- [ ] Evolution Request: Hardware-Eskalation bei Limits (MTHO_AGI_ARCHITECTURE)
 
 ---
 
@@ -338,11 +338,11 @@ Der VPS muss bereit sein:
 ## 9. Referenzen
 
 - `docs/05_AUDIT_PLANNING/GHOST_AGENT_NIGHT_SHIFT_FAILOVER.md` – Failover-Spec
-- `docs/02_ARCHITECTURE/ATLAS_VOICE_ASSISTANT_ARCHITECTURE.md` – Voice-Pipeline
-- `docs/02_ARCHITECTURE/ATLAS_NEOCORTEX_V1.md` – Sensor → Brain
+- `docs/02_ARCHITECTURE/MTHO_VOICE_ASSISTANT_ARCHITECTURE.md` – Voice-Pipeline
+- `docs/02_ARCHITECTURE/MTHO_AGI_ARCHITECTURE.md` – Sensor → Brain
 - `docs/02_ARCHITECTURE/AUTONOMOUS_VISION_LOOP.md` – Vision Daemon
-- `docs/02_ARCHITECTURE/ATLAS_SCHNITTSTELLEN_UND_KANAALE.md` – Kanäle
-- `docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md` – Collections
+- `docs/02_ARCHITECTURE/MTHO_SCHNITTSTELLEN_UND_KANAALE.md` – Kanäle
+- `docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md` – Collections
 - `docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md` – HA-Setup
 - `src/services/scout_direct_handler.py` – Triage, OMEGA_ATTRACTOR, VPS-Fallback
 - `ha_integrations/atlas_conversation/api.py` – Failover-Logik

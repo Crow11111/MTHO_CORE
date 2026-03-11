@@ -15,7 +15,7 @@ Kurz-Checkliste, damit MTHO, Brain, Sehen/Hören/Sprechen und Proof durchlaufen.
 
 **Nicht du vor jeder WhatsApp.** Der Ablauf ist:
 
-1. **Einmal** MTHO starten (z.B. wenn du an den Rechner gehst oder den Tag beginnst) → `START_ATLAS_KOMPLETT.bat` oder `START_ATLAS_DIENSTE.bat`. Danach läuft das Backend (Port 8000).
+1. **Einmal** MTHO starten (z.B. wenn du an den Rechner gehst oder den Tag beginnst) → `START_OMEGA_COCKPIT.bat` oder `batch_launcher/START_BACKEND_SERVICES.bat`. Danach läuft das Backend (Port 8000).
 2. **Ab dann** ist **die eingehende Nachricht** der Trigger: Du schickst eine WhatsApp mit @Atlas → HA feuert Event → rest_command ruft MTHO auf → MTHO antwortet. Du startest nichts mehr „vor“ der Nachricht.
 3. Optional: **Autostart** (siehe unten), dann ist MTHO bereit sobald der Rechner (4D_RESONATOR (MTHO_CORE)) an ist – du trittst gar nicht als Trigger auf.
 
@@ -42,15 +42,15 @@ In `c:\MTHO_CORE\.env` sollten gesetzt sein:
 ### Option A: Ein Klick – alles (MX am PC + Backend + UIs)
 
 ```bat
-START_ATLAS_KOMPLETT.bat
+START_OMEGA_COCKPIT.bat
 ```
 
-Startet nacheinander: **MX-Snapshot-Server** (Port 8555, Brio am PC) und dann **START_ATLAS_DIENSTE.bat** (Backend :8000, Voice-Info :8502). Damit läuft „MTHO sieht“ (Brio) und die lokalen Dienste.
+Startet nacheinander: **MX-Snapshot-Server** (Port 8555, Brio am PC) und dann **batch_launcher/START_BACKEND_SERVICES.bat** (Backend :8000, Voice-Info :8502). Damit läuft „MTHO sieht“ (Brio) und die lokalen Dienste.
 
 ### Option B: Nur MTHO-Dienste (ohne Snapshot-Server)
 
 ```bat
-START_ATLAS_DIENSTE.bat
+batch_launcher/START_BACKEND_SERVICES.bat
 ```
 
 Wenn du **Scout-MX** oder **Tapo** über `.env` nutzt, reicht das. Für **Brio am PC** zusätzlich Snapshot-Server starten (siehe Option A oder unten).
@@ -61,7 +61,7 @@ Wenn du **Scout-MX** oder **Tapo** über `.env` nutzt, reicht das. Für **Brio a
 python -m src.scripts.camera_snapshot_server
 ```
 
-In eigenem Fenster (Port 8555). Nur nötig, wenn du Brio am PC nutzt und **nicht** START_ATLAS_KOMPLETT.bat gestartet hast.
+In eigenem Fenster (Port 8555). Nur nötig, wenn du Brio am PC nutzt und **nicht** START_OMEGA_COCKPIT.bat gestartet hast.
 
 ### OMEGA_ATTRACTOR (VPS)
 
@@ -106,16 +106,16 @@ In eigenem Fenster laufen lassen.
 
 | Was | Befehl / Datei |
 |-----|------------------|
-| **Alles auf einmal** (MX + Backend + UIs) | `START_ATLAS_KOMPLETT.bat` |
-| Nur MTHO-Dienste | `START_ATLAS_DIENSTE.bat` |
+| **Alles auf einmal** (MX + Backend + UIs) | `START_OMEGA_COCKPIT.bat` |
+| Nur MTHO-Dienste | `batch_launcher/START_BACKEND_SERVICES.bat` |
 | MX am PC (Brio) einzeln | `python -m src.scripts.camera_snapshot_server` |
 | Proof (Hören/Sehen/Sprechen) | `python -m src.scripts.proof_hoert_sieht_spricht` |
 | OC Config deployen | `python -m src.scripts.deploy_openclaw_config_vps` |
 | OC Config prüfen | `python -m src.scripts.openclaw_doctor_vps` |
-| Kern-Context | `docs\05_AUDIT_PLANNING\ATLAS_KERN_CONTEXT.md` |
-| Status Hören/Sehen/Sprechen | `docs\05_AUDIT_PLANNING\ATLAS_HOERT_SIEHT_SPRICHT_STATUS.md` |
+| Kern-Context | `docs\05_AUDIT_PLANNING\MTHO_KERN_CONTEXT.md` |
+| Status Hören/Sehen/Sprechen | `docs\05_AUDIT_PLANNING\MTHO_HOERT_SIEHT_SPRICHT_STATUS.md` |
 
-**Wenn du wieder da bist:** .env prüfen → einmal `START_ATLAS_KOMPLETT.bat` (oder `START_ATLAS_DIENSTE.bat`) → danach triggert jede eingehende @Atlas-WhatsApp die Antwort. Optional: Autostart einrichten, dann musst du gar nicht manuell starten.
+**Wenn du wieder da bist:** .env prüfen → einmal `START_OMEGA_COCKPIT.bat` (oder `batch_launcher/START_BACKEND_SERVICES.bat`) → danach triggert jede eingehende @Atlas-WhatsApp die Antwort. Optional: Autostart einrichten, dann musst du gar nicht manuell starten.
 
 ---
 
@@ -123,7 +123,7 @@ In eigenem Fenster laufen lassen.
 
 Damit das MTHO-Backend beim Anmelden/Start von Windows (4D_RESONATOR (MTHO_CORE)) startet und WhatsApp sofort funktioniert:
 
-- **Startordner:** `Win+R` → `shell:startup` → Verknüpfung zu `START_ATLAS_DIENSTE.bat` (oder `START_ATLAS_KOMPLETT.bat`) ablegen. Dann starten die Dienste beim Login.
-- **Oder Taskplaner:** Aufgabe „Beim Anmelden“ erstellen, Aktion: `C:\MTHO_CORE\START_ATLAS_DIENSTE.bat` (Arbeitsverzeichnis: `C:\MTHO_CORE`).
+- **Startordner:** `Win+R` → `shell:startup` → Verknüpfung zu `batch_launcher/START_BACKEND_SERVICES.bat` (oder `START_OMEGA_COCKPIT.bat`) ablegen. Dann starten die Dienste beim Login.
+- **Oder Taskplaner:** Aufgabe „Beim Anmelden“ erstellen, Aktion: `C:\MTHO_CORE\batch_launcher/START_BACKEND_SERVICES.bat` (Arbeitsverzeichnis: `C:\MTHO_CORE`).
 
 Danach ist MTHO bereit, sobald der Rechner läuft – die eingehende Nachricht triggert die Kette.

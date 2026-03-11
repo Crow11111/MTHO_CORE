@@ -23,7 +23,7 @@ Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. 
 ### 1.2 MTHO → OC: Nachricht landet bei OC
 
 - **Schritt:** `python -m src.scripts.test_atlas_oc_channel --send`
-- **Erwartung:** "Erfolg: True", Antwort von OC. Bei Timeout/405: KANAL_ATLAS_OC.md (Config, Neustart). Mit OC abstimmen ob Nachricht ankam.
+- **Erwartung:** "Erfolg: True", Antwort von OC. Bei Timeout/405: KANAL_MTHO_OC.md (Config, Neustart). Mit OC abstimmen ob Nachricht ankam.
 - **Daten bei OC:** `send_offene_punkte_to_oc` schickt Kontext + offene Punkte; danach mit OC abstimmen.
 
 ### 1.3 OC → MTHO: Einreichungen abholen
@@ -49,7 +49,7 @@ Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. 
 
 - **Schritt:** Backend + Frontend starten, Browser localhost:3000. Header "Backend" muss gruen sein.
 - **Erwartung:** Nachricht senden → Antwort von Atlas, keine Meldung "Nicht verbunden".
-- **Falls rot:** Backend zuerst starten; Frontend reconnected alle 5s automatisch. .env: VITE_ATLAS_API_URL=http://localhost:8000
+- **Falls rot:** Backend zuerst starten; Frontend reconnected alle 5s automatisch. .env: VITE_MTHO_API_URL=http://localhost:8000
 
 ### 2.3 E2E: Nachricht durch die Kette
 
@@ -65,4 +65,4 @@ Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. 
 
 ---
 
-Referenzen: KANAL_ATLAS_OC.md, STAMMDOKUMENTE_DEPLOY.md, BACKEND_INTEGRATION.md. Skripte: test_atlas_oc_channel.py, fetch_oc_submissions.py, send_offene_punkte_to_oc.py, test_frontend_backend.py.
+Referenzen: KANAL_MTHO_OC.md, STAMMDOKUMENTE_DEPLOY.md, BACKEND_INTEGRATION.md. Skripte: test_mtho_oc_channel.py, fetch_oc_submissions.py, send_offene_punkte_to_oc.py, test_frontend_backend.py.

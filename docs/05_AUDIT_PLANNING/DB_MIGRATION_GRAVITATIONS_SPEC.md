@@ -8,7 +8,7 @@
 # DB-Migration Gravitations-Logik (Phase 3)
 
 **Status:** Deliverable CEO-Plan. Inhalt durch db-expert / system-architect zu ergänzen.  
-**Referenz:** `docs/01_CORE_DNA/GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md`, `docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md`
+**Referenz:** `docs/01_CORE_DNA/GRAVITATIONAL_QUERY_AND_CORE_AXIOMS.md`, `docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md`
 
 ---
 

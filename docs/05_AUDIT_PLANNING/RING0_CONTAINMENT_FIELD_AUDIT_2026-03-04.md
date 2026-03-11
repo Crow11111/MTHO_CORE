@@ -37,7 +37,7 @@
 
 **Erwartung:** Validierung, Logik-Kern, Scout-Integration.
 
-**Befund:** `[FAIL]` Hugin ist in der ATLAS_4_STRANG_THEORIE als "Orchestrator + Hugin/Munin" erwähnt, aber es existiert **keine dedizierte Code-Implementierung**. Kein Modul, keine Klasse, keine Funktion mit dem Namen Hugin. Scout-Logik verteilt sich auf `scout_direct_handler`, `ha_webhook`, `llm_interface` – ohne Ring-0-Validierungsschicht.
+**Befund:** `[FAIL]` Hugin ist in der MTHO_4_STRANG_THEORIE als "Orchestrator + Hugin/Munin" erwähnt, aber es existiert **keine dedizierte Code-Implementierung**. Kein Modul, keine Klasse, keine Funktion mit dem Namen Hugin. Scout-Logik verteilt sich auf `scout_direct_handler`, `ha_webhook`, `llm_interface` – ohne Ring-0-Validierungsschicht.
 
 ### 1.2 Munin (Kontext & Wuji-Archivor)
 
@@ -47,7 +47,7 @@
 
 ### 1.3 Munin Veto: Semantic Drift Block
 
-**Erwartung:** Bei Überschreitung des Semantic-Drift-Thresholds → System Freeze (ATLAS_4_STRANG_THEORIE Z.81).
+**Erwartung:** Bei Überschreitung des Semantic-Drift-Thresholds → System Freeze (MTHO_4_STRANG_THEORIE Z.81).
 
 **Befund:** `[FAIL]` Der Semantic-Drift-Threshold ist **nicht implementiert**. `temporal_validator.py` und `atlas_knowledge.py` enthalten `validate_temporal` (GET) – eine **Diagnose-Funktion**, kein Block. Kein Code löst einen System-Freeze bei Drift aus.
 
@@ -77,13 +77,13 @@
 
 ## 3. Council Gate
 
-**Datei:** `src/api/middleware/council_gate.py`
+**Datei:** `src/api/middleware/veto_gate.py`
 
 ### 3.1 Statischer State
 
 ```python
 # get_current_state() → WUJI
-WUJI = ATLASStateVector(x_car_cdr=0.5, y_gravitation=0.0, z_widerstand=0.5, w_takt=0)
+WUJI = MTHOStateVector(x_car_cdr=0.5, y_gravitation=0.0, z_widerstand=0.5, w_takt=0)
 VETO_THRESHOLD = INV_PHI  # 0.618
 ```
 
@@ -205,13 +205,13 @@ Das Containment Field ist **nicht operativ**. Die dokumentierten Konzepte (Hugin
 | Massnahme | Status | Datei |
 |-----------|--------|-------|
 | Ring-0 Write Gate (Auth) | DONE | `auth_webhook.verify_ring0_write`, `atlas_knowledge.add_evidence` |
-| Council Gate State dynamisch | DONE | `atlas_state_vector.get_current_state()` liest `ATLAS_Z_WIDERSTAND`, `ATLAS_STATE_PRESET` |
+| Council Gate State dynamisch | DONE | `mtho_state_vector.get_current_state()` liest `MTHO_Z_WIDERSTAND`, `MTHO_STATE_PRESET` |
 | CRITICAL_PATH_PATTERNS erweitert | DONE | `council_gate`: evidence/add, directive/add, evidence/delete, directive/delete |
 
 **Konfiguration (.env):**
 - `RING0_WRITE_TOKEN` – Pflicht fuer POST /api/atlas/knowledge/evidence/add (Fail-Closed wenn leer)
-- `ATLAS_Z_WIDERSTAND` – Optional, 0.5 default. >= 0.618 aktiviert Veto-Modus (X-Council-Confirm erforderlich)
-- `ATLAS_STATE_PRESET` – Optional: ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN
+- `MTHO_Z_WIDERSTAND` – Optional, 0.5 default. >= 0.618 aktiviert Veto-Modus (X-Council-Confirm erforderlich)
+- `MTHO_STATE_PRESET` – Optional: ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN
 
 **Ring-0 Firewall (Prioritaet 1):** `[SUCCESS]`
 

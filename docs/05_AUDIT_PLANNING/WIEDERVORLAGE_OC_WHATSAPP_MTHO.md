@@ -39,7 +39,7 @@ Ziel = **funktionales Tool** wie in MTHO Neocortex V1.0 und Schnittstellen-Doc b
 Konkret nach dem Pairing:
 
 1. WhatsApp-Pairing verifizieren (Testnachricht an OC, Antwort prüfen).
-2. Scout so konfigurieren, dass er bei relevanten Events POST an OMEGA_ATTRACTOR sendet (Payload laut ATLAS_SCHNITTSTELLEN_UND_KANAALE.md).
+2. Scout so konfigurieren, dass er bei relevanten Events POST an OMEGA_ATTRACTOR sendet (Payload laut MTHO_SCHNITTSTELLEN_UND_KANAALE.md).
 3. Optional: ChromaDB-Collections `events`/`insights` auf VPS anlegen und in die Pipeline einhängen.
 
-Referenz: `docs/02_ARCHITECTURE/ATLAS_NEOCORTEX_V1.md`, `docs/02_ARCHITECTURE/ATLAS_SCHNITTSTELLEN_UND_KANAALE.md`.
+Referenz: `docs/02_ARCHITECTURE/MTHO_AGI_ARCHITECTURE.md`, `docs/02_ARCHITECTURE/MTHO_SCHNITTSTELLEN_UND_KANAALE.md`.

@@ -18,13 +18,13 @@
 | **Tampermonkey** | Browser-Extension: Markierter Text → MTHO TTS (Strg+Shift+S). GM_xmlhttpRequest → localhost:8000/api/atlas/speak | docs/03_INFRASTRUCTURE/TAMPERMONKEY_TTS_INTEGRATION.md |
 | **ElevenLabs** | TTS-API; Rollen (atlas_dialog, therapeut, analyst). Backend: atlas_voice.py, voice_config | src/api/routes/atlas_voice.py, .env ELEVENLABS_* |
 | **React/Vite** | Frontend Dashboard, WebSocket Chat, Backend-Status | frontend/, BACKEND_INTEGRATION.md |
-| **ChromaDB** | Vektor-Store, Session-Turns, Core-Directives, Embeddings | src/config/engine_patterns.py, ATLAS_CHROMADB_SCHEMA.md |
+| **ChromaDB** | Vektor-Store, Session-Turns, Core-Directives, Embeddings | src/config/engine_patterns.py, MTHO_CHROMADB_SCHEMA.md |
 | **Ollama** | Lokales LLM (langchain_ollama), Scout/HA-Kontext | llm_interface.py, usb_microphone_research.md |
 | **Gemini (Google AI)** | LLM-Provider, OC Admin, Modell-IDs in OPENCLAW | .cursor/skills/gemini-api-dev/SKILL.md, OPENCLAW_ADMIN_ARCHITEKTUR.md |
 | **LangChain** | ChatOllama, ChatGoogleGenerativeAI, Message-Ketten | src/ai/llm_interface.py, requirements.txt |
 | **Extract-Pipelines** | Textauswertung: extract_topics (heuristisch), extract_pipeline_v4, extract_nd_insights, ingest_session_log | src/scripts/ingest_session_log.py, extract_pipeline_v4.py, extract_nd_insights.py |
 | **MCP** | cursor-ide-browser (Browser-Automation), deploy_mcp.py (VPS Port 8001) | mcps/cursor-ide-browser, src/scripts/deploy_mcp.py |
-| **OpenClaw** | OC Admin (Gateway, WhatsApp, Nexos), MTHO→OC über openclaw_client | KANAL_ATLAS_OC.md, OPENCLAW_ADMIN_ARCHITEKTUR.md |
+| **OpenClaw** | OC Admin (Gateway, WhatsApp, Nexos), MTHO→OC über openclaw_client | KANAL_MTHO_OC.md, OPENCLAW_ADMIN_ARCHITEKTUR.md |
 
 ---
 
@@ -65,5 +65,5 @@
 ## 6. Verweise
 
 - TTS-Integration: `docs/03_INFRASTRUCTURE/TAMPERMONKEY_TTS_INTEGRATION.md`
-- Chroma/Schema: `docs/02_ARCHITECTURE/ATLAS_CHROMADB_SCHEMA.md`
-- OC-Kanal: `docs/02_ARCHITECTURE/KANAL_ATLAS_OC.md`
+- Chroma/Schema: `docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md`
+- OC-Kanal: `docs/02_ARCHITECTURE/KANAL_MTHO_OC.md`

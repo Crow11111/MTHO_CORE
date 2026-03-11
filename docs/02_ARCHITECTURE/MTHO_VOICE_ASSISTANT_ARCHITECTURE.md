@@ -103,7 +103,7 @@ User: "Hey MTHO, Regal 80% Helligkeit"
 | `TTS_TARGET` | Assist-TTS: mini, elevenlabs, elevenlabs_stream, both | mini |
 | `TTS_CONFIRMATION_ENTITY` | media_player für TTS | media_player.schreibtisch |
 | `ELEVENLABS_API_KEY` | ElevenLabs TTS | - |
-| `ATLAS_HOST_IP` | IP für Stream (Mini → MTHO) | 192.168.178.20 |
+| `MTHO_HOST_IP` | IP für Stream (Mini → MTHO) | 192.168.178.20 |
 | `TTS_STREAM_PORT` | HTTP-Port für Audio-Stream | 8002 |
 
 ---

@@ -111,7 +111,7 @@
 | 4.7 | ATLAS in aktiven Docs bereinigen (~15 Dateien) | `docs/02_*`, `03_*`, `04_*` | diverse |
 | 4.8 | ATLAS in `tests/test_smart_command_parser.py` | `tests/` | Z.2 |
 | 4.9 | ATLAS in `.cursor/agents/*.md` (~10 Dateien) | `.cursor/agents/` | diverse |
-| 4.10 | Error-Messages zweistufig (detail + debug) | `council_gate.py`, `friction_guard.py` | diverse |
+| 4.10 | Error-Messages zweistufig (detail + debug) | `veto_gate.py`, `friction_guard.py` | diverse |
 | 4.11 | Health-Check Loop in BAT (curl-basiert, 30s Timeout) | `START_OMEGA_COCKPIT.bat` | NEU |
 
 ---

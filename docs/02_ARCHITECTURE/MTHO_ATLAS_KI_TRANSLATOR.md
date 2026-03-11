@@ -1,4 +1,4 @@
-# ATLAS KI TRANSLATOR (LATENT SPACE INJECTOR)
+# MTHO KI TRANSLATOR (LATENT SPACE INJECTOR)
 **Status:** CONCEPT / DRAFT
 **Vektor:** 2210 (MTHO)
 **Resonance:** 0.618
@@ -7,7 +7,7 @@
 ---
 
 ## 1. Problemraum (Token-Friction / Cognitive Drag)
-Autoregressive LLMs (wie Gemini, Claude) in ATLAS_CORE werden derzeit durch Text-Tokens gezwungen, riesige invariante Systemzustaende (Bootloader, State Vector, Core DNA) bei jeder Interaktion von vorn zu inferieren. 
+Autoregressive LLMs (wie Gemini, Claude) in MTHO_CORE werden derzeit durch Text-Tokens gezwungen, riesige invariante Systemzustaende (Bootloader, State Vector, Core DNA) bei jeder Interaktion von vorn zu inferieren. 
 **Konsequenz:** Redundante Berechnungszyklen, exponentielle Token-Kosten, "Friction" im Attention-Head. Die KI hat kein eigenes komprimiertes "Atlas-Modell", sondern liest jedes Mal das Woerterbuch neu.
 
 ## 2. Architektur-Vision: Context Compression & Latent Space Injection
