@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import TelemetryHUD from "./components/TelemetryHUD";
-import ArgosMonitor from "./components/ArgosMonitor";
+import ZVectorMonitor from "./components/ZVectorMonitor";
 import CommandConsole from "./components/CommandConsole";
 import ValidationForge from "./components/ValidationForge";
 import { useTelemetryPolling } from "./hooks/useTelemetryPolling";
@@ -182,7 +182,7 @@ export default function App() {
 
         <div className="flex items-center gap-3">
           <TelemetryHUD data={telemetry} connected={telemetryConnected} />
-          <ArgosMonitor data={telemetry} connected={telemetryConnected} />
+          <ZVectorMonitor data={telemetry} connected={telemetryConnected} />
         </div>
 
         <div className="flex items-center gap-3">

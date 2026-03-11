@@ -84,7 +84,7 @@ def _forwarded_text_pipeline(text: str) -> str:
             "Antworte analytisch, auf Systemik fokussiert."
         )
         try:
-            from src.logic_core.munin import (
+            from src.logic_core.context_injector import (
                 apply_veto,
                 check_semantic_drift,
                 inject_context_for_agent,

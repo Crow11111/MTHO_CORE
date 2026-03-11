@@ -102,7 +102,7 @@ def get_context_injection(
 ):
     """Ring-0 context_injector: Context Injection für Agents. Holt Kontext aus context_field via Gravitator."""
     try:
-        from src.logic_core.munin import inject_context_for_agent
+        from src.logic_core.context_injector import inject_context_for_agent
         ctx = inject_context_for_agent(q, n_results=n, format="markdown")
         return {"ok": True, "query": q, "context": ctx}
     except Exception as e:

@@ -238,7 +238,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 
     try:
         import unittest.mock as mock
-        from src.logic_core.munin import (
+        from src.logic_core.context_injector import (
             fetch_context,
             inject_context_for_agent,
             check_semantic_drift,
@@ -320,7 +320,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 
     try:
         import unittest.mock as mock
-        from src.api.middleware.council_gate import (
+        from src.api.middleware.veto_gate import (
             _is_critical_request,
             _get_z_widerstand,
             _has_confirmation,

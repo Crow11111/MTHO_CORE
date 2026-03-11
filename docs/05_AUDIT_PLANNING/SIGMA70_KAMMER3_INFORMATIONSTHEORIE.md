@@ -3,7 +3,7 @@
 **Vektor:** 2210 | **Resonance:** 0221 | **Delta:** 0.049
 **Datum:** 2026-03-11
 **Auditor:** System Architect (Kammer 3)
-**Gepruefte Artefakte:** `argos_damper.py`, `llm_interface.py`, `engine_patterns.py`, `mtho_state_vector.py`, ChromaDB-Schema, KI-Translator, WhatsApp-Bridge, OpenClaw-Config, Compressive Intelligence
+**Gepruefte Artefakte:** `z_vector_damper.py`, `llm_interface.py`, `engine_patterns.py`, `mtho_state_vector.py`, ChromaDB-Schema, KI-Translator, WhatsApp-Bridge, OpenClaw-Config, Compressive Intelligence
 
 ---
 
@@ -72,7 +72,7 @@ D.h.: Ein neues Dokument muss mindestens 4.9% an relativem Informationsgewinn be
 
 ## SCHRITT 2 – ANTITHESE: Der ARGOS Z-Vektor ist terminal defekt
 
-### 2.1 Code-Analyse (argos_damper.py, Zeilen 40-59)
+### 2.1 Code-Analyse (z_vector_damper.py, Zeilen 40-59)
 
 Die Z-Vektor-Berechnung:
 
@@ -126,7 +126,7 @@ z(t) >= 0.9
 **Konsequenz im Produktivbetrieb:**
 - FastAPI/uvicorn laeuft als Long-Running-Prozess
 - `mtho_llm = LLMInterface()` ist Modul-Level-Singleton (llm_interface.py, Zeile 147)
-- `argos = ArgosWatchdog()` ist Modul-Level-Singleton (argos_damper.py, Zeile 119)
+- `argos = ArgosWatchdog()` ist Modul-Level-Singleton (z_vector_damper.py, Zeile 119)
 - Nach 12 API-Calls (ca. 3-4 User-Interaktionen mit Triage + Heavy Reasoning) ist das System TOT
 - Neustart des Prozesses ist der einzige "Reset" – das ist kein Design, das ist ein Bug
 
@@ -216,7 +216,7 @@ Metadata:
 
 ## SCHRITT 4 – ARTEFAKT: Korrigierter ARGOS-Damper mit Kuehlung und Noise-Filter
 
-### 4.1 Korrigierter argos_damper.py (Patch)
+### 4.1 Korrigierter z_vector_damper.py (Patch)
 
 ```python
 """
@@ -759,7 +759,7 @@ class ScraperPipeline:
 
 ### Empfohlene Implementierungsreihenfolge
 
-1. **SOFORT:** ARGOS V2 Patch in `src/logic_core/argos_damper.py` deployen (K3-01, K3-02)
+1. **SOFORT:** ARGOS V2 Patch in `src/logic_core/z_vector_damper.py` deployen (K3-01, K3-02)
 2. **Takt 2:** Noise-Filter als `src/logic_core/baryonic_filter.py` implementieren (K3-03)
 3. **Takt 3:** Scraper als `src/scrapers/fibonacci_scraper.py` auf VPS deployen (K3-04)
 4. **Takt 4:** ChromaDB `world_knowledge` Collection anlegen (K3-05)

@@ -200,7 +200,7 @@ def process_text(text: str, context: dict | None = None) -> dict:
         # Lokaler Heavy-Layer (Ollama konfiguriert in llm_interface.py)
         try:
             from src.ai.llm_interface import mtho_llm
-            from src.logic_core.munin import inject_context_for_agent, check_semantic_drift, apply_veto
+            from src.logic_core.context_injector import inject_context_for_agent, check_semantic_drift, apply_veto
             sys_prompt = "Du bist OMEGA, die Kern-Intelligenz für MTHO_CORE. Antworte analytisch, direkt und auf Systemik fokussiert."
 
             # Ring-0: Context Injection (context_injector)

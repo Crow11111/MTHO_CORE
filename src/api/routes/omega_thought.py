@@ -31,7 +31,7 @@ class ThoughtPayload(BaseModel):
     require_response: bool = False
 
 def _heavy_reasoning_sync(sys_prompt: str, user_text: str) -> str:
-    from src.logic_core.munin import inject_context_for_agent, check_semantic_drift, apply_veto
+    from src.logic_core.context_injector import inject_context_for_agent, check_semantic_drift, apply_veto
     context_ctx = inject_context_for_agent(user_text, n_results=3, format="markdown")
     if context_ctx:
         sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx

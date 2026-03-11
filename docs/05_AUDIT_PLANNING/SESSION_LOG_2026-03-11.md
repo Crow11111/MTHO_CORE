@@ -18,7 +18,7 @@
    - **Status:** Abgeschlossen.
 
 3. **ARGOS Watchdog (Z-Vector Damper) Implementierung:**
-   - **Dateien:** `docs/02_ARCHITECTURE/ARGOS_WATCHDOG.md`, `src/logic_core/argos_damper.py`, `src/ai/llm_interface.py`, `src/logic_core/takt_gate.py`
+   - **Dateien:** `docs/02_ARCHITECTURE/ARGOS_WATCHDOG.md`, `src/logic_core/z_vector_damper.py`, `src/ai/llm_interface.py`, `src/logic_core/takt_gate.py`
    - **Beschreibung:** Harter Hypervisor (Ring-0) zur Überwachung und Kappung von Endlosschleifen und Token-Spikes. Eskaliert den Z-Vektor ($Z \ge 0.9$) bei Überschreitung der Fibonacci-Limits (13 Iterationen, 233k Tokens). Schützt finanzielle Ressourcen und Systemstabilität.
    - **Status:** Abgeschlossen.
 

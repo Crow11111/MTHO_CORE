@@ -21,7 +21,7 @@ ARGOS agiert als isolierter Hypervisor. Er laeuft in `Ring-0` (analog zum Munin-
 4. Bei Freigabe: Ticket erteilt, Kosten nachtraeglich via Callback gebucht.
 
 ### Implementierung
-- `src/logic_core/argos_damper.py`: Decorator (`@argos_protected`) und Singleton `ArgosWatchdog`.
+- `src/logic_core/z_vector_damper.py`: Decorator (`@argos_protected`) und Singleton `ArgosWatchdog`.
 - Integration: Einklinken in `src/ai/llm_interface.py` via Wrapper um Langchain-Invocations.
 
 ## Budget-Constraint (Schicht 3)

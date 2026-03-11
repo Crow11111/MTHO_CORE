@@ -8,7 +8,7 @@ type Props = {
   connected: boolean;
 };
 
-export default function ArgosMonitor({ data, connected }: Props) {
+export default function ZVectorMonitor({ data, connected }: Props) {
   if (!connected || !data || !data.argos) {
     return null;
   }

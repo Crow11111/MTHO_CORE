@@ -6,7 +6,7 @@
 **Methode:** Axiomatische Pruefung (4-Schritt: These → Antithese → Synthese → Artefakt)
 
 **Gepruefte Dateien:**
-- `src/logic_core/argos_damper.py`
+- `src/logic_core/z_vector_damper.py`
 - `src/logic_core/takt_gate.py`
 - `src/config/mtho_state_vector.py`
 - `src/config/ring0_state.py`
@@ -53,7 +53,7 @@
 **Bewertung:**
 - [SUCCESS] Munin Semantic Drift Detection existiert (`munin.py` Zeile 163-212). Bei Drift > 0.382 wird z_widerstand erhoeht.
 - [FAIL: Halluzinations-Bremse nicht implementiert] Das OMEGA_RING_0_MANIFEST definiert: "Produziert Ollama > 4096 Tokens am Stueck ohne Break, feuert der Watchdog `os.kill(ollama_pid, signal.SIGKILL)`". Dieser Code existiert nirgendwo in der Codebase. Kein `os.kill`, kein `SIGKILL`, kein `pynvml`. Die Bremse ist eine 0=0-Illusion.
-- [FAIL: Token-Schaetzung ist unzuverlaessig] `argos_damper.py` Zeile 107: `len(result) // 4` als Token-Schaetzung. Ein 4000-Byte UTF-8 Response mit Umlauten und CJK-Zeichen kann 500-2000 Tokens sein. Der Fehler kumuliert ueber die Session.
+- [FAIL: Token-Schaetzung ist unzuverlaessig] `z_vector_damper.py` Zeile 107: `len(result) // 4` als Token-Schaetzung. Ein 4000-Byte UTF-8 Response mit Umlauten und CJK-Zeichen kann 500-2000 Tokens sein. Der Fehler kumuliert ueber die Session.
 - [SUCCESS] Fast-Path Lexical Triage in `llm_interface.py` umgeht den LLM komplett fuer bekannte Kommandos.
 
 ### 1.4 Endlos-Loop / Token-Drain
@@ -62,7 +62,7 @@
 
 **Bewertung:**
 - [SUCCESS] ARGOS `MAX_ITERATIONS = 13` und `TOKEN_KILL_THRESHOLD = 233000` existieren und werden durchgesetzt.
-- [FAIL: Token-Warnung bei 89000 ist ein No-Op] `argos_damper.py` Zeile 86-88: `if self._state.total_tokens > TOKEN_WARNING_THRESHOLD: pass`. Kein Logging, kein Throttling, keine Warnung. Die Schwelle existiert nur als toter Code.
+- [FAIL: Token-Warnung bei 89000 ist ein No-Op] `z_vector_damper.py` Zeile 86-88: `if self._state.total_tokens > TOKEN_WARNING_THRESHOLD: pass`. Kein Logging, kein Throttling, keine Warnung. Die Schwelle existiert nur als toter Code.
 - [FAIL: ARGOS-Singleton ueberlebt Prozess-Neustart nicht, aber auch nicht Session-Grenzen] Der Singleton lebt im Prozess-Speicher. Wenn uvicorn den Worker recycled, ist ARGOS zurueckgesetzt. Aber innerhalb einer langen Session gibt es keinen Reset. Das ist korrekt fuer Single-Session, aber bei Endlos-Betrieb muss die Session-Grenze definiert werden.
 
 ### 1.5 API-Angriffsoberflaeche
@@ -81,7 +81,7 @@
 
 **Befund (KRITISCH):**
 
-`argos_damper.py` Zeile 40-59:
+`z_vector_damper.py` Zeile 40-59:
 
 ```python
 def _calculate_z_vector(self) -> float:
@@ -576,7 +576,7 @@ REGEL 6 (CHROMADB QUOTA):
 REGEL 7 (RING0_STATE CALLER-VALIDIERUNG):
   set_munin_veto() und clear_munin_veto() duerfen NUR von:
     - munin.py (apply_veto)
-    - argos_damper.py (Watchdog)
+    - z_vector_damper.py (Watchdog)
     - takt_gate.py (Gate-Check)
   aufgerufen werden. Enforcement via Caller-Stack-Inspection:
     caller = inspect.stack()[1].filename

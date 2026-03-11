@@ -145,7 +145,7 @@ def _legacy_ha_command_pipeline(user_text: str) -> str:
         sys_prompt = "Du bist Virtual Marc, Kopf des Osmium Councils für MTHO_CORE. Antworte analytisch, auf Systemik fokussiert. Meide neurotypische Floskeln vollständig."
         # Ring-0: Context Injection (context_injector)
         try:
-            from src.logic_core.munin import inject_context_for_agent, check_semantic_drift, apply_veto
+            from src.logic_core.context_injector import inject_context_for_agent, check_semantic_drift, apply_veto
             context_ctx = inject_context_for_agent(user_text, n_results=3, format="markdown")
             if context_ctx:
                 sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx
@@ -183,7 +183,7 @@ def _forwarded_text_pipeline(text: str) -> str:
     if triage.intent in ["deep_reasoning", "chat"]:
         sys_prompt = "Du bist Virtual Marc, Kopf des Osmium Councils für MTHO_CORE. Antworte analytisch, auf Systemik fokussiert."
         try:
-            from src.logic_core.munin import inject_context_for_agent, check_semantic_drift, apply_veto
+            from src.logic_core.context_injector import inject_context_for_agent, check_semantic_drift, apply_veto
             context_ctx = inject_context_for_agent(text, n_results=3, format="markdown")
             if context_ctx:
                 sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx

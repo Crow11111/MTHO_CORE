@@ -17,7 +17,7 @@ from loguru import logger
 
 from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook, omega_matrix, omega_thought, telemetry, chat
 
-from src.api.middleware.council_gate import VetoGateMiddleware
+from src.api.middleware.veto_gate import VetoGateMiddleware
 from src.api.middleware.friction_guard import FrictionGuardMiddleware
 
 _event_bus = None
