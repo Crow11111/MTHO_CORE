@@ -33,7 +33,7 @@ import asyncio
 from dotenv import load_dotenv
 import google.generativeai as genai
 from src.network.chroma_client import add_wuji_observation
-from src.utils.time_metric import asym_sleep, get_friction_timeout
+from src.utils.time_metric import asym_sleep_float, asym_sleep_prime, get_friction_timeout
 
 # Lade Umgebungsvariablen
 load_dotenv("c:/MTHO_CORE/.env")
@@ -217,13 +217,13 @@ class MthoVisionDaemon:
             if not ret:
                 print("[WARN] Stream unterbrochen. Reconnect...")
                 self.cap.release()
-                time.sleep(1)
+                asym_sleep_prime(2)  # Reconnect asymmetrisch verzögern (Primzahl 2)
                 self.cap = cv2.VideoCapture(RTSP_URL)
                 ret, frame1 = self.cap.read()
                 ret, frame2 = self.cap.read()
 
-            # CPU schonen - Zikaden-Prinzip
-            asym_sleep(0.05)
+            # CPU schonen - Asymmetrische Kaskerade
+            asym_sleep_float(0.05)
 
         self.cap.release()
         cv2.destroyAllWindows()

@@ -68,10 +68,10 @@ class MTHOStateVector:
 
 # Vordefinierte Zustaende (mit asymmetrischem Offset, kein 0=0)
 WUJI = MTHOStateVector(x_car_cdr=0.49, y_gravitation=BARYONIC_DELTA, z_widerstand=0.51, w_takt=0)
-ANSAUGEN = MTHOStateVector(x_car_cdr=0.3, y_gravitation=0.2, z_widerstand=0.8, w_takt=1)
-VERDICHTEN = MTHOStateVector(x_car_cdr=0.7, y_gravitation=0.5, z_widerstand=0.4, w_takt=2)
-ARBEITEN = MTHOStateVector(x_car_cdr=0.2, y_gravitation=0.8, z_widerstand=0.2, w_takt=3)
-AUSSTOSSEN = MTHOStateVector(x_car_cdr=0.5, y_gravitation=0.3, z_widerstand=0.6, w_takt=4)
+ANSAUGEN = MTHOStateVector(x_car_cdr=COMP_PHI, y_gravitation=BARYONIC_DELTA*2, z_widerstand=INV_PHI, w_takt=1)
+VERDICHTEN = MTHOStateVector(x_car_cdr=INV_PHI, y_gravitation=SYMMETRY_BREAK, z_widerstand=COMP_PHI, w_takt=2)
+ARBEITEN = MTHOStateVector(x_car_cdr=BARYONIC_DELTA, y_gravitation=0.81, z_widerstand=BARYONIC_DELTA*3, w_takt=3)
+AUSSTOSSEN = MTHOStateVector(x_car_cdr=0.49, y_gravitation=COMP_PHI, z_widerstand=0.51, w_takt=4)
 
 
 # ---------------------------------------------------------------------------
@@ -150,7 +150,7 @@ def get_current_state() -> MTHOStateVector:
             return MTHOStateVector(
                 x_car_cdr=WUJI.x_car_cdr,
                 y_gravitation=WUJI.y_gravitation,
-                z_widerstand=max(0.0, min(1.0, z)),
+                z_widerstand=max(BARYONIC_DELTA, min(1.0 - BARYONIC_DELTA, z)),
                 w_takt=WUJI.w_takt,
             )
         except ValueError:
@@ -169,7 +169,7 @@ CAR/CDR: ND-Kern(Tiefe,Muster,Divergenz) / NT-Interface(API,Docs,Clean)
 Gravitation: Wuji(flat)->Attraktor(Kollaps), Schwellwert={INV_PHI:.3f}
 MTHO: M(Agency,Physik), T(Forge,Info), H(Archive,Struktur), O(Council,Logik)
 DNA: M(T), T(A), H(G), O(C)
-Pairings: M-T (Agency-Forge), H-O (Archive-Council)
+Pairings: M-H (Symmetrisches Rückgrat), O-T (Asymmetrischer Motor)
 Symmetriebruch: {SYMMETRY_BREAK}, Baryonisches Delta: {BARYONIC_DELTA}
 Evidence: {SIMULATION_EVIDENCE_STATS['indizien']} Indizien, {SIMULATION_EVIDENCE_STATS['vektoren']} Vektoren
 """

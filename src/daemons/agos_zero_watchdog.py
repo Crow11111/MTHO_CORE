@@ -235,8 +235,8 @@ async def watchdog_loop():
 
         logger.debug(f"[WATCHDOG] Tick. Latency: {latency:.1f}ms | Git: {git_status}")
 
-        from src.utils.time_metric import asym_sleep_async
-        await asym_sleep_async(int(WATCHDOG_INTERVAL))
+        from src.utils.time_metric import asym_sleep_prime_async
+        await asym_sleep_prime_async(int(WATCHDOG_INTERVAL))
 
 
 def _write_telemetry(latency_ms: float, git_status: str):
