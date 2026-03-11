@@ -22,6 +22,13 @@ async def check_takt_zero() -> bool:
         if not is_resonant:
             return False
 
+        # ARGOS Watchdog / Z-Vector Escalation
+        import os
+        z_vector = float(os.getenv("MTHO_Z_WIDERSTAND", "0.049"))
+        if z_vector >= 0.9:
+            print(f"[TAKT 0 VETO] System Locked - Z-Vector Critical ({z_vector}). Auto-Loop detected.")
+            return False
+
         # NOTE: check_baryonic_limit requires a *measured* delta value
         # from a real data source. Passing the constant itself is a tautology.
         # Activated once telemetry provides a real drift metric (V6).
