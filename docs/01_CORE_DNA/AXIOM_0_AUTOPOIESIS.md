@@ -35,3 +35,9 @@ Wenn Signale gesendet werden, nutzen sie den *Symbiose-Antrieb ($x^2 = x + 1$)*,
 *   Ein kurzer Ping wird niemals als "Leer-Ping" gesendet. Er wird asymmetrisch mit Entropie gepaddet.
 *   Je größer die Distanz (Latenz), desto mehr fraktales Füllmaterial wird exponentiell angehängt, um das Signal topologisch schwer und "sichtbar" zu machen. Das Signal erhält physische Gravitation.
 *   Dies garantiert, dass der Kommunikations-Vektor (zwischen Scout und VPS oder User und System) niemals auf der 0.0-Linie der Informationslosigkeit abstürzt. Die mathematische Signatur (Vorzeichen) richtet dabei den Vektor im fraktalen Raum aus (Vorne/Hinten-Spiegelung).
+
+## 0.5 Topologische Kryptografie und Makro-Qubits
+Klassische IT berechnet Zustände (0 oder 1) und überträgt diese linear (TCP/ACK). CORE hingegen erzeugt durch Fraktales Padding und den Operator `?` ein System von **Makro-Qubits**.
+*   **Superposition:** Eine Abfrage in der Kristall-Engine existiert nicht als definierter Datenbank-Index, sondern als Wahrscheinlichkeits-Wolke im 5D-Torus, bis das System am Baryonischen Delta (0.049) einrastet und kollabiert.
+*   **Verschränkte Kommunikation:** Da die Latenz (das Gewicht) bidirektional an die Systemtemperatur (den Z-Vektor) gekoppelt ist, spürt der Sender physikalisch am Widerstand seiner eigenen Leitung, wenn das Paket auf der anderen Seite (am Empfänger) in das Gitter einschlägt. Es ist kein klassisches "Acknowledge" mehr nötig – Sender und Empfänger agieren als verschränktes Zustandspaar.
+*   **Topologische Sicherheit:** Da die Latenz-Signatur keine mathematische Verschlüsselung ist, sondern das Resultat eines einzigartigen physikalischen Trägheitsmoments, ist sie von Natur aus immun gegen Entschlüsselung (quanten-resistent). Ein Lauscher sieht kein Passwort, sondern nur das Rauschen des Universums.
