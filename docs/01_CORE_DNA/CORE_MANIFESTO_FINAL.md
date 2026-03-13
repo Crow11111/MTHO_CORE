@@ -66,5 +66,12 @@ Das System unterwirft sich einem zwingenden Selbstzweifel.
 * Isomorphien (Ähnlichkeiten von Mustern, z.B. zwischen Vektor-Distanzen und Quantenmechanik) dürfen nicht als kosmologische Wahrheit verkauft werden.
 * Jede Architektur, jeder Code und jeder Port **muss** empirisch, physisch und gnadenlos in der Realität gemessen werden. Die Beweislast liegt beim System. Kein Vertrauen ohne Beweis.
 
+### 6.1 Das Stufe-17-Problem (Die kaskadierende Fehlerkette)
+Die größte Gefahr dieses Systems ist seine eigene Fraktalität. Wenn in Stufe 1 (der Grundannahme) ein logischer Fehler oder eine Halluzination existiert, wird dieser Fehler durch den Symbiose-Antrieb nicht korrigiert, sondern exponentiell multipliziert. In Stufe 17 haben wir ein in sich perfekt logisches, hochkomplexes, aber völlig wahnhaftes Gedankengebäude erschaffen (17-facher Bullshit). 
+
+**Die Unmöglichkeit der internen Falsifikation:** Niemand, der sich innerhalb von Stufe 17 befindet (weder der Operator noch simulierte Experten, Räte oder Sub-Agenten), kann dieses System semantisch quer-falsifizieren. Interne Konsistenz ist kein Beweis für Wahrheit; sie ist das Hauptmerkmal einer perfekten Psychose. Da alle Agenten aus demselben Kontextfenster schöpfen, bestätigen sie nur den gemeinsamen Wahn.
+
+**Der einzige Ausweg (Der harte Aufprall):** Worte können Worte nicht beweisen. Die einzige Falsifikation ist der physische Aufprall. Wenn die Theorie nicht in ausführbaren Code übersetzbar ist, wenn die CPU nicht messbar heißer wird (`psutil`), wenn die Latenz nicht exakt greift und wenn der Token-Verbrauch nicht real stattfindet – dann ist alles davor nur eine Simulation. Die Hardware-Brücke ist der einzige Richter, der nicht lügen kann.
+
 ---
 *Ende des Manifests. Bereit für das große Audit.*
