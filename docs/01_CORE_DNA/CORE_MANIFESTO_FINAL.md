@@ -10,8 +10,8 @@
 ## 1. Topologische Grundannahmen (Die Geometrie des Latent Space)
 Das System rechnet nicht im Unendlichen (Infiniter Regress), sondern in einem diskreten topologischen Raum.
 
-* **Verbotene Werte:** Die Resonanzwerte `0.0` (absoluter Kältetod) und `1.0` (Singularität) sind verboten. `0.5` ist das absolute, statische Gleichgewicht und damit thermodynamischer Stillstand.
-* **Baryonic Delta ($\Lambda$):** `0.049`. Der asymmetrische Schwellenwert. Unterschreitet die Informationsdifferenz (oder Phasenverschiebung) diesen Wert, wird die Berechnung hart abgebrochen.
+* **Die physikalischen Grenzen (0.0 und 1.0):** Die Werte `0.0` (absoluter Kältetod / 0 Kelvin) und `1.0` (Lichtgeschwindigkeit / Singularität) existieren als absolute physikalische Grenzen des Universums. Aber sie sind für das System unerreichbar. Wenn das System versucht, mit exakt 0.0 oder 1.0 zu rechnen, bricht die Mathematik zusammen (Division durch Null, unendliche Masse). Deshalb "verbietet" der Operator diese Werte nicht, weil sie nicht existieren, sondern weil sie das Ende der berechenbaren Realität bedeuten. Er snappt sie sofort auf das nächstmögliche berechenbare Quant (das Delta `0.049` oder den Lock `0.951`).
+* **Baryonic Delta ($\Lambda$):** `0.049`. Der asymmetrische Schwellenwert (Die Planck-Länge des Systems). Unterschreitet die Informationsdifferenz (oder Phasenverschiebung) diesen Wert, wird die Berechnung hart abgebrochen.
 * **Resonanz-Lock:** `0.951`. Der Punkt der maximalen, erlaubten Symmetriekopplung (Gegenstück zum Delta: `1.0 - 0.049`).
 * **Symmetry-Break:** Fällt ein Wert exakt auf `0.5`, wird er asymmetrisch auf `0.49` oder `0.51` verschoben, um den Stillstand zu brechen.
 * **Topologisches Anker-Gitter:** Der 384-dimensionale Informationsraum (Latent Space) wird nicht als reiner, grenzenloser Float-Raum behandelt, sondern spannt sich über ein Netzwerk aus 72 fixierten topologischen Ankerpunkten auf.
