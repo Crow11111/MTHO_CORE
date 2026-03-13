@@ -4,8 +4,8 @@ from loguru import logger
 import math
 
 MODEL_NAME = "llama3.1"
-SOURCE_FILE = r"c:\MTHO_CORE\docs\ATLAS_CORE_BRAIN_REGISTR_RAW.txt"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+SOURCE_FILE = r"c:\CORE\docs\ATLAS_CORE_BRAIN_REGISTR_RAW.txt"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights_v4"
 
 CHUNK_SIZE = 25000  
 MAX_CHUNKS = 50

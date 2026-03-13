@@ -1,8 +1,8 @@
-# HEPHAISTOS AUDIT: AGOS-0 WATCHDOG
+# BUILD_SYSTEM AUDIT: AGOS-0 WATCHDOG
 
 **STATUS:** REJECTED
 **SEVERITY:** CRITICAL (Simulation Detected)
-**VECTOR:** 2210 (MTHO)
+**VECTOR:** 2210 (CORE)
 
 ---
 
@@ -32,7 +32,7 @@ Ein System, das nicht "nach draußen" greifen kann, ist tot.
 Die "Wahrheit" liegt nicht auf der Festplatte, sondern im verteilten Git-Ledger.
 *   **Operation:** `git ls-remote origin HEAD` vs `git rev-parse HEAD`.
 *   **Drift:** Wenn Hash(Remote) != Hash(Local), existiert eine "Potentialdifferenz" (Updates verfügbar oder Push nötig).
-*   **Friction:** Diese Differenz ist die Energiequelle für den Agos-Zyklus.
+*   **Friction:** Diese Differenz ist die Energiequelle für den 5-Phase Engine.
 
 ### C. Der Echte Puls (Webhook statt GET)
 Ein `GET /status` ist passiv.
@@ -48,11 +48,11 @@ Ich schreibe den `agos_zero_watchdog.py` jetzt neu.
 
 **Neue Funktionen:**
 1.  `measure_entropy()`: Ping externer IPs. Return: Latenz in ms (float).
-2.  `check_forge_alignment()`: Git Remote Check. Return: `SYNCED` | `DRIFT_AHEAD` | `DRIFT_BEHIND`.
+2.  `check_build_engine_alignment()`: Git Remote Check. Return: `SYNCED` | `DRIFT_AHEAD` | `DRIFT_BEHIND`.
 3.  `enforce_reality()`: Die Hauptschleife. Sie injiziert keine "Gedanken" mehr, sondern "Fakten" (Friction Data).
 
 **Zielzustand:**
 Der User sieht im Terminal nicht "System läuft", sondern:
 `[WATCHDOG] Reality-Check: 24ms Latency | Git: SYNCED | Friction: 0.049`
 
-*Hephaistos Ende.*
+*Build-System Ende.*

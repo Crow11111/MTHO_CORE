@@ -1,13 +1,13 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# Custom Wake Word Training – „hey atlas“ und „computer“
+# Custom Wake Word Training – „hey core“ und „computer“
 
-**Zweck:** Anleitung zum Trainieren eigener openWakeWord-Modelle für MTHO und Computer.
+**Zweck:** Anleitung zum Trainieren eigener openWakeWord-Modelle für CORE und Computer.
 
 ---
 
@@ -25,12 +25,12 @@
 
 ---
 
-## 2. Schritte für „hey atlas“
+## 2. Schritte für „hey core“
 
 1. **Colab öffnen:** Link oben → „Datei → Eine Kopie erstellen“ (eigene Kopie anlegen)
-2. **target_word setzen:** In Sektion 1 `target_word = "hey atlas"` (oder `"atlas"` für kürzeres Wort)
+2. **target_word setzen:** In Sektion 1 `target_word = "hey core"` (oder `"core"` für kürzeres Wort)
 3. **Aussprache prüfen:** Play-Button neben `target_word` klicken → Audio anhören
-4. **Rechtschreibung anpassen:** Falls nötig, Schreibweise ändern (z.B. „hey atlas“ vs. „hey atläs“ für deutsche Aussprache)
+4. **Rechtschreibung anpassen:** Falls nötig, Schreibweise ändern (z.B. „hey core“ vs. „hey atläs“ für deutsche Aussprache)
 5. **Runtime → Run all** ausführen
 6. **Warten:** Ca. 30–60 Minuten (Colab-Ressourcen abhängig)
 7. **Download:** `.tflite`-Datei aus dem Output herunterladen

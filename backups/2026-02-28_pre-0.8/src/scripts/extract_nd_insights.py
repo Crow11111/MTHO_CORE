@@ -5,8 +5,8 @@ from loguru import logger
 
 # Constants
 MODEL_NAME = "llama3.1"
-SOURCE_FILE = r"c:\MTHO_CORE\docs\ATLAS_CORE_BRAIN_REGISTR_RAW.txt"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights"
+SOURCE_FILE = r"c:\CORE\docs\ATLAS_CORE_BRAIN_REGISTR_RAW.txt"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights"
 
 # Ensure output dir exists
 if not os.path.exists(OUTPUT_DIR):

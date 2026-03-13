@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -55,7 +55,7 @@
 | Name | IP | MAC | Funktion |
 |------|----|----|----------|
 | HOME | 192.168.178.54 | 2C:CF:67:68:45:32 | **Home Assistant / AdGuard DNS** |
-| MtH11 | 192.168.178.20 | 18:C0:4D:DB:2D:B0 | Haupt-PC (4D_RESONATOR (MTHO_CORE)) |
+| MtH11 | 192.168.178.20 | 18:C0:4D:DB:2D:B0 | Haupt-PC (4D_RESONATOR (CORE)) |
 | HACS-PI4 | 192.168.178.154 | E4:5F:01:8C:22:46 | Raspberry Pi 4 |
 | DCS-6100LH | 192.168.178.100 | B0:C5:54:5D:B3:61 | D-Link Kamera |
 | samsungq95 | 192.168.178.123 | C0:23:8D:EB:07:1D | Samsung TV (LAN) |

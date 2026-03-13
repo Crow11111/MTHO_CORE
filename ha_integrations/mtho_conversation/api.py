@@ -1,4 +1,4 @@
-"""HTTP client for MTHO /webhook/inject_text with VPS Failover."""
+"""HTTP client for CORE /webhook/inject_text with VPS Failover."""
 from __future__ import annotations
 
 import logging
@@ -12,11 +12,11 @@ _LOGGER = logging.getLogger(LOGGER)
 
 
 class MthoApiError(Exception):
-    """MTHO API error."""
+    """CORE API error."""
 
 
 class MthoApiClient:
-    """Client for MTHO webhook API."""
+    """Client for CORE webhook API."""
 
     def __init__(
         self,
@@ -55,7 +55,7 @@ class MthoApiClient:
             ) as resp:
                 return resp.status < 400
         except (aiohttp.ClientError, TimeoutError):
-            _LOGGER.warning("MTHO: Dreadnought offline. Validating VPS Fallback...")
+            _LOGGER.warning("CORE: Dreadnought offline. Validating VPS Fallback...")
             try:
                 async with self._session.post(
                     f"{self._fallback_url}/webhook/forwarded_text",
@@ -68,7 +68,7 @@ class MthoApiClient:
                 return False
 
     async def async_send_text(self, text: str) -> str:
-        """Send text to MTHO, rerouting to VPS on connection timeout (Lazy Failover)."""
+        """Send text to CORE, rerouting to VPS on connection timeout (Lazy Failover)."""
         payload: dict[str, Any] = {"text": text}
         headers = self._headers()
         
@@ -76,7 +76,7 @@ class MthoApiClient:
         # Timeout greift nur bei Connection-Fehlern (failover_timeout),
         # lässt aber genug 'total' Zeit für die LLM-Generierung.
         try:
-            _LOGGER.debug(f"MTHO: Sende an lokale Pipeline: {self._base_url}")
+            _LOGGER.debug(f"CORE: Sende an lokale Pipeline: {self._base_url}")
             async with self._session.post(
                 f"{self._base_url}/webhook/inject_text",
                 json=payload,
@@ -86,18 +86,18 @@ class MthoApiClient:
                 if resp.status == 401:
                     raise MthoApiError("Token ungültig (401)")
                 if resp.status >= 400:
-                    raise MthoApiError(f"MTHO API Fehler: {resp.status}")
+                    raise MthoApiError(f"CORE API Fehler: {resp.status}")
 
                 data = await resp.json()
                 reply = data.get("reply", "")
                 return str(reply) if reply else ""
                 
         except (aiohttp.ClientError, TimeoutError, OSError) as err:
-            _LOGGER.warning(f"MTHO: LOKAL OFFLINE. FEHLER: {err}. SCHWENKE AUF VPS-FALLBACK UM...")
+            _LOGGER.warning(f"CORE: LOKAL OFFLINE. FEHLER: {err}. SCHWENKE AUF VPS-FALLBACK UM...")
 
         # 2. SCHRITT: Fallback auf VPS Backbone
         try:
-            _LOGGER.debug(f"MTHO: Rerouting an VPS Backbone: {self._fallback_url}")
+            _LOGGER.debug(f"CORE: Rerouting an VPS Backbone: {self._fallback_url}")
             async with self._session.post(
                 f"{self._fallback_url}/webhook/forwarded_text",
                 json=payload,
@@ -113,5 +113,5 @@ class MthoApiClient:
                 reply = data.get("reply", "")
                 return str(reply) if reply else ""
         except Exception as e:
-            _LOGGER.error(f"MTHO: KRITISCHER FEHLER - LOKAL UND VPS OFFLINE. {e}")
-            raise MthoApiError("Gesamtes MTHO-Netzwerk offline (Dreadnought & VPS nicht erreichbar)")
+            _LOGGER.error(f"CORE: KRITISCHER FEHLER - LOKAL UND VPS OFFLINE. {e}")
+            raise MthoApiError("Gesamtes CORE-Netzwerk offline (Dreadnought & VPS nicht erreichbar)")

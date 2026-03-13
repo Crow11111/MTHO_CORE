@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,7 +7,7 @@
 
 # OPERATION CORTEX MASTERPLAN (Status: 2026-03-02 - FINAL)
 
-**Ziel:** Vollständige Integration von OpenClaw (Brain/Admin) und MTHO (Spine/Executor) inkl. Audio-Pipeline.
+**Ziel:** Vollständige Integration von OpenClaw (Brain/Admin) und CORE (Spine/Executor) inkl. Audio-Pipeline.
 
 ## 1. Status Quo (ABGESCHLOSSEN)
 
@@ -32,7 +32,7 @@
 - [x] Spine Container Check: **SUCCESS**.
 
 ## 3. Ergebnis
-Das System **MTHO CORTEX** ist operativ.
+Das System **CORE CORTEX** ist operativ.
 -   Das Gehirn (Admin) denkt.
 -   Das Rückgrat (Spine) läuft.
 -   Die Stimme (Audio) ist bereit.

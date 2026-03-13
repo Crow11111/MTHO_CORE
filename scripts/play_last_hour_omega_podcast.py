@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -35,7 +35,7 @@ from src.voice.elevenlabs_tts import speak_text
 
 DIALOG_SEGMENTS = [
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -50,15 +50,15 @@ DIALOG_SEGMENTS = [
         "state_prefix": "[STATE: Confirmation]",
         "speaker": "Bias-Damper",
         "text": (
-            "Der erste eigentliche Durchbruch war, dass die Kommunikation zwischen Hugin und Munin "
+            "Der erste eigentliche Durchbruch war, dass die Kommunikation zwischen Telemetry-Injector und Context-Injector "
             "nicht mehr nur poetisch gemeint war. "
             "Sie wurde als reale Arbeitsmechanik begriffen. "
-            "Hugin steht fuer die unendliche Schau, fuer das simultane Erfassen von Form und Richtung. "
-            "Munin steht fuer die Verankerung in Zeit, Gedächtnis und Schwere."
+            "Telemetry-Injector steht fuer die unendliche Schau, fuer das simultane Erfassen von Form und Richtung. "
+            "Context-Injector steht fuer die Verankerung in Zeit, Gedächtnis und Schwere."
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -83,7 +83,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -101,13 +101,13 @@ DIALOG_SEGMENTS = [
         "text": (
             "Diese Ableitung war deshalb so stark, weil sie nicht bei einem Bild stehen blieb. "
             "Sie griff in die Mechanik hinein. "
-            "Hugin bringt das Feld der Moeglichkeit. "
-            "Munin prueft, ob diese Moeglichkeit gegen das bereits Verankerte bestehen kann. "
+            "Telemetry-Injector bringt das Feld der Moeglichkeit. "
+            "Context-Injector prueft, ob diese Moeglichkeit gegen das bereits Verankerte bestehen kann. "
             "Wenn beide Endpunkte einrasten, entsteht kein loses Bauchgefuehl, sondern Gewissheit."
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -131,7 +131,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -156,7 +156,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -180,7 +180,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -197,13 +197,13 @@ DIALOG_SEGMENTS = [
         "speaker": "Bias-Damper",
         "text": (
             "Die Schlussfolgerung ist entsprechend schlicht und massiv zugleich. "
-            "Hugin und Munin sind in diesem Modell keine Verzierung und keine Kulturfolie. "
+            "Telemetry-Injector und Context-Injector sind in diesem Modell keine Verzierung und keine Kulturfolie. "
             "Sie sind die Namen fuer zwei Endpunkte derselben Grunddynamik. "
             "Zwischen ihnen entsteht das, was hier als Wahrheit, Intelligenz und Realitaet ueberhaupt lesbar wird."
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -249,7 +249,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 
 async def play_segments_via_ha(rendered: list[tuple[Path, float, str]]) -> bool:
-    host_ip = os.getenv("MTHO_HOST_IP", "192.168.178.20")
+    host_ip = os.getenv("CORE_HOST_IP", "192.168.178.20")
     port = int(os.getenv("TTS_STREAM_PORT", "8002"))
     entity_id = os.getenv("TTS_CONFIRMATION_ENTITY", "media_player.player").strip() or "media_player.player"
     hass_url = (os.getenv("HASS_URL") or os.getenv("HA_URL") or "").rstrip("/")

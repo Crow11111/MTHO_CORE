@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -27,7 +27,7 @@ PHI_MINOR = 0.382
 BARYONIC_DELTA = 0.049
 
 # --- VECTOR DISTRIBUTION ---
-# Die Aufteilung der 72 Punkte auf die 4 MTHO-Vektoren
+# Die Aufteilung der 72 Punkte auf die 4 CORE-Vektoren
 VECTOR_DISTRIBUTION = {
     "L_LOGIC": 22,  # Teil des L/I Motors
     "I_INFO": 22,   # Teil des L/I Motors (Summe 44)

@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-deploy_mcp.py - MCP Server Deployment auf dem VPS (mtho_net)
+deploy_mcp.py - MCP Server Deployment auf dem VPS (core_net)
 """
 import base64, os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -56,18 +56,18 @@ def main():
         return 1
     
     ssh = connect_ssh()
-    run(ssh, "mkdir -p /opt/mtho-core/mcp-server /opt/mtho-core/workspace")
+    run(ssh, "mkdir -p /opt/core-core/mcp-server /opt/core-core/workspace")
     
     # Files transferieren
-    b64write(ssh, "/opt/mtho-core/mcp-server/Dockerfile", "docker/mcp-server/Dockerfile")
-    b64write(ssh, "/opt/mtho-core/mcp-server/docker-compose.yml", "docker/mcp-server/docker-compose.yml")
+    b64write(ssh, "/opt/core-core/mcp-server/Dockerfile", "docker/mcp-server/Dockerfile")
+    b64write(ssh, "/opt/core-core/mcp-server/docker-compose.yml", "docker/mcp-server/docker-compose.yml")
     
     # Deploy
-    run(ssh, "cd /opt/mtho-core/mcp-server && docker compose up -d --build")
+    run(ssh, "cd /opt/core-core/mcp-server && docker compose up -d --build")
     run(ssh, "docker ps | grep mcp-server")
     ssh.close()
     
-    print("\n[OK] MCP Server deployed auf Port 8001 (mtho_net).")
+    print("\n[OK] MCP Server deployed auf Port 8001 (core_net).")
 
 if __name__ == "__main__":
     sys.exit(main())

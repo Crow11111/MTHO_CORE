@@ -8,9 +8,9 @@ import sys
 
 # Konfiguration
 SAMPLE_RATE = 16000
-DURATION_POS = 2.0  # Sekunden für "ATLAS"
+DURATION_POS = 2.0  # Sekunden für "CORE"
 DURATION_NEG = 3.0  # Sekunden für Hintergrund/Negativ
-WAKE_WORD = "ATLAS"
+WAKE_WORD = "CORE"
 
 def get_base_dir():
     # scripts/..
@@ -49,14 +49,14 @@ def record_sample(filename, duration, index, total, label):
         return False
 
 def main():
-    print("=== ATLAS Wake Word Recorder ===")
-    print("Dieses Tool nimmt deine Stimme auf, um das Wake Word 'ATLAS' zu trainieren.")
+    print("=== CORE Wake Word Recorder ===")
+    print("Dieses Tool nimmt deine Stimme auf, um das Wake Word 'CORE' zu trainieren.")
     print("Stelle sicher, dass dein Mikrofon aktiv ist.")
     print("")
     
     pos_dir, neg_dir = setup_dirs()
     
-    # 1. POSITIVE SAMPLES (ATLAS)
+    # 1. POSITIVE SAMPLES (CORE)
     target_pos = 50
     current_pos = len([f for f in os.listdir(pos_dir) if f.endswith('.wav')])
     
@@ -84,7 +84,7 @@ def main():
     
     if current_neg < target_neg:
         print(f"\n--- SCHRITT 2: Negative Beispiele ({target_neg} Stück) ---")
-        print("WICHTIG: Sage JETZT NICHT 'ATLAS'.")
+        print("WICHTIG: Sage JETZT NICHT 'CORE'.")
         print("Sage stattdessen normale Sätze, Zahlen, oder mache Hintergrundgeräusche.")
         print("Drücke ENTER um zu starten.")
         
@@ -93,7 +93,7 @@ def main():
 
         for i in range(current_neg + 1, target_neg + 1):
             filename = os.path.join(neg_dir, f"negative_{i:03d}.wav")
-            success = record_sample(filename, DURATION_NEG, i, target_neg, "IRGENDETWAS (NICHT ATLAS)")
+            success = record_sample(filename, DURATION_NEG, i, target_neg, "IRGENDETWAS (NICHT CORE)")
             if not success:
                 break
             time.sleep(0.5)

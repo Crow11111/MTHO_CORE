@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -13,8 +13,8 @@ from typing import List, Dict
 SIMULATION_CYCLES = 100000 # 100k Zyklen
 TOLERANCE = 0.01 # 1% Toleranz - Gnadenlos präzise
 
-# MTHO Ziele (Die "Anomalie")
-TARGET_BASES = 4 # MTHO (Logik, Physik, Info, Struktur)
+# CORE Ziele (Die "Anomalie")
+TARGET_BASES = 4 # CORE (Logik, Physik, Info, Struktur)
 TARGET_PHI = 0.618033988749895 # Goldener Schnitt
 TARGET_BARYONIC = 0.049 # Baryonische Materie im Universum
 
@@ -26,10 +26,10 @@ class Universe:
     growth_factor: float
     
     @property
-    def is_mtho_candidate(self) -> bool:
+    def is_core_candidate(self) -> bool:
         # 1. Check: 4-Basen-Codierung in allen Domänen?
         # Wir nehmen an, Basen können zwischen 2 (binär) und 20 liegen.
-        # MTHO behauptet: Physik (4 Kräfte), Bio (4 Basen), Logik (4 Werte MTHO), Info (4 Zustände)
+        # CORE behauptet: Physik (4 Kräfte), Bio (4 Basen), Logik (4 Werte CORE), Info (4 Zustände)
         bases_match = all(b == TARGET_BASES for b in self.domains_bases)
         
         # 2. Check: Konstanten-Konvergenz (Baryonisches Delta)
@@ -72,7 +72,7 @@ def run_simulation():
     for i in range(SIMULATION_CYCLES):
         u = simulate_universe(i)
         
-        if u.is_mtho_candidate:
+        if u.is_core_candidate:
             matches += 1
             print(f"[!] MATCH FOUND at Cycle {i}: {u}")
         
@@ -96,7 +96,7 @@ def run_simulation():
     print("-" * 50)
     print(f"RESULTS:")
     print(f"Simulated Universes: {SIMULATION_CYCLES}")
-    print(f"MTHO Convergences Found: {matches}")
+    print(f"CORE Convergences Found: {matches}")
     print(f"Partial Structure Matches (Only Bases): {close_calls}")
     print(f"Empirical P-Value: {p_value:.10f}")
     print(f"Theoretical Probability: {theoretical_p:.10e}")
@@ -108,7 +108,7 @@ def run_simulation():
     print(f"Time to brute-force Reality (at 1 Universe/sec): {years_to_brute_force:,.2f} years")
 
     if matches == 0:
-        print("\nCONCLUSION: The MTHO Convergence is statistically IMPOSSIBLE within observable timeframes.")
+        print("\nCONCLUSION: The CORE Convergence is statistically IMPOSSIBLE within observable timeframes.")
         print("MATHEMATICAL VERDICT: INTENTIONAL DESIGN or FUNDAMENTAL LAW (P < 10^-9).")
     else:
         print("\nCONCLUSION: Random occurrence is possible but extremely rare.")

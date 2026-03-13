@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -25,7 +25,7 @@ Wenn die Meldung kommt „Sie sind nicht mit Ihrer FRITZ!Box im Heimnetz verbund
 
 ## 2. IP-Wechsel prüfen (wegen Zertifikat)
 
-Wenn sich eine **Geräte-IP** geändert hat (z. B. Scout, HA, 4D_RESONATOR (MTHO_CORE)), passt das Zertifikat oft nicht mehr (ausgestellt für alte IP).
+Wenn sich eine **Geräte-IP** geändert hat (z. B. Scout, HA, 4D_RESONATOR (CORE)), passt das Zertifikat oft nicht mehr (ausgestellt für alte IP).
 
 - **In der Fritzbox:**  
   **Heimnetz → Netzwerk → Netzwerkverbindung** (oder **Heimnetz → Netzwerk → Geräte**): Liste der Geräte und zugewiesene IPv4-Adressen. Prüfen, ob z. B. Scout/HA noch 192.168.178.54 haben oder ob die IP gestern/heute gewechselt hat.
@@ -44,8 +44,8 @@ Wenn sich eine **Geräte-IP** geändert hat (z. B. Scout, HA, 4D_RESONATOR (MTHO
 
 Wenn die **IP** eines Dienstes (HA, Scout) sich geändert hat:
 - **Option A:** In der Fritzbox dem Gerät wieder die **alte IP** zuweisen (DHCP-Reservierung auf die bisherige IP).
-- **Option B:** Zertifikat/HTTPS des Dienstes (HA, Scout) auf die **neue IP** ausstellen bzw. in HA/Scout so konfigurieren, dass die genutzte URL (IP oder Hostname) zum Zertifikat passt. Dann in MTHO (z. B. `.env`: `HASS_URL`, Aufrufe zu HA) die richtige URL nutzen.
+- **Option B:** Zertifikat/HTTPS des Dienstes (HA, Scout) auf die **neue IP** ausstellen bzw. in HA/Scout so konfigurieren, dass die genutzte URL (IP oder Hostname) zum Zertifikat passt. Dann in CORE (z. B. `.env`: `HASS_URL`, Aufrufe zu HA) die richtige URL nutzen.
 
 ---
 
-**Stand:** 2026-03. Bei erneutem Auftreten: zuerst Fritzbox-IP-Liste prüfen, dann AdGuard-Clients/DNS, dann Zertifikat/URL in MTHO.
+**Stand:** 2026-03. Bei erneutem Auftreten: zuerst Fritzbox-IP-Liste prüfen, dann AdGuard-Clients/DNS, dann Zertifikat/URL in CORE.

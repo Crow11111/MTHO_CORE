@@ -1,13 +1,13 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Tägliches Backup für MTHO_CORE → Hostinger-VPS (/var/backups/mtho).
+Tägliches Backup für CORE → Hostinger-VPS (/var/backups/core).
 
-- Archiv: Code (ohne .git, __pycache__, venv, data/backups, logs), config/, data/argos_db/
+- Archiv: Code (ohne .git, __pycache__, venv, data/backups, logs), config/, data/shell_db/
 - .env nur verschlüsselt (Fernet), wenn BACKUP_ENCRYPTION_KEY gesetzt
 - Upload per SFTP (paramiko); Retention auf dem VPS (7 Tage)
 - Logging: logs/backup.log
@@ -39,7 +39,7 @@ VPS_USER = os.getenv("VPS_USER", "root").strip()
 VPS_PASSWORD = (os.getenv("VPS_PASSWORD") or "").strip().strip('"').strip("'")
 VPS_SSH_KEY = (os.getenv("VPS_SSH_KEY") or "").strip()
 VPS_PORT = int(os.getenv("VPS_SSH_PORT", "22"))
-REMOTE_BACKUP_DIR = "/var/backups/mtho"
+REMOTE_BACKUP_DIR = "/var/backups/core"
 RETENTION_DAYS = int(os.getenv("BACKUP_RETENTION_DAYS", "7"))
 BACKUP_ENCRYPTION_KEY = (os.getenv("BACKUP_ENCRYPTION_KEY") or "").strip()
 HEALTHCHECK_URL = (os.getenv("HEALTHCHECK_URL") or "").strip()
@@ -67,9 +67,9 @@ def setup_logging() -> None:
 def should_exclude(path: Path, arcname: str) -> bool:
     if any(part in EXCLUDE_DIRS for part in Path(arcname).parts):
         return True
-    # data/ nur argos_db sichern (laut BACKUP_PLAN_FINAL), Rest auslassen
+    # data/ nur shell_db sichern (laut BACKUP_PLAN_FINAL), Rest auslassen
     an = arcname.replace("\\", "/")
-    if an.startswith("data/") and not an.startswith("data/argos_db/"):
+    if an.startswith("data/") and not an.startswith("data/shell_db/"):
         return True
     if path.is_file() and (path.suffix in EXCLUDE_SUFFIXES or ".env" == path.name):
         return True  # .env wird separat verschlüsselt hinzugefügt
@@ -113,7 +113,7 @@ def main() -> int:
         logger.warning("VPS-Backup (ChromaDB/Postgres) übersprungen: %s", e)
 
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M")
-    archive_name = f"mtho_backup_{timestamp}.tar.gz"
+    archive_name = f"core_backup_{timestamp}.tar.gz"
 
     try:
         import paramiko
@@ -178,7 +178,7 @@ def main() -> int:
             sftp.close()
 
         # 3) Retention auf dem VPS
-        cmd = f"find {REMOTE_BACKUP_DIR} -maxdepth 1 -type f \\( -name 'mtho_backup_*.tar.gz' -o -name 'mtho_env_*.enc' \\) -mtime +{RETENTION_DAYS} -delete"
+        cmd = f"find {REMOTE_BACKUP_DIR} -maxdepth 1 -type f \\( -name 'core_backup_*.tar.gz' -o -name 'core_env_*.enc' \\) -mtime +{RETENTION_DAYS} -delete"
         stdin, stdout, stderr = ssh.exec_command(cmd)
         stdout.channel.recv_exit_status()
         logger.info("Retention (älter als %d Tage) auf VPS ausgeführt.", RETENTION_DAYS)

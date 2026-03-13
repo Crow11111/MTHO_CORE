@@ -1,13 +1,13 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO Voice Pipeline – Audio-Input Durchstich
+# CORE Voice Pipeline – Audio-Input Durchstich
 
-**Problem:** Pipeline konfiguriert (Whisper, Piper, openWakeWord, MTHO Conversation), aber **kein Audio-INPUT** erreicht die Assist Pipeline. Brio-Audio ist in go2rtc sichtbar, aber go2rtc liefert nicht an Assist.
+**Problem:** Pipeline konfiguriert (Whisper, Piper, openWakeWord, CORE Conversation), aber **kein Audio-INPUT** erreicht die Assist Pipeline. Brio-Audio ist in go2rtc sichtbar, aber go2rtc liefert nicht an Assist.
 
 ---
 
@@ -36,7 +36,7 @@
 **Prüfung (SSH auf Scout oder HA Supervisor API):**
 
 ```bash
-# Via HA Supervisor API (von 4D_RESONATOR (MTHO_CORE), mit HASS_TOKEN):
+# Via HA Supervisor API (von 4D_RESONATOR (CORE), mit HASS_TOKEN):
 curl -s -H "Authorization: Bearer $HASS_TOKEN" \
   "https://192.168.178.54:8123/api/hassio/addons" | jq '.data.addons[] | select(.slug | contains("assist") or contains("microphone")) | {slug, name, state, version}'
 ```
@@ -59,7 +59,7 @@ python install_assist_mic.py
 ### 2.2 Assist Microphone mit Pipeline verbinden
 
 1. **Einstellungen → Sprachassistenten**
-2. Assistent „MTHO“ bearbeiten
+2. Assistent „CORE“ bearbeiten
 3. **Streaming Wake Word** prüfen: openWakeWord + Modell (z.B. „Computer“)
 4. **Voice Satellite:** Assist Microphone muss als verbundenes Gerät erscheinen
 
@@ -116,7 +116,7 @@ python -m src.scripts.test_ha_voice_integration
 
 1. Wake Word sagen (z.B. „Computer“)
 2. Befehl sprechen (z.B. „Licht an“)
-3. Erwartung: Whisper transkribiert → MTHO Conversation → Piper spricht Antwort
+3. Erwartung: Whisper transkribiert → CORE Conversation → Piper spricht Antwort
 
 ---
 
@@ -139,12 +139,12 @@ python -m src.scripts.test_ha_voice_integration
 
 **Einschränkung:** HA OS = kein Root, Add-on-Container. Custom-Skript müsste als Add-on gepackt werden.
 
-### Fallback C: 4D_RESONATOR (MTHO_CORE) Voice Satellite (bereits vorhanden)
+### Fallback C: 4D_RESONATOR (CORE) Voice Satellite (bereits vorhanden)
 
 `src/voice/dreadnought_voice_satellite.py` – nutzt Mikro **am PC**, nicht am Scout.
 
 - **Nicht** für Scout-Brio geeignet
-- Nur wenn Voice-Input vom 4D_RESONATOR (MTHO_CORE)-PC gewünscht ist
+- Nur wenn Voice-Input vom 4D_RESONATOR (CORE)-PC gewünscht ist
 
 ### Fallback D: ESP32/Atom Echo Hardware-Satellite
 

@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 # Fix encoding on Windows terminals
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 IP = os.getenv("SCOUT_IP", "192.168.178.54")
 PORT = int(os.getenv("SCOUT_PORT", 22))

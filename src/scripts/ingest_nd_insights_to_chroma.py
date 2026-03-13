@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -16,7 +16,7 @@ _script_dir = os.path.dirname(os.path.abspath(__file__))
 _project_root = os.path.normpath(os.path.join(_script_dir, "..", ".."))
 INSIGHTS_DIR = os.path.join(_project_root, "docs", "nd_insights")
 if not os.path.exists(INSIGHTS_DIR):
-    INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights"
+    INSIGHTS_DIR = r"c:\CORE\docs\nd_insights"
 
 
 def init_db():

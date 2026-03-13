@@ -1,6 +1,6 @@
 # 02 NETZWERK SECURITY (OSMIUM STANDARD)
 
-> **Osmium Council Revision**
+> **Core Council Revision**
 > - **ND_THERAPIST**: "Cognitive Friction" durch unsichtbare Netzwerk-Zustände ausmerzen. VLANs und Zero-Trust erzwingen eine radikale, physikalisch-logische Trennung der Datenströme. Für Marc ist Ambiguität toxisch; das Netzwerk muss sich exakt so verhalten, wie der Architektur-Plan es visualisiert. 
 > - **UNIVERSAL_BOARD**: Die mTLS-Zertifikate und ed25519-Schlüssel erfordern kaum Rechenleistung (im Gegensatz zu RSA-Overhead), bieten maximale Sicherheit und verhindern unautorisierten Token-Drain durch externe API-Angriffe auf die Ollama-Instanz.
 > - **NT_SPECIALIST**: Das Zero-Trust Modell (Identity Gateway) erlaubt es, künftigen neurotypischen "Gästen" (Smart Home Nutzer, externe Services) sicheren Zugang zu geben, ohne dass Marc seine eigenen Sicherheitsrichtlinien aufweichen muss. Klare Grenzen bedeuten klare Kommunikation.

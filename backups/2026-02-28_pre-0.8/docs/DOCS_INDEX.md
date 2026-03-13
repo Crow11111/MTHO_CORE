@@ -12,7 +12,7 @@ Zentrale Übersicht der Projekt-Struktur.
 
 ## 1. CORE DNA (`docs/01_CORE_DNA/`)
 **Die Verfassung des Projekts.**
-- `CREW_MANIFEST.md` – Rollen & Aufgaben (Architect Zero, Backend Forge, etc.)
+- `CREW_MANIFEST.md` – Rollen & Aufgaben (Architect Zero, Backend Build-Engine, etc.)
 - `ATLAS_VOICE_ARCHITECTURE_V1.3.md` – Voice-Design & Persona-Definitionen
 - `stammdokumente_oc/` – Spezifische Dokumente für den Austausch mit OpenClaw (OC)
 

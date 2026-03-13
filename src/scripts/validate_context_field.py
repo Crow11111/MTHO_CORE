@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
-"""Validiert context_field Schema: MTHO-Tags, type, source_collection, Datenverlust-Check."""
+"""Validiert context_field Schema: CORE-Tags, type, source_collection, Datenverlust-Check."""
 from __future__ import annotations
 
 import sys
@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 VALID_TYPES = {"evidence", "directive", "session", "context", "insight", "pattern", "axiom"}
-VALID_MTHO = {"L", "P", "I", "S"}
+VALID_CORE = {"L", "P", "I", "S"}
 REQUIRED_META = {"type", "source_collection", "date_added"}
 
 
@@ -35,7 +35,7 @@ def main():
 
     errors = []
     type_counts = {}
-    mtho_counts = {}
+    core_counts = {}
     source_counts = {}
     empty_docs = 0
 
@@ -51,11 +51,11 @@ def main():
             errors.append(f"ID {doc_id}: ungültiger type '{t}'")
         type_counts[t] = type_counts.get(t, 0) + 1
 
-        lb = meta.get("mtho_base", "")
-        if lb and lb not in VALID_MTHO:
-            errors.append(f"ID {doc_id}: ungültiges mtho_base '{lb}'")
+        lb = meta.get("core_base", "")
+        if lb and lb not in VALID_CORE:
+            errors.append(f"ID {doc_id}: ungültiges core_base '{lb}'")
         if lb:
-            mtho_counts[lb] = mtho_counts.get(lb, 0) + 1
+            core_counts[lb] = core_counts.get(lb, 0) + 1
 
         src = meta.get("source_collection", "")
         source_counts[src] = source_counts.get(src, 0) + 1
@@ -74,8 +74,8 @@ def main():
     for k, v in sorted(source_counts.items(), key=lambda x: -x[1]):
         print(f"  {k or '(leer)'}: {v}")
 
-    print("\n--- mtho_base (nur evidence) ---")
-    for k, v in sorted(mtho_counts.items()):
+    print("\n--- core_base (nur evidence) ---")
+    for k, v in sorted(core_counts.items()):
         print(f"  {k}: {v}")
 
     print(f"\n--- Leere Dokumente: {empty_docs} ---")

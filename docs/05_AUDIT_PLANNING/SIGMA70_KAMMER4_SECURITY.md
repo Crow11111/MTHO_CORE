@@ -1,6 +1,6 @@
 # SIGMA-70 AUDIT – KAMMER 4: Security-Architektur, Chaos-Engineering, Veto-Logik
 
-> **HISTORISCH – kein Fix noetig:** Dieses Audit dokumentiert den Zustand vom 2026-03-11. Referenzen auf `munin.py` (heute `context_injector.py`) und `council_gate.py` (heute `veto_gate.py`) sind bewusst unveraendert.
+> **HISTORISCH – kein Fix noetig:** Dieses Audit dokumentiert den Zustand vom 2026-03-11. Referenzen auf `context_injector.py` (heute `context_injector.py`) und `council_gate.py` (heute `veto_gate.py`) sind bewusst unveraendert.
 
 **Auditor:** Security-Expert (Schicht 3)
 **Datum:** 2026-03-11
@@ -10,9 +10,9 @@
 **Gepruefte Dateien:**
 - `src/logic_core/z_vector_damper.py`
 - `src/logic_core/takt_gate.py`
-- `src/config/mtho_state_vector.py`
+- `src/config/core_state.py`
 - `src/config/ring0_state.py`
-- `src/logic_core/munin.py`
+- `src/logic_core/context_injector.py`
 - `src/ai/llm_interface.py`
 - `src/api/middleware/council_gate.py`
 - `src/api/routes/telemetry.py`
@@ -53,7 +53,7 @@
 **Angriffsvektor:** Ollama (lokal, RTX 3060) kann halluzinierte Outputs produzieren, die als valide Befehle interpretiert werden.
 
 **Bewertung:**
-- [SUCCESS] Munin Semantic Drift Detection existiert (`munin.py` Zeile 163-212). Bei Drift > 0.382 wird z_widerstand erhoeht.
+- [SUCCESS] Context-Injector Semantic Drift Detection existiert (`context_injector.py` Zeile 163-212). Bei Drift > 0.382 wird z_widerstand erhoeht.
 - [FAIL: Halluzinations-Bremse nicht implementiert] Das OMEGA_RING_0_MANIFEST definiert: "Produziert Ollama > 4096 Tokens am Stueck ohne Break, feuert der Watchdog `os.kill(ollama_pid, signal.SIGKILL)`". Dieser Code existiert nirgendwo in der Codebase. Kein `os.kill`, kein `SIGKILL`, kein `pynvml`. Die Bremse ist eine 0=0-Illusion.
 - [FAIL: Token-Schaetzung ist unzuverlaessig] `z_vector_damper.py` Zeile 107: `len(result) // 4` als Token-Schaetzung. Ein 4000-Byte UTF-8 Response mit Umlauten und CJK-Zeichen kann 500-2000 Tokens sein. Der Fehler kumuliert ueber die Session.
 - [SUCCESS] Fast-Path Lexical Triage in `llm_interface.py` umgeht den LLM komplett fuer bekannte Kommandos.
@@ -63,17 +63,17 @@
 **Angriffsvektor:** Ein Agent-Loop (Triage → Heavy → Triage → ...) kann Tokens unbegrenzt verbrennen.
 
 **Bewertung:**
-- [SUCCESS] ARGOS `MAX_ITERATIONS = 13` und `TOKEN_KILL_THRESHOLD = 233000` existieren und werden durchgesetzt.
+- [SUCCESS] SHELL `MAX_ITERATIONS = 13` und `TOKEN_KILL_THRESHOLD = 233000` existieren und werden durchgesetzt.
 - [FAIL: Token-Warnung bei 89000 ist ein No-Op] `z_vector_damper.py` Zeile 86-88: `if self._state.total_tokens > TOKEN_WARNING_THRESHOLD: pass`. Kein Logging, kein Throttling, keine Warnung. Die Schwelle existiert nur als toter Code.
-- [FAIL: ARGOS-Singleton ueberlebt Prozess-Neustart nicht, aber auch nicht Session-Grenzen] Der Singleton lebt im Prozess-Speicher. Wenn uvicorn den Worker recycled, ist ARGOS zurueckgesetzt. Aber innerhalb einer langen Session gibt es keinen Reset. Das ist korrekt fuer Single-Session, aber bei Endlos-Betrieb muss die Session-Grenze definiert werden.
+- [FAIL: SHELL-Singleton ueberlebt Prozess-Neustart nicht, aber auch nicht Session-Grenzen] Der Singleton lebt im Prozess-Speicher. Wenn uvicorn den Worker recycled, ist SHELL zurueckgesetzt. Aber innerhalb einer langen Session gibt es keinen Reset. Das ist korrekt fuer Single-Session, aber bei Endlos-Betrieb muss die Session-Grenze definiert werden.
 
 ### 1.5 API-Angriffsoberflaeche
 
 **Bewertung:**
 - [FAIL: `/api/chat` hat ZERO Authentication] `chat.py` exponiert POST und WebSocket ohne jegliche Auth-Pruefung. Jeder im LAN kann Befehle senden, die Ollama-Inferenz triggern und Home-Assistant-Geraete steuern.
 - [FAIL: `/ws` WebSocket hat keine Auth und kein Rate-Limiting] Unbegrenzter Verbindungsaufbau moeglich.
-- [FAIL: `/api/mtho/telemetry` hat Auth definiert aber nicht angewandt] `_verify_bearer()` ist definiert (Zeile 30-36), aber der Router-Decorator `@router.get("/telemetry")` hat kein `dependencies=[Depends(_verify_bearer)]`. Interne Systemzustaende (Z-Vektor, Token-Counts, Call-Counts) sind fuer jeden lesbar.
-- [SUCCESS] `/api/mtho/knowledge/evidence/add` hat `verify_ring0_write` Dependency.
+- [FAIL: `/api/core/telemetry` hat Auth definiert aber nicht angewandt] `_verify_bearer()` ist definiert (Zeile 30-36), aber der Router-Decorator `@router.get("/telemetry")` hat kein `dependencies=[Depends(_verify_bearer)]`. Interne Systemzustaende (Z-Vektor, Token-Counts, Call-Counts) sind fuer jeden lesbar.
+- [SUCCESS] `/api/core/knowledge/evidence/add` hat `verify_ring0_write` Dependency.
 
 ---
 
@@ -98,7 +98,7 @@ def _calculate_z_vector(self) -> float:
 
 **Konsequenz:** Z steigt monoton. Es gibt keinen Cooling-Mechanismus. Jede Session endet zwingend im Veto, sobald `call_count > ~9` ODER `total_tokens > ~200000`. Bei Endlos-Betrieb ist das kein Bug, sondern ein **garantierter Systemstillstand**.
 
-**Ist das gewollt?** Teilweise. ARGOS soll eine Session begrenzen. Aber:
+**Ist das gewollt?** Teilweise. SHELL soll eine Session begrenzen. Aber:
 - Es gibt keine Definition, was eine "Session" ist
 - Es gibt keinen Mechanismus fuer Session-Rotation (alten Watchdog verwerfen, neuen starten)
 - Das Manifest sagt "potenziell unendlich", der Code sagt "maximal 13 Calls, dann tot"
@@ -113,12 +113,12 @@ Es existieren **zwei unabhaengige Z-Zustaende:**
 
 | Quelle | Startwert | Steigt durch | Faellt durch | Speicher |
 |--------|-----------|--------------|--------------|----------|
-| ARGOS `z_vector_escalation` | 0.049 | call_count, total_tokens | **Nie** | In-Memory (ArgosSessionState) |
-| State Vector `z_widerstand` | 0.51 (WUJI) | Munin Veto, Env-Variable | clear_munin_veto() (nur in Tests) | ring0_state.py + Env |
+| SHELL `z_vector_escalation` | 0.049 | call_count, total_tokens | **Nie** | In-Memory (ShellSessionState) |
+| State Vector `z_widerstand` | 0.51 (ZERO_STATE) | Context-Injector Veto, Env-Variable | clear_context_injector_veto() (nur in Tests) | ring0_state.py + Env |
 
-ARGOS schreibt seinen Z-Wert in `os.environ["MTHO_Z_WIDERSTAND"]`. `takt_gate.py` liest diesen Wert. Aber `council_gate.py` liest `get_current_state().z_widerstand`, was den Munin-Override bevorzugt.
+SHELL schreibt seinen Z-Wert in `os.environ["CORE_Z_WIDERSTAND"]`. `takt_gate.py` liest diesen Wert. Aber `council_gate.py` liest `get_current_state().z_widerstand`, was den Context-Injector-Override bevorzugt.
 
-**Konsequenz:** ARGOS und Council Gate operieren auf **verschiedenen Z-Vektoren**. Ein ARGOS-Veto (z=0.9) stoppt LLM-Calls, aber der Council Gate koennte trotzdem Requests durchlassen (wenn Munin z nicht erhoeht hat). Umgekehrt kann Munin den Council Gate sperren, waehrend ARGOS noch Calls erlaubt.
+**Konsequenz:** SHELL und Council Gate operieren auf **verschiedenen Z-Vektoren**. Ein SHELL-Veto (z=0.9) stoppt LLM-Calls, aber der Council Gate koennte trotzdem Requests durchlassen (wenn Context-Injector z nicht erhoeht hat). Umgekehrt kann Context-Injector den Council Gate sperren, waehrend SHELL noch Calls erlaubt.
 
 **Urteil:** `[FAIL: Zwei unkorrelierte Z-Vektoren = Split-Brain-Zustand]`
 
@@ -137,13 +137,13 @@ Jeder Request mit dem Header `X-Council-Confirm: beliebiger_wert` umgeht den Vet
 
 **Urteil:** `[FAIL: Council Gate Confirmation ist eine 0=0-Illusion. Header-Existenz ist keine Authentifizierung.]`
 
-### 2.4 Munin Veto ohne Zugriffskontrolle
+### 2.4 Context-Injector Veto ohne Zugriffskontrolle
 
 **Befund (MITTEL):**
 
-`ring0_state.py` exponiert `set_munin_veto()` und `clear_munin_veto()` als einfache Funktionen. Jedes Modul, das `from src.config.ring0_state import clear_munin_veto` aufrufen kann, kann den Veto-Schutz deaktivieren.
+`ring0_state.py` exponiert `set_context_injector_veto()` und `clear_context_injector_veto()` als einfache Funktionen. Jedes Modul, das `from src.config.ring0_state import clear_context_injector_veto` aufrufen kann, kann den Veto-Schutz deaktivieren.
 
-**Urteil:** `[FAIL: ring0_state hat keine Caller-Validierung. Jeder Python-Import kann Munin ueberschreiben.]`
+**Urteil:** `[FAIL: ring0_state hat keine Caller-Validierung. Jeder Python-Import kann Context-Injector ueberschreiben.]`
 
 ### 2.5 Manifest vs. Code Divergenz
 
@@ -163,7 +163,7 @@ Z = min(1.0, 0.049 + (call_count/13)^1.618 + total_tokens/233000)
 
 **Differenzen:**
 - VRAM-Faktor (40% Gewicht): **Nicht implementiert.** Kein `pynvml`, kein `nvidia-smi`, kein GPU-Monitoring.
-- Error-Cascade-Faktor (30% Gewicht): **Nicht implementiert.** Kein Error-Counter in ARGOS.
+- Error-Cascade-Faktor (30% Gewicht): **Nicht implementiert.** Kein Error-Counter in SHELL.
 - Phi-Exponent statt linearer Gewichtung: Code nutzt `** 1.618`, Manifest nutzt lineare Multiplikation.
 
 **Urteil:** `[FAIL: Manifest und Code beschreiben verschiedene Systeme. Das Manifest ist eine 0=0-Illusion.]`
@@ -201,14 +201,14 @@ THRESHOLDS = {
     "vram_warning_pct":     0.90,   # 90% VRAM → Throttle, kein neuer Ollama-Load
     "vram_kill_pct":        0.95,   # 95% VRAM → Hard Freeze, torch.cuda.empty_cache()
     "token_rate_warning":   50000,  # 50k Tokens/Minute → Warnung + Logging
-    "token_rate_kill":      100000, # 100k Tokens/Minute → ArgosVetoException
+    "token_rate_kill":      100000, # 100k Tokens/Minute → ShellVetoException
     "error_cascade_warning": 5,     # 5 aufeinanderfolgende Fehler → Throttle
     "error_cascade_kill":   13,     # 13 aufeinanderfolgende Fehler → Hard Veto (Fibonacci)
     "z_veto_soft":          0.618,  # INV_PHI → Council Gate Confirmation
     "z_veto_hard":          0.90,   # Hard Freeze, alle Prozesse pausiert
     "ollama_max_continuous": 4096,  # Tokens am Stueck ohne Break → Ollama SIGTERM
     "chroma_max_size_mb":   2048,   # ChromaDB max 2 GB auf Ring-0
-    "session_max_duration_s": 3600, # 1 Stunde max pro ARGOS-Session
+    "session_max_duration_s": 3600, # 1 Stunde max pro SHELL-Session
     "ws_max_connections":   4,      # Max gleichzeitige WebSocket-Verbindungen
     "api_rate_limit_rpm":   120,    # 120 Requests/Minute pro IP
 }
@@ -245,12 +245,12 @@ def _calculate_z_vector_with_cooling(self) -> float:
 
 ```python
 def rotate_session(self) -> None:
-    """Startet eine neue ARGOS-Session. Alter State wird archiviert."""
+    """Startet eine neue SHELL-Session. Alter State wird archiviert."""
     old_state = self._state
     # Archiviere alten State (Telemetrie-Export)
     self._archive_session(old_state)
     # Neuer State mit Basis-Widerstand
-    self._state = ArgosSessionState()
+    self._state = ShellSessionState()
     self._state.z_vector_escalation = 0.049
 ```
 
@@ -264,9 +264,9 @@ Es darf nur **einen** Z-Vektor geben. Vorschlag:
 
 ```python
 def get_unified_z() -> float:
-    """Einheitlicher Z-Vektor: max(ARGOS, Munin, Env)."""
-    z_argos = float(os.getenv("MTHO_Z_WIDERSTAND", "0.049"))
-    z_munin = get_munin_veto_override()
+    """Einheitlicher Z-Vektor: max(SHELL, Context-Injector, Env)."""
+    z_argos = float(os.getenv("CORE_Z_WIDERSTAND", "0.049"))
+    z_munin = get_context_injector_veto_override()
     z_state = get_current_state().z_widerstand
 
     if z_munin is not None:
@@ -284,7 +284,7 @@ Prinzip: Der hoechste Z-Wert gewinnt (Principle of Maximum Resistance). Kein Sub
 
 ```python
 """
-ARGOS WATCHDOG V2 – Thermodynamic Kill-Switch
+SHELL WATCHDOG V2 – Thermodynamic Kill-Switch
 Kammer-4-konform. Z-Vektor mit Kuehlung, VRAM-Monitoring, Error-Cascade.
 """
 
@@ -320,18 +320,18 @@ COOLING_INACTIVITY_S = 60     # Sekunden bis Cooling beginnt
 COOLING_HALFLIFE_S = 300      # Halbwertszeit des Cooling
 
 
-class ArgosVetoException(Exception):
+class ShellVetoException(Exception):
     """Hard-Stop. Keine Retries."""
     pass
 
 
-class ArgosThermalException(ArgosVetoException):
+class ShellThermalException(ShellVetoException):
     """VRAM/Thermal-bedingter Stop."""
     pass
 
 
 @dataclass
-class ArgosSessionState:
+class ShellSessionState:
     total_tokens: int = 0
     call_count: int = 0
     consecutive_errors: int = 0
@@ -343,14 +343,14 @@ class ArgosSessionState:
     vram_last_value_mb: float = 0.0
 
 
-class ArgosWatchdogV2:
+class ShellWatchdogV2:
     """Ring-0 Hypervisor mit Kuehlung und VRAM-Monitoring."""
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
-            cls._instance._state = ArgosSessionState()
+            cls._instance._state = ShellSessionState()
         return cls._instance
 
     def _get_vram_usage_mb(self) -> float:
@@ -420,7 +420,7 @@ class ArgosWatchdogV2:
             raw_z += timeout_pressure * 0.3
 
         self._state.z_vector_escalation = min(1.0, max(BARYONIC_DELTA, raw_z))
-        os.environ["MTHO_Z_WIDERSTAND"] = str(
+        os.environ["CORE_Z_WIDERSTAND"] = str(
             self._state.z_vector_escalation
         )
         return self._state.z_vector_escalation
@@ -433,8 +433,8 @@ class ArgosWatchdogV2:
 
         # Hard Veto: Z >= 0.9
         if z >= Z_VETO_HARD:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Z={z:.3f} >= {Z_VETO_HARD}. "
+            raise ShellVetoException(
+                f"[SHELL VETO] Z={z:.3f} >= {Z_VETO_HARD}. "
                 f"Calls={self._state.call_count}, "
                 f"Tokens={self._state.total_tokens}, "
                 f"Errors={self._state.consecutive_errors}."
@@ -442,15 +442,15 @@ class ArgosWatchdogV2:
 
         # Hard Veto: Loop-Count
         if self._state.call_count > MAX_ITERATIONS:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Loop-Count {self._state.call_count} > "
+            raise ShellVetoException(
+                f"[SHELL VETO] Loop-Count {self._state.call_count} > "
                 f"{MAX_ITERATIONS}."
             )
 
         # Hard Veto: Token-Budget
         if self._state.total_tokens + estimated_tokens > TOKEN_KILL_THRESHOLD:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Token-Limit. "
+            raise ShellVetoException(
+                f"[SHELL VETO] Token-Limit. "
                 f"Current={self._state.total_tokens}, "
                 f"Requested={estimated_tokens}, "
                 f"Max={TOKEN_KILL_THRESHOLD}."
@@ -459,23 +459,23 @@ class ArgosWatchdogV2:
         # Hard Veto: VRAM
         vram_mb = self._get_vram_usage_mb()
         if vram_mb / 12288.0 > VRAM_KILL_PCT:
-            raise ArgosThermalException(
-                f"[ARGOS THERMAL] VRAM={vram_mb:.0f}MB "
+            raise ShellThermalException(
+                f"[SHELL THERMAL] VRAM={vram_mb:.0f}MB "
                 f"({vram_mb/12288*100:.1f}%) > {VRAM_KILL_PCT*100}%."
             )
 
         # Hard Veto: Token-Rate
         rate = self._get_token_rate_per_minute()
         if rate > TOKEN_RATE_KILL:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Token-Rate={rate:.0f}/min > "
+            raise ShellVetoException(
+                f"[SHELL VETO] Token-Rate={rate:.0f}/min > "
                 f"{TOKEN_RATE_KILL}/min."
             )
 
         # Hard Veto: Error-Cascade
         if self._state.consecutive_errors >= ERROR_CASCADE_KILL:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Error-Cascade="
+            raise ShellVetoException(
+                f"[SHELL VETO] Error-Cascade="
                 f"{self._state.consecutive_errors} >= "
                 f"{ERROR_CASCADE_KILL}."
             )
@@ -483,8 +483,8 @@ class ArgosWatchdogV2:
         # Hard Veto: Session-Timeout
         elapsed = time.time() - self._state.start_time
         if elapsed > SESSION_MAX_DURATION_S:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Session-Timeout={elapsed:.0f}s > "
+            raise ShellVetoException(
+                f"[SHELL VETO] Session-Timeout={elapsed:.0f}s > "
                 f"{SESSION_MAX_DURATION_S}s."
             )
 
@@ -505,8 +505,8 @@ class ArgosWatchdogV2:
         # Warnung bei Token-Threshold (KEIN no-op mehr)
         if self._state.total_tokens > TOKEN_WARNING_THRESHOLD:
             import logging
-            logging.getLogger("argos").warning(
-                "ARGOS WARNING: Token-Verbrauch %d > %d (%.0f%% des Kill-Limits)",
+            logging.getLogger("shell").warning(
+                "SHELL WARNING: Token-Verbrauch %d > %d (%.0f%% des Kill-Limits)",
                 self._state.total_tokens,
                 TOKEN_WARNING_THRESHOLD,
                 self._state.total_tokens / TOKEN_KILL_THRESHOLD * 100,
@@ -521,8 +521,8 @@ class ArgosWatchdogV2:
             "duration_s": time.time() - self._state.start_time,
             "final_z": self._state.z_vector_escalation,
         }
-        self._state = ArgosSessionState()
-        os.environ["MTHO_Z_WIDERSTAND"] = str(BARYONIC_DELTA)
+        self._state = ShellSessionState()
+        os.environ["CORE_Z_WIDERSTAND"] = str(BARYONIC_DELTA)
         return archive
 
     def get_telemetry(self) -> dict:
@@ -563,7 +563,7 @@ REGEL 3 (COUNCIL GATE HMAC):
 
 REGEL 4 (CHAT/WS AUTHENTICATION):
   /api/chat und /ws MUESSEN Bearer-Token-Authentifizierung erhalten.
-  Minimum: MTHO_API_TOKEN aus .env als Bearer.
+  Minimum: CORE_API_TOKEN aus .env als Bearer.
   WebSocket: Token als Query-Parameter oder im ersten Frame.
 
 REGEL 5 (TELEMETRIE AUTH):
@@ -576,8 +576,8 @@ REGEL 6 (CHROMADB QUOTA):
   Logging, Z-Vektor erhoehen.
 
 REGEL 7 (RING0_STATE CALLER-VALIDIERUNG):
-  set_munin_veto() und clear_munin_veto() duerfen NUR von:
-    - munin.py (apply_veto)
+  set_context_injector_veto() und clear_context_injector_veto() duerfen NUR von:
+    - context_injector.py (apply_veto)
     - z_vector_damper.py (Watchdog)
     - takt_gate.py (Gate-Check)
   aufgerufen werden. Enforcement via Caller-Stack-Inspection:
@@ -599,7 +599,7 @@ REGEL 8 (OLLAMA OUTPUT-BREMSE):
 | ID | Schwere | Befund | Status |
 |----|---------|--------|--------|
 | K4-01 | KRITISCH | Z-Vektor monoton steigend, kein Cooling | FAIL |
-| K4-02 | KRITISCH | Zwei unkorrelierte Z-Vektoren (ARGOS vs. State Vector) | FAIL |
+| K4-02 | KRITISCH | Zwei unkorrelierte Z-Vektoren (SHELL vs. State Vector) | FAIL |
 | K4-03 | HOCH | Council Gate X-Council-Confirm ohne HMAC | FAIL |
 | K4-04 | HOCH | /api/chat und /ws ohne Authentication | FAIL |
 | K4-05 | HOCH | Manifest vs. Code Divergenz (VRAM, Errors nicht implementiert) | FAIL |
@@ -612,8 +612,8 @@ REGEL 8 (OLLAMA OUTPUT-BREMSE):
 | K4-12 | NIEDRIG | VPS Pull-Only ist Betriebsanweisung, nicht Code | FAIL |
 | K4-13 | OK | Baryonic Limit bewusst deaktiviert (korrekt) | SUCCESS |
 | K4-14 | OK | Fast-Path Lexical Triage umgeht LLM | SUCCESS |
-| K4-15 | OK | ARGOS Decorator existiert und schuetzt LLM-Calls | SUCCESS |
-| K4-16 | OK | Munin Semantic Drift Detection funktional | SUCCESS |
+| K4-15 | OK | SHELL Decorator existiert und schuetzt LLM-Calls | SUCCESS |
+| K4-16 | OK | Context-Injector Semantic Drift Detection funktional | SUCCESS |
 | K4-17 | OK | Ring-0 Write Gate mit verify_ring0_write | SUCCESS |
 | K4-18 | OK | Entry Adapter validiert Source gegen VALID_SOURCES | SUCCESS |
 

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -11,10 +11,10 @@ class NTMappingService:
     NT-Mapping Service (Osmium Standard)
     Acts as the 'Social Firewall' described by the NT_SPECIALIST.
     Translates complex, ambiguous neurotypical organizational structures (like LDAP/Active Directory)
-    into flat, deterministic constants for Marc's MTHO engine.
+    into flat, deterministic constants for Marc's CORE engine.
     """
     def __init__(self):
-        # Maps complex AD roles to internal clear-cut MTHO security clearance levels
+        # Maps complex AD roles to internal clear-cut CORE security clearance levels
         # Level 0 = Zero Trust (Guest)
         # Level 1 = Sensor / Edge Node
         # Level 5 = Admin / Architect (Marc / Dreadnought)
@@ -27,7 +27,7 @@ class NTMappingService:
 
     def translate_nt_identity(self, ldap_string: str) -> Dict[str, Any]:
         """
-        Translates an external NT-actor string into an MTHO-native identity block.
+        Translates an external NT-actor string into an CORE-native identity block.
         """
         # Determine Clearance
         clearance = self.ad_to_clearance_map.get(ldap_string, 0) # Default to Zero Trust
@@ -52,7 +52,7 @@ class NTMappingService:
         }
 
 if __name__ == "__main__":
-    print("[MTHO_CORE] Loading NT-Mapping Protocol...")
+    print("[CORE] Loading NT-Mapping Protocol...")
     mapper = NTMappingService()
     
     test_identities = [
@@ -64,4 +64,4 @@ if __name__ == "__main__":
     for identity in test_identities:
         mapped = mapper.translate_nt_identity(identity)
         print(f"\nIncoming NT Identity: {identity}")
-        print(f"MTHO Internal Mapping: {mapped}")
+        print(f"CORE Internal Mapping: {mapped}")

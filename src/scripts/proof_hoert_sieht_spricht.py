@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Beweis: MTHO hört / sieht / spricht.
+Beweis: CORE hört / sieht / spricht.
 Führt prüfbare Schritte aus, schreibt Report nach data/proof_hoert_sieht_spricht_report.txt.
 Teamchef: Nur Beweise zählen.
 """
@@ -66,12 +66,12 @@ def run_sprechen(lines: list) -> tuple[bool, str]:
     """TTS erzeugen, in media/ speichern. Optional: an WhatsApp senden."""
     try:
         from src.voice.elevenlabs_tts import speak_text
-        text = "MTHO Proof. Hoeren, Sehen, Sprechen – Test."
+        text = "CORE Proof. Hoeren, Sehen, Sprechen – Test."
         out_path = MEDIA_DIR / "proof_tts.mp3"
         MEDIA_DIR.mkdir(parents=True, exist_ok=True)
         path = speak_text(
             text=text,
-            role_name="mtho_dialog",
+            role_name="core_dialog",
             output_path=str(out_path),
             play=False,
         )
@@ -114,7 +114,7 @@ def run_hoeren(lines: list) -> tuple[bool, str]:
 
 def main() -> int:
     lines = [f"Report {datetime.now(timezone.utc).isoformat()}"]
-    log("--- Proof: MTHO hört / sieht / spricht ---", lines)
+    log("--- Proof: CORE hört / sieht / spricht ---", lines)
 
     # Sehen
     log("\n[Sehen]", lines)

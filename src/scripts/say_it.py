@@ -18,10 +18,10 @@ except ImportError:
     from src.voice.tts_dispatcher import dispatch_tts
 
 async def main():
-    parser = argparse.ArgumentParser(description="MTHO TTS CLI Wrapper")
+    parser = argparse.ArgumentParser(description="CORE TTS CLI Wrapper")
     parser.add_argument("text", type=str, help="Text to speak")
     parser.add_argument("--target", "-t", type=str, default="mini", help="Target device (mini, elevenlabs, etc.)")
-    parser.add_argument("--role", "-r", type=str, default="mtho_dialog", help="Role name (for ElevenLabs)")
+    parser.add_argument("--role", "-r", type=str, default="core_dialog", help="Role name (for ElevenLabs)")
     
     args = parser.parse_args()
     

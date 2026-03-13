@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -13,7 +13,7 @@ import websockets
 from dotenv import load_dotenv
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HA_TOKEN = os.getenv("HASS_TOKEN")
 HA_URL = "wss://192.168.178.54:8123/api/websocket"

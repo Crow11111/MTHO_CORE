@@ -10,7 +10,7 @@ load_dotenv()
 # Configuration
 # SCOUT_IP should be in .env or passed as arg. For now, we look for it or prompt.
 SCOUT_HOST = os.getenv("SCOUT_HOST", "pi@192.168.178.XX") # Placeholder
-SCOUT_KEY_PATH = os.getenv("SCOUT_KEY_PATH", "c:/MTHO_CORE/.ssh/id_rsa_scout") # Placeholder
+SCOUT_KEY_PATH = os.getenv("SCOUT_KEY_PATH", "c:/CORE/.ssh/id_rsa_scout") # Placeholder
 
 def deploy_scout():
     print(f"Deploying Scout to {SCOUT_HOST}...")

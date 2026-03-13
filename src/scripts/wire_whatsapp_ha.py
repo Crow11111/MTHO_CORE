@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -12,19 +12,19 @@ from dotenv import load_dotenv
 # Fix encoding on Windows terminals
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 IP = os.getenv("SCOUT_IP", "192.168.178.54")
 PORT = int(os.getenv("SCOUT_PORT", 22))
 PASSWORD = os.getenv("HA_SSH_PASSWORD")
 
 AUTOMATION_YAML = """
-- alias: "MTHO: Weiterleitung WhatsApp eingehend"
+- alias: "CORE: Weiterleitung WhatsApp eingehend"
   trigger:
     - platform: event
       event_type: whatsapp_message_received
   action:
-    - service: rest_command.mtho_whatsapp_webhook
+    - service: rest_command.core_whatsapp_webhook
       data:
         payload: "{{ trigger.event.data }}"
 """
@@ -41,11 +41,11 @@ def wire_up():
     ssh.connect(IP, port=PORT, username="dreadnought", password=PASSWORD, timeout=10)
     print("Verbunden!")
 
-    # Check automations.yaml for MTHO entry
+    # Check automations.yaml for CORE entry
     auto_content, _ = run(ssh, "cat /root/config/automations.yaml")
     
-    if "MTHO: Weiterleitung WhatsApp" in auto_content:
-        print("MTHO Automatisierung bereits vorhanden!")
+    if "CORE: Weiterleitung WhatsApp" in auto_content:
+        print("CORE Automatisierung bereits vorhanden!")
     else:
         print("Füge Automatisierung hinzu...")
         sftp = ssh.open_sftp()
@@ -59,7 +59,7 @@ def wire_up():
     out, err = run(ssh, "ha core reload 2>&1 || ha core restart 2>&1")
     print(out or err or "OK!")
     
-    print("\nFertig! Sende jetzt eine Test-WhatsApp und beobachte den MTHO-Log.")
+    print("\nFertig! Sende jetzt eine Test-WhatsApp und beobachte den CORE-Log.")
     ssh.close()
 
 if __name__ == "__main__":

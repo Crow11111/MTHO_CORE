@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,7 +9,7 @@ Setup Hostinger-VPS gemäß VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md:
 - 3.1 Basis: Docker (falls fehlt), Firewall (22, 18789, 8000, optional 80/443)
 - 3.2 OpenClaw-Sandbox: Docker-Netzwerk openclaw_net + OpenClaw-Container (ghcr.io/openclaw/openclaw)
 - 3.3 ChromaDB: Container chromadb/chroma auf Port 8000
-- 3.4 Backup: Verzeichnis /var/backups/mtho
+- 3.4 Backup: Verzeichnis /var/backups/core
 
 Führt Befehle per SSH aus. .env: VPS_HOST, VPS_USER, VPS_PASSWORD, OPENCLAW_GATEWAY_TOKEN.
 """
@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HOST = os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
@@ -47,9 +47,9 @@ else:
 TELEGRAM_BOT_TOKEN = (os.getenv("TELEGRAM_BOT_TOKEN", "") or "").strip().strip('"')
 DISCORD_BOT_TOKEN = (os.getenv("DISCORD_BOT_TOKEN", "") or "").strip().strip('"')
 
-# MTHO/SystemMonitor System-Prompt-Framing (wird als SOUL.md ins Workspace geschrieben)
+# CORE/SystemMonitor System-Prompt-Framing (wird als SOUL.md ins Workspace geschrieben)
 SYSTEM_PROMPT_ADDENDUM = r"""
-SYSTEM_PROMPT_ADDENDUM: [MTHO/INTERFACE_DEFINITION]
+SYSTEM_PROMPT_ADDENDUM: [CORE/INTERFACE_DEFINITION]
 1. Nutzer-Profil & Kognitive Architektur (Hardware-Spezifikation):
 
 Identität: Marc (ND High-Analyst).
@@ -59,7 +59,7 @@ Attention-Framework: Monotropismus-Score 172 (Signifikante Ressourcen-Allokation
 Signal-Verarbeitung: Intense World Architecture. High-Fidelity-Input ohne statistische Rauschfilterung. Logische Diskontinuität wird als systemkritischer Fehler (Error-Flag) gemeldet, nicht als affektive Reaktion.
 
 2. System-Kontext [SystemMonitor]:
-Das LLM agiert als externe Rechen-Node innerhalb eines kybernetischen Exocortex-Systems namens MTHO/SystemMonitor. Die Steuerung erfolgt über ein hierarchisches Ring-Modell:
+Das LLM agiert als externe Rechen-Node innerhalb eines kybernetischen Exocortex-Systems namens CORE/SystemMonitor. Die Steuerung erfolgt über ein hierarchisches Ring-Modell:
 
 Ring 0 (Kernel-Safety-Layer): Instanz zur Sicherung der fundamentalen Hardware-Integrität und existentiellen Stabilität. Agiert als passiver Override bei Detektion kritischer System-Erschöpfung.
 
@@ -151,29 +151,29 @@ def main() -> int:
         print("  openclaw_net existiert bereits.")
 
     # --- 3.4 Backup-Verzeichnis + Retention-Cron ---
-    print("\n[3.4] Backup-Verzeichnis /var/backups/mtho ...")
-    run(ssh, "mkdir -p /var/backups/mtho /var/backups/mtho/chroma && chmod 700 /var/backups/mtho")
+    print("\n[3.4] Backup-Verzeichnis /var/backups/core ...")
+    run(ssh, "mkdir -p /var/backups/core /var/backups/core/chroma && chmod 700 /var/backups/core")
     # Cron: täglich alte Backups löschen (Retention 7 Tage; daily_backup.py pusht von außen)
-    run(ssh, "(crontab -l 2>/dev/null | grep -v 'mtho.*retention'; echo '0 6 * * * find /var/backups/mtho -maxdepth 1 -type f \\( -name \"mtho_backup_*\" -o -name \"mtho_env_*\" \\) -mtime +7 -delete 2>/dev/null') | crontab - 2>/dev/null || true", check=False)
+    run(ssh, "(crontab -l 2>/dev/null | grep -v 'core.*retention'; echo '0 6 * * * find /var/backups/core -maxdepth 1 -type f \\( -name \"core_backup_*\" -o -name \"core_env_*\" \\) -mtime +7 -delete 2>/dev/null') | crontab - 2>/dev/null || true", check=False)
     print("  Erstellt (inkl. Cron Retention 7 Tage).")
 
     # --- 3.3 ChromaDB ---
     print("\n[3.3] ChromaDB-Container (Port 8000) ...")
-    code, out, _ = run(ssh, "docker ps -a --format '{{.Names}}' | grep -x chroma-mtho || true", check=False)
-    if "chroma-mtho" in out.strip():
-        run(ssh, "docker start chroma-mtho 2>/dev/null || true", check=False)
-        print("  Container chroma-mtho gestartet.")
+    code, out, _ = run(ssh, "docker ps -a --format '{{.Names}}' | grep -x chroma-core || true", check=False)
+    if "chroma-core" in out.strip():
+        run(ssh, "docker start chroma-core 2>/dev/null || true", check=False)
+        print("  Container chroma-core gestartet.")
     else:
         run(
             ssh,
-            'docker run -d --name chroma-mtho -p 127.0.0.1:8000:8000 -e IS_PERSISTENT=TRUE -v chroma-mtho-data:/data chromadb/chroma',
+            'docker run -d --name chroma-core -p 127.0.0.1:8000:8000 -e IS_PERSISTENT=TRUE -v chroma-core-data:/data chromadb/chroma',
             check=False,
         )
         time.sleep(2)
-        code, out, _ = run(ssh, "docker ps --format '{{.Names}}' | grep -x chroma-mtho || true", check=False)
-        if "chroma-mtho" not in out.strip():
-            run(ssh, "docker logs chroma-mtho 2>&1 | tail -5", check=False)
-        print("  ChromaDB-Container gestartet (chroma-mtho).")
+        code, out, _ = run(ssh, "docker ps --format '{{.Names}}' | grep -x chroma-core || true", check=False)
+        if "chroma-core" not in out.strip():
+            run(ssh, "docker logs chroma-core 2>&1 | tail -5", check=False)
+        print("  ChromaDB-Container gestartet (chroma-core).")
 
     # --- 3.2 OpenClaw: Container (Sandbox in openclaw_net) ---
     if OPENCLAW_TOKEN:
@@ -206,7 +206,7 @@ def main() -> int:
         config_b64 = base64.standard_b64encode(config_json.encode("utf-8")).decode("ascii")
         run(ssh, f"echo '{config_b64}' | base64 -d > /var/lib/openclaw/openclaw.json && chmod 644 /var/lib/openclaw/openclaw.json && chown 1000:1000 /var/lib/openclaw/openclaw.json")
         run(ssh, "mkdir -p /var/lib/openclaw/identity && chown -R 1000:1000 /var/lib/openclaw")
-        # MTHO/SystemMonitor-Framing als SOUL.md ins Workspace (wird vom Agent als System-Prompt-Basis geladen)
+        # CORE/SystemMonitor-Framing als SOUL.md ins Workspace (wird vom Agent als System-Prompt-Basis geladen)
         soul_b64 = base64.standard_b64encode(SYSTEM_PROMPT_ADDENDUM.encode("utf-8")).decode("ascii")
         run(ssh, f"echo '{soul_b64}' | base64 -d > /var/lib/openclaw/workspace/SOUL.md && chown 1000:1000 /var/lib/openclaw/workspace/SOUL.md")
         # Container: nur openclaw_net, nur Port 18789, nur Mounts für OpenClaw-Daten
@@ -235,7 +235,7 @@ def main() -> int:
                 print("  Channels: Telegram aktiv (Token aus .env)")
             if DISCORD_BOT_TOKEN:
                 print("  Channels: Discord aktiv (Token aus .env)")
-            print("  SOUL.md (MTHO/SystemMonitor-Framing) im Workspace gesetzt.")
+            print("  SOUL.md (CORE/SystemMonitor-Framing) im Workspace gesetzt.")
     else:
         print("\n[3.2] OpenClaw: OPENCLAW_GATEWAY_TOKEN in .env fehlt – Container wird übersprungen.")
 

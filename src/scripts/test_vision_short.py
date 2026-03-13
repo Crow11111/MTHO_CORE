@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -13,7 +13,7 @@ import os
 sys.path.append(os.getcwd())
 
 try:
-    from src.daemons.mtho_vision_daemon import MthoVisionDaemon
+    from src.daemons.core_vision_daemon import MthoVisionDaemon
 except ImportError as e:
     print(f"Import Error: {e}")
     print("Bitte installieren: pip install opencv-python google-generativeai")

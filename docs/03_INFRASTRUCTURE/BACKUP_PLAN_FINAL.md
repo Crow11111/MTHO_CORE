@@ -1,13 +1,13 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# Backup-Plan (final) – MTHO_CORE
+# Backup-Plan (final) – CORE
 
-**Einziges Backup-Ziel: Hostinger-VPS** (`/var/backups/atlas`). Kein lokales Primärziel, kein S3 – alles geht per Push vom Rechner (4D_RESONATOR (MTHO_CORE)) zum VPS.
+**Einziges Backup-Ziel: Hostinger-VPS** (`/var/backups/core`). Kein lokales Primärziel, kein S3 – alles geht per Push vom Rechner (4D_RESONATOR (CORE)) zum VPS.
 
 ---
 
@@ -22,20 +22,20 @@ Kritische Projektdaten (Code, Konfiguration, SQLite-DB) täglich automatisiert a
 | Anwendungscode | Projekt-Root | Ausschlüsse: `.git`, `__pycache__`, `node_modules`, `*.pyc`, venv, `data/backups`, `logs` |
 | Konfiguration | `config/` | Vollständig |
 | .env | Projekt-Root | **Nur verschlüsselt** (Fernet); Schlüssel nicht im Backup |
-| SQLite-DB | `data/argos_db/*.sqlite` | Vollständig |
+| SQLite-DB | `data/shell_db/*.sqlite` | Vollständig |
 
 ChromaDB-Daten liegen auf dem VPS; Backup der ChromaDB erfolgt auf dem VPS (Cold-Backup, siehe Abschnitt 5).
 
 ## 3. Wohin?
 
-- **Ziel:** Hostinger-VPS, Verzeichnis `/var/backups/atlas`
-- **Transport:** Push per SSH/SFTP (Paramiko) von 4D_RESONATOR (MTHO_CORE) aus; der VPS pullt nicht.
-- **Berechtigung:** `/var/backups/atlas` wird von `setup_vps_hostinger.py` mit `chmod 700` angelegt (bereits vorhanden).
+- **Ziel:** Hostinger-VPS, Verzeichnis `/var/backups/core`
+- **Transport:** Push per SSH/SFTP (Paramiko) von 4D_RESONATOR (CORE) aus; der VPS pullt nicht.
+- **Berechtigung:** `/var/backups/core` wird von `setup_vps_hostinger.py` mit `chmod 700` angelegt (bereits vorhanden).
 
 ## 4. Wie wird gesichert? (Automatisierung)
 
-- **Automatisiertes Backup:** Ein Windows Task führt `python src/scripts/daily_backup.py` täglich aus (seit 25.02.2026 aktiv). Das Skript packt den Code (ohne `node_modules`, `.venv` etc.) und lädt ihn per SFTP auf den Hostinger-VPS in `/var/backups/atlas`.
-  - Erstellt ein Archiv (tar.gz) aus Code, `config/`, `data/argos_db/`.
+- **Automatisiertes Backup:** Ein Windows Task führt `python src/scripts/daily_backup.py` täglich aus (seit 25.02.2026 aktiv). Das Skript packt den Code (ohne `node_modules`, `.venv` etc.) und lädt ihn per SFTP auf den Hostinger-VPS in `/var/backups/core`.
+  - Erstellt ein Archiv (tar.gz) aus Code, `config/`, `data/shell_db/`.
   - `.env` wird bei gesetztem `BACKUP_ENCRYPTION_KEY` mit Fernet verschlüsselt und als separate Datei hochgeladen.
   - Upload per SFTP zu `VPS_HOST` mit `VPS_USER` / `VPS_PASSWORD` aus `.env`.
   - **Retention:** Auf dem VPS werden Backups älter als 7 Tage gelöscht (vom Skript per SSH-Befehl ausgeführt).
@@ -50,14 +50,14 @@ ChromaDB läuft im Container auf dem VPS. Ein Cold-Backup (Container kurz stoppe
 
 - **Zeitpunkt:** Täglich, z. B. 04:00 Uhr (Windows: Task Scheduler; Linux: cron).
 - **Windows (Task Scheduler):**
-  - **Programm:** `C:\MTHO_CORE\scripts\run_daily_backup.bat`  
-  - **Arbeitsverzeichnis:** `C:\MTHO_CORE`  
-  - Oder direkt: Programm `python`, Argument `C:\MTHO_CORE\src\scripts\daily_backup.py`, Starten in `C:\MTHO_CORE`.
+  - **Programm:** `C:\CORE\scripts\run_daily_backup.bat`  
+  - **Arbeitsverzeichnis:** `C:\CORE`  
+  - Oder direkt: Programm `python`, Argument `C:\CORE\src\scripts\daily_backup.py`, Starten in `C:\CORE`.
 - **Linux (cron):**  
-  `0 4 * * * cd /pfad/zu/MTHO_CORE && python3 src/scripts/daily_backup.py >> logs/backup.log 2>&1`
+  `0 4 * * * cd /pfad/zu/CORE && python3 src/scripts/daily_backup.py >> logs/backup.log 2>&1`
 - **Windows Task Scheduler (einmalig anlegen):**  
   Als Administrator in cmd/PowerShell:  
-  `schtasks /create /tn "MTHO Daily Backup" /tr "C:\MTHO_CORE\scripts\run_daily_backup.bat" /sc daily /st 04:00 /ru SYSTEM`  
+  `schtasks /create /tn "CORE Daily Backup" /tr "C:\CORE\scripts\run_daily_backup.bat" /sc daily /st 04:00 /ru SYSTEM`  
   (Oder GUI: Aufgabenplanung → Aufgabe erstellen → Trigger täglich 04:00, Aktion: Batch-Datei oder `python …\daily_backup.py`.)
 
 ## 7. Aufbewahrung (Retention)
@@ -66,7 +66,7 @@ ChromaDB läuft im Container auf dem VPS. Ein Cold-Backup (Container kurz stoppe
 
 ## 8. Wiederherstellung
 
-- Archiv von `/var/backups/atlas` per SCP/SFTP zurück auf den Rechner, entpacken.
+- Archiv von `/var/backups/core` per SCP/SFTP zurück auf den Rechner, entpacken.
 - Falls `.env.enc` gesichert wurde: mit dem gleichen `BACKUP_ENCRYPTION_KEY` entschlüsseln (Fernet).
 - **Restore-Test:** Mindestens einmal pro Monat auf Testordner/Staging prüfen.
 

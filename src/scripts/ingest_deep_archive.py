@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,7 +9,7 @@ import requests
 from loguru import logger
 import re
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights_v4"
 RAW_FILE = os.path.join(INSIGHTS_DIR, "V4_raw_backup.txt")
 API_BASE_URL = "http://localhost:8000"
 

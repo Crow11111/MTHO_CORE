@@ -1,29 +1,29 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Rotation Phasenverschiebungs-Modul (V12+)
+CORE Rotation Phasenverschiebungs-Modul (V12+)
 
-Implementiert die zyklische Rotation zwischen MTHO- und rotierter Codierung.
-MTHO -> ROTATED: Jede Base rotiert um +1 Position im Zyklus O->M->T->H->O.
-ROTATED -> MTHO: Inverse Rotation (-1).
+Implementiert die zyklische Rotation zwischen CORE- und rotierter Codierung.
+CORE -> ROTATED: Jede Base rotiert um +1 Position im Zyklus O->M->T->H->O.
+ROTATED -> CORE: Inverse Rotation (-1).
 
 Die Dualitaet entspricht dem Verhaeltnis von Sense-Strang und Antisense-Strang
 in der DNS – derselbe Informationsgehalt, aber phasenverschoben gelesen.
 """
 from __future__ import annotations
-from src.mtho_core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
+from src.core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
 
 
-# LPIS legacy removed
+#  legacy removed
 ROT_FORWARD: dict[str, str] = {"O": "M", "M": "T", "T": "H", "H": "O"}
 
 ROT_BACKWARD: dict[str, str] = {"M": "O", "T": "M", "H": "T", "O": "H"}
 
-_VALID_BASES = frozenset("MTHO")
+_VALID_BASES = frozenset("CORE")
 
 
 def _validate_sequence(sequence: str) -> str:
@@ -35,9 +35,9 @@ def _validate_sequence(sequence: str) -> str:
 
 
 def rotate_forward(sequence: str) -> str:
-    """Konvertiert eine MTHO-Sequenz in rotierter Codierung (zyklische Rotation +1).
+    """Konvertiert eine CORE-Sequenz in rotierter Codierung (zyklische Rotation +1).
 
-    >>> rotate_forward("MTHO")
+    >>> rotate_forward("CORE")
     'ROTATED'
     >>> rotate_forward("LLLL")
     'PPPP'
@@ -47,10 +47,10 @@ def rotate_forward(sequence: str) -> str:
 
 
 def rotate_backward(sequence: str) -> str:
-    """Konvertiert eine rotierte Sequenz zurueck in MTHO-Codierung (inverse Rotation).
+    """Konvertiert eine rotierte Sequenz zurueck in CORE-Codierung (inverse Rotation).
 
     >>> rotate_backward("ROTATED")
-    'MTHO'
+    'CORE'
     >>> rotate_backward(rotate_forward("LSIP"))
     'LSIP'
     """
@@ -64,11 +64,11 @@ def compute_phase_shift(seq_a: str, seq_b: str) -> int:
     Probiert 0-3 Rotationen durch und gibt die Anzahl der Rotationen zurueck,
     bei der seq_a in seq_b transformiert wird. -1 falls keine Rotation passt.
 
-    >>> compute_phase_shift("MTHO", "ROTATED")
+    >>> compute_phase_shift("CORE", "ROTATED")
     1
-    >>> compute_phase_shift("MTHO", "MTHO")
+    >>> compute_phase_shift("CORE", "CORE")
     0
-    >>> compute_phase_shift("MTHO", "ISLP")
+    >>> compute_phase_shift("CORE", "ISLP")
     2
     """
     a = _validate_sequence(seq_a)
@@ -174,11 +174,11 @@ def ot_direction_analysis(sequence: str) -> dict:
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("[MTHO_CORE] MTHO Rotation Phasenverschiebungs-Modul – Selbsttest")
+    print("[CORE] CORE Rotation Phasenverschiebungs-Modul – Selbsttest")
     print("=" * 60)
 
     print("\n--- rotate_forward ---")
-    for seq in ["MTHO", "LLLL", "SIPL", "LSIPL"]:
+    for seq in ["CORE", "LLLL", "SIPL", "LSIPL"]:
         print(f"  {seq} -> {rotate_forward(seq)}")
 
     print("\n--- rotate_backward ---")
@@ -195,7 +195,7 @@ if __name__ == "__main__":
     print(f"  Roundtrip: {'OK' if back == test else 'FEHLER'}")
 
     print("\n--- compute_phase_shift ---")
-    for a, b in [("MTHO", "ROTATED"), ("MTHO", "MTHO"), ("MTHO", "ISLP"), ("MTHO", "SLPI")]:
+    for a, b in [("CORE", "ROTATED"), ("CORE", "CORE"), ("CORE", "ISLP"), ("CORE", "SLPI")]:
         print(f"  {a} -> {b}: Shift = {compute_phase_shift(a, b)}")
 
     print("\n--- hm_stability_check ---")
@@ -211,5 +211,5 @@ if __name__ == "__main__":
     print(f"  Dichte: {li['transition_density']}")
 
     print("\n" + "=" * 60)
-    print("[MTHO_CORE] Phasenverschiebungs-Modul operativ.")
+    print("[CORE] Phasenverschiebungs-Modul operativ.")
     print("=" * 60)

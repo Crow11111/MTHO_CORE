@@ -1,10 +1,10 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # ============================================================
 """
 GitHub Webhook: Bei Push-Event git pull im konfigurierten Verzeichnis ausführen.
-Für G-MTHO Option 5 – Cloud Agents erhalten sofort aktuellen Stand.
+Für G-CORE Option 5 – Cloud Agents erhalten sofort aktuellen Stand.
 Credentials/Secret nur über Env: GITHUB_WEBHOOK_SECRET, GIT_PULL_DIR.
 """
 from __future__ import annotations

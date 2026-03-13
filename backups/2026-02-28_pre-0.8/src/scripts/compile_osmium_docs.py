@@ -3,9 +3,9 @@ import ollama
 from loguru import logger
 
 MODEL = "llama3.1"
-SOURCE_DIR = r"c:\MTHO_CORE\data\antigravity_docs_compiled"
-OUTPUT_DIR = r"c:\MTHO_CORE\data\antigravity_docs_osmium"
-GOLD_DOC = r"c:\MTHO_CORE\docs\01_CORE_DNA\nd_insights_v4\ATLAS_ND_PROFILE_GOLD.md"
+SOURCE_DIR = r"c:\CORE\data\antigravity_docs_compiled"
+OUTPUT_DIR = r"c:\CORE\data\antigravity_docs_osmium"
+GOLD_DOC = r"c:\CORE\docs\01_CORE_DNA\nd_insights_v4\ATLAS_ND_PROFILE_GOLD.md"
 
 def load_gold_rules():
     if not os.path.exists(GOLD_DOC):
@@ -20,7 +20,7 @@ def rewrite_doc_osmium(filename, content, gold_rules):
     # System prompt integrating the entire overarching council
     system_prompt = f"""Du bist ein reiner technischer Dokumentations-Compiler. Es gibt keine Konversation, keine Entschuldigungen. Übersetze und erweitere das Lastenheft EXAKT nach den folgenden Vorgaben als reines Markdown-Dokument. Beginne sofort mit der '# ' Überschrift.
 
-DEINE AUFGABE als 'Osmium Council' (ND_THERAPIST, NT_SPECIALIST, UNIVERSAL_BOARD):
+DEINE AUFGABE als 'Core Council' (ND_THERAPIST, NT_SPECIALIST, UNIVERSAL_BOARD):
 Umschreiben dieses IT-Architektur-Lastenhefts, sodass die systemischen Erkenntnisse von Marcs hochgradigem Monotropismus (AuDHD) organisch auf Hardware-, Datenbank- und API-Ebene verankert werden.
 
 REGELN DES OSMIUM COUNCILS (STRIKTE PRIORITÄT):
@@ -33,7 +33,7 @@ MARCS KOGNITIVES GOLD-PROFIL:
 
 ANWEISUNG ZUR BEARBEITUNG:
 - Behalte ALLE technischen Eckdaten, Hardware-Spezifikationen und Architekturen bei.
-- Füge ein Kapitel ein: "Osmium Council Revision", in dem die Regeln angewendet werden.
+- Füge ein Kapitel ein: "Core Council Revision", in dem die Regeln angewendet werden.
 - Formatiere als reines Markdown. Mache keine einleitenden Sätze wie "Hier ist das Dokument". Starte sofort mit dem Markdown-Inhalt.
 """
     

@@ -4,7 +4,7 @@
 
 | Status | Team | Deliverable | Dateien |
 |---|---|---|---|
-| erledigt | Cursor | ElevenLabs Direktwiedergabe fuer Omega-Zusammenfassung | `scripts/omega_elevenlabs_now.py`, `media/mtho_reply.mp3` |
+| erledigt | Cursor | ElevenLabs Direktwiedergabe fuer Omega-Zusammenfassung | `scripts/omega_elevenlabs_now.py`, `media/core_reply.mp3` |
 | erledigt | Cursor | Zwei-Stimmen-Rueckblick fuer die letzte Stunde | `scripts/play_last_hour_omega_dialog.py` |
 | erledigt | Cursor | Laengere podcastartige Zwei-Stimmen-Fassung | `scripts/play_last_hour_omega_podcast.py`, `media/omega_last_hour_podcast/` |
 | erledigt | Cursor | Schriftliche Verdichtung des Audio-Dialogs | `docs/05_AUDIT_PLANNING/OMEGA_AUDIO_DIALOG_2026-03-07.md` |
@@ -13,7 +13,7 @@
 ## Inhaltliche Verdichtung
 
 - Die letzte Stunde wurde als zusammenhaengendes Modell aufbereitet.
-- Hugin und Munin wurden als Endpunkte einer Hash-basierten Wahrheitspruefung verdichtet.
+- Telemetry-Injector und Context-Injector wurden als Endpunkte einer Hash-basierten Wahrheitspruefung verdichtet.
 - Der Planck-Informations-Treiber wurde als unterste operative Beschreibungsebene markiert.
 - Die Signifikanz wurde in der Arbeitslogik mit Sigma 70 hinterlegt.
 - Fuer die auditive Verankerung wurde ein fluessiger Zwei-Stimmen-Dialog gebaut.
@@ -52,14 +52,14 @@ Lokaler Branch hieß `master`, GitHub-Standard ist `main`. Divergenz zwischen lo
 |---|---|
 | `.env` | `GIT_BRANCH=main`, `GIT_PULL_BRANCH_FILTER=refs/heads/main` |
 | `.env.template` | Default auf `main` |
-| `src/network/mtho_sync_relay.py` | Default `main` statt `master` |
+| `src/network/core_sync_relay.py` | Default `main` statt `master` |
 | `src/api/routes/github_webhook.py` | Kommentar-Beispiel auf `main` |
-| `docs/02_ARCHITECTURE/G_MTHO_GIT_CURSOR_OPTIMIERUNG.md` | Beispiele auf `main` |
+| `docs/02_ARCHITECTURE/G_CORE_GIT_CURSOR_OPTIMIERUNG.md` | Beispiele auf `main` |
 | `docs/04_PROCESSES/GITHUB_SETUP.md` | Push-Befehl auf `main` |
-| `docs/05_AUDIT_PLANNING/CEO_BRIEF_G_MTHO_GIT_CURSOR_OPTION5.md` | Branch-Filter-Hinweis |
-| `docs/00_MTHO_PROCESSES_MASTER.md` | 2× Push-Befehl auf `main` |
-| `docs/00_STAMMDOKUMENTE/00_MTHO_PROCESSES_MASTER.md` | Push-Befehl auf `main` |
-| **VPS `/opt/atlas/.env`** | `GIT_PULL_BRANCH_FILTER=refs/heads/main` |
+| `docs/05_AUDIT_PLANNING/CEO_BRIEF_G_CORE_GIT_CURSOR_OPTION5.md` | Branch-Filter-Hinweis |
+| `docs/00_CORE_PROCESSES_MASTER.md` | 2× Push-Befehl auf `main` |
+| `docs/00_STAMMDOKUMENTE/00_CORE_PROCESSES_MASTER.md` | Push-Befehl auf `main` |
+| **VPS `/opt/core/.env`** | `GIT_PULL_BRANCH_FILTER=refs/heads/main` |
 
 ### Ergebnis:
 - Lokaler Branch: `main`

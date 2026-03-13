@@ -98,7 +98,7 @@ S3_BUCKET = os.getenv("AWS_S3_BUCKET")
 RETENTION_DAYS = 7
 
 def backup_db():
-    # sqlite3 data/argos_db .dump > backup.sql
+    # sqlite3 data/shell_db .dump > backup.sql
     pass
 
 def archive_code():

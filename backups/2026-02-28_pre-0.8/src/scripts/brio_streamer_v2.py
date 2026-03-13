@@ -2,8 +2,8 @@ import subprocess
 import os
 import time
 
-ffmpeg_path = r"C:\MTHO_CORE\driver\go2rtc_win64\ffmpeg.exe"
-log_path = r"C:\MTHO_CORE\driver\go2rtc_win64\brio_streamer_v2.log"
+ffmpeg_path = r"C:\CORE\driver\go2rtc_win64\ffmpeg.exe"
+log_path = r"C:\CORE\driver\go2rtc_win64\brio_streamer_v2.log"
 
 cmd = [
     ffmpeg_path,

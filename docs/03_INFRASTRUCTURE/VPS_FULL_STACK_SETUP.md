@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# VPS Full-Stack Setup - MTHO/ARGOS
+# VPS Full-Stack Setup - CORE/SHELL
 
 **Deploy-Skript:** src/scripts/deploy_vps_full_stack.py
 
@@ -25,7 +25,7 @@
 |---|---|---|
 | atlas_net | bridge | Internet (Gemini/Anthropic/Nexos-APIs), Kommunikation zwischen Containern |
 
-*(Hinweis: Die alte Aufsplittung in separate openclaw_admin_net, openclaw_spine_net und chroma_net wurde zugunsten eines übersichtlichen `docker-compose` mit `atlas_net` vereinfacht. Eine separate chroma-atlas Instanz entfällt, da `chroma-uvmy` genutzt wird.)*
+*(Hinweis: Die alte Aufsplittung in separate openclaw_admin_net, openclaw_spine_net und chroma_net wurde zugunsten eines übersichtlichen `docker-compose` mit `atlas_net` vereinfacht. Eine separate chroma-core Instanz entfällt, da `chroma-uvmy` genutzt wird.)*
 
 ## Firewall (ufw)
 
@@ -77,7 +77,7 @@ Geblockt: 8000/tcp (ChromaDB nur intern).
              autossh -M 0 -R 18124:localhost:8123 root@<VPS_HOST> -N -f
 5. OpenClaw Admin testen: curl http://<VPS_HOST>:18789/api/status
 6. OpenClaw Spine befuellen: python -m src.scripts.check_openclaw_config_vps
-7. MTHO .env ergaenzen:
+7. CORE .env ergaenzen:
    OPENCLAW_ADMIN_VPS_HOST=<VPS_HOST>
    OPENCLAW_GATEWAY_PORT=18789
    HA_VPS_URL=http://<VPS_HOST>:18123

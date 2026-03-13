@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -16,12 +16,12 @@ from pathlib import Path
 from loguru import logger
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 VPS_HOST = os.getenv("VPS_HOST", "187.77.68.250")
 VPS_USER = os.getenv("VPS_USER", "root")
-VPS_SSH_KEY = os.getenv("VPS_SSH_KEY", r"c:\MTHO_CORE\.ssh\id_ed25519_hostinger")
-BACKUP_DIR = Path("c:/MTHO_CORE/backups/vps")
+VPS_SSH_KEY = os.getenv("VPS_SSH_KEY", r"c:\CORE\.ssh\id_ed25519_hostinger")
+BACKUP_DIR = Path("c:/CORE/backups/vps")
 RETENTION_DAYS = 7
 
 
@@ -64,7 +64,7 @@ def _scp(remote_path: str, local_path: Path, timeout: int = 120) -> bool:
 def backup_chromadb() -> bool:
     logger.info("ChromaDB Backup starten...")
     ok, out = _ssh(
-        "docker exec mtho_chroma_state sh -c "
+        "docker exec core_chroma_state sh -c "
         "'cd / && tar czf /tmp/chroma_backup.tar.gz chroma/chroma 2>/dev/null'"
     )
     if not ok:
@@ -84,8 +84,8 @@ def backup_chromadb() -> bool:
 def backup_postgres() -> bool:
     logger.info("PostgreSQL Backup starten...")
     ok, out = _ssh(
-        "docker exec mtho_postgres_state "
-        "pg_dump -U postgres mtho_state > /tmp/pg_backup.sql 2>/dev/null"
+        "docker exec core_postgres_state "
+        "pg_dump -U postgres core_state > /tmp/pg_backup.sql 2>/dev/null"
     )
     if not ok:
         logger.error(f"PostgreSQL dump fehlgeschlagen: {out}")

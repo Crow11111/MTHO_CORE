@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -35,12 +35,12 @@ _COLLECTION_SIGNATURES: dict[str, tuple[str, str]] = {
     "simulation_evidence": (
         "evidence",
         "Simulationstheorie-Indizien, Evidenz, physikalische und informationstheoretische Argumente, "
-        "wissenschaftliche Indizien für oder gegen Simulation, MTHO-Klassifikation.",
+        "wissenschaftliche Indizien für oder gegen Simulation, CORE-Klassifikation.",
     ),
     "core_directives": (
         "directive",
         "Ring-0/1 Direktiven, System-Prompts, Governance, Compliance, Paranoia, Bias-Check, "
-        "Regeln und Vorgaben für MTHO-Verhalten.",
+        "Regeln und Vorgaben für CORE-Verhalten.",
     ),
     "session_logs": (
         "session",
@@ -86,7 +86,7 @@ def _cosine_similarity(a: list[float], b: list[float]) -> float:
 
 def _build_representatives_sync() -> list[tuple[str, str, str, list[float]]]:
     """Baut Repräsentanten: (name, type, text, embedding). Sync implementation."""
-    from src.config.mtho_state_vector import state_to_embedding_text
+    from src.config.core_state import state_to_embedding_text
 
     base_text = state_to_embedding_text()
     ef = _get_embedding_function()

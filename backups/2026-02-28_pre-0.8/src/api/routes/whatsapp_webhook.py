@@ -7,7 +7,7 @@ import os
 import json
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 router = APIRouter(prefix="/webhook", tags=["webhooks"])
 ha_client = HAClient()

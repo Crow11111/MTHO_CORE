@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -14,7 +14,7 @@ from __future__ import annotations
 import inspect
 import os
 
-from src.config.mtho_state_vector import BARYONIC_DELTA
+from src.config.core_state import BARYONIC_DELTA
 
 _z_widerstand_override: float | None = None
 

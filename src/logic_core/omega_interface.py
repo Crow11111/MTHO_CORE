@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -20,9 +20,9 @@ from typing import Literal
 
 import numpy as np
 
-# MTHO-Anbindung (optional)
+# CORE-Anbindung (optional)
 try:
-    from src.mtho_core import BARYONIC_DELTA
+    from src.core import BARYONIC_DELTA
 except Exception:
     BARYONIC_DELTA = 0.049
 

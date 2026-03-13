@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -20,7 +20,7 @@ def main():
     
     path = speak_text(
         text=text,
-        role_name="mtho_dialog",
+        role_name="core_dialog",
         play=False # Nur generieren, nicht abspielen auf Server
     )
     

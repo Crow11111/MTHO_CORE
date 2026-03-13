@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,7 +9,7 @@ import requests
 from loguru import logger
 import re
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights_v4"
 API_BASE_URL = "http://localhost:8000"
 
 def ingest_gold_document(file_name):
@@ -61,7 +61,7 @@ def main():
         
         # We don't wipe via API (no delete endpoint yet), so we just append the Gold Profile.
         logger.info("Starte Ingestion über Osmium FastAPI Backend...")
-        ingest_gold_document("MTHO_ND_PROFILE_GOLD.md")
+        ingest_gold_document("CORE_ND_PROFILE_GOLD.md")
         logger.success("Das Gold-Dokument wurde erfolgreich in die REST-API der Knowledge-Graph-Datenbank überführt.")
     except requests.exceptions.ConnectionError:
         logger.error(f"Konnte nicht zur API unter {API_BASE_URL} verbinden. Läuft db_backend.py?")

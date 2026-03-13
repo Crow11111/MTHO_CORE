@@ -1,12 +1,12 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
 """
-MTHO 4D State Vector – Validierung aller Schwellwerte und Konstanten.
+CORE 4D State Vector – Validierung aller Schwellwerte und Konstanten.
 
 Validiert:
 - Mathematische Konstanten (PHI, INV_PHI, COMP_PHI, SYMMETRY_BREAK, BARYONIC_DELTA)
@@ -33,7 +33,7 @@ COMP_PHI_EXACT = 1 - INV_PHI_EXACT
 
 def test_constants() -> list[str]:
     """Validiert mathematische Konstanten."""
-    from src.config.mtho_state_vector import PHI, INV_PHI, COMP_PHI, SYMMETRY_BREAK, BARYONIC_DELTA
+    from src.config.core_state import PHI, INV_PHI, COMP_PHI, SYMMETRY_BREAK, BARYONIC_DELTA
 
     errors = []
     # PHI
@@ -76,8 +76,8 @@ def test_constants() -> list[str]:
 
 
 def test_predefined_states() -> list[str]:
-    """Validiert vordefinierte Zustaende gegen MTHO_4_STRANG_THEORIE."""
-    from src.config.mtho_state_vector import (
+    """Validiert vordefinierte Zustaende gegen CORE_4_STRANG_THEORIE."""
+    from src.config.core_state import (
         BASE_STATE,
         ANSAUGEN,
         VERDICHTEN,
@@ -113,7 +113,7 @@ def test_predefined_states() -> list[str]:
 
 def test_agos_cycle() -> list[str]:
     """Prueft Simultan-Kaskade-Zyklus-Konsistenz (Takt 0-4, mit BARYONIC_DELTA-Offset)."""
-    from src.config.mtho_state_vector import (
+    from src.config.core_state import (
         BASE_STATE,
         ANSAUGEN,
         VERDICHTEN,
@@ -138,8 +138,8 @@ def test_agos_cycle() -> list[str]:
 
 def test_phi_balance() -> list[str]:
     """Prueft is_in_phi_balance()."""
-    from src.config.mtho_state_vector import (
-        MTHOStateVector,
+    from src.config.core_state import (
+        StateVector,
         INV_PHI,
         COMP_PHI,
         BASE_STATE,
@@ -148,14 +148,14 @@ def test_phi_balance() -> list[str]:
 
     errors = []
     # Bei INV_PHI sollte True sein
-    v_inv = MTHOStateVector(INV_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
+    v_inv = StateVector(INV_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if not v_inv.is_in_phi_balance():
         errors.append(f"x={INV_PHI} sollte phi_balance=True liefern")
     else:
         print("  is_in_phi_balance(INV_PHI) OK")
 
     # Bei COMP_PHI sollte True sein
-    v_comp = MTHOStateVector(COMP_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
+    v_comp = StateVector(COMP_PHI, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if not v_comp.is_in_phi_balance():
         errors.append(f"x={COMP_PHI} sollte phi_balance=True liefern")
     else:
@@ -172,18 +172,18 @@ def test_phi_balance() -> list[str]:
 
 def test_symmetry_broken() -> list[str]:
     """Prueft is_symmetry_broken()."""
-    from src.config.mtho_state_vector import MTHOStateVector, SYMMETRY_BREAK, BARYONIC_DELTA
+    from src.config.core_state import StateVector, SYMMETRY_BREAK, BARYONIC_DELTA
 
     errors = []
     # Bei y=0.49 sollte True sein
-    v = MTHOStateVector(0.49, SYMMETRY_BREAK, 0.51, BARYONIC_DELTA)
+    v = StateVector(0.49, SYMMETRY_BREAK, 0.51, BARYONIC_DELTA)
     if not v.is_symmetry_broken():
         errors.append(f"y={SYMMETRY_BREAK} sollte symmetry_broken=True liefern")
     else:
         print("  is_symmetry_broken(0.49) OK")
 
     # Bei y nahe 0 (BARYONIC_DELTA) sollte False sein
-    v0 = MTHOStateVector(0.49, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
+    v0 = StateVector(0.49, BARYONIC_DELTA, 0.51, BARYONIC_DELTA)
     if v0.is_symmetry_broken():
         errors.append("y=BARYONIC_DELTA sollte symmetry_broken=False liefern")
     else:
@@ -194,7 +194,7 @@ def test_symmetry_broken() -> list[str]:
 
 def test_get_current_state() -> list[str]:
     """Prueft get_current_state() mit Env-Variablen."""
-    from src.config.mtho_state_vector import (
+    from src.config.core_state import (
         get_current_state,
         BASE_STATE,
         ANSAUGEN,
@@ -206,15 +206,15 @@ def test_get_current_state() -> list[str]:
     )
 
     errors = []
-    orig_preset = os.environ.get("MTHO_STATE_PRESET")
-    orig_z = os.environ.get("MTHO_Z_WIDERSTAND")
+    orig_preset = os.environ.get("CORE_STATE_PRESET")
+    orig_z = os.environ.get("CORE_Z_WIDERSTAND")
 
     try:
         # Default = BASE_STATE
-        if "MTHO_STATE_PRESET" in os.environ:
-            del os.environ["MTHO_STATE_PRESET"]
-        if "MTHO_Z_WIDERSTAND" in os.environ:
-            del os.environ["MTHO_Z_WIDERSTAND"]
+        if "CORE_STATE_PRESET" in os.environ:
+            del os.environ["CORE_STATE_PRESET"]
+        if "CORE_Z_WIDERSTAND" in os.environ:
+            del os.environ["CORE_Z_WIDERSTAND"]
         # Ring-0 Veto zuruecksetzen
         try:
             from src.config.ring0_state import clear_drift_veto
@@ -229,39 +229,39 @@ def test_get_current_state() -> list[str]:
             print("  get_current_state() Default=BASE_STATE OK")
 
         # Preset ANSAUGEN
-        os.environ["MTHO_STATE_PRESET"] = "ANSAUGEN"
+        os.environ["CORE_STATE_PRESET"] = "ANSAUGEN"
         s = get_current_state()
         if abs(s.w_takt - (1 + BARYONIC_DELTA)) > 1e-9 or abs(s.x_car_cdr - COMP_PHI) > 1e-9:
             errors.append(f"Preset ANSAUGEN: {s}")
         else:
-            print("  MTHO_STATE_PRESET=ANSAUGEN OK")
+            print("  CORE_STATE_PRESET=ANSAUGEN OK")
 
         # Preset VERDICHTEN
-        os.environ["MTHO_STATE_PRESET"] = "VERDICHTEN"
+        os.environ["CORE_STATE_PRESET"] = "VERDICHTEN"
         s = get_current_state()
         if abs(s.w_takt - (2 - BARYONIC_DELTA)) > 1e-9:
             errors.append(f"Preset VERDICHTEN: w_takt={s.w_takt}")
         else:
-            print("  MTHO_STATE_PRESET=VERDICHTEN OK")
+            print("  CORE_STATE_PRESET=VERDICHTEN OK")
 
         # Z-Widerstand Override
-        os.environ["MTHO_STATE_PRESET"] = ""
-        os.environ["MTHO_Z_WIDERSTAND"] = "0.9"
+        os.environ["CORE_STATE_PRESET"] = ""
+        os.environ["CORE_Z_WIDERSTAND"] = "0.9"
         s = get_current_state()
         if abs(s.z_widerstand - 0.9) > 1e-9:
-            errors.append(f"MTHO_Z_WIDERSTAND=0.9: z={s.z_widerstand}")
+            errors.append(f"CORE_Z_WIDERSTAND=0.9: z={s.z_widerstand}")
         else:
-            print("  MTHO_Z_WIDERSTAND=0.9 OK")
+            print("  CORE_Z_WIDERSTAND=0.9 OK")
 
     finally:
         if orig_preset is not None:
-            os.environ["MTHO_STATE_PRESET"] = orig_preset
-        elif "MTHO_STATE_PRESET" in os.environ:
-            del os.environ["MTHO_STATE_PRESET"]
+            os.environ["CORE_STATE_PRESET"] = orig_preset
+        elif "CORE_STATE_PRESET" in os.environ:
+            del os.environ["CORE_STATE_PRESET"]
         if orig_z is not None:
-            os.environ["MTHO_Z_WIDERSTAND"] = orig_z
-        elif "MTHO_Z_WIDERSTAND" in os.environ:
-            del os.environ["MTHO_Z_WIDERSTAND"]
+            os.environ["CORE_Z_WIDERSTAND"] = orig_z
+        elif "CORE_Z_WIDERSTAND" in os.environ:
+            del os.environ["CORE_Z_WIDERSTAND"]
         try:
             from src.config.ring0_state import clear_drift_veto
             clear_drift_veto()
@@ -273,14 +273,14 @@ def test_get_current_state() -> list[str]:
 
 def test_drift_veto_override() -> list[str]:
     """Prueft Ring-0-Veto-Override (ring0_state)."""
-    from src.config.mtho_state_vector import get_current_state, BASE_STATE
+    from src.config.core_state import get_current_state, BASE_STATE
     from src.config.ring0_state import set_drift_veto, clear_drift_veto, get_drift_veto_override
 
     errors = []
-    orig_preset = os.environ.get("MTHO_STATE_PRESET")
+    orig_preset = os.environ.get("CORE_STATE_PRESET")
     try:
-        if "MTHO_STATE_PRESET" in os.environ:
-            del os.environ["MTHO_STATE_PRESET"]
+        if "CORE_STATE_PRESET" in os.environ:
+            del os.environ["CORE_STATE_PRESET"]
         clear_drift_veto()
 
         set_drift_veto(0.95)
@@ -299,19 +299,19 @@ def test_drift_veto_override() -> list[str]:
     finally:
         clear_drift_veto()
         if orig_preset is not None:
-            os.environ["MTHO_STATE_PRESET"] = orig_preset
+            os.environ["CORE_STATE_PRESET"] = orig_preset
 
     return errors
 
 
 def test_axiom_a5_guards() -> list[str]:
     """Axiom A5/A6: 0.0, 1.0, 0.5 muessen ValueError werfen; int muss TypeError werfen."""
-    from src.config.mtho_state_vector import MTHOStateVector
+    from src.config.core_state import StateVector
 
     errors = []
     # ValueError: 0.0
     try:
-        MTHOStateVector(0.49, 0.0, 0.51, 0.049)
+        StateVector(0.49, 0.0, 0.51, 0.049)
         errors.append("y=0.0 sollte ValueError werfen")
     except ValueError:
         print("  Axiom A5: y=0.0 -> ValueError OK")
@@ -320,7 +320,7 @@ def test_axiom_a5_guards() -> list[str]:
 
     # ValueError: 1.0
     try:
-        MTHOStateVector(0.49, 0.049, 1.0, 0.049)
+        StateVector(0.49, 0.049, 1.0, 0.049)
         errors.append("z=1.0 sollte ValueError werfen")
     except ValueError:
         print("  Axiom A5: z=1.0 -> ValueError OK")
@@ -329,7 +329,7 @@ def test_axiom_a5_guards() -> list[str]:
 
     # ValueError: 0.5
     try:
-        MTHOStateVector(0.5, 0.049, 0.51, 0.049)
+        StateVector(0.5, 0.049, 0.51, 0.049)
         errors.append("x=0.5 sollte ValueError werfen")
     except ValueError:
         print("  Axiom A5: x=0.5 -> ValueError OK")
@@ -338,7 +338,7 @@ def test_axiom_a5_guards() -> list[str]:
 
     # TypeError: int
     try:
-        MTHOStateVector(0.49, 0, 0.51, 0.049)
+        StateVector(0.49, 0, 0.51, 0.049)
         errors.append("y=int sollte TypeError werfen")
     except TypeError:
         print("  Axiom A6: y=int -> TypeError OK")
@@ -350,7 +350,7 @@ def test_axiom_a5_guards() -> list[str]:
 
 def test_magnitude() -> list[str]:
     """Prueft magnitude()."""
-    from src.config.mtho_state_vector import MTHOStateVector, BASE_STATE
+    from src.config.core_state import StateVector, BASE_STATE
 
     errors = []
     m = BASE_STATE.magnitude()
@@ -365,7 +365,7 @@ def test_magnitude() -> list[str]:
 
 
 def main() -> int:
-    print("=== MTHO 4D State Vector – Validierung ===\n")
+    print("=== CORE 4D State Vector – Validierung ===\n")
 
     all_errors = []
     sections = [

@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Prüft, ob das MTHO-CORE-Backend für das Dev-Agent-Frontend erreichbar ist.
+Prüft, ob das CORE-CORE-Backend für das Dev-Agent-Frontend erreichbar ist.
 
 - GET / (API-Root)
 - GET /api/chat/history
@@ -24,7 +24,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import requests
 
-DEFAULT_BASE = os.getenv("MTHO_API_URL", "http://localhost:8000")
+DEFAULT_BASE = os.getenv("CORE_API_URL", "http://localhost:8000")
 
 
 def main() -> int:

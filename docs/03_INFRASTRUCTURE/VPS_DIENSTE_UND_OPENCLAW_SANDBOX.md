@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -16,17 +16,17 @@
 | Dienst | Aktuell | Auf VPS sinnvoll? | Begründung |
 |--------|---------|-------------------|------------|
 | **OpenClaw** | (geplant VPS) | **Ja** | Messenger-Gateway braucht öffentliche Erreichbarkeit; läuft in **Sandbox** (siehe Abschnitt 2). |
-| **ChromaDB** | 4D_RESONATOR (MTHO_CORE) (lokal) / optional VPS | **Ja** | Entlastet 4D_RESONATOR (MTHO_CORE) (NVMe/I/O); zentrale RAG-DB für MTHO; bereits angebunden (`CHROMA_HOST`). |
-| **Ollama (leichtere Modelle)** | 4D_RESONATOR (MTHO_CORE) (i5, GTX 3050) | **Optional** | Kleine Modelle (z. B. für Vorverarbeitung, Routing) könnten auf VPS laufen; **schweres RAG/Osmium bleibt auf 4D_RESONATOR (MTHO_CORE)** (Datenhoheit, Latenz). |
-| **Backup-Ziel / Sync** | aktiv | **Ja** | VPS als externes Backup-Ziel (`/var/backups/atlas`); `daily_backup.py` pusht von 4D_RESONATOR (MTHO_CORE) per SFTP; Retention 7 Tage (Cron auf VPS). Siehe [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md). |
-| **API-Proxy / Webhook-Empfang** | HA + 4D_RESONATOR (MTHO_CORE) | **Optional** | Öffentliche URL für Webhooks (z. B. von OpenClaw zu MTHO); nur Weiterleitung, keine Logik. |
+| **ChromaDB** | 4D_RESONATOR (CORE) (lokal) / optional VPS | **Ja** | Entlastet 4D_RESONATOR (CORE) (NVMe/I/O); zentrale RAG-DB für CORE; bereits angebunden (`CHROMA_HOST`). |
+| **Ollama (leichtere Modelle)** | 4D_RESONATOR (CORE) (i5, GTX 3050) | **Optional** | Kleine Modelle (z. B. für Vorverarbeitung, Routing) könnten auf VPS laufen; **schweres RAG/Osmium bleibt auf 4D_RESONATOR (CORE)** (Datenhoheit, Latenz). |
+| **Backup-Ziel / Sync** | aktiv | **Ja** | VPS als externes Backup-Ziel (`/var/backups/core`); `daily_backup.py` pusht von 4D_RESONATOR (CORE) per SFTP; Retention 7 Tage (Cron auf VPS). Siehe [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md). |
+| **API-Proxy / Webhook-Empfang** | HA + 4D_RESONATOR (CORE) | **Optional** | Öffentliche URL für Webhooks (z. B. von OpenClaw zu CORE); nur Weiterleitung, keine Logik. |
 | **Home Assistant** | Scout (Pi) | **Nein** | Bleibt lokal (Smart Home, Latenz, Datenhoheit). |
-| **Ollama (Haupt-Inferenz)** | 4D_RESONATOR (MTHO_CORE) | **Nein** | GPU + sensible ND-Daten bleiben auf 4D_RESONATOR (MTHO_CORE). |
+| **Ollama (Haupt-Inferenz)** | 4D_RESONATOR (CORE) | **Nein** | GPU + sensible ND-Daten bleiben auf 4D_RESONATOR (CORE). |
 
 **Faustregel:**  
 - **VPS:** Öffentlich erreichbare Dienste (OpenClaw, ggf. Webhook-Empfang), zentrale DB (Chroma), Backup-Ziel, optional leichtes Ollama.  
-- **4D_RESONATOR (MTHO_CORE):** Kern-LLM, Chroma-Option lokal, Cursor/Cloud Agents, alle Keys und sensiblen Daten.  
-- **Scout (Pi):** HA, Edge, lokale Sensoren/WhatsApp-Webhook zu MTHO.
+- **4D_RESONATOR (CORE):** Kern-LLM, Chroma-Option lokal, Cursor/Cloud Agents, alle Keys und sensiblen Daten.  
+- **Scout (Pi):** HA, Edge, lokale Sensoren/WhatsApp-Webhook zu CORE.
 
 ---
 
@@ -43,7 +43,7 @@ OpenClaw verbindet sich mit externen Messengern (WhatsApp, Telegram, …) und le
 | **Unprivilegierter User** | Container läuft als nicht-root User (wenn das Image/Setup das unterstützt). |
 | **Keine Volumes in sensible Bereiche** | Kein Mount von `/root`, `.env`, oder Chroma-Daten in den OpenClaw-Container. Nur Konfiguration für OpenClaw (z. B. `openclaw.json`). |
 | **Firewall** | Host-Firewall: Nur nötige Ports (22 SSH, 80/443 optional, 18789 OpenClaw) von außen; intern keine Dienste von OpenClaw zu Chroma/Ollama erreichbar. |
-| **Kommunikation MTHO ↔ OpenClaw** | Nur von außen (MTHO_CORE auf 4D_RESONATOR (MTHO_CORE)/PC) zum OpenClaw-Gateway (HTTPS/HTTP); OpenClaw ruft nicht zurück auf den Rest des Servers. |
+| **Kommunikation CORE ↔ OpenClaw** | Nur von außen (CORE auf 4D_RESONATOR (CORE)/PC) zum OpenClaw-Gateway (HTTPS/HTTP); OpenClaw ruft nicht zurück auf den Rest des Servers. |
 
 ### 2.2 Architektur-Skizze (VPS)
 
@@ -52,20 +52,20 @@ OpenClaw verbindet sich mit externen Messengern (WhatsApp, Telegram, …) und le
     │
     ├──► [OpenClaw-Container]  Port 18789  (Sandbox, nur dieser Dienst)
     │         │
-    │         └──► Nachrichten nur an externe MTHO-URL (z. B. Webhook auf 4D_RESONATOR (MTHO_CORE)/NGROK)
+    │         └──► Nachrichten nur an externe CORE-URL (z. B. Webhook auf 4D_RESONATOR (CORE)/NGROK)
     │
-    └──► [ChromaDB]  Port 8000  (nur von MTHO/vertrauenswürdigen Clients)
-    └──► [optional: Ollama light]  Port 11434  (nur intern oder nur für MTHO)
+    └──► [ChromaDB]  Port 8000  (nur von CORE/vertrauenswürdigen Clients)
+    └──► [optional: Ollama light]  Port 11434  (nur intern oder nur für CORE)
 ```
 
-OpenClaw hat **keine** Verbindung zu ChromaDB oder Ollama auf demselben Host; alle LLM-/RAG-Anfragen gehen von MTHO_CORE (lokal) aus, das ggf. ChromaDB auf dem VPS per `CHROMA_HOST` anspricht.
+OpenClaw hat **keine** Verbindung zu ChromaDB oder Ollama auf demselben Host; alle LLM-/RAG-Anfragen gehen von CORE (lokal) aus, das ggf. ChromaDB auf dem VPS per `CHROMA_HOST` anspricht.
 
 ### 2.3 Checkliste vor Go-Live
 
 - [ ] OpenClaw läuft in eigenem Docker-Container (kein Zugriff auf Host-Dateisystem außer OpenClaw-Config).
 - [ ] Kein gemeinsames Docker-Netzwerk mit ChromaDB/Ollama; oder Chroma/Ollama nicht im selben Netzwerk wie OpenClaw.
 - [ ] Firewall: Keine eingehenden Verbindungen von OpenClaw-Container zu anderen Ports auf dem Host.
-- [ ] MTHO_CORE ruft OpenClaw-Gateway von außen auf (Token in .env); OpenClaw leitet nur an konfigurierte Webhook-URLs weiter.
+- [ ] CORE ruft OpenClaw-Gateway von außen auf (Token in .env); OpenClaw leitet nur an konfigurierte Webhook-URLs weiter.
 
 ---
 
@@ -77,7 +77,7 @@ Folgende Dinge sind **auf dem VPS (187.77.68.250)** umzusetzen, damit die Dienst
 
 | Schritt | Aktion |
 |--------|--------|
-| SSH | `ssh root@187.77.68.250` (Zugang aus MTHO .env: VPS_HOST, VPS_USER, VPS_PASSWORD). |
+| SSH | `ssh root@187.77.68.250` (Zugang aus CORE .env: VPS_HOST, VPS_USER, VPS_PASSWORD). |
 | Firewall | Nur nötige Ports von außen öffnen: 22 (SSH), 80/443 (optional), 18789 (OpenClaw), 8000 (ChromaDB nur wenn von außen nötig). Chroma/Ollama ideal nur localhost oder über SSH-Tunnel. |
 | Docker | Falls noch nicht installiert: Docker installieren (z. B. `curl -fsSL https://get.docker.com | sh`), damit OpenClaw und ggf. Chroma im Container laufen. |
 
@@ -87,29 +87,29 @@ Folgende Dinge sind **auf dem VPS (187.77.68.250)** umzusetzen, damit die Dienst
 |--------|--------|
 | 1 | Eigenes Docker-Netzwerk anlegen: `docker network create openclaw_net` (nur für OpenClaw). |
 | 2 | OpenClaw-Container **ohne** Mount von `/root` oder Host-Config außer der OpenClaw-Konfiguration starten. Nur Port 18789 nach außen mappen. Kein `--network=host`. |
-| 3 | OpenClaw so konfigurieren, dass er nur an konfigurierte Webhook-URLs (z. B. MTHO-Core-URL/NGROK) weiterleitet – keine internen Host-URLs (kein localhost:8000 für Chroma, kein localhost:11434). |
-| 4 | In MTHO_CORE .env: `OPENCLAW_GATEWAY_TOKEN` und `VPS_HOST` gesetzt; Test mit `check_gateway()` aus `openclaw_client` sobald OpenClaw läuft. |
+| 3 | OpenClaw so konfigurieren, dass er nur an konfigurierte Webhook-URLs (z. B. CORE-Core-URL/NGROK) weiterleitet – keine internen Host-URLs (kein localhost:8000 für Chroma, kein localhost:11434). |
+| 4 | In CORE .env: `OPENCLAW_GATEWAY_TOKEN` und `VPS_HOST` gesetzt; Test mit `check_gateway()` aus `openclaw_client` sobald OpenClaw läuft. |
 
 ### 3.3 ChromaDB
 
 | Schritt | Aktion |
 |--------|--------|
-| 1 | Chroma läuft im Container `chroma-atlas`; **gebunden an 127.0.0.1:8000** (nicht öffentlich). |
+| 1 | Chroma läuft im Container `chroma-core`; **gebunden an 127.0.0.1:8000** (nicht öffentlich). |
 | 2 | **Zugriff von außen:** Nur per SSH-Tunnel, z. B. `ssh -L 8000:127.0.0.1:8000 root@VPS_HOST`. Dann in .env: `CHROMA_HOST=localhost`, `CHROMA_PORT=8000`. |
-| 3 | Ingest von 4D_RESONATOR (MTHO_CORE) aus (wenn Tunnel aktiv): `python src/scripts/ingest_nd_insights_to_chroma.py`. |
+| 3 | Ingest von 4D_RESONATOR (CORE) aus (wenn Tunnel aktiv): `python src/scripts/ingest_nd_insights_to_chroma.py`. |
 
 ### 3.4 Backup-Ziel (aktiv)
 
 | Schritt | Aktion |
 |--------|--------|
-| 1 | Verzeichnis `/var/backups/atlas` wird von `setup_vps_hostinger.py` angelegt; Cron löscht Backups älter als 7 Tage. |
-| 2 | **daily_backup.py** (auf 4D_RESONATOR (MTHO_CORE)) pusht täglich per SFTP; Aufruf per Task Scheduler (Windows) oder cron. Siehe [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md). |
-| 3 | Der VPS pullt nicht; nur Push von MTHO_CORE aus. |
+| 1 | Verzeichnis `/var/backups/core` wird von `setup_vps_hostinger.py` angelegt; Cron löscht Backups älter als 7 Tage. |
+| 2 | **daily_backup.py** (auf 4D_RESONATOR (CORE)) pusht täglich per SFTP; Aufruf per Task Scheduler (Windows) oder cron. Siehe [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md). |
+| 3 | Der VPS pullt nicht; nur Push von CORE aus. |
 
 ### 3.5 Optional: leichtes Ollama, Webhook-Proxy
 
-- **Ollama (leicht):** Nur wenn gewünscht – kleines Modell auf dem VPS installieren, Port 11434 nur für MTHO-IP oder über Tunnel erreichbar halten. Schweres RAG/Osmium bleibt auf 4D_RESONATOR (MTHO_CORE).
-- **Webhook-Proxy:** Nginx/Caddy auf dem VPS, der nur bestimmte Pfade (z. B. `/webhook/openclaw`) an deine MTHO-URL (NGROK oder DynDNS) weiterleitet; keine Logik auf dem VPS.
+- **Ollama (leicht):** Nur wenn gewünscht – kleines Modell auf dem VPS installieren, Port 11434 nur für CORE-IP oder über Tunnel erreichbar halten. Schweres RAG/Osmium bleibt auf 4D_RESONATOR (CORE).
+- **Webhook-Proxy:** Nginx/Caddy auf dem VPS, der nur bestimmte Pfade (z. B. `/webhook/openclaw`) an deine CORE-URL (NGROK oder DynDNS) weiterleitet; keine Logik auf dem VPS.
 
 ### 3.6 Übersicht: Ports auf dem VPS
 
@@ -125,6 +125,6 @@ Folgende Dinge sind **auf dem VPS (187.77.68.250)** umzusetzen, damit die Dienst
 ## 4. Referenzen
 
 - **Schnittstellen:** OpenClaw, ChromaDB, Go2RTC, .env – siehe [BACKUP_PLAN_FINAL.md](BACKUP_PLAN_FINAL.md) und [VPS_FULL_STACK_SETUP.md](VPS_FULL_STACK_SETUP.md).
-- **Hardware:** [01_ARCHITEKTUR_HARDWARE_OSMIUM.md](../../data/antigravity_docs_osmium/01_ARCHITEKTUR_HARDWARE_OSMIUM.md) (4D_RESONATOR (MTHO_CORE), Scout).
+- **Hardware:** [01_ARCHITEKTUR_HARDWARE_OSMIUM.md](../../data/antigravity_docs_osmium/01_ARCHITEKTUR_HARDWARE_OSMIUM.md) (4D_RESONATOR (CORE), Scout).
 - **OpenClaw Docs:** https://docs.openclaw.ai/
 - **Go2RTC (Kamera PC):** [CAMERA_GO2RTC_WINDOWS.md](CAMERA_GO2RTC_WINDOWS.md).

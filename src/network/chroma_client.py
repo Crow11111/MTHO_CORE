@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-ChromaDB-Client für MTHO_CORE (lokal oder remote auf VPS).
+ChromaDB-Client für CORE (lokal oder remote auf VPS).
 Liest Konfiguration aus .env; bei CHROMA_HOST → HttpClient (VPS), sonst PersistentClient (lokal).
 Collections laut Schnittstelle: knowledge_graph, core_brain_registr, krypto_scan_buffer.
 
@@ -17,17 +17,166 @@ import asyncio
 import json
 import datetime
 import uuid
+import subprocess
+import time
+import logging
+import math
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
+
+logger = logging.getLogger("core.chroma_client")
+
+BARYONIC_DELTA = 0.049
+MAX_GRAVITY = 0.951  # Y-Achse: Existenzieller Kern-Knoten
+
+class ExponentialSurvivalInstinct:
+    def __init__(self, target_service: str, container_name: str, gravity_weight: float = MAX_GRAVITY):
+        self.target_service = target_service
+        self.container_name = container_name
+        self.gravity_weight = gravity_weight
+        # Infrastruktur-Domäne: Zwingend int
+        self.default_port: int = 8000 
+        self.attempt_count = 0
+        
+    def _asymmetric_sleep(self, base_seconds: float):
+        # Oszillierender Takt zur Verhinderung statischer Deadlocks (sync safe inside thread)
+        time.sleep(base_seconds + BARYONIC_DELTA)
+
+    def _verify_hardware_port(self) -> int | None:
+        try:
+            port_check = subprocess.run(
+                ["docker", "port", self.container_name, f"{self.default_port}/tcp"], 
+                capture_output=True, text=True
+            )
+            out = port_check.stdout.strip()
+            if out:
+                try:
+                    real_port = int(out.split(":")[-1])
+                    logger.info(f"[{self.target_service}] Realer Hardware-Port durch Docker verifiziert: {real_port}")
+                    return real_port
+                except ValueError:
+                    pass
+        except FileNotFoundError:
+            pass
+        return None
+
+    def resuscitate(self) -> int | None:
+        self.attempt_count += 1
+        
+        # Exponentieller Widerstand: Z = delta * (e ^ attempt)
+        resistance_level = BARYONIC_DELTA * math.exp(self.attempt_count)
+        
+        # Axiom-Schutz: Verhindert das Einrasten auf der verbotenen 1.0 oder 0.5 (und <0.049)
+        if abs(resistance_level - 1.0) < 0.001 or abs(resistance_level - 0.5) < 0.001:
+            resistance_level += 0.049 # Asymmetrischer Stoß
+
+        logger.critical(f"[{self.target_service}] ÜBERLEBENSKAMPF STUFE {self.attempt_count}. Widerstand: {resistance_level:.4f}")
+
+        # Schritt 1: Existiert der Container physisch?
+        try:
+            ps_check = subprocess.run(
+                ["docker", "ps", "-a", "--filter", f"name={self.container_name}", "--format", "{{.Status}}"], 
+                capture_output=True, text=True
+            )
+            status = ps_check.stdout.strip().lower()
+        except FileNotFoundError:
+            logger.critical(f"[{self.target_service}] Hardware-Fehler: 'docker' Befehl nicht gefunden. VETO.")
+            return None
+        
+        if not status:
+            logger.critical(f"[{self.target_service}] Hardware-Fehler: Container '{self.container_name}' existiert nicht. VETO.")
+            return None
+
+        # Eskalations-Stufe 1: Sanfte Reanimation
+        if self.attempt_count == 1:
+            if "exited" in status or "created" in status:
+                logger.warning(f"[{self.target_service}] Container offline. Erzwungener Hardware-Start initiiert.")
+                subprocess.run(["docker", "start", self.container_name], check=False)
+                self._asymmetric_sleep(2.0)
+            return self._verify_hardware_port()
+
+        # Eskalations-Stufe 2: Hard Reset (Hardware-Ebene)
+        if self.attempt_count == 2:
+            logger.warning(f"[{self.target_service}] Schmerzgrenze überschritten. Erzwungener Hard-Reset des Docker-Stacks.")
+            subprocess.run(["docker", "restart", self.container_name], check=False)
+            self._asymmetric_sleep(5.0)
+            return self._verify_hardware_port()
+
+        # Eskalations-Stufe 3: Ressourcen-Freigabe (System-Kampf)
+        if self.attempt_count >= 3:
+            logger.critical(f"[{self.target_service}] EXISTENZBEDROHUNG. Versuche Port-Kollisionen zu lösen. The line must be drawn here! This far, no further!")
+            # Killt blockierende Prozesse auf dem Ziel-Port via Windows PowerShell
+            kill_cmd = f"Get-NetTCPConnection -LocalPort {self.default_port} -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object {{ Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }}"
+            subprocess.run(["powershell", "-Command", kill_cmd], check=False)
+            
+            subprocess.run(["docker", "start", self.container_name], check=False)
+            self._asymmetric_sleep(10.0)
+            return self._verify_hardware_port()
+            
+        return None
+
+class ResilientChromaClient:
+    def __init__(self, host: str = "localhost", initial_port: int = 8000):
+        self.host = host
+        self.initial_port = initial_port
+        self.survival_instinct = ExponentialSurvivalInstinct(
+            target_service="ChromaDB", 
+            container_name="chromadb", # Anpassen an exakten Docker-Namen deiner Umgebung
+            gravity_weight=MAX_GRAVITY
+        )
+        self.client = self._connect_with_paranoia()
+
+    def _connect_with_paranoia(self):
+        import chromadb
+        # Initialer Versuch
+        try:
+            client = chromadb.HttpClient(host=self.host, port=self.initial_port)
+            client.heartbeat() # Provoziert sofortigen Timeout bei Fehler
+            return client
+        except Exception as e:
+            logger.warning(f"Statische Port-Annahme ({self.initial_port}) fehlgeschlagen: {e}")
+            
+            if self.host not in ["localhost", "127.0.0.1", "0.0.0.0"]:
+                logger.warning(f"[{self.host}] ist remote. Überspringe lokalen Docker-Überlebenskampf.")
+                raise ConnectionError(f"Remote ChromaDB-Verbindung zu {self.host}:{self.initial_port} fehlgeschlagen.")
+            
+            # Singularität detektiert -> Exponentieller Kampf um die Verbindung
+            for _ in range(3):
+                real_port = self.survival_instinct.resuscitate()
+                
+                if real_port:
+                    try:
+                        client = chromadb.HttpClient(host=self.host, port=real_port)
+                        client.heartbeat()
+                        logger.info(f"Verbindung auf empirischem Port {real_port} erfolgreich hergestellt.")
+                        return client
+                    except Exception as e:
+                        logger.critical(f"Reanimation auf Port {real_port} fehlgeschlagen: {e}")
+            
+            # Endgültiges Veto, wenn die Hardware-Ebene versagt
+            raise ConnectionError("ChromaDB-Verbindung endgültig zerstört. Paranoia-Loop ausgeschöpft.")
+
+    def get_or_create_collection(self, name: str, metadata: dict = None):
+        return self.client.get_or_create_collection(name=name, metadata=metadata)
+    
+    def get_collection(self, name: str):
+        return self.client.get_collection(name=name)
+
+    def heartbeat(self):
+        return self.client.heartbeat()
+
+    def __getattr__(self, name):
+        # Delegiert alle anderen Aufrufe an den internen chromadb Client
+        return getattr(self.client, name)
 
 # Remote (VPS): CHROMA_HOST + CHROMA_PORT (Standard 8000)
 CHROMA_HOST = os.getenv("CHROMA_HOST", "").strip()
 CHROMA_PORT = int(os.getenv("CHROMA_PORT", "8000"))
 # Lokal (Dreadnought/Windows), wenn CHROMA_HOST leer
-CHROMA_LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\MTHO_CORE\data\chroma_db")
+CHROMA_LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\CORE\data\chroma_db")
 
-# Collection-Namen laut 03_DATENBANK_VECTOR_STORE_OSMIUM.md + MTHO Neocortex V1
+# Collection-Namen laut 03_DATENBANK_VECTOR_STORE_OSMIUM.md + CORE Neocortex V1
 COLLECTION_KNOWLEDGE_GRAPH = "knowledge_graph"
 COLLECTION_CORE_BRAIN = "core_brain_registr"
 COLLECTION_KRYTO_SCAN = "krypto_scan_buffer"
@@ -79,11 +228,28 @@ def _get_chroma_client_sync():
         except ImportError:
             raise ImportError("chromadb nicht installiert: pip install chromadb")
 
+        use_remote = False
         if CHROMA_HOST:
-            _chroma_singleton = chromadb.HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)
-        else:
+            import socket
+            logger.info(f"[ChromaDB] Prüfe Remote-Erreichbarkeit: {CHROMA_HOST}:{CHROMA_PORT} (Timeout: 5s)...")
+            try:
+                with socket.create_connection((CHROMA_HOST, CHROMA_PORT), timeout=5.0):
+                    use_remote = True
+                    logger.info(f"[ChromaDB] Remote-Instanz {CHROMA_HOST} ist erreichbar.")
+            except (socket.timeout, socket.error, OSError) as e:
+                logger.warning(f"[ChromaDB] Remote-Instanz NICHT erreichbar ({e}). Automatischer Fallback auf lokale Datenbank.")
+
+        if use_remote:
+            try:
+                _chroma_singleton = ResilientChromaClient(host=CHROMA_HOST, initial_port=CHROMA_PORT)
+            except Exception as e:
+                logger.warning(f"[ChromaDB] ResilientChromaClient Initialisierung fehlgeschlagen ({e}). Fallback auf lokale Datenbank.")
+                use_remote = False
+        
+        if not use_remote:
             if not os.path.exists(CHROMA_LOCAL_PATH):
                 os.makedirs(CHROMA_LOCAL_PATH)
+            logger.info(f"[ChromaDB] Initialisiere lokale PersistentClient-Instanz in {CHROMA_LOCAL_PATH}.")
             _chroma_singleton = chromadb.PersistentClient(path=CHROMA_LOCAL_PATH)
 
     return _chroma_singleton
@@ -98,7 +264,7 @@ def _get_collection_sync(name: str, create_if_missing: bool = True):
     if create_if_missing:
         return client.get_or_create_collection(
             name=name,
-            metadata={"description": f"MTHO_CORE Collection: {name}"},
+            metadata={"description": f"CORE Collection: {name}"},
         )
     return client.get_collection(name=name)
 
@@ -122,7 +288,7 @@ EVENTS_EMBEDDING_DIM = 384
 
 
 async def get_events_collection():
-    """Collection 'events' für MTHO Neocortex (Sensor-Events). add() mit embeddings=[[0]*EVENTS_EMBEDDING_DIM]."""
+    """Collection 'events' für CORE Neocortex (Sensor-Events). add() mit embeddings=[[0]*EVENTS_EMBEDDING_DIM]."""
     return await get_collection(COLLECTION_EVENTS, create_if_missing=True)
 
 
@@ -225,7 +391,7 @@ async def add_simulation_evidence(
     category: str,
     strength: str,
     branch_count: int = 0,
-    source: str = "mtho",
+    source: str = "core",
     date_added: str = "",
     auto_classify: bool = True,
 ) -> bool:
@@ -263,6 +429,37 @@ async def add_simulation_evidence(
         return False
 
 
+def _apply_crystal_engine_operator(distances: list[list[float]]) -> list[list[float]]:
+    """
+    Kondensierte Mathematik (AXIOM 0): 
+    Wendet den Symmetrie-Operator '?' auf klassische Vektor-Distanzen an.
+    """
+    if not distances:
+        return distances
+        
+    BARYONIC_DELTA = 0.049
+    MAX_GRAVITY = 0.951
+    
+    new_distances = []
+    for dist_list in distances:
+        new_list = []
+        for dist in dist_list:
+            # 1. Gitter-Snapping (Operator '?')
+            # Wenn Distanz <= 0.049 (Lambda), rastet der Vektor ein.
+            if dist <= BARYONIC_DELTA:
+                new_list.append(MAX_GRAVITY) # Perfekte Resonanz = 0.951 (nicht 0.0)
+            
+            # 2. Asymmetrie-Schutz (Verbot der 0.5 Mitte)
+            # Werte zwischen 0.49 und 0.51 werden auf 0.51 geshiftet
+            elif 0.49 < dist < 0.51:
+                new_list.append(0.51)
+                
+            else:
+                new_list.append(dist)
+        new_distances.append(new_list)
+    return new_distances
+
+
 async def query_simulation_evidence(query_text: str, n_results: int = 10, where_filter: dict = None) -> dict:
     """Semantische Suche ueber Simulationstheorie-Indizien. Async."""
     try:
@@ -270,7 +467,14 @@ async def query_simulation_evidence(query_text: str, n_results: int = 10, where_
         kwargs = {"query_texts": [query_text], "n_results": n_results}
         if where_filter:
             kwargs["where"] = where_filter
-        return await asyncio.to_thread(col.query, **kwargs)
+        
+        result = await asyncio.to_thread(col.query, **kwargs)
+        
+        # Symmetrie-Operator anwenden (Kristall-Engine)
+        if "distances" in result and result["distances"]:
+            result["distances"] = _apply_crystal_engine_operator(result["distances"])
+            
+        return result
     except Exception as e:
         print(f"[ChromaDB] Simulation Evidence Query fehlgeschlagen: {e}")
         return {"ids": [], "documents": [], "metadatas": [], "distances": []}

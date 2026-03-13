@@ -12,12 +12,12 @@
 Das „Team“ im Projekt sind die **Rollen**, die bei der Erstellung und Wartung von ATLAS_CORE genutzt werden (u. a. im Cursor-Umfeld):
 
 - **Architect Zero:** Struktur, Dateipfade, Gesamtkonzept; keine Produktions-Code-Änderungen, nur Definition.
-- **Backend Forge:** Python-Logik, FastAPI, Datenbanken.
+- **Backend Build-Engine:** Python-Logik, FastAPI, Datenbanken.
 - **Net Engineer:** SSH, Netzwerk, Home Assistant, Ollama, Brücken zu externen Diensten.
 - **UI Artist:** Dashboard, Streamlit, Visualisierung.
 - **Weitere Rollen** (Doku, Audit, ND-Analyse, Ethik) je nach Kontext.
 
-Marc ist der einzige physische Nutzer und Auftraggeber; die Crew ist das kollektive Entwicklungs- und Prüfteam für das System. **Der Rat** (Osmium Council) ist die Instanz, die bei Freigaben (z. B. Bereitstellung von Stammdokumenten für OC) abstimmt – jede Stimme zählt, Mehrheit entscheidet.
+Marc ist der einzige physische Nutzer und Auftraggeber; die Crew ist das kollektive Entwicklungs- und Prüfteam für das System. **Der Rat** (Core Council) ist die Instanz, die bei Freigaben (z. B. Bereitstellung von Stammdokumenten für OC) abstimmt – jede Stimme zählt, Mehrheit entscheidet.
 
 ---
 

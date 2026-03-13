@@ -5,7 +5,7 @@ import sys
 import argparse
 
 def main():
-    print("=== ATLAS Wake Word Trainer ===")
+    print("=== CORE Wake Word Trainer ===")
     
     # Pfade
     script_dir = os.path.dirname(os.path.abspath(__file__))

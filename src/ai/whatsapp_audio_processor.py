@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -20,7 +20,7 @@ from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 MODEL = os.getenv("GEMINI_AUDIO_MODEL", "gemini-3.1-pro-preview")
@@ -85,7 +85,7 @@ Transkribiere diese WhatsApp-Sprachnachricht vollständig und genau.
 Behalte alle Details, Pausen, Füllwörter und emotionalen Nuancen bei.
 Gib nur die Transkription zurück, keine Kommentare."""
 
-PROMPT_ANALYST = """Du bist der ND Analyst im MTHO-System.
+PROMPT_ANALYST = """Du bist der ND Analyst im CORE-System.
 Basierend auf dieser Transkription einer WhatsApp-Sprachnachricht:
 1. Extrahiere alle Aufgaben, Erinnerungen oder To-Dos
 2. Identifiziere den emotionalen Zustand des Sprechers

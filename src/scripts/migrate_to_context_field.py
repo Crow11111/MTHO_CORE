@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,7 +9,7 @@
 GQA Refactor F8: Migration zu einheitlicher context_field Collection.
 
 Liest simulation_evidence, core_directives, session_logs (optional knowledge_graph)
-aus ChromaDB, transformiert in einheitliches Schema mit type + MTHO-Encoding,
+aus ChromaDB, transformiert in einheitliches Schema mit type + CORE-Encoding,
 schreibt in Collection "context_field".
 
 Schema: docs/02_ARCHITECTURE/CONTEXT_FIELD_SCHEMA.md
@@ -24,8 +24,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-# MTHO category -> base mapping (quaternary_codec)
-_CATEGORY_TO_MTHO = {
+# CORE category -> base mapping (quaternary_codec)
+_CATEGORY_TO_CORE = {
     "logisch": "L",
     "logisch-mathematisch": "L",
     "physikalisch": "P",
@@ -35,7 +35,7 @@ _CATEGORY_TO_MTHO = {
     "systemisch-emergent": "S",
 }
 
-_MTHO_PAIRINGS = {"L": "I", "I": "L", "S": "P", "P": "S"}
+_CORE_PAIRINGS = {"L": "I", "I": "L", "S": "P", "P": "S"}
 
 COLLECTION_CONTEXT = "context_field"
 BATCH_SIZE = 50
@@ -57,11 +57,11 @@ def _sanitize_metadata(m: dict) -> dict:
 
 
 def _resolve_mtho(meta: dict) -> tuple[str, str, float | None, str | None]:
-    """Extrahiert mtho_base, mtho_complement, mtho_confidence, mtho_scores aus Metadata."""
-    base = meta.get("qbase") or _CATEGORY_TO_MTHO.get(
+    """Extrahiert core_base, core_complement, core_confidence, core_scores aus Metadata."""
+    base = meta.get("qbase") or _CATEGORY_TO_CORE.get(
         (meta.get("category") or "").lower().strip(), ""
     )
-    complement = meta.get("qbase_complement") or _MTHO_PAIRINGS.get(base, "")
+    complement = meta.get("qbase_complement") or _CORE_PAIRINGS.get(base, "")
     confidence = meta.get("qbase_confidence")
     if confidence is not None:
         try:
@@ -87,13 +87,13 @@ def _transform_evidence(
         "source": meta.get("source", ""),
     }
     if base:
-        out["mtho_base"] = base
+        out["core_base"] = base
     if comp:
-        out["mtho_complement"] = comp
+        out["core_complement"] = comp
     if conf is not None:
-        out["mtho_confidence"] = conf
+        out["core_confidence"] = conf
     if scores:
-        out["mtho_scores"] = scores
+        out["core_scores"] = scores
     return (doc_id, document, _sanitize_metadata(out))
 
 
@@ -169,7 +169,7 @@ def _migrate_from_chroma(client, dry_run: bool) -> dict[str, int]:
     if not dry_run:
         context_col = client.get_or_create_collection(
             name=COLLECTION_CONTEXT,
-            metadata={"description": "MTHO context field (GQA F8)", "hnsw:space": "cosine"},
+            metadata={"description": "CORE context field (GQA F8)", "hnsw:space": "cosine"},
         )
 
     transforms = [
@@ -280,7 +280,7 @@ def _migrate_from_json(json_path: str, client, dry_run: bool) -> dict[str, int]:
     if not dry_run:
         context_col = client.get_or_create_collection(
             name=COLLECTION_CONTEXT,
-            metadata={"description": "MTHO context field (GQA F8)", "hnsw:space": "cosine"},
+            metadata={"description": "CORE context field (GQA F8)", "hnsw:space": "cosine"},
         )
 
     for coll_key, transform_fn, source in [

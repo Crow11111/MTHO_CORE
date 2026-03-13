@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -17,12 +17,12 @@ from loguru import logger
 from src.api.auth_webhook import verify_whatsapp_auth
 from src.network.ha_client import HAClient
 from src.ai.whatsapp_audio_processor import process_whatsapp_audio
-from src.ai.llm_interface import mtho_llm
+from src.ai.llm_interface import core_llm
 from src.network.openclaw_client import send_message_to_agent_async, is_configured as oc_configured
 from src.api.entry_adapter import normalize_request, NormalizedEntry
 from src.logic_core.takt_gate import check_takt_zero
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 
 async def _mirror_to_oc_brain(text: str, sender: str, msg_type: str = "whatsapp") -> None:
@@ -84,20 +84,20 @@ async def receive_whatsapp(
 
     low = (incoming_text or "").lower()
 
-    # Nur @OC adressiert → für OC, MTHO reagiert nicht
+    # Nur @OC adressiert → für OC, CORE reagiert nicht
     if incoming_text and low.startswith("@oc"):
         logger.info(f"WhatsApp: ignoriert (für @OC): {incoming_text[:80]}...")
         return {"status": "ignored", "reason": "addressed_to_@OC"}
 
-    # Nur bei @Mtho (am Anfang) reagieren
-    if incoming_text and not low.startswith("@mtho"):
-        logger.info(f"WhatsApp: ignoriert (kein @Mtho-Prefix): {incoming_text[:80]}...")
+    # Nur bei @Core (am Anfang) reagieren
+    if incoming_text and not low.startswith("@core"):
+        logger.info(f"WhatsApp: ignoriert (kein @Core-Prefix): {incoming_text[:80]}...")
         return {"status": "ignored", "reason": "no_@Mtho_prefix"}
 
-    # Sprachnachricht: nur bei @Mtho-Prefix reagieren
-    if has_audio and not (incoming_text and low.startswith("@mtho")):
-        logger.info("WhatsApp: Sprachnachricht ignoriert (kein @Mtho).")
-        return {"status": "ignored", "reason": "audio_without_@Mtho"}
+    # Sprachnachricht: nur bei @Core-Prefix reagieren
+    if has_audio and not (incoming_text and low.startswith("@core")):
+        logger.info("WhatsApp: Sprachnachricht ignoriert (kein @Core).")
+        return {"status": "ignored", "reason": "audio_without_@Core"}
 
     # ── Sprachnachricht ───────────────────────────────────────────────────────
     message = raw_payload.get("message", {}) if isinstance(raw_payload, dict) else {}
@@ -119,7 +119,7 @@ async def receive_whatsapp(
 
         async def run_audio():
             result = await process_whatsapp_audio(audio_msg, sender)
-            ha_client.send_whatsapp(to_number=sender, text=f"[MTHO] {result}")
+            ha_client.send_whatsapp(to_number=sender, text=f"[CORE] {result}")
 
         background_tasks.add_task(run_audio)
         asyncio.create_task(_mirror_to_oc_brain(f"[AUDIO {audio_seconds}s]", sender, "whatsapp_voice"))
@@ -132,16 +132,16 @@ async def receive_whatsapp(
             logger.warning(f"TAKT 0 VETO: System rejected text request from {sender}")
             return {"status": "veto", "reason": "system_instability_takt0"}
 
-        # @Mtho-Prefix abziehen
+        # @Core-Prefix abziehen
         t = incoming_text.strip()
-        if t.lower().startswith("@mtho"):
+        if t.lower().startswith("@core"):
             t = t[6:].strip() or t
 
         logger.success(f"💬 Textnachricht von {sender}: {incoming_text}")
 
         # 3. Triage / Gravitator Strut (Async)
         # Ring-1 Perf: Triage (sync) in Thread → Event-Loop frei
-        triage = await asyncio.to_thread(mtho_llm.run_triage, t)
+        triage = await asyncio.to_thread(core_llm.run_triage, t)
 
         if triage.intent == "command":
             def _cmd():
@@ -160,9 +160,9 @@ async def receive_whatsapp(
             ha_client.send_whatsapp(to_number=sender, text=ACCEPTED_MSG)
 
             def run_heavy_and_reply():
-                sys_prompt = "Du bist MTHO, ein intelligenter Assistent. Antworte präzise und knapp auf WhatsApp."
-                reply = mtho_llm.invoke_heavy_reasoning(sys_prompt, t)
-                reply = f"[MTHO] {reply}" if reply else "[MTHO] (keine Antwort)"
+                sys_prompt = "Du bist CORE, ein intelligenter Assistent. Antworte präzise und knapp auf WhatsApp."
+                reply = core_llm.invoke_heavy_reasoning(sys_prompt, t)
+                reply = f"[CORE] {reply}" if reply else "[CORE] (keine Antwort)"
                 ha_client.send_whatsapp(to_number=sender, text=reply)
 
             background_tasks.add_task(run_heavy_and_reply)

@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -15,7 +15,7 @@ Damit der Scout nach Neustart oder bei Sensor-/Kamera-Trigger ein Event an OMEGA
 
 **1. Geheimnisse** (Einstellungen → Geheimnisse oder `secrets.yaml`):
 - `oc_brain_url`: `https://187.77.68.250` oder `http://187.77.68.250:18789`
-- `oc_brain_token`: aus MTHO `.env` → `OPENCLAW_GATEWAY_TOKEN`
+- `oc_brain_token`: aus CORE `.env` → `OPENCLAW_GATEWAY_TOKEN`
 
 **2. configuration.yaml** (oder YAML-Add-on):
 
@@ -121,7 +121,7 @@ automation:
 
 ---
 
-## 5. Von 4D_RESONATOR (MTHO_CORE) aus testen (ohne HA)
+## 5. Von 4D_RESONATOR (CORE) aus testen (ohne HA)
 
 ```bash
 python -m src.scripts.scout_send_event_to_oc --type scout_online --node raspi5-ha-master

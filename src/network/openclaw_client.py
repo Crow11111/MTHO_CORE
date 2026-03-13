@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -7,8 +7,8 @@
 """
 OpenClaw Gateway Client (Hostinger).
 Liest VPS_HOST und OPENCLAW_GATEWAY_TOKEN aus .env.
-- MTHO → OC: send_message_to_agent() (POST /v1/responses)
-- OC → MTHO: GQA F2 Webhook-Push (POST /api/oc/webhook) oder Fallback fetch_oc_submissions (SFTP).
+- CORE → OC: send_message_to_agent() (POST /v1/responses)
+- OC → CORE: GQA F2 Webhook-Push (POST /api/oc/webhook) oder Fallback fetch_oc_submissions (SFTP).
 """
 import os
 import asyncio
@@ -23,7 +23,7 @@ OPENCLAW_GATEWAY_TOKEN = os.getenv("OPENCLAW_GATEWAY_TOKEN", "")
 # OpenClaw Gateway: bei Hostinger oft Container-PORT (z. B. 58105), sonst 18789
 OPENCLAW_GATEWAY_PORT = int(os.getenv("OPENCLAW_GATEWAY_PORT", "18789"))
 
-# Pfad auf dem VPS, in dem OC Einreichungen für den Rat ablegt (OC → MTHO)
+# Pfad auf dem VPS, in dem OC Einreichungen für den Rat ablegt (OC → CORE)
 OC_RAT_SUBMISSIONS_DIR = "/var/lib/openclaw/workspace/rat_submissions"
 
 
@@ -81,7 +81,7 @@ async def send_message_to_agent_async(
     timeout: float = 30.0,
 ) -> tuple[bool, str]:
     """
-    Sendet eine Nachricht an einen OC-Agenten (MTHO -> OC).
+    Sendet eine Nachricht an einen OC-Agenten (CORE -> OC).
     Nutzt OpenClaw Gateway POST /v1/responses.
     Returns: (success, response_text oder Fehlermeldung)
     """
@@ -139,16 +139,16 @@ async def send_event_to_oc_brain_async(
     timeout: float = 15.0,
 ) -> tuple[bool, str]:
     """
-    Sendet ein MTHO-Event an OC Brain (strukturiert).
+    Sendet ein CORE-Event an OC Brain (strukturiert).
     Nutzt intern send_message_to_agent_async() mit Prefix-Formatierung.
     """
     import json as _json
 
-    formatted_msg = f"[MTHO_EVENT] type={event_type}\n{_json.dumps(data, ensure_ascii=False, indent=2)}"
+    formatted_msg = f"[CORE_EVENT] type={event_type}\n{_json.dumps(data, ensure_ascii=False, indent=2)}"
     return await send_message_to_agent_async(
         text=formatted_msg,
         agent_id="main",
-        user="mtho_event_bus",
+        user="core_event_bus",
         timeout=timeout,
     )
 

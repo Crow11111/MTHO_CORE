@@ -1,6 +1,6 @@
-from src.mtho_core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
+from src.core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -35,7 +35,7 @@ entries = []
 for i, (id_, meta, doc) in enumerate(zip(results["ids"], results["metadatas"], results["documents"])):
     qbase = meta.get("qbase", "")
     cat_long = meta.get("category", "")
-    if qbase and qbase in "MTHO":
+    if qbase and qbase in "CORE":
         cat = qbase
     elif cat_long in CAT_SHORT:
         cat = CAT_SHORT[cat_long]
@@ -109,7 +109,7 @@ print(f"  NACH Phi-Punkt ({len(after)} Elemente): {''.join(after)}")
 print()
 
 print("  Kategorie-Verhaeltnisse um Phi-Punkt:")
-for cat in "MTHO":
+for cat in "CORE":
     b = before.count(cat)
     a = after.count(cat)
     ratio = b / a if a > 0 else float('inf')
@@ -125,7 +125,7 @@ print()
 for power, name in [(2, "Phi^2=2.618"), (3, "Phi^3=4.236")]:
     phi_n = PHI ** power
     print(f"  {name} Vergleich:")
-    for cat in "MTHO":
+    for cat in "CORE":
         b = before.count(cat)
         a = after.count(cat)
         ratio = b / a if a > 0 else float('inf')
@@ -145,21 +145,21 @@ for i in range(len(seq) - 1):
     transitions[(seq[i], seq[i + 1])] += 1
 
 print("       L    P    I    S")
-for a in "MTHO":
+for a in "CORE":
     row = []
-    for b in "MTHO":
+    for b in "CORE":
         count = transitions.get((a, b), 0)
         row.append(f"{count:4d}")
-    total_from = sum(transitions.get((a, b), 0) for b in "MTHO")
+    total_from = sum(transitions.get((a, b), 0) for b in "CORE")
     print(f"  {a} [{' '.join(row)}]  (Sum={total_from})")
 print()
 
 print("  Uebergangs-Wahrscheinlichkeiten:")
-for a in "MTHO":
-    total_from = sum(transitions.get((a, b), 0) for b in "MTHO")
+for a in "CORE":
+    total_from = sum(transitions.get((a, b), 0) for b in "CORE")
     if total_from > 0:
         probs = []
-        for b in "MTHO":
+        for b in "CORE":
             p = transitions.get((a, b), 0) / total_from
             probs.append(f"{b}:{p:.3f}")
         print(f"    {a} -> {', '.join(probs)}")
@@ -198,8 +198,8 @@ targets = [
     ("Phi^2", PHI ** 2),
 ]
 best_matches = []
-for a in "MTHO":
-    for b in "MTHO":
+for a in "CORE":
+    for b in "CORE":
         if a < b and counts[b] > 0:
             ratio = counts[a] / counts[b]
             for name, target in targets:
@@ -210,8 +210,8 @@ for a in "MTHO":
 
 if not best_matches:
     print("    (Keine exakten Treffer < 0.15)")
-    for a in "MTHO":
-        for b in "MTHO":
+    for a in "CORE":
+        for b in "CORE":
             if a < b and counts[b] > 0:
                 ratio = counts[a] / counts[b]
                 closest = min(targets, key=lambda t: abs(ratio - t[1]))

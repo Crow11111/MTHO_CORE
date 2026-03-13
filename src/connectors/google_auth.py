@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Google OAuth 2.0 Authentifizierung fuer MTHO_CORE.
+Google OAuth 2.0 Authentifizierung fuer CORE.
 
 Unterstuetzt:
   - Google Tasks API
@@ -20,7 +20,7 @@ Setup-Anleitung:
   5. Beim ersten Aufruf oeffnet sich der Browser fuer die Autorisierung
   6. Token wird in data/google_token.json gespeichert (auto-refresh)
 
-Alternativ: credentials.json direkt nach c:/MTHO_CORE/data/google_credentials.json legen.
+Alternativ: credentials.json direkt nach c:/CORE/data/google_credentials.json legen.
 """
 import os
 import sys

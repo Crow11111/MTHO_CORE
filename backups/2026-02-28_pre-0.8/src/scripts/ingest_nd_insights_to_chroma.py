@@ -3,20 +3,20 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 from loguru import logger
 
-from src.network.chroma_client import get_collection, COLLECTION_ARGOS, is_remote
+from src.network.chroma_client import get_collection, COLLECTION_SHELL, is_remote
 
 # Paths & Setup (Insights liegen lokal)
 _script_dir = os.path.dirname(os.path.abspath(__file__))
 _project_root = os.path.normpath(os.path.join(_script_dir, "..", ".."))
 INSIGHTS_DIR = os.path.join(_project_root, "docs", "nd_insights")
 if not os.path.exists(INSIGHTS_DIR):
-    INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights"
+    INSIGHTS_DIR = r"c:\CORE\docs\nd_insights"
 
 
 def init_db():
     logger.info("Verbinde zu ChromaDB (lokal oder VPS laut .env)...")
-    collection = get_collection(COLLECTION_ARGOS, create_if_missing=True)
-    logger.info(f"Collection {COLLECTION_ARGOS} bereit (remote={is_remote()}).")
+    collection = get_collection(COLLECTION_SHELL, create_if_missing=True)
+    logger.info(f"Collection {COLLECTION_SHELL} bereit (remote={is_remote()}).")
     return collection
 
 def ingest_document(collection, file_name, category):
@@ -63,7 +63,7 @@ def main():
         # Ingest Assumed Data
         ingest_document(collection, "02_ND_ANNAHMEN_FINAL.md", "ASSUMED_INSIGHT")
         
-        logger.success("Alle Daten in die ChromaDB argos_knowledge_graph Collection überführt.")
+        logger.success("Alle Daten in die ChromaDB shell_knowledge_graph Collection überführt.")
     except Exception as e:
         logger.error(f"Fehler bei der Datenbank-Ingestion: {e}")
 

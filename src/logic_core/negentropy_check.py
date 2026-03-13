@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -164,7 +164,7 @@ def scaffolding_check(response: str) -> dict:
 
 
 if __name__ == "__main__":
-    print("[MTHO_CORE] NEGENTROPIE_CHECK Test...")
+    print("[CORE] NEGENTROPIE_CHECK Test...")
 
     prev = [
         "Die Architektur basiert auf einem Ring-Modell mit 3 Ebenen.",

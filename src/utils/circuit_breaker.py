@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,9 +8,9 @@ import logging
 import time
 from typing import Any, Callable
 
-from src.config.mtho_state_vector import BARYONIC_DELTA
+from src.config.core_state import BARYONIC_DELTA
 
-logger = logging.getLogger("mtho_core.circuit_breaker")
+logger = logging.getLogger("core.circuit_breaker")
 
 
 class CircuitBreakerOpenException(Exception):

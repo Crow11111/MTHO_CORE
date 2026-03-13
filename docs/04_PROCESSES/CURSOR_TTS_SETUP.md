@@ -41,9 +41,9 @@ Die Extension ist im Cursor-Marketplace nicht auffindbar. Installation nur manue
 3. Paket bauen: `npx @vscode/vsce package --no-dependencies`
 4. Installieren: `cursor --install-extension piper-tts-<version>.vsix`
 
-## 2. Backend-Weg (MTHO TTS Wrapper)
+## 2. Backend-Weg (CORE TTS Wrapper)
 
-Für die Integration in Skripte oder die Nutzung der MTHO-spezifischen TTS-Pipeline (ElevenLabs, Home Assistant, etc.) steht ein PowerShell-Wrapper zur Verfügung.
+Für die Integration in Skripte oder die Nutzung der CORE-spezifischen TTS-Pipeline (ElevenLabs, Home Assistant, etc.) steht ein PowerShell-Wrapper zur Verfügung.
 
 ### Wrapper-Skript: `scripts/quick_tts.ps1`
 
@@ -56,7 +56,7 @@ Dieser Wrapper ruft das Python-Modul `src.scripts.say_it` auf und kümmert sich 
     *   `mini`: Home Assistant
     *   `elevenlabs`: ElevenLabs API
     *   `browser`: Browser-Ausgabe (falls implementiert)
-*   `-Role` (Optional): Die Rolle für ElevenLabs (z.B. `mtho_dialog`, `osmium`). Standard: `mtho_dialog`.
+*   `-Role` (Optional): Die Rolle für ElevenLabs (z.B. `core_dialog`, `osmium`). Standard: `core_dialog`.
 
 ### Beispielaufruf (PowerShell)
 

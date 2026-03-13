@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from dotenv import load_dotenv
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 path = os.path.join(os.path.dirname(__file__), "..", "..", "media", "dev_agent_reply.mp3")
 target = (os.getenv("WHATSAPP_TARGET_ID") or "491788360264").strip().strip('"').replace("@s.whatsapp.net", "")

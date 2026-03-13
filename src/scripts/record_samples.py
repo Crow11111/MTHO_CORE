@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -15,7 +15,7 @@ from datetime import datetime
 SAMPLE_RATE = 16000
 DURATION = 2.0  # Sekunden
 OUTPUT_DIR = "data/wakeword_training/positive"
-WAKE_WORD = "MTHO"
+WAKE_WORD = "CORE"
 
 def record_sample(index):
     filename = os.path.join(OUTPUT_DIR, f"{WAKE_WORD.lower()}_{index:03d}.wav")
@@ -37,7 +37,7 @@ def main():
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
         
-    print(f"=== MTHO Wake Word Recorder ===")
+    print(f"=== CORE Wake Word Recorder ===")
     print(f"Ziel: {OUTPUT_DIR}")
     print(f"Drücke ENTER für jede Aufnahme. 'q' zum Beenden.")
     

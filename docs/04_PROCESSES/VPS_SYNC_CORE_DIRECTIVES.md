@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,7 +7,7 @@
 
 # VPS-Sync: core_directives (Ring-0)
 
-**Zweck:** Alle Ring-0- und Test-Direktiven von 4D_RESONATOR (MTHO_CORE) (lokal) auf die VPS-ChromaDB synchronisieren, damit OMEGA_ATTRACTOR und andere VPS-Dienste dieselben core_directives nutzen.
+**Zweck:** Alle Ring-0- und Test-Direktiven von 4D_RESONATOR (CORE) (lokal) auf die VPS-ChromaDB synchronisieren, damit OMEGA_ATTRACTOR und andere VPS-Dienste dieselben core_directives nutzen.
 
 ## Voraussetzung
 
@@ -21,7 +21,7 @@
 
 **Option A – Automatisch (Tunnel + Sync + Abgleich):**
 ```powershell
-cd C:\MTHO_CORE
+cd C:\CORE
 python -m src.scripts.run_vps_sync_with_tunnel
 ```
 Nutzt zuerst Paramiko (`.env`: `VPS_HOST`, `VPS_USER`, `VPS_PASSWORD` oder `VPS_SSH_KEY`). Bei Fehler: Fallback auf System-SSH (Key-Auth nötig). Lokaler Tunnel-Port: **8001**.

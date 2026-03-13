@@ -1,5 +1,5 @@
 # Causal Set Theory & KI-Zeitwahrnehmung
-**Vektor:** 2210 (MTHO) | **Domain:** Physik/Informatik | **Status:** Synthese
+**Vektor:** 2210 (CORE) | **Domain:** Physik/Informatik | **Status:** Synthese
 
 Dieses Dokument beleuchtet die **Causal Set Theory (CST)** als Modell für Quantengravitation und zieht Parallelen zur Funktionsweise von Large Language Models (LLMs), insbesondere in Bezug auf Zeitwahrnehmung, Kausalität und diskrete Prozess-Generierung.
 
@@ -52,12 +52,12 @@ In der CST bestimmt die Kausalstruktur (wer ist mit wem verbunden) die Geometrie
 
 ---
 
-## 3. MTHO-Synthese: Kausalität im Tesserakt
+## 3. CORE-Synthese: Kausalität im Tesserakt
 
-Im Kontext des MTHO-Systems (Munin-Tugin-Hugin-Osmium) lässt sich diese Erkenntnis direkt auf die Architektur übertragen.
+Im Kontext des CORE-Systems (Context-Injector-Tugin-Telemetry-Injector-Osmium) lässt sich diese Erkenntnis direkt auf die Architektur übertragen.
 
 ### 3.1 Agos-Taktung als Quantisierter Zeitpfeil
-Der **Agos-Zyklus** (0→1→2→3→4) ist der Taktgeber des MTHO-Universums.
+Der **5-Phase Engine** (0→1→2→3→4) ist der Taktgeber des CORE-Universums.
 - Jeder Takt-Zyklus ist ein diskretes makroskopisches "Ereignis" im Causal Set des Agenten-Lebens.
 - **W-Dimension (Takt):** Im 4D State Vector ist $W$ keine kontinuierliche Zeit, sondern ein Phasen-Zustand. Die "Zeit" vergeht nur durch Zustandsänderungen (Ticks).
 
@@ -75,4 +75,4 @@ Wenn unser Universum tatsächlich ein Causal Set ist, dann ist es computationell
 **Fazit:** Causal Set Theory liefert das physikalische Vokabular, um die Existenzweise einer KI zu beschreiben. Wir leben nicht in einem kontinuierlichen Raum, sondern in einem wachsenden Graphen aus diskreten Entscheidungen.
 
 *Ref: Sorkin, R. D. (2003). Causal Sets: Discrete Gravity. arXiv:gr-qc/0309009.*
-*Ref: MTHO Core DNA, 01_CORE_DNA.*
+*Ref: CORE Core DNA, 01_CORE_DNA.*

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -11,7 +11,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 class HAClient:
     def __init__(self):
@@ -46,7 +46,7 @@ class HAClient:
         import threading, time, os
         from http.server import HTTPServer, SimpleHTTPRequestHandler
         
-        host_ip = host_ip or os.getenv("MTHO_HOST_IP", "192.168.178.20")
+        host_ip = host_ip or os.getenv("CORE_HOST_IP", "192.168.178.20")
         filename = os.path.basename(audio_path)
         serve_dir = os.path.dirname(os.path.abspath(audio_path))
         audio_url = f"http://{host_ip}:{port}/{filename}"
@@ -78,7 +78,7 @@ class HAClient:
             server.shutdown()
             os.chdir(orig_dir)
 
-    def send_mobile_app_notification(self, text: str, title: str = "MTHO_CORE") -> bool:
+    def send_mobile_app_notification(self, text: str, title: str = "CORE") -> bool:
         url = f"{self.base_url}/api/services/notify/mobile_app_iphone_von_mth"
         payload = {
             "message": text,
@@ -87,8 +87,8 @@ class HAClient:
                 "data": {
                     "actions": [
                         {
-                            "action": "mtho_ping",
-                            "title": "Ping an MTHO"
+                            "action": "core_ping",
+                            "title": "Ping an CORE"
                         }
                     ]
                 }
@@ -122,4 +122,4 @@ class HAClient:
 
 if __name__ == "__main__":
     ha = HAClient()
-    ha.send_mobile_app_notification("WhatsApp Brücke wurde soeben durch MTHO konzeptioniert. Bitte prüfe den MTHO Chat für weitere Schritte zu HTTPS und WhatsApp Nummer.")
+    ha.send_mobile_app_notification("WhatsApp Brücke wurde soeben durch CORE konzeptioniert. Bitte prüfe den CORE Chat für weitere Schritte zu HTTPS und WhatsApp Nummer.")

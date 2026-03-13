@@ -1,23 +1,23 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Voice – Info-Assistent.
-Text einfügen → Sprache abspielen. Standard: mtho_info, neutrale Stimmlage.
+CORE Voice – Info-Assistent.
+Text einfügen → Sprache abspielen. Standard: core_info, neutrale Stimmlage.
 Rollen und Stimmlage (State) wählbar; verdrahtet gegen voice_config, ElevenLabs TTS.
 """
 import streamlit as st
 from src.voice.elevenlabs_tts import speak_text
 from src.config.voice_config import OSMIUM_VOICE_CONFIG, EMOTIONAL_STATE_PREFIXES
 
-st.set_page_config(page_title="MTHO Voice Info", layout="centered")
-st.title("MTHO Voice – Info-Assistent")
+st.set_page_config(page_title="CORE Voice Info", layout="centered")
+st.title("CORE Voice – Info-Assistent")
 
 roles = sorted(OSMIUM_VOICE_CONFIG.keys())
-default_role_index = roles.index("mtho_info") if "mtho_info" in roles else 0
+default_role_index = roles.index("core_info") if "core_info" in roles else 0
 
 state_options = ["(neutral)"] + list(EMOTIONAL_STATE_PREFIXES)
 

@@ -68,7 +68,7 @@ Die in dieser Sektion beschriebene Collection-Layout-Struktur dient als Grundlag
 
 *   core_brain_registr (immutable)
 *   krypto_scan_buffer
-*   argos_knowledge_graph
+*   shell_knowledge_graph
 
 ### 2.2 Collection-Layout: core_brain_registr (immutable)
 
@@ -116,11 +116,11 @@ Die Collection `krypto_scan_buffer` bietet folgende Funktionen:
 *   Analyse der Verarbeitung kritischer Daten
 *   Bereitstellen von Informationen über aktuelle Sicherheitsbedrohungen
 
-### 2.4 Collection-Layout: argos_knowledge_graph
+### 2.4 Collection-Layout: shell_knowledge_graph
 
 #### 2.4.1 Beschreibung
 
-Die Collection `argos_knowledge_graph` ist eine relationale Datenbank, die sich auf komplexe Beziehungen zwischen kritischen Systemkomponenten konzentriert.
+Die Collection `shell_knowledge_graph` ist eine relationale Datenbank, die sich auf komplexe Beziehungen zwischen kritischen Systemkomponenten konzentriert.
 
 #### 2.4.2 Struktur
 
@@ -133,7 +133,7 @@ Die Collection `argos_knowledge_graph` ist eine relationale Datenbank, die sich 
 
 #### 2.4.3 Funktionalität
 
-Die Collection `argos_knowledge_graph` bietet folgende Funktionen:
+Die Collection `shell_knowledge_graph` bietet folgende Funktionen:
 
 *   Aufbau komplexer Beziehungen zwischen kritischen Systemkomponenten
 *   Analyse der Auswirkungen von Änderungen auf das System
@@ -141,7 +141,7 @@ Die Collection `argos_knowledge_graph` bietet folgende Funktionen:
 
 ### 2.5 Zusammenfassung
 
-Die im vorliegenden Kapitel beschriebene Collection-Layout-Struktur bildet die Grundlage für die Datenbank-Modellierung und den Systemdesign-Prozess. Die Sammlungen `core_brain_registr`, `krypto_scan_buffer` und `argos_knowledge_graph` stellen sich als unverzichtbare Komponenten des Systems heraus, die für Stabilität, Sicherheit und Effizienz sorgen müssen.
+Die im vorliegenden Kapitel beschriebene Collection-Layout-Struktur bildet die Grundlage für die Datenbank-Modellierung und den Systemdesign-Prozess. Die Sammlungen `core_brain_registr`, `krypto_scan_buffer` und `shell_knowledge_graph` stellen sich als unverzichtbare Komponenten des Systems heraus, die für Stabilität, Sicherheit und Effizienz sorgen müssen.
 
 ---
 

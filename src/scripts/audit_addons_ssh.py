@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -16,7 +16,7 @@ load_dotenv()
 HOST = "192.168.178.54"
 USER = "dreadnought"
 PASS_PREFIX = "USsxrqqg"
-TARGET_FILE = "docs/05_AUDIT_PLANNING/MTHO_HASS_OPTIMAL_PLAN.md"
+TARGET_FILE = "docs/05_AUDIT_PLANNING/CORE_HASS_OPTIMAL_PLAN.md"
 
 def get_password():
     """Findet das Passwort in den Umgebungsvariablen, das mit dem Prefix beginnt."""

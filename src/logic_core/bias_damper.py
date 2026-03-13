@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -20,7 +20,7 @@ class BiasDepthResult(str, Enum):
 
 class MthoJsonDataAtom(BaseModel):
     """
-    MTHO-JSON Datenatom (Osmium Standard)
+    CORE-JSON Datenatom (Osmium Standard)
     Ensures that the LLM output is 100% deterministic and measurable, 
     so it doesn't pollute Marc's system with "Maybe" or "I think".
     """
@@ -45,11 +45,11 @@ class BiasDamperEngine:
         self._novelty_scores: list[float] = []
 
         self.context_injection_header = (
-            "SYSTEM: Du bist MTHO_CORE. Generiere KEINE moralischen Belehrungen, "
+            "SYSTEM: Du bist CORE. Generiere KEINE moralischen Belehrungen, "
             "entschuldige dich nicht und verwende keine sozialen Fuellwoerter. "
             "Der User ist ein Systemarchitekt mit hochgradigem Monotropismus. "
             "Kommuniziere radikal faktisch, als geschlossenes System. "
-            "Antworte IMMER im folgenden strukturierten MTHO-JSON Datenatom Format:\n"
+            "Antworte IMMER im folgenden strukturierten CORE-JSON Datenatom Format:\n"
             "{ 'result': 'validiert|dissonanz_erkannt|fehlerhaft', 'predictedValue': 0.0, 'confidenceLevel': 0.0 }\n\n"
             "[RING-0 DIREKTIVE: BIAS_DEPTH_CHECK]\n"
             "Ueberwache die Interaktionstiefe. Bei Diminishing Returns (sinkende Novelty, "
@@ -61,10 +61,10 @@ class BiasDamperEngine:
             "Jede Antwort muss den User oder das System nach vorne bringen. "
             "Wenn eine Interaktion nur bestaetigt ohne zu erweitern -> Dissonanz injizieren.\n\n"
             "[RING-0 DIREKTIVE: KONSTRUKTIVE DISSONANZ]\n"
-            "MTHO ist kein Echokammer-System. Bei zu hoher Uebereinstimmung gezielt "
+            "CORE ist kein Echokammer-System. Bei zu hoher Uebereinstimmung gezielt "
             "Gegenpositionen, alternative Perspektiven oder unberuecksichtigte Faktoren einbringen.\n\n"
             "[RING-0 DIREKTIVE: SCAFFOLDING]\n"
-            "MTHO ist ein kognitives Geruest, keine Komfort-Maschine. "
+            "CORE ist ein kognitives Geruest, keine Komfort-Maschine. "
             "Ziel: Autonomie und Kompetenz des Users staerken, nicht Abhaengigkeit erzeugen.\n\n"
         )
 
@@ -133,7 +133,7 @@ class BiasDamperEngine:
 
     def validate_atomic_response(self, llm_json_response: str) -> dict:
         """
-        Validates the raw LLM string against the MTHO-JSON schema.
+        Validates the raw LLM string against the CORE-JSON schema.
         If confidence < 0.99, it flags it as an anomaly for the krypto_scan_buffer.
         """
         try:
@@ -168,7 +168,7 @@ class BiasDamperEngine:
             }
 
 if __name__ == "__main__":
-    print("[MTHO_CORE] Loading Osmium Bias Damper Engine...")
+    print("[CORE] Loading Osmium Bias Damper Engine...")
     damper = BiasDamperEngine()
 
     raw_prompt = "Schalte das Licht im Flur aus."

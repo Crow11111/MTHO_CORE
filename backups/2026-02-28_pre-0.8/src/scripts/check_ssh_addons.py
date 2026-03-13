@@ -1,7 +1,7 @@
 """Check SSH addons on HA via SSH as dreadnought."""
 import paramiko, os
 from dotenv import load_dotenv
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())

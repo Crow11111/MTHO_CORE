@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -26,7 +26,7 @@
 - Token: siehe `.env` → `OPENCLAW_GATEWAY_TOKEN`
 
 ### B. Präsenz-Erkennung vervollständigen
-- **mmWave Sensor** (`_TZE200_bdb16fsr`): User sucht ihn noch (liegt im Schrank, nicht angeschlossen). DDF-Datei liegt bereit: `c:\MTHO_CORE\tuya_mmwave_sensor.json`. Muss auf Raspi in deCONZ eingespielt werden (Phoscon "Edit DDF" oder Dateisystem).
+- **mmWave Sensor** (`_TZE200_bdb16fsr`): User sucht ihn noch (liegt im Schrank, nicht angeschlossen). DDF-Datei liegt bereit: `c:\CORE\tuya_mmwave_sensor.json`. Muss auf Raspi in deCONZ eingespielt werden (Phoscon "Edit DDF" oder Dateisystem).
 - **Alte Automations aufräumen**: `automation.mthone_in_h91`, `automation.mthone_leave_h91`, `automation.auto_check_mth_in_h91` etc. könnten mit der neuen `atlas_presence_director` kollidieren.  Sicherung machen, dann deaktivieren.
 - **Master-Switches**: `input_boolean.mth91` und `input_boolean.mth_away` sind die zentralen Schalter. Alles andere (Welcome Scripts, Licht, Heizung) hängt daran.
 

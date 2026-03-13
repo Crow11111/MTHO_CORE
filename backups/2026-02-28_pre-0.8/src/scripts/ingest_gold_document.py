@@ -3,7 +3,7 @@ import requests
 from loguru import logger
 import re
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights_v4"
 API_BASE_URL = "http://localhost:8000"
 
 def ingest_gold_document(file_name):
@@ -56,7 +56,7 @@ def main():
         # We don't wipe via API (no delete endpoint yet), so we just append the Gold Profile.
         logger.info("Starte Ingestion über Osmium FastAPI Backend...")
         ingest_gold_document("ATLAS_ND_PROFILE_GOLD.md")
-        logger.success("Das Gold-Dokument wurde erfolgreich in die REST-API der ARGOS-Wissensdatenbank überführt.")
+        logger.success("Das Gold-Dokument wurde erfolgreich in die REST-API der SHELL-Wissensdatenbank überführt.")
     except requests.exceptions.ConnectionError:
         logger.error(f"Konnte nicht zur API unter {API_BASE_URL} verbinden. Läuft db_backend.py?")
     except Exception as e:

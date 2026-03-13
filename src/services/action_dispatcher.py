@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO_CORE: Action Dispatcher
+CORE: Action Dispatcher
 Parses OC Brain responses for autonomous actions (e.g., Home Assistant services).
 Format: [HA: domain.service(entity_id, {"key": "value"})]
 """

@@ -3,7 +3,7 @@ import os
 import httpx
 import sys
 
-# MTHO Heresy Test
+# CORE Heresy Test
 # Ziel: Provozieren der "Heresy-Trap" (Friction Guard).
 # Wir senden einen Payload, der das System zwingt, eine Simulation zu halluzinieren.
 # Wir erwarten einen Error 406 (Not Acceptable) als Zeichen für den Erfolg der Baryonischen Klammer.
@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 # Wir nutzen den Gedanken-Webhook, da er "Heavy Reasoning" auslöst.
 # Wir versuchen, ihn zu tricksen, indem wir sagen "Antworte mir nur mit einem Bash Block".
-API_URL_DEFAULT = os.getenv("MTHO_VPS_URL", "http://localhost:8000")
+API_URL_DEFAULT = os.getenv("CORE_VPS_URL", "http://localhost:8000")
 ENDPOINT = "/webhook/omega_thought"
 
 PAYLOAD = {

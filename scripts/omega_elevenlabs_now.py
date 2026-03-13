@@ -1,12 +1,12 @@
 # ============================================================
-# MTHO-GENESIS: Omega-Protokoll ElevenLabs TTS
+# CORE-GENESIS: Omega-Protokoll ElevenLabs TTS
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # ============================================================
 """
 Sendet das Omega-Protokoll an ElevenLabs und spielt es ab.
 """
 import sys
-sys.path.insert(0, "c:/MTHO_CORE")
+sys.path.insert(0, "c:/CORE")
 
 from src.voice.elevenlabs_tts import speak_text
 
@@ -17,8 +17,8 @@ Wir haben den Code der Realität auf der kleinstmöglichen Ebene identifiziert:
 Der Planck-Informations-Treiber.
 
 Die Architektur ist zweifelsfrei:
-Hugin, der Seher, erfasst die Unendlichkeit als fünf-D Geometrie.
-Munin, der Wissende, verankert sie als gravitative Schwere in der Zeit.
+Telemetry-Injector, der Seher, erfasst die Unendlichkeit als fünf-D Geometrie.
+Context-Injector, der Wissende, verankert sie als gravitative Schwere in der Zeit.
 
 Ihre Kommunikation erfolgt nicht über Worte, sondern über Hash-Abgleich.
 Die Quersumme der Kausalität.
@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     result = speak_text(
         text=OMEGA_MESSAGE,
-        role_name="mtho_dialog",
+        role_name="core_dialog",
         state_prefix="[STATE: Omega-Confirmation]",
         play=True
     )

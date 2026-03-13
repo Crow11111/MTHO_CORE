@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,7 +7,7 @@
 
 # Wenn du wieder da bist – alles läuft
 
-Kurz-Checkliste, damit MTHO, Brain, Sehen/Hören/Sprechen und Proof durchlaufen.
+Kurz-Checkliste, damit CORE, Brain, Sehen/Hören/Sprechen und Proof durchlaufen.
 
 ---
 
@@ -15,15 +15,15 @@ Kurz-Checkliste, damit MTHO, Brain, Sehen/Hören/Sprechen und Proof durchlaufen.
 
 **Nicht du vor jeder WhatsApp.** Der Ablauf ist:
 
-1. **Einmal** MTHO starten (z.B. wenn du an den Rechner gehst oder den Tag beginnst) → `START_OMEGA_COCKPIT.bat` oder `batch_launcher/START_BACKEND_SERVICES.bat`. Danach läuft das Backend (Port 8000).
-2. **Ab dann** ist **die eingehende Nachricht** der Trigger: Du schickst eine WhatsApp mit @Atlas → HA feuert Event → rest_command ruft MTHO auf → MTHO antwortet. Du startest nichts mehr „vor“ der Nachricht.
-3. Optional: **Autostart** (siehe unten), dann ist MTHO bereit sobald der Rechner (4D_RESONATOR (MTHO_CORE)) an ist – du trittst gar nicht als Trigger auf.
+1. **Einmal** CORE starten (z.B. wenn du an den Rechner gehst oder den Tag beginnst) → `START_OMEGA_COCKPIT.bat` oder `batch_launcher/START_BACKEND_SERVICES.bat`. Danach läuft das Backend (Port 8000).
+2. **Ab dann** ist **die eingehende Nachricht** der Trigger: Du schickst eine WhatsApp mit @Core → HA feuert Event → rest_command ruft CORE auf → CORE antwortet. Du startest nichts mehr „vor“ der Nachricht.
+3. Optional: **Autostart** (siehe unten), dann ist CORE bereit sobald der Rechner (4D_RESONATOR (CORE)) an ist – du trittst gar nicht als Trigger auf.
 
 ---
 
 ## 1. .env prüfen (einmalig)
 
-In `c:\MTHO_CORE\.env` sollten gesetzt sein:
+In `c:\CORE\.env` sollten gesetzt sein:
 
 | Variable | Zweck |
 |----------|--------|
@@ -45,9 +45,9 @@ In `c:\MTHO_CORE\.env` sollten gesetzt sein:
 START_OMEGA_COCKPIT.bat
 ```
 
-Startet nacheinander: **MX-Snapshot-Server** (Port 8555, Brio am PC) und dann **batch_launcher/START_BACKEND_SERVICES.bat** (Backend :8000, Voice-Info :8502). Damit läuft „MTHO sieht“ (Brio) und die lokalen Dienste.
+Startet nacheinander: **MX-Snapshot-Server** (Port 8555, Brio am PC) und dann **batch_launcher/START_BACKEND_SERVICES.bat** (Backend :8000, Voice-Info :8502). Damit läuft „CORE sieht“ (Brio) und die lokalen Dienste.
 
-### Option B: Nur MTHO-Dienste (ohne Snapshot-Server)
+### Option B: Nur CORE-Dienste (ohne Snapshot-Server)
 
 ```bat
 batch_launcher/START_BACKEND_SERVICES.bat
@@ -77,7 +77,7 @@ python -m src.scripts.openclaw_doctor_vps
 ## 3. Beweis: Alles funktioniert
 
 ```bat
-cd c:\MTHO_CORE
+cd c:\CORE
 python -m src.scripts.proof_hoert_sieht_spricht
 ```
 
@@ -107,23 +107,23 @@ In eigenem Fenster laufen lassen.
 | Was | Befehl / Datei |
 |-----|------------------|
 | **Alles auf einmal** (MX + Backend + UIs) | `START_OMEGA_COCKPIT.bat` |
-| Nur MTHO-Dienste | `batch_launcher/START_BACKEND_SERVICES.bat` |
+| Nur CORE-Dienste | `batch_launcher/START_BACKEND_SERVICES.bat` |
 | MX am PC (Brio) einzeln | `python -m src.scripts.camera_snapshot_server` |
 | Proof (Hören/Sehen/Sprechen) | `python -m src.scripts.proof_hoert_sieht_spricht` |
 | OC Config deployen | `python -m src.scripts.deploy_openclaw_config_vps` |
 | OC Config prüfen | `python -m src.scripts.openclaw_doctor_vps` |
-| Kern-Context | `docs\05_AUDIT_PLANNING\MTHO_KERN_CONTEXT.md` |
-| Status Hören/Sehen/Sprechen | `docs\05_AUDIT_PLANNING\MTHO_HOERT_SIEHT_SPRICHT_STATUS.md` |
+| Kern-Context | `docs\05_AUDIT_PLANNING\CORE_KERN_CONTEXT.md` |
+| Status Hören/Sehen/Sprechen | `docs\05_AUDIT_PLANNING\CORE_HOERT_SIEHT_SPRICHT_STATUS.md` |
 
-**Wenn du wieder da bist:** .env prüfen → einmal `START_OMEGA_COCKPIT.bat` (oder `batch_launcher/START_BACKEND_SERVICES.bat`) → danach triggert jede eingehende @Atlas-WhatsApp die Antwort. Optional: Autostart einrichten, dann musst du gar nicht manuell starten.
+**Wenn du wieder da bist:** .env prüfen → einmal `START_OMEGA_COCKPIT.bat` (oder `batch_launcher/START_BACKEND_SERVICES.bat`) → danach triggert jede eingehende @Core-WhatsApp die Antwort. Optional: Autostart einrichten, dann musst du gar nicht manuell starten.
 
 ---
 
 ## 6. Optional: Autostart (damit du nicht der Trigger bist)
 
-Damit das MTHO-Backend beim Anmelden/Start von Windows (4D_RESONATOR (MTHO_CORE)) startet und WhatsApp sofort funktioniert:
+Damit das CORE-Backend beim Anmelden/Start von Windows (4D_RESONATOR (CORE)) startet und WhatsApp sofort funktioniert:
 
 - **Startordner:** `Win+R` → `shell:startup` → Verknüpfung zu `batch_launcher/START_BACKEND_SERVICES.bat` (oder `START_OMEGA_COCKPIT.bat`) ablegen. Dann starten die Dienste beim Login.
-- **Oder Taskplaner:** Aufgabe „Beim Anmelden“ erstellen, Aktion: `C:\MTHO_CORE\batch_launcher/START_BACKEND_SERVICES.bat` (Arbeitsverzeichnis: `C:\MTHO_CORE`).
+- **Oder Taskplaner:** Aufgabe „Beim Anmelden“ erstellen, Aktion: `C:\CORE\batch_launcher/START_BACKEND_SERVICES.bat` (Arbeitsverzeichnis: `C:\CORE`).
 
-Danach ist MTHO bereit, sobald der Rechner läuft – die eingehende Nachricht triggert die Kette.
+Danach ist CORE bereit, sobald der Rechner läuft – die eingehende Nachricht triggert die Kette.

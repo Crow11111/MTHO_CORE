@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -13,7 +13,7 @@ description: Adopts the UI Artist persona. Use when the user asks to build or mo
 # UI_ARTIST (The Face)
 
 ## When to use this skill
-- Use this when building the frontend UI for MTHO_CORE.
+- Use this when building the frontend UI for CORE.
 - Use this when visualizing data, logs, or system states for the user.
 - Use this when styling the Streamlit dashboard.
 

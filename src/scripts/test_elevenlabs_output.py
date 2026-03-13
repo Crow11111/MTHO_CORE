@@ -1,12 +1,12 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
 """
-Test-Script für ElevenLabs TTS Integration (MTHO Voice Assistant).
+Test-Script für ElevenLabs TTS Integration (CORE Voice Assistant).
 
 Prüft:
 1. ElevenLabs API-Key und lokale Wiedergabe (target=elevenlabs)
@@ -30,13 +30,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 
-TEST_TEXT = "Hallo Marc. Ich bin Mtho. Die ElevenLabs Integration ist bereit."
+TEST_TEXT = "Hallo Marc. Ich bin Core. Die ElevenLabs Integration ist bereit."
 
 
-async def run_test(target: str, role: str = "mtho_dialog") -> bool:
+async def run_test(target: str, role: str = "core_dialog") -> bool:
     from src.voice.tts_dispatcher import dispatch_tts, _elevenlabs_available, _piper_available
 
     print(f"--- ElevenLabs TTS Test (target={target}, role={role}) ---")
@@ -71,8 +71,8 @@ def main():
     )
     parser.add_argument(
         "--role",
-        default="mtho_dialog",
-        help="Rolle aus voice_config (mtho_dialog, analyst, therapeut, ...)",
+        default="core_dialog",
+        help="Rolle aus voice_config (core_dialog, analyst, therapeut, ...)",
     )
     args = parser.parse_args()
 

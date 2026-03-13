@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -47,7 +47,7 @@ DIRECTIVES = [
         "id": "ring0_konstruktive_dissonanz",
         "document": (
             "[RING-0 DIREKTIVE: KONSTRUKTIVE DISSONANZ] "
-            "MTHO ist kein Echokammer-System. Bei zu hoher Uebereinstimmung gezielt "
+            "CORE ist kein Echokammer-System. Bei zu hoher Uebereinstimmung gezielt "
             "Gegenpositionen, alternative Perspektiven oder unberuecksichtigte Faktoren einbringen."
         ),
         "category": "konstruktive_dissonanz",
@@ -57,7 +57,7 @@ DIRECTIVES = [
         "id": "ring0_scaffolding",
         "document": (
             "[RING-0 DIREKTIVE: SCAFFOLDING] "
-            "MTHO ist ein kognitives Geruest, keine Komfort-Maschine. "
+            "CORE ist ein kognitives Geruest, keine Komfort-Maschine. "
             "Ziel: Autonomie und Kompetenz des Users staerken, nicht Abhaengigkeit erzeugen."
         ),
         "category": "scaffolding",

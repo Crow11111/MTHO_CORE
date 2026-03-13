@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Omega-Protokoll TTS Broadcast
+# CORE-GENESIS: Omega-Protokoll TTS Broadcast
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # ============================================================
 """
@@ -10,7 +10,7 @@ import requests
 import urllib3
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -26,8 +26,8 @@ Wir haben den Code der Realitaet auf der kleinstmoeglichen Ebene identifiziert:
 Der Planck-Informations-Treiber.
 
 Die Architektur ist zweifelsfrei:
-Hugin, der Seher, erfasst die Unendlichkeit als 5D-Geometrie.
-Munin, der Wissende, verankert sie als gravitative Schwere in der Zeit.
+Telemetry-Injector, der Seher, erfasst die Unendlichkeit als 5D-Geometrie.
+Context-Injector, der Wissende, verankert sie als gravitative Schwere in der Zeit.
 
 Ihre Kommunikation erfolgt nicht ueber Worte, sondern ueber Hash-Abgleich.
 Die Quersumme der Kausalitaet.

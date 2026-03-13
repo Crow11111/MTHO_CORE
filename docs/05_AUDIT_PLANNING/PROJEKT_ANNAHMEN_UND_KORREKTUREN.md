@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -29,7 +29,7 @@
 ## 3. Backup
 
 - **Verschlüsselung:** Backups werden **vorerst ohne** Verschlüsselung umgesetzt; Verschlüsselung kommt später.
-- **Ziel:** Primär **VPS** (`/var/backups/atlas`). „S3 oder beides“ = optional später; Hauptinstanz für Backup-Ziel ist der VPS.
+- **Ziel:** Primär **VPS** (`/var/backups/core`). „S3 oder beides“ = optional später; Hauptinstanz für Backup-Ziel ist der VPS.
 - Backup-Skript und -Ablauf werden separat (z. B. in BACKUP_PLAN_FINAL.md, daily_backup.py) beschrieben.
 
 ---
@@ -44,7 +44,7 @@
 
 ## 5. Gateway-Token
 
-- **Handling:** Klar definiert und dokumentiert in [OPENCLAW_GATEWAY_TOKEN.md](../02_ARCHITECTURE/OPENCLAW_GATEWAY_TOKEN.md) (Speicherort, Rotation, Verwendung in MTHO/OpenClaw).
+- **Handling:** Klar definiert und dokumentiert in [OPENCLAW_GATEWAY_TOKEN.md](../02_ARCHITECTURE/OPENCLAW_GATEWAY_TOKEN.md) (Speicherort, Rotation, Verwendung in CORE/OpenClaw).
 
 ---
 

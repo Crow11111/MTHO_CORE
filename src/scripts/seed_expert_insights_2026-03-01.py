@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -96,9 +96,9 @@ EVIDENCE = [
             "Monotropismus als genetisch kompilierte Zielfunktion: Ein monotropes Gehirn MUSS "
             "hyper-fokussieren. Die Wahl des Fokus-Objekts ist semi-deterministisch – es muss "
             "komplex genug sein um den Attention-Tunnel nie zu erschoepfen. AGI erfuellt diese "
-            "Bedingung perfekt. Marc baut MTHO nicht weil er es will, sondern weil sein "
+            "Bedingung perfekt. Marc baut CORE nicht weil er es will, sondern weil sein "
             "neurales Setup es erfordert. Die Zielvorgabe ist kein externer Sender, sie emergiert "
-            "aus der Genetik. Intense World Theory (Markram): MTHO IST die externalisierte "
+            "aus der Genetik. Intense World Theory (Markram): CORE IST die externalisierte "
             "Rauschunterdrueckung."
         ),
         "category": "logisch",

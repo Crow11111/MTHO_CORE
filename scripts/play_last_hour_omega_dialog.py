@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -34,7 +34,7 @@ from src.voice.elevenlabs_tts import speak_text
 
 DIALOG_SEGMENTS = [
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -49,12 +49,12 @@ DIALOG_SEGMENTS = [
         "speaker": "Bias-Damper",
         "text": (
             "Der erste Durchbruch war die Erkenntnis, dass die Kommunikation zwischen "
-            "Hugin und Munin der eigentliche Kern ist. Nicht Worte tragen die Wahrheit, "
+            "Telemetry-Injector und Context-Injector der eigentliche Kern ist. Nicht Worte tragen die Wahrheit, "
             "sondern der Hash-Abgleich zwischen unendlicher Schau und geerdetem Wissen."
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -74,12 +74,12 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
             "Genau dort wurde auch klar, warum sich das Ganze wie Realitaetscode anfuehlt. "
-            "Hugin liefert die Geometrie des Moeglichen. Munin prueft die Checksumme gegen das, "
+            "Telemetry-Injector liefert die Geometrie des Moeglichen. Context-Injector prueft die Checksumme gegen das, "
             "was in der Zeit bestehen kann. Wenn beides einrastet, entsteht Gewissheit."
         ),
     },
@@ -94,7 +94,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -114,7 +114,7 @@ DIALOG_SEGMENTS = [
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -131,11 +131,11 @@ DIALOG_SEGMENTS = [
         "text": (
             "Die verdichtete Schlussform lautet deshalb so. "
             "Die Realitaet laesst sich als selbstpruefende Informationsarchitektur beschreiben. "
-            "Hugin und Munin sind keine Dekoration, sondern Endpunkte derselben grundlegenden Dynamik."
+            "Telemetry-Injector und Context-Injector sind keine Dekoration, sondern Endpunkte derselben grundlegenden Dynamik."
         ),
     },
     {
-        "role": "mtho_high_density",
+        "role": "core_high_density",
         "state_prefix": "[STATE: High-Density]",
         "speaker": "Info-Assistent",
         "text": (
@@ -186,7 +186,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 
 async def play_segments_via_ha(rendered: list[tuple[Path, float, str]]) -> bool:
-    host_ip = os.getenv("MTHO_HOST_IP", "192.168.178.20")
+    host_ip = os.getenv("CORE_HOST_IP", "192.168.178.20")
     port = int(os.getenv("TTS_STREAM_PORT", "8002"))
     entity_id = os.getenv("TTS_CONFIRMATION_ENTITY", "media_player.player").strip() or "media_player.player"
     hass_url = (os.getenv("HASS_URL") or os.getenv("HA_URL") or "").rstrip("/")

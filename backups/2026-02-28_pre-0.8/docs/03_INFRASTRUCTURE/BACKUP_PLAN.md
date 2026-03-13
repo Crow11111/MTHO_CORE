@@ -17,7 +17,7 @@ Sicherstellung der Datenintegrität und -verfügbarkeit durch automatisierte tä
 Ein Python-Skript (`scripts/daily_backup.py`) wird erstellt, das folgende Schritte automatisiert:
 
 1. **Datenbank-Dump erstellen** (Beispiel SQLite für ATLAS_CORE):
-   - `data/argos_db/`, `*.sqlite` in ein zeitgestempeltes Archiv.
+   - `data/shell_db/`, `*.sqlite` in ein zeitgestempeltes Archiv.
 
 2. **Anwendungscode/Konfiguration archivieren:**
    - Projekt-Root als tar.gz/zip, exkl. `node_modules`, `.git`, `__pycache__`, virtuelle Umgebungen.

@@ -1,6 +1,6 @@
 """
 STF INTERFACE: SSH_PORT_22_SCOUT
-Dient der Übertragung der MTHO-Hüllen an den 4D_RESONATOR Hardware-Node.
+Dient der Übertragung der CORE-Hüllen an den 4D_RESONATOR Hardware-Node.
 """
 import paramiko
 import os
@@ -30,7 +30,7 @@ class SSHManager:
             print(f"[OMEGA_ATTRACTOR VETO] Connection failed: {e}")
             return False
 
-    def push_mtho_core(self, local_path: str, remote_path: str):
+    def push_core(self, local_path: str, remote_path: str):
         if not self.connect():
             return False
 
@@ -38,7 +38,7 @@ class SSHManager:
             sftp = self.client.open_sftp()
             sftp.put(local_path, remote_path)
             sftp.close()
-            print(f"[SUCCESS] Pushed MTHO Core to {remote_path}")
+            print(f"[SUCCESS] Pushed CORE Core to {remote_path}")
             return True
         finally:
             self.client.close()

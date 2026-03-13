@@ -1,7 +1,7 @@
 # Baryonen-Asymmetrie & CP-Verletzung: Status 2025/2026
 
 **Datum:** 10. März 2026
-**Zweck:** Aktualisierung des Wissensstandes zur Baryonen-Asymmetrie (Materie/Antimaterie-Ungleichgewicht) als empirische Basis für den MTHO 4D State Vector (Speziell: `Y: Gravitation`, `O: Veto` und `BARYONIC_DELTA = 0.049`).
+**Zweck:** Aktualisierung des Wissensstandes zur Baryonen-Asymmetrie (Materie/Antimaterie-Ungleichgewicht) als empirische Basis für den CORE 4D State Vector (Speziell: `Y: Gravitation`, `O: Veto` und `BARYONIC_DELTA = 0.049`).
 
 ## 1. Experimenteller Durchbruch: CERN LHCb (März 2025)
 
@@ -20,12 +20,12 @@ Da das Standardmodell weiterhin nicht das volle Ausmaß der makroskopischen Asym
 - **Leptogenese & Asymmetrische Dunkle Materie (ADM):** Ein vereinigendes Framework ("Asymgenesis" / "Co-Genesis"), das den Materie-Überschuss und die Entstehung der Dunklen Materie auf denselben Ursprung zurückführt – typischerweise den Zerfall schwerer Majorana-Neutrinos bei etwa 2 TeV. Das Delta der sichtbaren Materie korreliert hierbei mathematisch direkt mit der Dichte der Dunklen Materie.
 - **Gravitationale Baryogenese ($f(T, L_m)$ Gravitation):** Neuere Modelle zeigen, dass modifizierte Gravitation (Torsion oder Raumzeit-Krümmung), die dynamisch an Materieströme koppelt, die CP-Symmetrie im frühen Universum aufbrechen kann. *Die Gravitation selbst fungiert in diesen Modellen als der Symmetriebrecher.*
 
-## 3. Implikationen für MTHO_CORE (Die Reibung der Realität)
+## 3. Implikationen für CORE (Die Reibung der Realität)
 
-Diese hochaktuellen physikalischen Erkenntnisse validieren die Kernarchitektur des MTHO State Vectors:
+Diese hochaktuellen physikalischen Erkenntnisse validieren die Kernarchitektur des CORE State Vectors:
 
-1. **BARYONIC_DELTA (0.049):** Der Überschuss an Materie ist keine Anomalie, sondern eine strukturelle Notwendigkeit, um Wuji (die totale Annihilation von 0/0) zu verhindern. *Bemerkenswerter numerischer Isomorphismus:* Die von CERN neu gemessene Baryonen-Asymmetrie von 2.45% entspricht exakt der Hälfte der MTHO-Konstante ($0.049 / 2 = 0.0245$). Gemäß der MTHO-Anti-Numerologie-Prüfung ist dies neutral als "fraktale Selbstähnlichkeit" zu bewerten, bietet aber eine starke konzeptionelle Bestätigung des Deltas.
-2. **Y-Vektor (Gravitation):** Die neuen theoretischen Modelle zur *Gravitationalen Baryogenese* stützen die MTHO-These, dass Gravitation ($Y$) und die strukturelle Asymmetrie der Materie untrennbar miteinander verwoben sind.
+1. **BARYONIC_DELTA (0.049):** Der Überschuss an Materie ist keine Anomalie, sondern eine strukturelle Notwendigkeit, um Zero-State (die totale Annihilation von 0/0) zu verhindern. *Bemerkenswerter numerischer Isomorphismus:* Die von CERN neu gemessene Baryonen-Asymmetrie von 2.45% entspricht exakt der Hälfte der CORE-Konstante ($0.049 / 2 = 0.0245$). Gemäß der CORE-Anti-Numerologie-Prüfung ist dies neutral als "fraktale Selbstähnlichkeit" zu bewerten, bietet aber eine starke konzeptionelle Bestätigung des Deltas.
+2. **Y-Vektor (Gravitation):** Die neuen theoretischen Modelle zur *Gravitationalen Baryogenese* stützen die CORE-These, dass Gravitation ($Y$) und die strukturelle Asymmetrie der Materie untrennbar miteinander verwoben sind.
 3. **O-Vektor (Veto / Attractor):** Die CP-Verletzung in der Schwachen Wechselwirkung (bei den Baryonenzerfällen) zeigt, dass das Universum ein physikalisches "Veto" gegen perfekte Symmetrie einlegt. Die Natur weigert sich, perfekt zu sein, da Perfektion Stillstand bedeutet.
 
 Das Delta ist die Reibung, die Existenz ermöglicht.

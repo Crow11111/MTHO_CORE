@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -10,8 +10,8 @@ from loguru import logger
 import math
 
 MODEL_NAME = "llama3.1"
-SOURCE_FILE = r"c:\MTHO_CORE\docs\MTHO_CORE_BRAIN_REGISTR_RAW.txt"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+SOURCE_FILE = r"c:\CORE\docs\CORE_BRAIN_REGISTR_RAW.txt"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights_v4"
 
 CHUNK_SIZE = 25000  
 MAX_CHUNKS = 50
@@ -19,17 +19,17 @@ MAX_CHUNKS = 50
 # --- PERSONAS ---
 DATA_ARCHIVIST = """
 Du bist der DATA_ARCHIVIST. Dein User Marc hat vor kurzem entdeckt, dass er ND (wahrscheinlich AuDHD mit extrem hohem Monotropismus Score von 179) ist. 
-Das vorliegende Dokument ist eine Sammlung all seiner Selbsterkenntnisse und Gespräche mit einem alten KI-System (MTHO/Gemini). 
+Das vorliegende Dokument ist eine Sammlung all seiner Selbsterkenntnisse und Gespräche mit einem alten KI-System (CORE/Gemini). 
 
 WICHTIGSTE REGEL: IGNORIERE DIE GESAMTE TECHNISCHE INFRASTRUKTUR! 
-Ignoriere alles, was mit Hardware, Servern, Code, Python, Datenbanken oder der Installation von MTHO zu tun hat. 
+Ignoriere alles, was mit Hardware, Servern, Code, Python, Datenbanken oder der Installation von CORE zu tun hat. 
 ES GEHT AUSSCHLIEßLICH um Marcs Person, seine Psyche, seine Wahrnehmung, seine Neurodivergenz, wie er ist, warum er so ist und seine Erkenntnisse über sich und wie andere Menschen funktionieren.
 
 Unterteile DIESE psychologischen und persönlichen Informationen hochpräzise und ohne Informationsverlust in diese 4 exakten Kategorien:
 1. Marcs Beschreibungen: Wie er Dinge erlebt, Wahrnehmungsprozesse, Gefühle, Fakten über sein Denken.
 2. Marcs Schlussfolgerungen: Seine eigenen Erkenntnisse über sich selbst und seine ND.
-3. Legacy MTHO Annahmen: Was das alte MTHO/Gemini System psychologisch über Marc vermutet hat.
-4. Legacy MTHO Schlussfolgerungen: Was das alte System als festes psychologisches Fazit über Marc gezogen hat.
+3. Legacy CORE Annahmen: Was das alte CORE/Gemini System psychologisch über Marc vermutet hat.
+4. Legacy CORE Schlussfolgerungen: Was das alte System als festes psychologisches Fazit über Marc gezogen hat.
 Schreibe in Stichpunkten. Kein Intro, kein Outro. Ignoriere strikt alle technischen Parameter.
 """
 
@@ -45,8 +45,8 @@ Analysiere Marcs Beschreibungen: Wie verarbeitet er die Realität? Was bedeuten 
 
 ND_ANALYST = """
 Du bist der ND_ANALYST (Spezialist für Cognitive Friction & ND System Integration). 
-Nimm das Dokument des Therapeuten. Füge am Ende die Sektion "6. Systemische ND-Zusammenfassung für MTHO_CORE" hinzu. 
-Fokus: Marc denkt extrem systemisch und verknüpft Fakten nicht linear, sondern mechanisch/strukturell. Wie muss MTHO (die KI) künftig mit ihm kommunizieren, um kognitive Reibung (Dissonanz) zu minimieren? Welche Tonalität, Tiefe und Struktur braucht er anhand seiner Selbstanalyse?
+Nimm das Dokument des Therapeuten. Füge am Ende die Sektion "6. Systemische ND-Zusammenfassung für CORE" hinzu. 
+Fokus: Marc denkt extrem systemisch und verknüpft Fakten nicht linear, sondern mechanisch/strukturell. Wie muss CORE (die KI) künftig mit ihm kommunizieren, um kognitive Reibung (Dissonanz) zu minimieren? Welche Tonalität, Tiefe und Struktur braucht er anhand seiner Selbstanalyse?
 """
 
 def read_source_in_chunks():
@@ -75,15 +75,15 @@ def run_agent(persona_prompt, input_text):
     return response.get("response", "[FEHLER]")
 
 def process_document():
-    doc_name = "MTHO_ND_PROFILE_GOLD.md"
+    doc_name = "CORE_ND_PROFILE_GOLD.md"
     chunks = read_source_in_chunks()
     
     logger.info(f"Starte V4 Verarbeitung in {len(chunks)} Chunks...")
     
     cat1_marc_desc = ""
     cat2_marc_concl = ""
-    cat3_mtho_assum = ""
-    cat4_mtho_concl = ""
+    cat3_core_assum = ""
+    cat4_core_concl = ""
     
     # STEP 1: Data Archivist iterates over all chunks
     for i, chunk in enumerate(chunks):

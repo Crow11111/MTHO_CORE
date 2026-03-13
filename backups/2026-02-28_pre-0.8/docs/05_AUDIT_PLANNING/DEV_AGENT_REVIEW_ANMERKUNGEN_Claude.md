@@ -172,7 +172,7 @@ from typing import Optional
 
 class BackupSettings(BaseSettings):
     backup_dir: str = "/var/backups/atlas"
-    db_path: str = "data/argos_db"
+    db_path: str = "data/shell_db"
     project_root: str = "."
     retention_days: int = 7
     aws_bucket: Optional[str] = None

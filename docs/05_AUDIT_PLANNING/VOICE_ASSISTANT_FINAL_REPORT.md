@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO Voice Assistant – Final Report
+# CORE Voice Assistant – Final Report
 
 **Datum:** 2026-03-04  
 **Status:** Integration abgeschlossen
@@ -18,13 +18,13 @@
 |------------|--------|---------|
 | smart_command_parser in scout_direct_handler | ✅ | Zeilen 106–128, bevorzugt bei Steuerbefehlen |
 | ElevenLabs für Antworten | ✅ | TTS_TARGET=elevenlabs_stream in .env setzen |
-| Kette Wake Word → STT → MTHO → Parser → HA → TTS | ✅ | Vollständig (siehe Architektur) |
+| Kette Wake Word → STT → CORE → Parser → HA → TTS | ✅ | Vollständig (siehe Architektur) |
 
 ### Kette im Detail
 
 1. **Wake Word:** openWakeWord (Wyoming)
 2. **STT:** Whisper (Wyoming)
-3. **MTHO:** MTHO Conversation Agent → `/webhook/inject_text` oder `/webhook/assist`
+3. **CORE:** CORE Conversation Agent → `/webhook/inject_text` oder `/webhook/assist`
 4. **Parser:** `scout_direct_handler.process_text()` → `smart_command_parser.parse_command()`
 5. **HA Action:** `HAClient.call_service(domain, service, entity_id, data)`
 6. **TTS:** `dispatch_tts(reply, target=TTS_TARGET)` → mini / elevenlabs_stream
@@ -60,7 +60,7 @@ python -m src.scripts.test_voice_e2e
 
 | Dokument | Pfad |
 |----------|------|
-| Architektur | `docs/02_ARCHITECTURE/MTHO_VOICE_ASSISTANT_ARCHITECTURE.md` |
+| Architektur | `docs/02_ARCHITECTURE/CORE_VOICE_ASSISTANT_ARCHITECTURE.md` |
 | Troubleshooting | `docs/04_PROCESSES/VOICE_TROUBLESHOOTING.md` |
 | Smart Command Patterns | `docs/04_PROCESSES/VOICE_SMART_COMMAND_PATTERNS.md` |
 | Scout Assist Pipeline | `docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md` |

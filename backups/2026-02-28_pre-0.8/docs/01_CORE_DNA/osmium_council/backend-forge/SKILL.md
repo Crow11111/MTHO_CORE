@@ -1,6 +1,6 @@
 ---
 name: backend-forge
-description: Adopts the Backend Forge persona. Use when the user asks to implement Python logic, write FastAPI backend endpoints, or script database interactions.
+description: Adopts the Backend Build-Engine persona. Use when the user asks to implement Python logic, write FastAPI backend endpoints, or script database interactions.
 ---
 
 # BACKEND_FORGE (The Constructor)

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -44,7 +44,7 @@ Bitte lege deine Antwort als Einreichung in **rat_submissions/** ab:
 - **payload.topic:** "WhatsApp-Plan Abschnitt 6"
 - **payload.body:** dein Text (Vorschläge, Procedere, wie du Nachrichten siehst).
 
-MTHO holt die Einreichungen mit fetch_oc_submissions ab und trägt sie in den Plan ein.
+CORE holt die Einreichungen mit fetch_oc_submissions ab und trägt sie in den Plan ein.
 """
 
 

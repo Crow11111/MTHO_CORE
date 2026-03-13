@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -47,7 +47,7 @@ def main():
     metas = r.get("metadatas", [[]])[0]
     print(f"Treffer: {len(ids)}")
     for i, (uid, doc, meta) in enumerate(zip(ids[:3], docs[:3], metas[:3])):
-        print(f"  [{i+1}] {uid} type={meta.get('type')} mtho={meta.get('mtho_base')}")
+        print(f"  [{i+1}] {uid} type={meta.get('type')} core={meta.get('core_base')}")
         print(f"      {str(doc)[:80]}...")
     print()
 

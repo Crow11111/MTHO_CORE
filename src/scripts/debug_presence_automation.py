@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -62,7 +62,7 @@ def main():
 
     # 1. Automations
     autos = [s for s in states if s["entity_id"].startswith("automation.")]
-    presence_autos = filter_by_keyword(autos, KEYWORDS + ["mtho", "director", "mth"])
+    presence_autos = filter_by_keyword(autos, KEYWORDS + ["core", "director", "mth"])
     print("--- AUTOMATIONS (präsenz-relevant) ---")
     for a in presence_autos:
         print(f"  {a['entity_id']}: {a.get('state','?')} | {a.get('attributes',{}).get('friendly_name','')}")
@@ -122,15 +122,15 @@ def main():
     print()
 
     # 8. Automation-Details (Config API)
-    print("--- MTHO PRESENCE DIRECTOR (Details) ---")
-    mtho_auto = [a for a in presence_autos if "mtho" in (a.get("attributes",{}).get("friendly_name","")).lower() or "director" in (a.get("attributes",{}).get("friendly_name","")).lower()]
-    if mtho_auto:
-        a = mtho_auto[0]
+    print("--- CORE PRESENCE DIRECTOR (Details) ---")
+    core_auto = [a for a in presence_autos if "core" in (a.get("attributes",{}).get("friendly_name","")).lower() or "director" in (a.get("attributes",{}).get("friendly_name","")).lower()]
+    if core_auto:
+        a = core_auto[0]
         print(f"  Entity: {a['entity_id']}")
         print(f"  State: {a.get('state')}")
         print(f"  Last triggered: {a.get('last_triggered', 'N/A')}")
     else:
-        print("  Keine MTHO Presence Director Automation gefunden!")
+        print("  Keine CORE Presence Director Automation gefunden!")
     print()
 
     # 9. Problem-Check

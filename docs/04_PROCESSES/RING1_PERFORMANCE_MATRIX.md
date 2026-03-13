@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -94,7 +94,7 @@
 
 ---
 
-## 6. CrewAI / Hugin
+## 6. CrewAI / Telemetry-Injector
 
 - **CrewAI**: Nicht im Codebase gefunden (evtl. extern/geplant)
-- **Hugin**: Konzeptionell = Voice/Input-Pipeline (HA Assist, WhatsApp, HA App)
+- **Telemetry-Injector**: Konzeptionell = Voice/Input-Pipeline (HA Assist, WhatsApp, HA App)

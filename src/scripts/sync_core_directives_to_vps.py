@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,7 +9,7 @@
 Synchronisiert alle core_directives von lokaler ChromaDB zum VPS.
 Voraussetzung: SSH-Tunnel zur VPS-ChromaDB (z. B. ssh -L 8000:127.0.0.1:8000 root@187.77.68.250).
 Umgebung: CHROMA_VPS_HOST=localhost CHROMA_VPS_PORT=8000 (oder Standard localhost:8000).
-Lokale DB: CHROMA_LOCAL_PATH bzw. c:\\MTHO_CORE\\data\\chroma_db.
+Lokale DB: CHROMA_LOCAL_PATH bzw. c:\\CORE\\data\\chroma_db.
 """
 import os
 import sys
@@ -18,7 +18,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
-LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\MTHO_CORE\data\chroma_db")
+LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\CORE\data\chroma_db")
 VPS_HOST = os.getenv("CHROMA_VPS_HOST", "localhost")
 VPS_PORT = int(os.getenv("CHROMA_VPS_PORT", "8000"))
 
@@ -48,7 +48,7 @@ def main():
 
     # 2) VPS schreiben (HttpClient)
     client_vps = chromadb.HttpClient(host=VPS_HOST, port=VPS_PORT)
-    col_vps = client_vps.get_or_create_collection("core_directives", metadata={"description": "MTHO core_directives"})
+    col_vps = client_vps.get_or_create_collection("core_directives", metadata={"description": "CORE core_directives"})
     col_vps.upsert(ids=ids, documents=documents, metadatas=metadatas)
     n_vps = col_vps.count()
     print(f"VPS ({VPS_HOST}:{VPS_PORT}): {n_vps} Einträge nach Sync.")

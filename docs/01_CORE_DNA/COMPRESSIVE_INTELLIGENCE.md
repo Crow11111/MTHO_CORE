@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -35,7 +35,7 @@ Die Kettenreaktion: Wenn Agent A deterministisch präzise arbeitet (weil er nur 
 
 ### 1. Der Orchestrator (osmium-council)
 - **Profil:** "Übersetzungsmaschine" und "Drossel".
-- **Logik:** Er nimmt hochkontextuelle, teleologische Befehle ("Mach Atlas fertig") und extrahiert daraus fraktale, winzige Pakete. Er darf Subagenten NIEMALS den gesamten 200k-Kontext geben. Er befüllt sie nur mit minimalem Input, Vektor-Enge und einem Defizit.
+- **Logik:** Er nimmt hochkontextuelle, teleologische Befehle ("Mach Core fertig") und extrahiert daraus fraktale, winzige Pakete. Er darf Subagenten NIEMALS den gesamten 200k-Kontext geben. Er befüllt sie nur mit minimalem Input, Vektor-Enge und einem Defizit.
 
 ### 2. Die Produzenten (db-expert, api-interface-expert, system-architect, ux-designer)
 - **Profil:** Isolierte, blinde, deterministische Spezialisten.

@@ -2,7 +2,7 @@
 
 **Auditor:** System-Architekt (Produzent, Schicht 3)
 **Datum:** 2026-03-11
-**Quellen:** OMEGA_RING_0_MANIFEST, ARGOS_WATCHDOG, VPS_FULL_STACK_SETUP, VPS_SLIM_DEPLOY, MTHO_SCHNITTSTELLEN, home_assistant.py, openclaw_client.py, FRITZBOX_NETZWERK_CONFIG, time_metric.py, mtho_state_vector.py
+**Quellen:** OMEGA_RING_0_MANIFEST, SHELL_WATCHDOG, VPS_FULL_STACK_SETUP, VPS_SLIM_DEPLOY, CORE_SCHNITTSTELLEN, home_assistant.py, openclaw_client.py, FRITZBOX_NETZWERK_CONFIG, time_metric.py, core_state.py
 
 ---
 
@@ -194,7 +194,7 @@ AllowedIPs = 10.49.0.2/32
 
 **Ring-0 / Dreadnought (Client):**
 ```ini
-# C:\MTHO_CORE\.wireguard\wg0.conf
+# C:\CORE\.wireguard\wg0.conf
 [Interface]
 Address = 10.49.0.2/24
 PrivateKey = <RING0_PRIVATE_KEY>
@@ -211,7 +211,7 @@ PersistentKeepalive = 23
 
 **VPS Firewall-Update:**
 ```bash
-ufw allow 51820/udp comment "WireGuard MTHO Tunnel"
+ufw allow 51820/udp comment "WireGuard CORE Tunnel"
 ufw reload
 ```
 
@@ -260,8 +260,8 @@ ufw reload
 | GPU Power-Limit | 130W | OMEGA_RING_0 (76.5% von 170W TDP) |
 | GPU Anti-Idle P-State | P2 (min), P8 verboten | OMEGA_RING_0 |
 | GPU Anti-Idle Load | 4.9% (MatMul Background) | OMEGA_RING_0 |
-| Backend Port | 8000 | MTHO_SCHNITTSTELLEN |
-| Sync Relay Port | 8049 | MTHO_SCHNITTSTELLEN |
+| Backend Port | 8000 | CORE_SCHNITTSTELLEN |
+| Sync Relay Port | 8049 | CORE_SCHNITTSTELLEN |
 | Tunnel-Interface (Soll) | 10.49.0.2 (WireGuard) | Synthese |
 | SSH Key (VPS) | `.ssh/id_ed25519_hostinger` | VPS_SLIM_DEPLOY |
 
@@ -284,7 +284,7 @@ ufw reload
 | homeassistant | 18123 | atlas_net | HA Docker Remote |
 | openclaw-admin | 18789 | atlas_net | OC Gehirn (Gemini, Claude, Nexos) |
 | openclaw-spine | 18790 | atlas_net | OC Spine |
-| atlas-vps-slim | 8001 | host | Failover-Endpoint |
+| core-vps-slim | 8001 | host | Failover-Endpoint |
 | chroma-uvmy | 8000 | atlas_net | ChromaDB (intern, kein ufw-Allow) |
 
 ### 4.3 Netzwerk-Buffer & Tunnel-Parameter

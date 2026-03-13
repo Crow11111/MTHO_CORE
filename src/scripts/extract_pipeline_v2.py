@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -9,8 +9,8 @@ import ollama
 from loguru import logger
 
 MODEL_NAME = "llama3.1"
-SOURCE_FILE = r"c:\MTHO_CORE\docs\MTHO_CORE_BRAIN_REGISTR_RAW.txt"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights"
+SOURCE_FILE = r"c:\CORE\docs\CORE_BRAIN_REGISTR_RAW.txt"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights"
 
 # --- PERSONAS ---
 DATA_ARCHIVIST = "Du bist der DATA_ARCHIVIST (Database Master & Lector). Extrahiere kristallklare, differenzierte Datenpunkte aus unstrukturierten Texten. Reduziere nichts auf Kosten von Details (besonders psychologischen oder technischen Prägungen). Formuliere objektiv."

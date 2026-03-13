@@ -6,7 +6,7 @@ import urllib3
 from dotenv import load_dotenv
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 IP = os.getenv("SCOUT_IP", "192.168.178.54")
 PORT = int(os.getenv("SCOUT_PORT", 22))

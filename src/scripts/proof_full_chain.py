@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -37,7 +37,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 PING_MESSAGE = "Ping. Operation Cortex Beweis. Antworte kurz mit einem Satz."
 MEDIA_ENTITY = os.getenv("PROOF_MEDIA_ENTITY", "media_player.schreibtisch")
 MEDIA_FALLBACK = "media_player.kuche"
-MTHO_HOST_IP = os.getenv("MTHO_HOST_IP", "192.168.178.20")
+CORE_HOST_IP = os.getenv("CORE_HOST_IP", "192.168.178.20")
 MEDIA_SERVE_PORT = int(os.getenv("PROOF_MEDIA_PORT", "8888"))
 
 
@@ -74,7 +74,7 @@ def step2_tts(text: str) -> tuple[bool, str]:
 
         path = speak_text(
             text=text[:1500],
-            role_name="mtho_dialog",
+            role_name="core_dialog",
             output_path=str(out_path),
             play=False,
         )

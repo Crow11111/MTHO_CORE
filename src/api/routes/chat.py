@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: CORE COCKPIT CHAT ENDPOINT
+# CORE-GENESIS: CORE COCKPIT CHAT ENDPOINT
 # ============================================================
 
 import os
@@ -12,15 +12,15 @@ from src.services.scout_direct_handler import process_text_async
 
 router = APIRouter()
 
-MTHO_API_TOKEN = os.getenv("MTHO_API_TOKEN", "")
+CORE_API_TOKEN = os.getenv("CORE_API_TOKEN", "")
 
 
 async def verify_api_token(request: Request):
     """Optional: Bearer-Token-Pruefung. Kein Token = Entwicklungsmodus ohne Auth."""
-    if not MTHO_API_TOKEN:
+    if not CORE_API_TOKEN:
         return
     auth = request.headers.get("Authorization", "")
-    if not auth.startswith("Bearer ") or auth[7:] != MTHO_API_TOKEN:
+    if not auth.startswith("Bearer ") or auth[7:] != CORE_API_TOKEN:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 
@@ -36,10 +36,10 @@ def _get_ws_auth(websocket: WebSocket) -> str:
 
 async def _verify_ws_token(websocket: WebSocket) -> bool:
     """Gleiche Pruefung wie verify_api_token, fuer WebSocket connect-Handler. True=OK, False=abgelehnt."""
-    if not MTHO_API_TOKEN:
+    if not CORE_API_TOKEN:
         return True
     auth = _get_ws_auth(websocket)
-    if not auth.startswith("Bearer ") or auth[7:] != MTHO_API_TOKEN:
+    if not auth.startswith("Bearer ") or auth[7:] != CORE_API_TOKEN:
         await websocket.close(code=4001)
         return False
     return True

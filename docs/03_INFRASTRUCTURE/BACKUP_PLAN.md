@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -12,7 +12,7 @@ Sicherstellung der Datenintegrität und -verfügbarkeit durch automatisierte tä
 
 ## 2. Was wird gesichert?
 - **Anwendungscode:** Das gesamte Projektverzeichnis (exklusive temporärer Dateien, `node_modules`, `.git`, etc.).
-- **Datenbank:** Vollständiger Dump der primären Datenbank (z.B. PostgreSQL, MySQL, SQLite für MTHO_CORE).
+- **Datenbank:** Vollständiger Dump der primären Datenbank (z.B. PostgreSQL, MySQL, SQLite für CORE).
 - **Konfigurationsdateien:** `.env`, `config/` Verzeichnis.
 - **(Optional) Benutzerdaten/Uploads:** Spezifisches Verzeichnis, falls vorhanden (z.B. `media/`, `uploads/`).
 
@@ -23,8 +23,8 @@ Sicherstellung der Datenintegrität und -verfügbarkeit durch automatisierte tä
 ## 4. Wie wird gesichert? (Automatisierung)
 Ein Python-Skript (`scripts/daily_backup.py`) wird erstellt, das folgende Schritte automatisiert:
 
-1. **Datenbank-Dump erstellen** (Beispiel SQLite für MTHO_CORE):
-   - `data/argos_db/`, `*.sqlite` in ein zeitgestempeltes Archiv.
+1. **Datenbank-Dump erstellen** (Beispiel SQLite für CORE):
+   - `data/shell_db/`, `*.sqlite` in ein zeitgestempeltes Archiv.
 
 2. **Anwendungscode/Konfiguration archivieren:**
    - Projekt-Root als tar.gz/zip, exkl. `node_modules`, `.git`, `__pycache__`, virtuelle Umgebungen.
@@ -47,4 +47,4 @@ Ein Python-Skript (`scripts/daily_backup.py`) wird erstellt, das folgende Schrit
 - Mindestens einmal pro Monat vollständiger Wiederherstellungstest auf Staging.
 
 ---
-*Quelle: Projekt-Plan. Anbindung an MTHO_CORE siehe docs/DEV_AGENT_UND_SCHNITTSTELLEN.md.*
+*Quelle: Projekt-Plan. Anbindung an CORE siehe docs/DEV_AGENT_UND_SCHNITTSTELLEN.md.*

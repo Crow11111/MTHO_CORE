@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -53,15 +53,15 @@ def parse_session_markdown(filepath: str) -> dict:
         end = matches[i + 1].start() if i + 1 < len(matches) else len(content)
         turn_content = content[start:end].strip()
 
-        segments = re.split(r"\*\*(?:User|MTHO):\*\*", turn_content)
-        speakers_raw = re.findall(r"\*\*(User|MTHO):\*\*", turn_content)
+        segments = re.split(r"\*\*(?:User|CORE):\*\*", turn_content)
+        speakers_raw = re.findall(r"\*\*(User|CORE):\*\*", turn_content)
 
         sub_turns = []
         for j, speaker in enumerate(speakers_raw):
             text = segments[j + 1].strip() if j + 1 < len(segments) else ""
             if text:
                 sub_turns.append({
-                    "speaker": "user" if speaker == "User" else "mtho",
+                    "speaker": "user" if speaker == "User" else "core",
                     "text": text,
                 })
 
@@ -164,7 +164,7 @@ def ingest_session(filepath: str, source_override: str = None, date_override: st
             source=source,
             session_date=session_date,
             turn_number=99,
-            speaker="mtho",
+            speaker="core",
             topics="negentropie,bias_depth,scaffolding,dissonanz",
             ring_level=0,
         )

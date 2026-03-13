@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -13,15 +13,15 @@ Nach Besprechung der offenen Punkte mit OC (über den direkten Kanal) und ggf. E
 
 ## Stand
 
-- **Kanal:** MTHO ↔ OC ist etabliert (MTHO → OC per Gateway API, OC → MTHO per rat_submissions).
+- **Kanal:** CORE ↔ OC ist etabliert (CORE → OC per Gateway API, OC → CORE per rat_submissions).
 - **Offene Punkte** wurden an OC übermittelt (siehe oc_diskussion_offene_punkte.md).
-- OC kann Vorschläge in workspace/rat_submissions/ ablegen; MTHO holt sie mit fetch_oc_submissions ab und legt sie unter data/rat_submissions/ ab.
+- OC kann Vorschläge in workspace/rat_submissions/ ablegen; CORE holt sie mit fetch_oc_submissions ab und legt sie unter data/rat_submissions/ ab.
 
 ---
 
-## Vorschläge (erste Fassung – aus MTHO/Agent-Sicht)
+## Vorschläge (erste Fassung – aus CORE/Agent-Sicht)
 
-Diese Fassung entstand aus der Sicht von MTHO/Cursor-Agent als **erste Empfehlung**, wie mit den offenen Punkten priorisiert und vorgegangen werden könnte. Sie dient als Diskussionsgrundlage; echte Einreichungen von OC ergänzen oder ersetzen sie nach Abholung aus rat_submissions.
+Diese Fassung entstand aus der Sicht von CORE/Cursor-Agent als **erste Empfehlung**, wie mit den offenen Punkten priorisiert und vorgegangen werden könnte. Sie dient als Diskussionsgrundlage; echte Einreichungen von OC ergänzen oder ersetzen sie nach Abholung aus rat_submissions.
 
 ### 1. Sicherheit – Priorität hoch, schrittweise
 

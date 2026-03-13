@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -41,7 +41,7 @@ def verify_implementation():
         for s in states:
             if s["entity_id"].startswith("automation."):
                 fname = s.get("attributes", {}).get("friendly_name", "")
-                if "MTHO Presence Director" in fname or "MTH Presence Handler" in fname:
+                if "CORE Presence Director" in fname or "MTH Presence Handler" in fname:
                     print("\n--- Automation FOUND! ---")
                     print(json.dumps(s, indent=2))
                     automation_found = True

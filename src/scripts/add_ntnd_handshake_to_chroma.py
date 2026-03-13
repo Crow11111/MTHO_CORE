@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -19,7 +19,7 @@ import chromadb
 import requests
 
 # Konfiguration
-LOCAL_PATH = r"c:\MTHO_CORE\data\chroma_db"
+LOCAL_PATH = r"c:\CORE\data\chroma_db"
 VPS_BASE = "https://187.77.68.250/chroma/api/v2"
 VERIFY_SSL = False
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -28,7 +28,7 @@ DATABASE = "default_database"
 
 DOCUMENT = """NT/ND CONS-ZELLEN-PROTOKOLL (Binäre Symmetrie-Logik)
 
-Jede Zelle im MTHO-System ist ein Binär-Paar (Lisp cons-cell):
+Jede Zelle im CORE-System ist ein Binär-Paar (Lisp cons-cell):
 - CAR (ND-Kern): Tiefe, monotropistischer Fokus, Mustererkennung, divergentes Denken, antike Matrix.
 - CDR (NT-Interface): Mapping, Dokumentation, API-Syntax, Clean Code, Cursor-Kompatibilität, operative Realität.
 

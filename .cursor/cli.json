@@ -45,7 +45,7 @@
       "Read(.editorconfig)",
       "Read(.vscode/**)",
       "Read(AGENTS.md)",
-      "Read(MTHO_TESSERAKT.png)",
+      "Read(CORE_TESSERAKT.png)",
       "Read(*.bat)",
       "Read(*.ps1)",
       "Read(*.json)",
@@ -75,7 +75,7 @@
       "Write(tmp_scripts/**)",
       "Write(tmp_compose_fix.yml)",
 
-      "Mcp(user-atlas-remote:*)",
+      "Mcp(user-core-remote:*)",
       "Mcp(cursor-ide-browser:*)",
 
       "WebFetch(cursor.com)",

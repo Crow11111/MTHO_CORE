@@ -1,21 +1,21 @@
 """
 ChromaDB-Client für ATLAS_CORE (lokal oder remote auf VPS).
 Liest Konfiguration aus .env; bei CHROMA_HOST → HttpClient (VPS), sonst PersistentClient (lokal).
-Collections laut Schnittstelle: argos_knowledge_graph, core_brain_registr, krypto_scan_buffer.
+Collections laut Schnittstelle: shell_knowledge_graph, core_brain_registr, krypto_scan_buffer.
 """
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 # Remote (VPS): CHROMA_HOST + CHROMA_PORT (Standard 8000)
 CHROMA_HOST = os.getenv("CHROMA_HOST", "").strip()
 CHROMA_PORT = int(os.getenv("CHROMA_PORT", "8000"))
 # Lokal (Dreadnought/Windows), wenn CHROMA_HOST leer
-CHROMA_LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\MTHO_CORE\data\chroma_db")
+CHROMA_LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\CORE\data\chroma_db")
 
 # Collection-Namen laut 03_DATENBANK_VECTOR_STORE_OSMIUM.md + ATLAS Neocortex V1
-COLLECTION_ARGOS = "argos_knowledge_graph"
+COLLECTION_SHELL = "shell_knowledge_graph"
 COLLECTION_CORE_BRAIN = "core_brain_registr"
 COLLECTION_KRYTO_SCAN = "krypto_scan_buffer"
 COLLECTION_EVENTS = "events"
@@ -36,8 +36,8 @@ def get_chroma_client():
     return chromadb.PersistentClient(path=CHROMA_LOCAL_PATH)
 
 
-def get_collection(name: str = COLLECTION_ARGOS, create_if_missing: bool = True):
-    """Holt die angegebene Collection (Standard: argos_knowledge_graph)."""
+def get_collection(name: str = COLLECTION_SHELL, create_if_missing: bool = True):
+    """Holt die angegebene Collection (Standard: shell_knowledge_graph)."""
     client = get_chroma_client()
     if create_if_missing:
         return client.get_or_create_collection(

@@ -1,10 +1,10 @@
-with open('src/config/mtho_state_vector.py', 'r', encoding='utf-8') as f:
+with open('src/config/core_state.py', 'r', encoding='utf-8') as f:
     text = f.read()
 
-text = text.replace('\\"mtho\\": \\"M\\"', '"mtho": "M"')
-text = text.replace('\\"mtho\\": \\"O\\"', '"mtho": "O"')
-text = text.replace('\\"mtho\\": \\"T\\"', '"mtho": "T"')
-text = text.replace('\\"mtho\\": \\"H\\"', '"mtho": "H"')
+text = text.replace('\\"core\\": \\"M\\"', '"core": "M"')
+text = text.replace('\\"core\\": \\"O\\"', '"core": "O"')
+text = text.replace('\\"core\\": \\"T\\"', '"core": "T"')
+text = text.replace('\\"core\\": \\"H\\"', '"core": "H"')
 
-with open('src/config/mtho_state_vector.py', 'w', encoding='utf-8') as f:
+with open('src/config/core_state.py', 'w', encoding='utf-8') as f:
     f.write(text)

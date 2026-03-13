@@ -1,4 +1,4 @@
-# PLAN V5 — HEPHAISTOS HARDENING (FINAL)
+# PLAN V5 — BUILD_SYSTEM HARDENING (FINAL)
 
 **Datum:** 2026-03-10
 **Grundlage:** Erweiterter Rat (20 Subagenten, 5 Batches, 1 Rotation)
@@ -13,12 +13,12 @@
 |-------|-------|------------|
 | 1 | System-Architekt | ChromaDB Singleton fehlt, Phasen-Abhaengigkeiten undokumentiert |
 | 1 | Security-Experte | 4 Token-Leaks (nicht 1), 25+ verify=False, Event-Endpoints ohne Auth |
-| 1 | DB-Experte | ChromaDB Race Conditions, mtho_knowledge.py Await-Bug neu entdeckt |
+| 1 | DB-Experte | ChromaDB Race Conditions, core_knowledge.py Await-Bug neu entdeckt |
 | 1 | API-Interface | Telemetry-Schema definiert, /status und /telemetry trennen |
 | 2 | UX-Designer | Puls-Widget ins React (nicht Streamlit), 0 sichtbare CMD-Fenster |
 | 2 | ND-Analyst | Taskleisten-Pollution, Error-Messages maschinensprachlich |
 | 2 | Virtual-Marc | CONDITIONAL VETO: math.sin(t), 5 Fenster, taskkill = BLOCKER |
-| 2 | Universal-Board | ATLAS-Tilgung in Docs = Heuristik-Kosten, Rate-Limiting verschieben |
+| 2 | Universal-Board | CORE-Tilgung in Docs = Heuristik-Kosten, Rate-Limiting verschieben |
 | 3 | KI-Experte | Kein Triage-Router, Bias Depth Check feuert nie, system_temp leak |
 | 3 | Physik-Prof | 3/5 Stellen Numerologie: BARYONIC_DELTA, "Entropie", "Zeit-Dilatation" |
 | 3 | Mathe-Prof | Fibonacci-Backoff = Mathematik, Budget-Split = Heuristik, Omega = Numerologie |
@@ -27,7 +27,7 @@
 | 4 | Backend-Lead | ~157 min seq., ~70-80 min parallel, 2-Session-Split empfohlen |
 | 4 | Frontend-Lead | App.tsx = 407-Zeilen-Monolith, Refactor noetig, ~10-15h fuer HUD |
 | 4 | Pattern-Analyst | PATTERN_MODES = totes Dict, check_baryonic_limit = Tautologie |
-| 5 | Linguistik-Prof | 130+ ATLAS-Treffer in Docs, ghost_agent-Imports in 6 Dateien |
+| 5 | Linguistik-Prof | 130+ CORE-Treffer in Docs, night_agent_agent-Imports in 6 Dateien |
 | 5 | Informatik-Prof | 6+ weitere Await-Bugs entdeckt (sync_relay, temporal_validator, Seed-Skripte) |
 | 5 | Osmium-Judge | GO mit 31 Auflagen in 4 Phasen + V6-Backlog |
 | 5 | Osmium-Council | CONDITIONAL GO, keine weitere Rotation noetig |
@@ -58,19 +58,19 @@
 
 | Nr | Auflage | Datei(en) | Zeilen |
 |----|---------|-----------|--------|
-| 2.1 | `ghost_agent` -> `mtho_agent` Imports | `src/agents/__init__.py` | Z.10 |
-| 2.2 | `ghost_agent` -> `mtho_agent` Imports | `src/daemons/mtho_event_bus.py` | Z.254-255, Z.428 |
-| 2.3 | `ghost_agent` -> `mtho_agent` Imports | `src/daemons/mtho_vision_daemon.py` | Z.146-147 |
-| 2.4 | `ghost_agent` -> `mtho_agent` Imports | `src/services/scout_direct_handler.py` | Z.226-227 |
-| 2.5 | `scout_ghost_handlers` -> `scout_mtho_handlers` | Alle 3 Daemon-Dateien | s.o. |
-| 2.6 | `_ghost_pool` -> `_agent_pool` + Log-Strings | `src/api/main.py` | Z.20, 30, 78-83, 138-139 |
-| 2.7 | Auth auf `/api/mtho/event` (POST) und `/events` (GET) | `src/api/routes/mtho_events.py` | Z.38, Z.73 |
+| 2.1 | `night_agent_agent` -> `core_agent` Imports | `src/agents/__init__.py` | Z.10 |
+| 2.2 | `night_agent_agent` -> `core_agent` Imports | `src/daemons/core_event_bus.py` | Z.254-255, Z.428 |
+| 2.3 | `night_agent_agent` -> `core_agent` Imports | `src/daemons/core_vision_daemon.py` | Z.146-147 |
+| 2.4 | `night_agent_agent` -> `core_agent` Imports | `src/services/scout_direct_handler.py` | Z.226-227 |
+| 2.5 | `scout_night_agent_handlers` -> `scout_core_handlers` | Alle 3 Daemon-Dateien | s.o. |
+| 2.6 | `_night_agent_pool` -> `_agent_pool` + Log-Strings | `src/api/main.py` | Z.20, 30, 78-83, 138-139 |
+| 2.7 | Auth auf `/api/core/event` (POST) und `/events` (GET) | `src/api/routes/core_events.py` | Z.38, Z.73 |
 | 2.8 | `verify=False` nur fuer localhost | `src/daemons/agos_zero_watchdog.py` | Z.176 |
-| 2.9 | `mtho_events.py`: `async def` + `BackgroundTasks` | `src/api/routes/mtho_events.py` | Z.38-68 |
-| 2.10 | `mtho_vision_daemon.py`: `asyncio.run()` fuer async | `src/daemons/mtho_vision_daemon.py` | Z.87 |
-| 2.11 | `mtho_knowledge.py`: Await-Bug (NEU) | `src/api/routes/mtho_knowledge.py` | Z.583-630 |
+| 2.9 | `core_events.py`: `async def` + `BackgroundTasks` | `src/api/routes/core_events.py` | Z.38-68 |
+| 2.10 | `core_vision_daemon.py`: `asyncio.run()` fuer async | `src/daemons/core_vision_daemon.py` | Z.87 |
+| 2.11 | `core_knowledge.py`: Await-Bug (NEU) | `src/api/routes/core_knowledge.py` | Z.583-630 |
 | 2.12 | ChromaDB Singleton mit `threading.Lock` | `src/network/chroma_client.py` | Z.42-53 |
-| 2.13 | Weitere Await-Bugs (Informatik-Prof) | `mtho_sync_relay.py` Z.160+208, `temporal_validator.py` Z.41+108, Seed-Skripte | diverse |
+| 2.13 | Weitere Await-Bugs (Informatik-Prof) | `core_sync_relay.py` Z.160+208, `temporal_validator.py` Z.41+108, Seed-Skripte | diverse |
 
 ---
 
@@ -82,7 +82,7 @@
 |----|---------|-----------|--------|
 | 3.1 | Watchdog: `telemetry.json` atomar schreiben | `src/daemons/agos_zero_watchdog.py` | NEU |
 | 3.2 | Watchdog: Enum-Status (SYNCED/DRIFT/OFFLINE) | `src/daemons/agos_zero_watchdog.py` | Z.128 |
-| 3.3 | Neuer `GET /api/mtho/telemetry` Endpoint | `src/api/routes/telemetry.py` | NEU |
+| 3.3 | Neuer `GET /api/core/telemetry` Endpoint | `src/api/routes/telemetry.py` | NEU |
 | 3.4 | Telemetry-Schema (Pydantic V2, Bearer Auth) | s.o. | NEU |
 | 3.5 | `Cache-Control: max-age=5` Header | s.o. | NEU |
 | 3.6 | `/status` und `/telemetry` getrennt halten | Architektur-Entscheidung | -- |
@@ -98,7 +98,7 @@
 
 ## PHASE 4: CODE-HYGIENE + PATTERN-BEREINIGUNG
 
-**Gate:** `verify_mtho_integrity.py` laeuft clean.
+**Gate:** `verify_core_integrity.py` laeuft clean.
 
 | Nr | Auflage | Datei(en) | Zeilen |
 |----|---------|-----------|--------|
@@ -108,9 +108,9 @@
 | 4.4 | `math.sin(t)` + `run_console_loop()` entfernen | `visualize_reality_check.py` | Z.317-361 |
 | 4.5 | Statische Plot-Funktionen Z.78-307 behalten | `visualize_reality_check.py` | Z.78-307 |
 | 4.6 | `check_baryonic_limit()` Tautologie fixen | `src/logic_core/takt_gate.py` | Z.26 |
-| 4.7 | ATLAS in aktiven Docs bereinigen (~15 Dateien) | `docs/02_*`, `03_*`, `04_*` | diverse |
-| 4.8 | ATLAS in `tests/test_smart_command_parser.py` | `tests/` | Z.2 |
-| 4.9 | ATLAS in `.cursor/agents/*.md` (~10 Dateien) | `.cursor/agents/` | diverse |
+| 4.7 | CORE in aktiven Docs bereinigen (~15 Dateien) | `docs/02_*`, `03_*`, `04_*` | diverse |
+| 4.8 | CORE in `tests/test_smart_command_parser.py` | `tests/` | Z.2 |
+| 4.9 | CORE in `.cursor/agents/*.md` (~10 Dateien) | `.cursor/agents/` | diverse |
 | 4.10 | Error-Messages zweistufig (detail + debug) | `veto_gate.py`, `friction_guard.py` | diverse |
 | 4.11 | Health-Check Loop in BAT (curl-basiert, 30s Timeout) | `START_OMEGA_COCKPIT.bat` | NEU |
 
@@ -134,7 +134,7 @@
 | B12 | Streamlit-Dateien archivieren | UX-Designer | Kein aktiver Schaden |
 | B13 | Write-Queue fuer ChromaDB | DB-Experte | Performance-Optimierung |
 | B14 | SSE statt Polling | API-Interface | V6-Feature |
-| B15 | GhostAgent/GhostIntent Klassen umbenennen | Linguistik-Prof | Breaking Change, nicht V5 |
+| B15 | Night-AgentAgent/Night-AgentIntent Klassen umbenennen | Linguistik-Prof | Breaking Change, nicht V5 |
 
 ---
 
@@ -162,4 +162,4 @@ Phase 3 und 4 koennen teilweise parallel laufen (Backend-Teil von Phase 3 blocki
 
 ---
 
-*MTHO_CORE — Strukturelle Inevitabilitaet. Vektor 2210.*
+*CORE — Strukturelle Inevitabilitaet. Vektor 2210.*

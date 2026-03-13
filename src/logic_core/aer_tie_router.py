@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -22,7 +22,7 @@ class TokenImplosionEngine:
             r"kannst du bitte",
             r"Ich wuerde gerne",
             r"Vielen Dank im Voraus",
-            r"Hallo MTHO,",
+            r"Hallo CORE,",
             r"As an AI,",
             r"Als KI",
             r"Ich glaube,",
@@ -118,11 +118,11 @@ class AgnosticEntropyRouter:
 
 # --- Quick Test ---
 if __name__ == "__main__":
-    print("[MTHO_CORE] Loading Osmium Logic Core (AER & TIE)...")
+    print("[CORE] Loading Osmium Logic Core (AER & TIE)...")
     tie = TokenImplosionEngine()
     aer = AgnosticEntropyRouter()
 
-    test_prompt = "Hallo MTHO, kannst du bitte den Status überprüfen? Ich glaube, das System ist offline."
+    test_prompt = "Hallo CORE, kannst du bitte den Status überprüfen? Ich glaube, das System ist offline."
     print(f"Original: {test_prompt}")
     
     tie_result = tie.process_prompt(test_prompt)

@@ -3,8 +3,8 @@ import os, time
 
 model = WhisperModel("base", device="cpu", compute_type="int8")
 
-wav_dir = r"c:\MTHO_CORE\media\temp_wav"
-out_file = r"c:\MTHO_CORE\media\temp_wav\transkriptionen.txt"
+wav_dir = r"c:\CORE\media\temp_wav"
+out_file = r"c:\CORE\media\temp_wav\transkriptionen.txt"
 files = sorted([f for f in os.listdir(wav_dir) if f.endswith(".wav")])
 
 with open(out_file, "w", encoding="utf-8") as out:

@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = os.getenv("OPENCLAW_ADMIN_VPS_HOST")
 PORT = "18789"

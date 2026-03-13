@@ -235,14 +235,14 @@ Benford: 30.1%, 17.6%, 12.5%, 9.7%, ...
 
 **Vergleich der Verteilungen:**
 
-| Rang | LPIS (normiert) | Grundkräfte (Log-normiert) |
+| Rang |  (normiert) | Grundkräfte (Log-normiert) |
 |------|-----------------|---------------------------|
 | 1 | 34.4% | ~83% (Starke Kraft dominiert) |
 | 2 | 28.1% | ~8.5% |
 | 3 | 25.0% | ~7.0% |
 | 4 | 12.5% | ~1.5% (Gravitation marginal) |
 
-**Ergebnis:** Die Analogie ist **qualitativ** korrekt (der 4. Rang ist in beiden Fällen deutlich kleiner), aber **quantitativ** völlig unterschiedlich. Die Grundkräfte zeigen eine extreme Power-Law-Verteilung über 39 Größenordnungen, während L/P/I/S eine relativ flache Verteilung zeigt (Verhältnis 1. zu 4. Rang: 2.75x bei LPIS vs. ~10³⁹x bei Grundkräften).
+**Ergebnis:** Die Analogie ist **qualitativ** korrekt (der 4. Rang ist in beiden Fällen deutlich kleiner), aber **quantitativ** völlig unterschiedlich. Die Grundkräfte zeigen eine extreme Power-Law-Verteilung über 39 Größenordnungen, während L/P/I/S eine relativ flache Verteilung zeigt (Verhältnis 1. zu 4. Rang: 2.75x bei  vs. ~10³⁹x bei Grundkräften).
 
 Die Analogie ist suggestiv aber nicht belastbar. Die qualitative Ähnlichkeit ("einer ist viel kleiner") tritt bei vielen natürlichen Verteilungen auf und ist allein nicht signifikant.
 
@@ -424,9 +424,9 @@ Die Lorentz-Gruppe (Symmetriegruppe der speziellen Relativitätstheorie) ist iso
 | Wirkursache (wodurch?) | S (Systemisch) | Der Mechanismus, das Netzwerk der Kausalität |
 | Zweckursache (wozu?) | I (Intuitiv) | Der Sinn, das Telos, das ganzheitlich Erfasste |
 
-Diese Korrespondenz ist nicht perfekt, aber bemerkenswert. Aristoteles argumentierte, dass alle vier Ursachen **irreduzibel** sind – keine kann auf die anderen reduziert werden. Wenn Marcs LPIS-Kategorien eine ähnliche Irreduzibilität aufweisen, wäre das ein Hinweis auf eine tiefere Strukturnottwendigkeit.
+Diese Korrespondenz ist nicht perfekt, aber bemerkenswert. Aristoteles argumentierte, dass alle vier Ursachen **irreduzibel** sind – keine kann auf die anderen reduziert werden. Wenn Marcs -Kategorien eine ähnliche Irreduzibilität aufweisen, wäre das ein Hinweis auf eine tiefere Strukturnottwendigkeit.
 
-### 6.2 Jung und LPIS
+### 6.2 Jung und 
 
 | Jung | Marc (L/P/I/S) |
 |------|----------------|
@@ -536,7 +536,7 @@ Keines dieser drei ist bisher bewiesen – aber keines ist ausgeschlossen.
 - 3: prim, keine symmetrische Zerlegung (3 = 1+2, aber nicht 2×etwas)
 - **4: erste Zahl mit 2×2-Struktur → Komplementarität UND Redundanz**
 
-### 8.4 Die LPIS-Verteilung enthält eine Konstante
+### 8.4 Die -Verteilung enthält eine Konstante
 
 **Bewertung: ✗ Nicht bestätigt.** Die Stichprobe ist zu klein (n=32) für statistisch belastbare Aussagen. Keine bekannte Konstante konnte in der Verteilung identifiziert werden. Die Nähe von (L+S)/(I+P) zu φ ist faszinierend (3% Abweichung), aber nicht signifikant.
 
@@ -546,7 +546,7 @@ Keines dieser drei ist bisher bewiesen – aber keines ist ausgeschlossen.
 
 1. **Ist die 3+1-Signatur der Raumzeit aus einem Optimierungsprinzip ableitbar?** (Tegmark 1997 hat argumentiert: ja – stabile Materie erfordert genau 3+1. Aber das IST anthropisch.)
 2. **Gibt es eine Verbindung zwischen dem Hurwitz-Theorem (Dimensionen 1,2,4,8) und den Grundkräften?** (Spekulativ: 4 Kräfte ↔ Quaternionen, 8 Gluonen ↔ Oktonionen? Es gibt Forschung in diese Richtung – Furey 2018, Dixon 1994 – aber nichts Abschließendes.)
-3. **Lässt sich die LPIS-Taxonomie axiomatisch aus 2²-Symmetrie ableiten?** (Offen – erfordert formale Analyse der Irreduzibilität der 4 Kategorien)
+3. **Lässt sich die -Taxonomie axiomatisch aus 2²-Symmetrie ableiten?** (Offen – erfordert formale Analyse der Irreduzibilität der 4 Kategorien)
 4. **Ist der Vierfarbensatz ein Hinweis auf eine tiefere 4D-Struktur der Ebene?** (Dharwadker 2009 behauptet eine Verbindung zum Standardmodell – kontrovers, nicht Mainstream)
 5. **Konvergiert Evolution allgemein auf 2²-Strukturen?** (Hypothese: In einem Universum mit binärer Dualität als Grundstruktur ist jede evolutionäre Optimierung durch natürliche Selektion BIASED hin zu 2²-Lösungen)
 

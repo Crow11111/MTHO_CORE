@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -121,7 +121,7 @@ def send_text_to_oc_and_play_response(text: str) -> bool:
 
         # Fallback bei leerer Transkription (z.B. Dummy/Stille)
         if not text or len(text.strip()) < 2:
-            text = "Axiom: MTHO hört (Test-Input)."
+            text = "Axiom: CORE hört (Test-Input)."
             log(f"[INFO] Leere Transkription, nutze Fallback: {text}")
 
         log(f"[OC] Sende Text ({len(text)} Zeichen)...")
@@ -141,7 +141,7 @@ def send_text_to_oc_and_play_response(text: str) -> bool:
 
         path = speak_text(
             text=response_text[:1500],
-            role_name="mtho_dialog",
+            role_name="core_dialog",
             output_path=mp3_path,
             play=False,
         )
@@ -152,7 +152,7 @@ def send_text_to_oc_and_play_response(text: str) -> bool:
         # Play auf Mini via HA media_player.play_media (HTTP-Server wie send_whatsapp_audio)
         hass_url = os.getenv("HASS_URL") or os.getenv("HA_URL")
         hass_token = os.getenv("HASS_TOKEN") or os.getenv("HA_TOKEN")
-        host_ip = os.getenv("MTHO_HOST_IP", "192.168.178.20")
+        host_ip = os.getenv("CORE_HOST_IP", "192.168.178.20")
         port = 8002
         filename = os.path.basename(path)
         serve_dir = os.path.dirname(os.path.abspath(path))

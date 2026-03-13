@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,7 +8,7 @@
 Startet den OpenClaw-Gateway-Container auf dem VPS neu.
 
 Damit die Gateway-Config (z. B. gateway.http.endpoints.responses.enabled: true) greift,
-muss der Container einmal neugestartet werden. Danach können test_mtho_oc_channel --send
+muss der Container einmal neugestartet werden. Danach können test_core_oc_channel --send
 und send_offene_punkte_to_oc laufen.
 
 .env: VPS_HOST, VPS_USER, VPS_PASSWORD
@@ -77,7 +77,7 @@ def main() -> int:
         print(f"Fehler (Exit {code}): {err or out}")
         return 1
     print(out or "Container neugestartet.")
-    print("Kurz warten (z. B. 10 s), dann: python -m src.scripts.test_mtho_oc_channel --send")
+    print("Kurz warten (z. B. 10 s), dann: python -m src.scripts.test_core_oc_channel --send")
     return 0
 
 

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -132,7 +132,7 @@ def _takeout_json_to_markdown(json_path: str) -> str:
                 lines.append(f"## Turn {turn_num:02d}: {turn_title}")
                 lines.append("")
             else:
-                speaker_label = "MTHO"
+                speaker_label = "CORE"
 
             lines.append(f"**{speaker_label}:**")
             lines.append(content.strip())

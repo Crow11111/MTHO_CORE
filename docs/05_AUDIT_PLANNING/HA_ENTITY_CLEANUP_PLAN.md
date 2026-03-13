@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -40,7 +40,7 @@ Diese Entitäten (333 Stück) sind potenziell temporär offline (z. B. physische
 Von den 425 Leichen werden **43 in aktiven YAML-Dateien referenziert**! Das Löschen oder Fehlen dieser Entitäten führt zu defekten Automatisierungen (Hänger, Error Logs, unvollständige Ausführung).
 
 ### Kritische Automatisierungen (Auszug)
-- **`device_tracker.iphone`** blockiert `MTHOne leave H91` und `666 Check MTH else off`
+- **`device_tracker.iphone`** blockiert `COREne leave H91` und `666 Check MTH else off`
 - **`device_tracker.s20_von_marc`** blockiert `AAAA AUTO TEST AAAAAA`
 - **`automation.h91_verlassen`** (Leiche) ist Teil von `FORCE H91 OFF` / `FORCE H91` und dem Script `ausuraus manuell`
 - **`light.led_sofa`** fehlt in `Florentine`, `Moin`, `Nachtpinkeln`, `Guten Morgen`

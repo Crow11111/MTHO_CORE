@@ -10,13 +10,13 @@ from datetime import datetime
 os.environ["PYTHONIOENCODING"] = "utf-8"
 sys.stdout.reconfigure(encoding="utf-8")
 
-# Root-Pfad zum Importieren der MTHO_CORE Module
+# Root-Pfad zum Importieren der CORE Module
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from src.network.chroma_client import get_session_logs_collection
 
 # Konfiguration
-TRANSCRIPTS_DIR = r"C:\Users\MtH\.cursor\projects\c-MTHO-CORE\agent-transcripts"
+TRANSCRIPTS_DIR = r"C:\Users\MtH\.cursor\projects\c-CORE-CORE\agent-transcripts"
 BATCH_SIZE = 10  # Kleine Batches, um API Rate-Limits (z.B. Gemini/Ollama) zu schonen
 DELAY_BETWEEN_BATCHES = 2.0  # Wartezeit in Sekunden
 MAX_TEXT_LENGTH = 4000  # Abschneiden von zu langen Code-Blöcken für Embeddings
@@ -62,7 +62,7 @@ async def extract_turns(filepath: str) -> list:
     return turns
 
 async def process_transcripts():
-    print(f"[MTHO_CORE] Starte Ingest-Analyse im Verzeichnis:\n  {TRANSCRIPTS_DIR}")
+    print(f"[CORE] Starte Ingest-Analyse im Verzeichnis:\n  {TRANSCRIPTS_DIR}")
     
     jsonl_files = glob.glob(os.path.join(TRANSCRIPTS_DIR, "**", "*.jsonl"), recursive=True)
     print(f"[INFO] {len(jsonl_files)} JSONL-Dateien gefunden.")
@@ -148,7 +148,7 @@ async def process_transcripts():
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("MTHO_CORE - CURSOR TRANSCRIPTS INGEST (DRY-RUN LOCK)")
+    print("CORE - CURSOR TRANSCRIPTS INGEST (DRY-RUN LOCK)")
     print("=" * 60)
     print("WARNUNG: Dieses Skript parst potenziell Gigabytes an Text.")
     print("Bitte überprüfen, ob das VPS/ChromaDB Limit und die API-Quotas (Embeddings) ausreichen.")

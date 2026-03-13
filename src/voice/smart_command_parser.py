@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Voice Assistant – Smart Command Parser
+CORE Voice Assistant – Smart Command Parser
 =============================================
 Übersetzt natürliche Sprache in Home-Assistant-Aktionen.
 Entity Resolution via Fuzzy-Match, hardcodierte Patterns + LLM-Fallback.

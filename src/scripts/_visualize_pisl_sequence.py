@@ -1,6 +1,6 @@
-from src.mtho_core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
+from src.core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -47,7 +47,7 @@ entries = []
 for i, (id_, meta, doc) in enumerate(zip(results["ids"], results["metadatas"], results["documents"])):
     qbase = meta.get("qbase", "")
     cat_long = meta.get("category", "")
-    if qbase and qbase in "MTHO":
+    if qbase and qbase in "CORE":
         cat = qbase
     elif cat_long in CAT_SHORT:
         cat = CAT_SHORT[cat_long]
@@ -104,7 +104,7 @@ ax1.tick_params(colors="#8B949E")
 for spine in ax1.spines.values():
     spine.set_color("#30363D")
 
-legend_patches = [mpatches.Patch(color=CAT_COLORS[c], label=f"{c}") for c in "MTHO"]
+legend_patches = [mpatches.Patch(color=CAT_COLORS[c], label=f"{c}") for c in "CORE"]
 legend_patches.append(mpatches.Patch(color="#FFD700", label="Fibonacci-Pos"))
 legend_patches.append(mpatches.Patch(color="#FF6B6B", label="Goldener Schnitt"))
 ax1.legend(handles=legend_patches, loc="upper right", fontsize=8, facecolor="#21262D", edgecolor="#30363D", labelcolor="#E6EDF3")
@@ -115,7 +115,7 @@ ax1.legend(handles=legend_patches, loc="upper right", fontsize=8, facecolor="#21
 ax2 = fig.add_subplot(3, 2, 3)
 ax2.set_facecolor("#161B22")
 
-cats = list("MTHO")
+cats = list("CORE")
 trans_matrix = np.zeros((4, 4))
 for i in range(n - 1):
     r = cats.index(seq[i])
@@ -163,7 +163,7 @@ ax3 = fig.add_subplot(3, 2, 4)
 ax3.set_facecolor("#161B22")
 
 counts = Counter(seq)
-categories = list("MTHO")
+categories = list("CORE")
 values = [counts.get(c, 0) for c in categories]
 colors = [CAT_COLORS[c] for c in categories]
 
@@ -235,7 +235,7 @@ ax5.set_facecolor("#161B22")
 
 periods = list(range(1, min(n // 2, 25)))
 acf_values = []
-expected = sum((counts.get(c, 0) / n) ** 2 for c in "MTHO")
+expected = sum((counts.get(c, 0) / n) ** 2 for c in "CORE")
 
 for period in periods:
     matches = sum(1 for i in range(n - period) if seq[i] == seq[i + period])

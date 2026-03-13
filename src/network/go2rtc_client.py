@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Go2RTC-Client für MTHO_CORE.
+Go2RTC-Client für CORE.
 
 Architektur: Scout (Raspi/HA) hält die MX Brio per USB und liefert den Stream
 via go2rtc (Port 1984 / RTSP 8554). Der PC (Dreadnought) konsumiert Snapshots
@@ -16,7 +16,7 @@ Kaskade: go2rtc (Scout) → Scout-MX (HA camera_proxy) → Tapo/Fallback.
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 GO2RTC_BASE_URL = os.getenv("GO2RTC_BASE_URL", "http://192.168.178.54:1984").rstrip("/")
 GO2RTC_STREAM_NAME = os.getenv("GO2RTC_STREAM_NAME", "mx_brio")

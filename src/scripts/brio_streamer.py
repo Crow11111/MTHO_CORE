@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,8 +8,8 @@ import subprocess
 import time
 import os
 
-ffmpeg_path = r"C:\MTHO_CORE\driver\go2rtc_win64\ffmpeg.exe"
-log_path = r"C:\MTHO_CORE\driver\go2rtc_win64\brio_streamer.log"
+ffmpeg_path = r"C:\CORE\driver\go2rtc_win64\ffmpeg.exe"
+log_path = r"C:\CORE\driver\go2rtc_win64\brio_streamer.log"
 
 command = [
     ffmpeg_path,

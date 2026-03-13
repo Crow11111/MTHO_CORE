@@ -34,14 +34,14 @@ Das Layout besteht aus vier funktionalen, nahtlos integrierten Bereichen:
   - **Markdown-Support** für Code-Snippets.
   - **LLM-Kontext-Indikator:** Zeigt an, welches Modell (Fast, Reasoning, Base) aktuell den Request verarbeitet.
 
-### Werkzeug C: Validation Forge (Audit- & Rotations-Ansicht)
+### Werkzeug C: Validation Build-Engine (Audit- & Rotations-Ansicht)
 *Das wichtigste Tool für komplexe Planungen und Code-Reviews.*
 - **Optik:** Ein Split-Screen-Board, das sich nur öffnet, wenn komplexe Tasks (Architektur, Multi-Step) geprüft werden.
 - **Funktion:** Visualisiert den automatisierten Review-Prozess (Multi-Agent-Audit).
 - **Features:**
   - **Links:** Der aktuelle Entwurf / Code.
   - **Rechts:** Die Constraints und Einwände der Sub-Routinen (Security, Architecture, Performance).
-  - **Trigger ("Forge Rotation"):** Ein manueller oder automatischer Button, der den Entwurf durch die nächste Iteration zwingt, bis alle Constraints erfüllt sind (Exit Code 0).
+  - **Trigger ("Build-Engine Rotation"):** Ein manueller oder automatischer Button, der den Entwurf durch die nächste Iteration zwingt, bis alle Constraints erfüllt sind (Exit Code 0).
 
 ### Werkzeug D: Dependency Graph (Architektur-Map)
 - **Optik:** Eine optionale, visuelle Knoten-Map.

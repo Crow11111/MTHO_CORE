@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -85,7 +85,7 @@ Operativ bedeutet Dissonanz hier **mindestens eines** der folgenden, über einen
 - **Keine Produktion zuerst:** Schwellwerte nicht direkt in Produktion aktivieren. Zuerst **nur loggen** (Shadow-Mode): gleiche Metriken berechnen und in Log/Telemetrie schreiben, ohne Not-Aus auszulösen.
 - **Dry-Run / Feature-Flag:** Ein Flag (z. B. `DISSONANCE_EMERGENCY_STOP_ENABLED=false`) steuert, ob bei Überschreitung nur geloggt wird oder tatsächlich verweigert wird. Rollout: zuerst Ring-Level ≥ 1 (nicht Ring-0), dann optional Ring-0.
 - **Stub / Test-Session:** In Tests (z. B. pytest oder integrierter Test-Orchestrator) künstlich Retry-Count, Fehlerrate oder Delta-Entropie-Proxy erhöhen und prüfen, dass bei aktivem Flag die Verweigerung und das erwartete Log/Response kommen.
-- **Ring-Level:** Not-Aus zuerst nur für „nicht-kritische“ Ring-Level (z. B. Experimente, Forge) erlauben; Ring-0 (Core, Council) erst nach Validierung der Schwellen und False-Positive-Rate.
+- **Ring-Level:** Not-Aus zuerst nur für „nicht-kritische“ Ring-Level (z. B. Experimente, Build-Engine) erlauben; Ring-0 (Core, Council) erst nach Validierung der Schwellen und False-Positive-Rate.
 
 **Zeitplan (User-Go):** Shadow-Mode aktiv; Tracking gegenrechnen. **Auswertung:** morgen nach 12 Uhr. Je nach Ergebnis **erste Überführung** in sanftes Rollout (Feature-Flag, Ring ≥ 1 zuerst).
 

@@ -19,7 +19,7 @@ Die folgenden Abschnitte sind Auszüge bzw. Volltexte der zentralen Projekt-Doku
 ## Dokument 2: BACKUP_PLAN.md
 
 - **Ziel:** Automatisierte tägliche Backups aller kritischen Projektdaten.
-- **Was:** Anwendungscode (exkl. temporär, node_modules, .git), Datenbank (z. B. SQLite data/argos_db), Konfiguration (.env, config/), optional media/uploads.
+- **Was:** Anwendungscode (exkl. temporär, node_modules, .git), Datenbank (z. B. SQLite data/shell_db), Konfiguration (.env, config/), optional media/uploads.
 - **Wohin:** Primär lokaler Backup-Speicher (z. B. /var/backups/projektname oder Windows-Ordner), sekundär Cloud (S3, GCS).
 - **Wie:** Python-Skript daily_backup.py – DB-Dump, Code/Config archivieren (tar.gz/zip, exkl. .git, __pycache__, venv), optional S3-Upload, Retention.
 - **Wann:** Täglich 03:00 UTC; cron (Linux) oder Task Scheduler (Windows).
@@ -61,7 +61,7 @@ Die folgenden Abschnitte sind Auszüge bzw. Volltexte der zentralen Projekt-Doku
 
 ## Review erneut ausführen / Anmerkungen sichern
 
-Im Projekt-Root (z. B. `c:\MTHO_CORE`) mit **--out=** (Antwort wird in UTF-8 in die Datei geschrieben, kein PowerShell-Encoding-Problem):
+Im Projekt-Root (z. B. `c:\CORE`) mit **--out=** (Antwort wird in UTF-8 in die Datei geschrieben, kein PowerShell-Encoding-Problem):
 
 ```bash
 python -m src.ai.dev_agent_claude46 "Prüfe die Dokumente (Schnittstellen, Architektur, Sicherheit, Backup, OpenClaw-Admin-Konzept). Prüfe explizit auch die Anthropic/Claude-Sonnet-Einrichtung und die Nexos-Einbindung (alles unter unserer Kontrolle). Gib strukturierte Anmerkungen: (1) Lücken/Widersprüche, (2) Sicherheitshinweise, (3) Verbesserungsvorschläge, (4) fehlende/veraltete Referenzen, (5) Sonnet- und Nexos-Setup. Auf Deutsch, nummeriert." docs/dev_agent_review_context.md --claude --out=docs/DEV_AGENT_REVIEW_ANMERKUNGEN.md

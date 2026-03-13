@@ -1,5 +1,5 @@
 """
-Unit-Tests für Smart Command Parser (MTHO Voice Assistant).
+Unit-Tests für Smart Command Parser (CORE Voice Assistant).
 """
 from __future__ import annotations
 

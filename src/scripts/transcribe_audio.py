@@ -23,8 +23,8 @@ MODEL = "gemini-3.1-pro-preview"
 FALLBACK_MODEL = "gemini-3-pro-preview"
 ENDPOINT_TPL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
 
-MEDIA_DIR = Path(r"c:\MTHO_CORE\media")
-OUTPUT_FILE = Path(r"c:\MTHO_CORE\data\session_logs\audio_transcripts_2026-03-01.md")
+MEDIA_DIR = Path(r"c:\CORE\media")
+OUTPUT_FILE = Path(r"c:\CORE\data\session_logs\audio_transcripts_2026-03-01.md")
 
 FILES = [
     "Neue Aufnahme.m4a.mp4",

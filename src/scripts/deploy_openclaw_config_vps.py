@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -35,9 +35,9 @@ KEY_PATH = os.getenv("VPS_SSH_KEY", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 TOKEN = (os.getenv("OPENCLAW_GATEWAY_TOKEN", "") or "").strip().strip('"')
 
-# Am Admin-VPS (deploy_vps_full_stack): Config unter /opt/mtho-core/openclaw-admin/data/
+# Am Admin-VPS (deploy_vps_full_stack): Config unter /opt/core-core/openclaw-admin/data/
 CONFIG_PATH_HOST = os.getenv("OPENCLAW_CONFIG_PATH", "").strip() or "/var/lib/openclaw/openclaw.json"
-CONFIG_PATH_FULLSTACK = "/opt/mtho-core/openclaw-admin/data/openclaw.json"
+CONFIG_PATH_FULLSTACK = "/opt/core-core/openclaw-admin/data/openclaw.json"
 
 
 def _run(ssh: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:

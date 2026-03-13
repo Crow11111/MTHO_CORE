@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Health Check: Prueft alle Dienste und gibt JSON-Status zurueck.
+CORE Health Check: Prueft alle Dienste und gibt JSON-Status zurueck.
 """
 import json
 import os
@@ -17,10 +17,10 @@ from datetime import datetime
 from loguru import logger
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 VPS_HOST = os.getenv("VPS_HOST", "187.77.68.250")
-VPS_SSH_KEY = os.getenv("VPS_SSH_KEY", r"c:\MTHO_CORE\.ssh\id_ed25519_hostinger")
+VPS_SSH_KEY = os.getenv("VPS_SSH_KEY", r"c:\CORE\.ssh\id_ed25519_hostinger")
 VPS_USER = os.getenv("VPS_USER", "root")
 SCOUT_IP = os.getenv("SCOUT_IP", "192.168.178.54")
 
@@ -91,7 +91,7 @@ def run_health_check() -> dict:
         s["vps_docker"] = {"ok": False, "detail": "SSH nicht verfuegbar"}
 
     s["vps_chromadb_8000"] = {"ok": _tcp_check(VPS_HOST, 8000)}
-    s["mtho_api_local"] = {"ok": _tcp_check("127.0.0.1", 8000)}
+    s["core_api_local"] = {"ok": _tcp_check("127.0.0.1", 8000)}
     s["ha_scout"] = {"ok": _http_check(f"https://{SCOUT_IP}:8123")}
     s["ha_vps"] = {"ok": _tcp_check(VPS_HOST, 18123)}
 

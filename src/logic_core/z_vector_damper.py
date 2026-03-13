@@ -18,7 +18,7 @@ from typing import Any, Callable, Optional
 
 logger = logging.getLogger(__name__)
 
-from src.config.mtho_state_vector import BARYONIC_DELTA, SYMMETRY_BREAK
+from src.config.core_state import BARYONIC_DELTA, SYMMETRY_BREAK
 
 PHI = 1.618033988749895
 
@@ -136,7 +136,7 @@ class RuntimeMonitor:
             max(BARYONIC_DELTA, raw_z)
         )
 
-        os.environ["MTHO_Z_WIDERSTAND"] = str(self._state.z_vector_escalation)
+        os.environ["CORE_Z_WIDERSTAND"] = str(self._state.z_vector_escalation)
         return self._state.z_vector_escalation
 
     def request_execution(self, estimated_tokens: int = 0) -> None:
@@ -230,7 +230,7 @@ class RuntimeMonitor:
         }
 
 
-def argos_protected(estimated_tokens_per_call: int = 1000) -> Callable:
+def shell_protected(estimated_tokens_per_call: int = 1000) -> Callable:
     """
     Decorator fuer LLM-Calls.
     Trackt Tokens via Sliding Window und Z-Vektor bidirektional.
@@ -269,8 +269,8 @@ def argos_protected(estimated_tokens_per_call: int = 1000) -> Callable:
 
 # Globale Instanz
 z_damper = RuntimeMonitor()
-argos = z_damper
+shell = z_damper
 
 # Backward-Kompatibilitaet
-ArgosVetoException = RuntimeVetoException
+ShellVetoException = RuntimeVetoException
 MAX_ITERATIONS = MAX_ITERATIONS_PER_SESSION

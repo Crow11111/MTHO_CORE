@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,11 +8,11 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
-# Osmium Council: UI Artist & ND Therapist
+# Core Council: UI Artist & ND Therapist
 # Goal: Minimalist, dark-mode, zero friction dashboard. Only raw logic.
 
 st.set_page_config(
-    page_title="MTHO_CORE | System Symbiosis",
+    page_title="CORE | System Symbiosis",
     page_icon="👁️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -49,7 +49,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-DB_PATH = r"c:\MTHO_CORE\data\argos_db\argos_knowledge_graph.sqlite"
+DB_PATH = r"c:\CORE\data\shell_db\shell_knowledge_graph.sqlite"
 
 def load_data(table_name):
     try:
@@ -60,7 +60,7 @@ def load_data(table_name):
     except Exception as e:
         return pd.DataFrame({"Error": [str(e)]})
 
-st.title("MTHO_CORE // OMNI-MONITOR")
+st.title("CORE // OMNI-MONITOR")
 st.write("STATUS: ONLINE | LATENCY: < 2ms | OSMIUM STANDARD: VERIFIED")
 
 col1, col2 = st.columns(2)

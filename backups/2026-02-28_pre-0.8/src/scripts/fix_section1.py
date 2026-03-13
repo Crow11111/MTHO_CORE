@@ -16,7 +16,7 @@ def fix_section1():
         )
         text = response.get("response", "[FEHLER]")
         
-        file_path = "c:/MTHO_CORE/data/antigravity_docs_compiled/01_ARCHITEKTUR_HARDWARE.md"
+        file_path = "c:/CORE/data/antigravity_docs_compiled/01_ARCHITEKTUR_HARDWARE.md"
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
             

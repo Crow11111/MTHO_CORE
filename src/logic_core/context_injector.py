@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -19,7 +19,7 @@ import math
 from dataclasses import dataclass
 from typing import Any
 
-from src.config.mtho_state_vector import INV_PHI, get_current_state
+from src.config.core_state import INV_PHI, get_current_state
 # Semantic Drift Threshold: Abweichung > (1 - INV_PHI) → Veto
 DRIFT_THRESHOLD = 1.0 - INV_PHI  # ~0.382 (Komplement zu Phi)
 

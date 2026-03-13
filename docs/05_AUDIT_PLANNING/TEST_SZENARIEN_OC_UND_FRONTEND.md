@@ -1,32 +1,32 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# Test-Szenarien: MTHO-OC-Kanal und Frontend-Backend
+# Test-Szenarien: CORE-OC-Kanal und Frontend-Backend
 
-Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. (2) Frontend ist an das Backend angebunden, kein "Backend nicht verbunden". Dev-Agent wird einbezogen, wo Review oder Konfiguration sinnvoll ist.
+Szenarien zum Prüfen: (1) Daten landen bei OC, CORE/OC können sich abstimmen. (2) Frontend ist an das Backend angebunden, kein "Backend nicht verbunden". Dev-Agent wird einbezogen, wo Review oder Konfiguration sinnvoll ist.
 
 ---
 
-## Teil 1: Kanal MTHO ↔ OC
+## Teil 1: Kanal CORE ↔ OC
 
 ### 1.1 Gateway erreichbar, Endpoint aktiv
 
 - **Schritt:** `python -m src.scripts.test_atlas_oc_channel`
 - **Erwartung:** "OK 200 – Gateway erreichbar". Bei Fehler: .env (VPS_HOST, OPENCLAW_GATEWAY_TOKEN); auf VPS `gateway.http.endpoints.responses.enabled: true` und `docker restart openclaw-gateway`.
-- **Dev-Agent (Außensicht / Problemanalyse):** Dev-Agent mit Kontext ausführen, damit er **von außen** analysiert, wo das Problem liegt (Timeout = Gateway nicht erreichbar). OpenClaw-Seite hat Token und Port (z. B. 18789) konfiguriert; MTHO-Seite bekommt Timeout. Aufruf: `python -m src.ai.dev_agent_claude46 "Analysiere den Kanal MTHO–OpenClaw von außen: Wo siehst du das Problem? Siehe Abschnitt 'Auftrag: Von außen draufschauen' im Kontext." docs/dev_agent_oc_kanal_context.md --out=docs/DEV_AGENT_OC_KANAL_CHECKLISTE.md`
-- **Dev-Agent (Checkliste):** Optional: gleicher Kontext mit "Prüfe MTHO-OC-Kanal-Setup und Checkliste damit Daten bei OC ankommen."
+- **Dev-Agent (Außensicht / Problemanalyse):** Dev-Agent mit Kontext ausführen, damit er **von außen** analysiert, wo das Problem liegt (Timeout = Gateway nicht erreichbar). OpenClaw-Seite hat Token und Port (z. B. 18789) konfiguriert; CORE-Seite bekommt Timeout. Aufruf: `python -m src.ai.dev_agent_claude46 "Analysiere den Kanal CORE–OpenClaw von außen: Wo siehst du das Problem? Siehe Abschnitt 'Auftrag: Von außen draufschauen' im Kontext." docs/dev_agent_oc_kanal_context.md --out=docs/DEV_AGENT_OC_KANAL_CHECKLISTE.md`
+- **Dev-Agent (Checkliste):** Optional: gleicher Kontext mit "Prüfe CORE-OC-Kanal-Setup und Checkliste damit Daten bei OC ankommen."
 
-### 1.2 MTHO → OC: Nachricht landet bei OC
+### 1.2 CORE → OC: Nachricht landet bei OC
 
 - **Schritt:** `python -m src.scripts.test_atlas_oc_channel --send`
-- **Erwartung:** "Erfolg: True", Antwort von OC. Bei Timeout/405: KANAL_MTHO_OC.md (Config, Neustart). Mit OC abstimmen ob Nachricht ankam.
+- **Erwartung:** "Erfolg: True", Antwort von OC. Bei Timeout/405: KANAL_CORE_OC.md (Config, Neustart). Mit OC abstimmen ob Nachricht ankam.
 - **Daten bei OC:** `send_offene_punkte_to_oc` schickt Kontext + offene Punkte; danach mit OC abstimmen.
 
-### 1.3 OC → MTHO: Einreichungen abholen
+### 1.3 OC → CORE: Einreichungen abholen
 
 - **Schritt:** Test-JSON in `/var/lib/openclaw/workspace/rat_submissions/` anlegen, dann `python -m src.scripts.fetch_oc_submissions`.
 - **Erwartung:** Datei in `data/rat_submissions/`. Dev-Agent kann Einreichungen auswerten und Tasks vorschlagen.
@@ -48,12 +48,12 @@ Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. 
 ### 2.2 Frontend verbunden (WebSocket)
 
 - **Schritt:** Backend + Frontend starten, Browser localhost:3000. Header "Backend" muss gruen sein.
-- **Erwartung:** Nachricht senden → Antwort von Atlas, keine Meldung "Nicht verbunden".
-- **Falls rot:** Backend zuerst starten; Frontend reconnected alle 5s automatisch. .env: VITE_MTHO_API_URL=http://localhost:8000
+- **Erwartung:** Nachricht senden → Antwort von Core, keine Meldung "Nicht verbunden".
+- **Falls rot:** Backend zuerst starten; Frontend reconnected alle 5s automatisch. .env: VITE_CORE_API_URL=http://localhost:8000
 
 ### 2.3 E2E: Nachricht durch die Kette
 
-- **Schritt:** Im Chat Aufgabe eingeben. Erwartung: Antwort von Atlas ohne "Nicht verbunden".
+- **Schritt:** Im Chat Aufgabe eingeben. Erwartung: Antwort von Core ohne "Nicht verbunden".
 
 ---
 
@@ -65,4 +65,4 @@ Szenarien zum Prüfen: (1) Daten landen bei OC, MTHO/OC können sich abstimmen. 
 
 ---
 
-Referenzen: KANAL_MTHO_OC.md, STAMMDOKUMENTE_DEPLOY.md, BACKEND_INTEGRATION.md. Skripte: test_mtho_oc_channel.py, fetch_oc_submissions.py, send_offene_punkte_to_oc.py, test_frontend_backend.py.
+Referenzen: KANAL_CORE_OC.md, STAMMDOKUMENTE_DEPLOY.md, BACKEND_INTEGRATION.md. Skripte: test_core_oc_channel.py, fetch_oc_submissions.py, send_offene_punkte_to_oc.py, test_frontend_backend.py.

@@ -396,7 +396,7 @@
       "last_triggered": "2026-02-19T19:33:16.536305+00:00",
       "mode": "single",
       "current": 0,
-      "friendly_name": "MTHOne leave H91"
+      "friendly_name": "COREne leave H91"
     },
     "last_changed": "2026-02-19T22:06:24.860152+00:00",
     "last_reported": "2026-02-19T22:06:24.860152+00:00",
@@ -415,7 +415,7 @@
       "last_triggered": "2026-02-19T20:06:04.537721+00:00",
       "mode": "single",
       "current": 0,
-      "friendly_name": "MTHOne in H91"
+      "friendly_name": "COREne in H91"
     },
     "last_changed": "2026-02-19T22:06:24.860278+00:00",
     "last_reported": "2026-02-19T22:06:24.860278+00:00",

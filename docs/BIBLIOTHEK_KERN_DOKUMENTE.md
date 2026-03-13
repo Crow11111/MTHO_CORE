@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO_CORE Bibliothek – Kerndokumente
+# CORE Bibliothek – Kerndokumente
 
 Hier sind die wichtigsten Dokumente nach Themen sortiert. Nutze diese Pfade für `@`-Referenzen.
 
@@ -14,14 +14,14 @@ Hier sind die wichtigsten Dokumente nach Themen sortiert. Nutze diese Pfade für
 ## 1. Core DNA & Identität
 *Die Basis des Projekts.*
 - **`@docs/01_CORE_DNA/CREW_MANIFEST.md`** – Wer macht was (Rollen).
-- **`@docs/01_CORE_DNA/MTHO_VOICE_ARCHITECTURE_V1.3.md`** – Wie wir sprechen (Voice/Audio).
+- **`@docs/01_CORE_DNA/CORE_VOICE_ARCHITECTURE_V1.3.md`** – Wie wir sprechen (Voice/Audio).
 - **`@docs/01_CORE_DNA/stammdokumente_oc/`** – Dokumente für OC (externe KI).
 
 ## 2. Architektur & Schnittstellen
 *Wie die Teile zusammenhängen.*
 - **`@docs/02_ARCHITECTURE/DEV_AGENT_UND_SCHNITTSTELLEN.md`** – Der Master-Plan der Verbindungen.
 - **`@docs/02_ARCHITECTURE/OPENCLAW_ADMIN_ARCHITEKTUR.md`** – OC-Architektur (Admin/Spine).
-- **`@docs/02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md`** – Routing-Logik WhatsApp.
+- **`@docs/02_ARCHITECTURE/WHATSAPP_ROUTING_CORE_OC.md`** – Routing-Logik WhatsApp.
 
 ## 3. Infrastruktur & Ops
 *Wo es läuft.*

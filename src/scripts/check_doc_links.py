@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -10,7 +10,7 @@ Prüft Markdown-Dokumente im Projekt auf kaputte interne Links.
 - Scannt `docs/` rekursiv.
 - Unterstützt zwei Link-Formate:
   1. Normale Markdown-Links: [Text](relativer/pfad.md)
-  2. MTHO-Core-Referenzen: @docs/...
+  2. CORE-Core-Referenzen: @docs/...
 
 Aufruf (aus Projekt-Root):
   python -m src.scripts.check_doc_links

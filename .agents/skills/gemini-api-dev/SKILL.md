@@ -70,7 +70,7 @@ print(response.text)
 
 ## System Prompts & Context
 
-When calling Gemini for ATLAS components, always ensure that:
+When calling Gemini for CORE components, always ensure that:
 1. You pass the system prompt (instruction) appropriately.
 2. You pass any contextual information before the user content.
 3. You handle potential exceptions from the API gracefully (e.g., `genai.errors.APIError`).

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = (os.getenv("OPENCLAW_ADMIN_VPS_HOST") or os.getenv("VPS_HOST", "")).strip()
 ADMIN_USER = (os.getenv("OPENCLAW_ADMIN_VPS_USER") or os.getenv("VPS_USER", "root")).strip()
@@ -30,7 +30,7 @@ ADMIN_KEY = (os.getenv("OPENCLAW_ADMIN_VPS_SSH_KEY") or os.getenv("VPS_SSH_KEY",
 ADMIN_PORT = int(os.getenv("OPENCLAW_ADMIN_VPS_SSH_PORT") or os.getenv("VPS_SSH_PORT", "22"))
 
 # Full-Stack: Volume auf Host
-BASE_DATA = "/opt/mtho-core/openclaw-admin/data"
+BASE_DATA = "/opt/core-core/openclaw-admin/data"
 CREDENTIALS_WHATSAPP = f"{BASE_DATA}/credentials/whatsapp"
 
 
@@ -70,7 +70,7 @@ def main():
 
     # 2) Container neu starten
     print("  Starte openclaw-admin neu …")
-    code, out, err = run(ssh, "cd /opt/mtho-core && docker compose restart openclaw-admin 2>&1")
+    code, out, err = run(ssh, "cd /opt/core-core && docker compose restart openclaw-admin 2>&1")
     if code != 0:
         print(f"    Warnung: {err or out}")
     else:

@@ -1,4 +1,4 @@
-"""MTHO Conversation Agent - AbstractConversationAgent implementation."""
+"""CORE Conversation Agent - AbstractConversationAgent implementation."""
 from __future__ import annotations
 
 from typing import Literal
@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(LOGGER)
 
 
 class MthoConversationAgent(conversation.AbstractConversationAgent):
-    """MTHO Conversation Agent - leitet Text an /webhook/inject_text weiter."""
+    """CORE Conversation Agent - leitet Text an /webhook/inject_text weiter."""
 
     def __init__(
         self,
@@ -37,7 +37,7 @@ class MthoConversationAgent(conversation.AbstractConversationAgent):
     async def async_process(
         self, user_input: conversation.ConversationInput
     ) -> conversation.ConversationResult:
-        """Process user input: send to MTHO, return reply for TTS."""
+        """Process user input: send to CORE, return reply for TTS."""
         text = (user_input.text or "").strip()
         intent_response = intent.IntentResponse(language=user_input.language)
 
@@ -47,18 +47,18 @@ class MthoConversationAgent(conversation.AbstractConversationAgent):
 
         try:
             reply = await self.client.async_send_text(text)
-            intent_response.async_set_speech(reply or "Keine Antwort von MTHO.")
+            intent_response.async_set_speech(reply or "Keine Antwort von CORE.")
         except MthoApiError as err:
-            _LOGGER.error("MTHO Agent: %s", err)
+            _LOGGER.error("CORE Agent: %s", err)
             intent_response.async_set_error(
                 intent.IntentResponseErrorCode.UNKNOWN,
-                f"MTHO nicht erreichbar: {err}",
+                f"CORE nicht erreichbar: {err}",
             )
         except Exception as err:
-            _LOGGER.exception("MTHO Agent: unerwarteter Fehler")
+            _LOGGER.exception("CORE Agent: unerwarteter Fehler")
             intent_response.async_set_error(
                 intent.IntentResponseErrorCode.UNKNOWN,
-                "MTHO Verbindung fehlgeschlagen. Bitte Logs prüfen.",
+                "CORE Verbindung fehlgeschlagen. Bitte Logs prüfen.",
             )
 
         return conversation.ConversationResult(response=intent_response)

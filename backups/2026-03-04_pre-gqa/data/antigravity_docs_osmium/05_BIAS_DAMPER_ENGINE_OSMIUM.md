@@ -1,4 +1,4 @@
-# Osmium Council Revision
+# Core Council Revision
 
 ## Sektion 1: ND_THERAPIST Anforderungen
 

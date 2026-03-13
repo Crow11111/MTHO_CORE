@@ -1,6 +1,6 @@
-"""MTHO Conversation Agent for Home Assistant Assist Pipeline.
+"""CORE Conversation Agent for Home Assistant Assist Pipeline.
 
-Empfängt transkribierten Text von der Assist-Pipeline, sendet an MTHO /webhook/inject_text,
+Empfängt transkribierten Text von der Assist-Pipeline, sendet an CORE /webhook/inject_text,
 gibt Antwort für TTS (Piper) zurück.
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ from .const import DOMAIN, CONF_BASE_URL, CONF_FALLBACK_URL, CONF_TOKEN, DEFAULT
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up MTHO Conversation from config entry."""
+    """Set up CORE Conversation from config entry."""
     hass.data.setdefault(DOMAIN, {})
 
     base_url = entry.data[CONF_BASE_URL].rstrip("/")
@@ -38,9 +38,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     try:
         if not await client.async_validate():
-            raise ConfigEntryNotReady("MTHO API nicht erreichbar oder Token ungültig")
+            raise ConfigEntryNotReady("CORE API nicht erreichbar oder Token ungültig")
     except Exception as err:
-        raise ConfigEntryNotReady(f"MTHO Verbindung fehlgeschlagen: {err}") from err
+        raise ConfigEntryNotReady(f"CORE Verbindung fehlgeschlagen: {err}") from err
 
     agent = MthoConversationAgent(hass, entry, client)
     conversation.async_set_agent(hass, entry, agent)
@@ -51,7 +51,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload MTHO Conversation."""
+    """Unload CORE Conversation."""
     conversation.async_unset_agent(hass, entry)
     hass.data[DOMAIN].pop(entry.entry_id, None)
     return True

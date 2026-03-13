@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -9,7 +9,7 @@
 
 **OC = OpenClaw** (Kurzbezeichnung im Projekt). Kurze Gegenüberstellung und Einfluss auf unsere Umsetzung.
 
-**Spätere Kanäle & letzte Instanz:** OC ist in WhatsApp aktiv. Später brauchen wir **getrennte Kanäle**, damit OC keinen Zugriff auf Chats hat, in denen Steuerbefehle laufen (OC könnte sonst Dinge außerhalb seiner Sandbox anstoßen). Lokales **MTHO** behält die **letzte Entscheidungsgewalt**; Einfallstore regelmäßig prüfen. Details: UMSETZUNGSPLANUNG.
+**Spätere Kanäle & letzte Instanz:** OC ist in WhatsApp aktiv. Später brauchen wir **getrennte Kanäle**, damit OC keinen Zugriff auf Chats hat, in denen Steuerbefehle laufen (OC könnte sonst Dinge außerhalb seiner Sandbox anstoßen). Lokales **CORE** behält die **letzte Entscheidungsgewalt**; Einfallstore regelmäßig prüfen. Details: UMSETZUNGSPLANUNG.
 
 ---
 
@@ -28,36 +28,36 @@
 
 ---
 
-## 2. Unser HA-Pfad (MTHO über gajosu-Addon)
+## 2. Unser HA-Pfad (CORE über gajosu-Addon)
 
 **Wie es funktioniert:**
 - **Dein** WhatsApp-Account ist mit dem **gajosu/whatsapp-ha-addon** in HA verbunden (ebenfalls WhatsApp-Web/Baileys-ähnlich, aber im Addon).
 - **Eingehende Nachricht** in deinem Account → Addon löst ein **HA-Event** aus (z. B. `whatsapp_message_received`) mit Payload (Absender, Nachricht, ggf. Media).
-- **HA-Automation** reagiert auf das Event und ruft **rest_command.atlas_whatsapp_webhook** auf – dieser macht einen **HTTP-POST** an MTHO_CORE (`/webhook/whatsapp`) mit dem Event-Payload.
-- **MTHO** verarbeitet die Nachricht (Triage, LLM, Steuerung) und antwortet per **ha_client.send_whatsapp(to_number=sender, text=reply)** → HA-Service **whatsapp/send_message** → Addon schickt die Nachricht zurück in den Chat.
+- **HA-Automation** reagiert auf das Event und ruft **rest_command.atlas_whatsapp_webhook** auf – dieser macht einen **HTTP-POST** an CORE (`/webhook/whatsapp`) mit dem Event-Payload.
+- **CORE** verarbeitet die Nachricht (Triage, LLM, Steuerung) und antwortet per **ha_client.send_whatsapp(to_number=sender, text=reply)** → HA-Service **whatsapp/send_message** → Addon schickt die Nachricht zurück in den Chat.
 
 **Eigenschaften:**
-- **Zwei Systeme:** HA (Addon) hält die WhatsApp-Verbindung; MTHO (4D_RESONATOR (MTHO_CORE)) ist ein Backend, das per Webhook aufgerufen wird und über HA-Dienste zurücksendet.
-- **E2E-Kette:** Echte Nachricht → HA-Event → rest_command → MTHO-Webhook → MTHO antwortet über HA → Antwort im gleichen Chat.
+- **Zwei Systeme:** HA (Addon) hält die WhatsApp-Verbindung; CORE (4D_RESONATOR (CORE)) ist ein Backend, das per Webhook aufgerufen wird und über HA-Dienste zurücksendet.
+- **E2E-Kette:** Echte Nachricht → HA-Event → rest_command → CORE-Webhook → CORE antwortet über HA → Antwort im gleichen Chat.
 
 ---
 
 ## 3. Vergleich & Einfluss auf unsere Umsetzung
 
-| Aspekt | OC (OpenClaw, nativ) | HA-Pfad (MTHO) |
+| Aspekt | OC (OpenClaw, nativ) | HA-Pfad (CORE) |
 |--------|----------------------|------------------|
 | **Wer hält WhatsApp?** | OC-Gateway (VPS) | HA-Addon (Scout) |
-| **Wo läuft die „Intelligenz“?** | OC-Agents (auf dem Gateway / angebunden) | MTHO_CORE (4D_RESONATOR (MTHO_CORE)), aufgerufen per Webhook |
-| **Antwortweg** | Gateway sendet direkt in den Kanal zurück | MTHO ruft HA-Service `whatsapp/send_message` auf |
-| **E2E-Test** | Nachricht an die am OpenClaw angemeldete Nummer senden → Antwort von OpenClaw prüfen | Nachricht in deinen Account (Addon) → Automation → rest_command → MTHO → Antwort im Chat prüfen |
+| **Wo läuft die „Intelligenz“?** | OC-Agents (auf dem Gateway / angebunden) | CORE (4D_RESONATOR (CORE)), aufgerufen per Webhook |
+| **Antwortweg** | Gateway sendet direkt in den Kanal zurück | CORE ruft HA-Service `whatsapp/send_message` auf |
+| **E2E-Test** | Nachricht an die am OpenClaw angemeldete Nummer senden → Antwort von OpenClaw prüfen | Nachricht in deinen Account (Addon) → Automation → rest_command → CORE → Antwort im Chat prüfen |
 
 **Einfluss auf unsere Umsetzung:**
-- **OC** ersetzt **nicht** den HA-Pfad: OC nutzt eine **eigene** WhatsApp-Session (eigenes Gateway, ggf. eigene Nummer/Account), während der HA-Pfad **deinen** Account und das Addon nutzt. Beide können parallel existieren (zwei getrennte Wege). Später: getrennte Kanäle, damit OC keinen Zugriff auf Steuerbefehle-Chats hat; MTHO = letzte Instanz.
-- **E2E von HA** bleibt **essenziell**, wenn MTHO auf Nachrichten reagieren soll, die **über deinen Account** im Addon ankommen. Dafür müssen wir sicherstellen:
+- **OC** ersetzt **nicht** den HA-Pfad: OC nutzt eine **eigene** WhatsApp-Session (eigenes Gateway, ggf. eigene Nummer/Account), während der HA-Pfad **deinen** Account und das Addon nutzt. Beide können parallel existieren (zwei getrennte Wege). Später: getrennte Kanäle, damit OC keinen Zugriff auf Steuerbefehle-Chats hat; CORE = letzte Instanz.
+- **E2E von HA** bleibt **essenziell**, wenn CORE auf Nachrichten reagieren soll, die **über deinen Account** im Addon ankommen. Dafür müssen wir sicherstellen:
   1. **HA-Automation:** Event (z. B. `whatsapp_message_received`) → Aufruf von `rest_command.atlas_whatsapp_webhook` mit Event-Daten.
-  2. **rest_command** in HA: muss so konfiguriert sein, dass er MTHO_CORE unter der richtigen URL (4D_RESONATOR (MTHO_CORE) oder Scout) mit dem Payload aufruft.
-  3. **MTHO-API** läuft und ist von HA aus erreichbar; MTHO antwortet per `send_whatsapp` über den HA-Service.
-- **OC** können wir zusätzlich nutzen (z. B. zweiter Kanal, andere Nummer/Session); die **Umsetzung des HA-E2E** ist davon unabhängig und bleibt die Basis für „Nachricht an dich → MTHO antwortet“.
+  2. **rest_command** in HA: muss so konfiguriert sein, dass er CORE unter der richtigen URL (4D_RESONATOR (CORE) oder Scout) mit dem Payload aufruft.
+  3. **CORE-API** läuft und ist von HA aus erreichbar; CORE antwortet per `send_whatsapp` über den HA-Service.
+- **OC** können wir zusätzlich nutzen (z. B. zweiter Kanal, andere Nummer/Session); die **Umsetzung des HA-E2E** ist davon unabhängig und bleibt die Basis für „Nachricht an dich → CORE antwortet“.
 
 ---
 
@@ -74,15 +74,15 @@ OC nutzt **keine eigene WhatsApp-Business-Nummer** und erscheint **nicht** als s
 
 ---
 
-## 5. Routing @Atlas / @OC und Antwortformat
+## 5. Routing @Core / @OC und Antwortformat
 
-- **@Atlas** am Anfang → MTHO/Scout antworten mit **[MTHO]** bzw. **[Scout]**.
-- **@OC** am Anfang → nur OC antwortet mit **[OC]** oder @OC; MTHO (HA-Pfad) reagiert nicht.
-- Nur der adressierte Adressat reagiert; bei @Atlas + @OC später in der Nachricht gilt der Teil für den anderen bzw. beide. Vollständige Regeln und OC-Prozedere: **docs/02_ARCHITECTURE/WHATSAPP_ROUTING_MTHO_OC.md**.
+- **@Core** am Anfang → CORE/Scout antworten mit **[CORE]** bzw. **[Scout]**.
+- **@OC** am Anfang → nur OC antwortet mit **[OC]** oder @OC; CORE (HA-Pfad) reagiert nicht.
+- Nur der adressierte Adressat reagiert; bei @Core + @OC später in der Nachricht gilt der Teil für den anderen bzw. beide. Vollständige Regeln und OC-Prozedere: **docs/02_ARCHITECTURE/WHATSAPP_ROUTING_CORE_OC.md**.
 
 ---
 
 ## 6. Referenzen
 
 - OpenClaw: [Channels WhatsApp](https://openclaw.im/docs/channels/whatsapp), [Messages](https://docs.openclaw.ai/concepts/messages).
-- Unser Setup: `setup_vps_hostinger.py` (OC `channels.whatsapp.allowFrom`), `wire_whatsapp_ha.py` (HA-Automation), `whatsapp_webhook.py` (MTHO-Empfang), `ha_client.send_whatsapp` (Antwortweg).
+- Unser Setup: `setup_vps_hostinger.py` (OC `channels.whatsapp.allowFrom`), `wire_whatsapp_ha.py` (HA-Automation), `whatsapp_webhook.py` (CORE-Empfang), `ha_client.send_whatsapp` (Antwortweg).

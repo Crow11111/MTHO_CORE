@@ -28,7 +28,7 @@ Die Verbindung zwischen VPS (Sensor) und Ring-0 (Kognition).
 Das System schützt sich selbst vor dem Verbrennen durch endlose Kaskaden.
 *   **Z-Vektor (Absoluter Widerstand):** Wird VOR jedem Taktzyklus berechnet:
     $$ Z = \min(1.0, (\text{VRAM} \cdot 0.4) + (\text{Tokens} \cdot 0.3) + (\text{Errors} \cdot 0.3)) $$
-*   **ArgosVetoException:** Erreicht $Z \ge 0.9$, friert das System hart ein. Alle Prozesse werden pausiert. Keine Retries.
+*   **ShellVetoException:** Erreicht $Z \ge 0.9$, friert das System hart ein. Alle Prozesse werden pausiert. Keine Retries.
 *   **Halluzinations-Bremse:** Produziert Ollama $> 4096$ Tokens am Stück ohne Break, feuert der Watchdog `os.kill(ollama_pid, signal.SIGKILL)` und erzwingt einen `torch.cuda.empty_cache()`.
 
 ---

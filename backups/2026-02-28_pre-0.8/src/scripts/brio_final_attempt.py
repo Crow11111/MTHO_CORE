@@ -10,12 +10,12 @@ def run():
     time.sleep(2)
     
     # Start go2rtc
-    go2rtc_path = r"C:\MTHO_CORE\driver\go2rtc_win64\go2rtc.exe"
-    config_path = r"C:\MTHO_CORE\driver\go2rtc_win64\go2rtc.yaml"
+    go2rtc_path = r"C:\CORE\driver\go2rtc_win64\go2rtc.exe"
+    config_path = r"C:\CORE\driver\go2rtc_win64\go2rtc.yaml"
     
     print(f"Starte go2rtc: {go2rtc_path}")
     subprocess.Popen([go2rtc_path, "-config", config_path],
-                     cwd=r"C:\MTHO_CORE\driver\go2rtc_win64",
+                     cwd=r"C:\CORE\driver\go2rtc_win64",
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     time.sleep(5)
     

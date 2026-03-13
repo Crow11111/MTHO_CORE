@@ -1,22 +1,22 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Hugin – Logik & Scout (Ring-0).
+Telemetry-Injector – Logik & Scout (Ring-0).
 
 Input-Triage: Klassifiziert eingehende Requests (NormalizedEntry).
 Validation Sync: Bereitet Daten für Valuation Sync / context_injector vor.
 
-Integration: src/api/entry_adapter.py → Hugin.triage() → Valuation Sync → context_injector
+Integration: src/api/entry_adapter.py → Telemetry-Injector.triage() → Valuation Sync → context_injector
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
-from src.mtho_core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
+from src.core import M_VALUE, T_VALUE, H_VALUE, O_VALUE
 
 from src.api.entry_adapter import NormalizedEntry
 from src.config.engine_patterns import QBASES
@@ -24,18 +24,18 @@ from src.config.engine_patterns import QBASES
 
 @dataclass
 class TriageResult:
-    """Ergebnis der Hugin-Input-Triage für Valuation Sync."""
+    """Ergebnis der Telemetry-Injector-Input-Triage für Valuation Sync."""
 
     entry: NormalizedEntry
-    mtho_base: str  # M|T|H|O
+    core_base: str  # M|T|H|O
     priority: int  # 1=hoch, 2=mittel, 3=niedrig
     intent: str  # query|command|status|unknown
     validation_ready: bool
     triage_metadata: dict[str, Any]
 
 
-# Heuristische Keywords pro MTHO (für schnelle Klassifikation ohne Embedding)
-_MTHO_KEYWORDS: dict[str, list[str]] = {
+# Heuristische Keywords pro CORE (für schnelle Klassifikation ohne Embedding)
+_CORE_KEYWORDS: dict[str, list[str]] = {
     "O": ["logik", "regel", "compliance", "prüf", "validier", "bias", "paranoia", "sicherheit"],
     "M": ["physik", "simulation", "quanten", "energie", "materie", "gravitation", "kollaps"],
     "T": ["info", "daten", "embedding", "suche", "kontext", "wissen", "archiv", "query"],
@@ -49,12 +49,12 @@ _INTENT_STATUS = ["status", "zustand", "ping", "health", "ok?"]
 
 
 def _classify_mtho(text: str) -> str:
-    """Heuristische MTHO-Klassifikation aus Text."""
+    """Heuristische CORE-Klassifikation aus Text."""
     if not text or not isinstance(text, str):
         return "T"  # Default: Information
     low = text.lower().strip()
     scores: dict[str, int] = {b: 0 for b in QBASES}
-    for base, keywords in _MTHO_KEYWORDS.items():
+    for base, keywords in _CORE_KEYWORDS.items():
         for kw in keywords:
             if kw in low:
                 scores[base] += 1
@@ -69,7 +69,7 @@ def _classify_intent(text: str, payload: dict) -> str:
     t = (text or "").lower()
     p = payload or {}
     action = (p.get("action") or "").lower()
-    if action in ("mtho_ping", "ping"):
+    if action in ("core_ping", "ping"):
         return "status"
     if any(x in t for x in _INTENT_COMMAND):
         return "command"
@@ -80,13 +80,13 @@ def _classify_intent(text: str, payload: dict) -> str:
     return "unknown"
 
 
-def _derive_priority(source: str, intent: str, mtho_base: str) -> int:
+def _derive_priority(source: str, intent: str, core_base: str) -> int:
     """1=hoch, 2=mittel, 3=niedrig."""
     if intent == "status" and source in ("ha", "api"):
         return 1
     if intent == "command" and source in ("ha", "whatsapp"):
         return 1
-    if mtho_base == "O" and intent in ("command", "status"):
+    if core_base == "O" and intent in ("command", "status"):
         return 1  # veto_relevant
     if intent == "query":
         return 2
@@ -95,26 +95,26 @@ def _derive_priority(source: str, intent: str, mtho_base: str) -> int:
 
 def triage(entry: NormalizedEntry) -> TriageResult:
     """
-    Hugin Input-Triage: Klassifiziert NormalizedEntry für Valuation Sync.
+    Telemetry-Injector Input-Triage: Klassifiziert NormalizedEntry für Valuation Sync.
 
     Args:
         entry: Von entry_adapter.normalize_request() erzeugt
 
     Returns:
-        TriageResult mit MTHO, Priority, Intent, validation_ready
+        TriageResult mit CORE, Priority, Intent, validation_ready
     """
     payload = entry.payload or {}
     text = payload.get("text") or payload.get("message") or payload.get("body") or ""
 
-    mtho_base = _classify_mtho(text)
+    core_base = _classify_mtho(text)
     intent = _classify_intent(text, payload)
-    priority = _derive_priority(entry.source, intent, mtho_base)
+    priority = _derive_priority(entry.source, intent, core_base)
 
     validation_ready = bool(text.strip()) or bool(payload.get("action"))
 
     return TriageResult(
         entry=entry,
-        mtho_base=mtho_base,
+        core_base=core_base,
         priority=priority,
         intent=intent,
         validation_ready=validation_ready,
@@ -128,7 +128,7 @@ def triage(entry: NormalizedEntry) -> TriageResult:
 
 def triage_from_raw(source: str, raw_payload: Any, auth_ctx: dict | None = None) -> TriageResult:
     """
-    Normalisiert und triagiert in einem Schritt (Entry Adapter + Hugin).
+    Normalisiert und triagiert in einem Schritt (Entry Adapter + Telemetry-Injector).
 
     Convenience für Pipeline: normalize_request → triage.
     """

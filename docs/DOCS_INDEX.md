@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO_CORE – Dokumentationsindex
+# CORE – Dokumentationsindex
 
 Zentrale Übersicht der Projekt-Struktur.
 
@@ -19,8 +19,9 @@ Zentrale Übersicht der Projekt-Struktur.
 
 ## 1. CORE DNA (`docs/01_CORE_DNA/`)
 **Die Verfassung des Projekts.**
+- `5D_TORUS_KRISTALL_ENGINE.md` – (AXIOM 0: Informationsgravitation & Die Autopoiesis des Gitters)
 - `CREW_MANIFEST.md` – Rollen & Aufgaben (**DEPRECATED**, s. `.cursor/agents/*.md`)
-- `MTHO_VOICE_ARCHITECTURE_V1.3.md` – Voice-Design & Persona-Definitionen
+- `CORE_VOICE_ARCHITECTURE_V1.3.md` – Voice-Design & Persona-Definitionen
 - `PROMPT_A_USER_PERSONA.md` – User-Persona und Kommunikationsvektor
 - `TOPOLOGIE_5D_TESSERAKT.md` – 5D-Penterakt-Topologie und V-Dimension
 - `stammdokumente_oc/` – Spezifische Dokumente fuer den Austausch mit OpenClaw (OC)
@@ -30,8 +31,8 @@ Zentrale Übersicht der Projekt-Struktur.
 ## 2. ARCHITECTURE (`docs/02_ARCHITECTURE/`)
 **System-Design & Logik.**
 - `OPENCLAW_ADMIN_ARCHITEKTUR.md` – Admin vs. Spine Architektur
-- `WHATSAPP_ROUTING_MTHO_OC.md` – Routing-Logik (Wer antwortet wann)
-- `KANAL_MTHO_OC.md` – Direkter Kanal zwischen MTHO und OC
+- `WHATSAPP_ROUTING_CORE_OC.md` – Routing-Logik (Wer antwortet wann)
+- `KANAL_CORE_OC.md` – Direkter Kanal zwischen CORE und OC
 - `WHATSAPP_OPENCLAW_VS_HA.md` – Vergleich der Pfade
 
 ---

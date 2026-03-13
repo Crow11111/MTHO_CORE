@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -17,12 +17,12 @@ SCOUT-FUSION Update: Ephemeral Agent Integration (Signal-Vektor 2 / INTENT)
 Routing:
 - command/turn_on/turn_off/toggle → HA lokal (Scout)
 - deep_reasoning/chat → Ephemeral Agent → OC Brain (VPS)
-- HA unreachable → Fallback an MTHO_VPS_URL (falls konfiguriert)
+- HA unreachable → Fallback an CORE_VPS_URL (falls konfiguriert)
 
 Voice: Smart Command Parser (src/voice/smart_command_parser) wird bevorzugt,
        wenn entities verfügbar sind – unterstützt Helligkeit, Farbe, Temperatur.
 
-Env: SCOUT_DIRECT_MODE, MTHO_VPS_URL, HA_WEBHOOK_TOKEN, HASS_URL, HASS_TOKEN
+Env: SCOUT_DIRECT_MODE, CORE_VPS_URL, HA_WEBHOOK_TOKEN, HASS_URL, HASS_TOKEN
 """
 from __future__ import annotations
 
@@ -37,8 +37,8 @@ load_dotenv()
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Env: SCOUT_DIRECT_MODE=true aktiviert diesen Handler; MTHO_VPS_URL für Fallback
-MTHO_VPS_URL = (os.getenv("MTHO_VPS_URL") or "").strip().rstrip("/")
+# Env: SCOUT_DIRECT_MODE=true aktiviert diesen Handler; CORE_VPS_URL für Fallback
+CORE_VPS_URL = (os.getenv("CORE_VPS_URL") or "").strip().rstrip("/")
 HA_WEBHOOK_TOKEN = os.getenv("HA_WEBHOOK_TOKEN", "").strip()
 DEFAULT_MEDIA_PLAYER = os.getenv("DEFAULT_MEDIA_PLAYER", "").strip()
 
@@ -51,18 +51,18 @@ def _load_ha_client():
 
 def _load_triage():
     """Lazy load Triage (nur bei Bedarf)."""
-    from src.ai.llm_interface import mtho_llm
-    return mtho_llm
+    from src.ai.llm_interface import core_llm
+    return core_llm
 
 
 def _forward_to_vps(text: str, context: dict) -> tuple[bool, str]:
     """
     Leitet Anfrage an VPS weiter (Fallback bei HA-Ausfall oder Deep-Reasoning).
-    POST an MTHO_VPS_URL/webhook/forwarded_text
+    POST an CORE_VPS_URL/webhook/forwarded_text
     """
-    if not MTHO_VPS_URL:
-        return False, "VPS-Fallback nicht konfiguriert (MTHO_VPS_URL)"
-    url = f"{MTHO_VPS_URL}/webhook/forwarded_text"
+    if not CORE_VPS_URL:
+        return False, "VPS-Fallback nicht konfiguriert (CORE_VPS_URL)"
+    url = f"{CORE_VPS_URL}/webhook/forwarded_text"
     try:
         import requests
         headers = {"Content-Type": "application/json"}
@@ -158,7 +158,7 @@ def process_text(text: str, context: dict | None = None) -> dict:
     except Exception as e:
         logger.debug("Smart Parser nicht genutzt, Fallback auf Triage: {}", e)
 
-    # --- LEGACY: Hugin/LLM Triage ---
+    # --- LEGACY: Telemetry-Injector/LLM Triage ---
     triage = _load_triage().run_triage(text)
 
     # --- COMMAND PATH ---
@@ -195,20 +195,20 @@ def process_text(text: str, context: dict | None = None) -> dict:
     # --- DEEP REASONING / CHAT → LOKALES HEAVY REASONING (Ollama/Gemini-Fallback) ---
     if triage.intent in ("deep_reasoning", "chat"):
         logger.info("Deep Reasoning angefordert. Nutze lokalen Heavy Layer.")
-        # VPS-Pfad ist temporaer deaktiviert (Hephaistos-Protokoll: Autonomie erzwingen)
+        # VPS-Pfad ist temporaer deaktiviert (Build-System-Protokoll: Autonomie erzwingen)
 
         # Lokaler Heavy-Layer (Ollama konfiguriert in llm_interface.py)
         try:
-            from src.ai.llm_interface import mtho_llm
+            from src.ai.llm_interface import core_llm
             from src.logic_core.context_injector import inject_context_for_agent, check_semantic_drift, apply_veto
-            sys_prompt = "Du bist OMEGA, die Kern-Intelligenz für MTHO_CORE. Antworte analytisch, direkt und auf Systemik fokussiert."
+            sys_prompt = "Du bist OMEGA, die Kern-Intelligenz für CORE. Antworte analytisch, direkt und auf Systemik fokussiert."
 
             # Ring-0: Context Injection (context_injector)
             context_ctx = inject_context_for_agent(text, n_results=3, format="markdown")
             if context_ctx:
                 sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx
 
-            reply = mtho_llm.invoke_heavy_reasoning(sys_prompt, text)
+            reply = core_llm.invoke_heavy_reasoning(sys_prompt, text)
 
             # Ring-0: Drift Veto (Semantic Drift Block)
             if context_ctx:
@@ -246,8 +246,8 @@ async def process_text_async(text: str, context: dict | None = None) -> dict:
         return {"reply": "Kein Text eingegeben.", "success": False, "routed": "local"}
 
     try:
-        from src.agents.mtho_agent import IntentType, get_ephemeral_pool
-        from src.agents.scout_mtho_handlers import register_all_handlers
+        from src.agents.core_agent import IntentType, get_ephemeral_pool
+        from src.agents.scout_core_handlers import register_all_handlers
 
         pool = get_ephemeral_pool()
         if pool.active_count == 0 and not pool._handlers:

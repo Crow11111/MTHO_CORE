@@ -2,9 +2,9 @@ import os
 import sqlite3
 from loguru import logger
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights"
-DB_DIR = r"c:\MTHO_CORE\data\argos_db"
-DB_FILE = os.path.join(DB_DIR, "argos_knowledge_graph.sqlite")
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights"
+DB_DIR = r"c:\CORE\data\shell_db"
+DB_FILE = os.path.join(DB_DIR, "shell_knowledge_graph.sqlite")
 
 def init_db():
     if not os.path.exists(DB_DIR):
@@ -13,9 +13,9 @@ def init_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     
-    # Create the argos_knowledge_graph table based on the specifications
+    # Create the shell_knowledge_graph table based on the specifications
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS argos_knowledge_graph (
+        CREATE TABLE IF NOT EXISTS shell_knowledge_graph (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             component1 TEXT NOT NULL,
             component2 TEXT NOT NULL,
@@ -46,7 +46,7 @@ def ingest_document(conn, file_name, relation_type):
         # component1: The subject / persona
         # component2: The actual insight payload
         cursor.execute("""
-            INSERT INTO argos_knowledge_graph (component1, component2, relation_type, source_file)
+            INSERT INTO shell_knowledge_graph (component1, component2, relation_type, source_file)
             VALUES (?, ?, ?, ?)
         """, ("Marc_ND_Profile", chunk, relation_type, file_name))
         count += 1
@@ -60,7 +60,7 @@ def main():
         ingest_document(conn, "01_ND_FAKTEN_FINAL.md", "FACTUAL_INSIGHT")
         ingest_document(conn, "02_ND_ANNAHMEN_FINAL.md", "ASSUMED_INSIGHT")
         conn.close()
-        logger.success("Alle Daten erfolgreich in die relationale ARGOS-Wissensdatenbank überführt.")
+        logger.success("Alle Daten erfolgreich in die relationale SHELL-Wissensdatenbank überführt.")
     except Exception as e:
         logger.error(f"Fehler bei DB Ingestion: {e}")
 

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -46,7 +46,7 @@ FRICTION_STATE = {
 class FrictionGuardMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: Callable[[Request], Awaitable[Response]]) -> Response:
         # Nur auf LLM-Generierungs-Endpunkte anwenden
-        if not any(path in request.url.path for path in ["/webhook", "/api/mtho/knowledge", "/api/oc"]):
+        if not any(path in request.url.path for path in ["/webhook", "/api/core/knowledge", "/api/oc"]):
             return await call_next(request)
 
         # Response abfangen

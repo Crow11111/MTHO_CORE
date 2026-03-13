@@ -30,7 +30,7 @@ class IDSafe:
     """Verwaltet digitale Identitätsdokumente in ChromaDB."""
     def __init__(self):
         self.client = ChromaClient()
-        self.collection_name = "mtho_identity_documents"
+        self.collection_name = "core_identity_documents"
         self._ensure_collection()
 
     def _ensure_collection(self):

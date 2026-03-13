@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HOST = os.getenv("VPS_HOST", "")
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))

@@ -1,16 +1,16 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
 """
-MTHO CONTEXT – End-to-End Integration Test.
+CORE CONTEXT – End-to-End Integration Test.
 
 Testet die vollständige Kette ohne externe Abhängigkeiten:
 1. Entry-Adapter (WhatsApp, HA, NormalizedEntry)
-2. Hugin (Triage, MTHO, Intent)
+2. Telemetry-Injector (Triage, CORE, Intent)
 3. Gravitator (Route, Collection-Auswahl, Fallback)
 4. Context Injector (Context Injection, Semantic Drift)
 5. Veto Gate (Veto-Modus, Critical Path)
@@ -61,7 +61,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
         # WhatsApp-Payload
         wa_payload = {
             "message": {
-                "conversation": "Hallo MTHO, wie geht es dir?",
+                "conversation": "Hallo CORE, wie geht es dir?",
                 "extendedTextMessage": None,
             },
             "key": {"remoteJid": "49123456789@s.whatsapp.net"},
@@ -69,7 +69,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
         entry_wa = normalize_request("whatsapp", wa_payload)
         ok = (
             entry_wa.source == "whatsapp"
-            and entry_wa.payload.get("text") == "Hallo MTHO, wie geht es dir?"
+            and entry_wa.payload.get("text") == "Hallo CORE, wie geht es dir?"
             and entry_wa.payload.get("sender", "").endswith("@s.whatsapp.net")
         )
         results["Entry-Adapter"].append(
@@ -115,50 +115,50 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
     except Exception as e:
         results["Entry-Adapter"].append(("Entry-Adapter Import/Execution", False, str(e)))
 
-    # ── 2. Hugin ───────────────────────────────────────────────────────────
-    results["Hugin"] = []
+    # ── 2. Telemetry-Injector ───────────────────────────────────────────────────────────
+    results["Telemetry-Injector"] = []
 
     try:
         from src.api.entry_adapter import normalize_request
-        from src.logic_core.hugin import triage, triage_from_raw, TriageResult
+        from src.logic_core.telemetry_injector import triage, triage_from_raw, TriageResult
 
-        # Triage: MTHO L (Logik)
+        # Triage: CORE L (Logik)
         entry_l = normalize_request("api", {"text": "Prüfe die Compliance und Sicherheit der Regel"})
         r_l = triage(entry_l)
-        ok = r_l.mtho_base == "L"
-        results["Hugin"].append(
-            ("MTHO-Klassifikation L (Logik/Compliance)", ok, f"got={r_l.mtho_base}")
+        ok = r_l.core_base == "L"
+        results["Telemetry-Injector"].append(
+            ("CORE-Klassifikation L (Logik/Compliance)", ok, f"got={r_l.core_base}")
         )
 
-        # Triage: MTHO P (Physik)
+        # Triage: CORE P (Physik)
         entry_p = normalize_request("api", {"text": "Simulation und Gravitation Quanten"})
         r_p = triage(entry_p)
-        ok = r_p.mtho_base == "P"
-        results["Hugin"].append(
-            ("MTHO-Klassifikation P (Physik/Simulation)", ok, f"got={r_p.mtho_base}")
+        ok = r_p.core_base == "P"
+        results["Telemetry-Injector"].append(
+            ("CORE-Klassifikation P (Physik/Simulation)", ok, f"got={r_p.core_base}")
         )
 
-        # Triage: MTHO I (Info)
+        # Triage: CORE I (Info)
         entry_i = normalize_request("api", {"text": "Suche im Archiv nach Kontext"})
         r_i = triage(entry_i)
-        ok = r_i.mtho_base == "I"
-        results["Hugin"].append(
-            ("MTHO-Klassifikation I (Info/Archiv)", ok, f"got={r_i.mtho_base}")
+        ok = r_i.core_base == "I"
+        results["Telemetry-Injector"].append(
+            ("CORE-Klassifikation I (Info/Archiv)", ok, f"got={r_i.core_base}")
         )
 
-        # Triage: MTHO S (Struktur)
+        # Triage: CORE S (Struktur)
         entry_s = normalize_request("api", {"text": "Architektur und System Ring Tetralogie"})
         r_s = triage(entry_s)
-        ok = r_s.mtho_base == "S"
-        results["Hugin"].append(
-            ("MTHO-Klassifikation S (Struktur/Architektur)", ok, f"got={r_s.mtho_base}")
+        ok = r_s.core_base == "S"
+        results["Telemetry-Injector"].append(
+            ("CORE-Klassifikation S (Struktur/Architektur)", ok, f"got={r_s.core_base}")
         )
 
         # Intent: query
         entry_q = normalize_request("api", {"text": "Was ist die Simulationstheorie?"})
         r_q = triage(entry_q)
         ok = r_q.intent == "query"
-        results["Hugin"].append(
+        results["Telemetry-Injector"].append(
             ("Intent query (Was/Wie/Warum)", ok, f"got={r_q.intent}")
         )
 
@@ -166,27 +166,27 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
         entry_cmd = normalize_request("api", {"text": "Mach das Licht an"})
         r_cmd = triage(entry_cmd)
         ok = r_cmd.intent == "command"
-        results["Hugin"].append(
+        results["Telemetry-Injector"].append(
             ("Intent command (Mach/Führe)", ok, f"got={r_cmd.intent}")
         )
 
         # Intent: status
-        entry_st = normalize_request("ha", {"action": "mtho_ping"})
+        entry_st = normalize_request("ha", {"action": "core_ping"})
         r_st = triage(entry_st)
         ok = r_st.intent == "status"
-        results["Hugin"].append(
-            ("Intent status (mtho_ping)", ok, f"got={r_st.intent}")
+        results["Telemetry-Injector"].append(
+            ("Intent status (core_ping)", ok, f"got={r_st.intent}")
         )
 
         # triage_from_raw
         r_raw = triage_from_raw("whatsapp", {"message": {"conversation": "Zeig mir die Regeln"}}, None)
         ok = isinstance(r_raw, TriageResult) and r_raw.entry.source == "whatsapp"
-        results["Hugin"].append(
+        results["Telemetry-Injector"].append(
             ("triage_from_raw Convenience", ok, "" if ok else str(type(r_raw)))
         )
 
     except Exception as e:
-        results["Hugin"].append(("Hugin Import/Execution", False, str(e)))
+        results["Telemetry-Injector"].append(("Telemetry-Injector Import/Execution", False, str(e)))
 
     # ── 3. Gravitator (mit Mock-Embedding) ──────────────────────────────────
     results["Gravitator"] = []
@@ -251,7 +251,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
         mock_context_result = {
             "ids": [["doc1"]],
             "documents": [["Mock-Dokument: Simulationstheorie Indizien"]],
-            "metadatas": [[{"type": "evidence", "mtho_base": "P"}]],
+            "metadatas": [[{"type": "evidence", "core_base": "P"}]],
             "distances": [[0.2]],
         }
 
@@ -303,7 +303,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 
             # Starker Drift (anderer Text) → kann Veto auslösen bei niedrigem Threshold
             v_drift = check_semantic_drift(
-                "MTHO Ring-0 Direktive Compliance",
+                "CORE Ring-0 Direktive Compliance",
                 "Pizza Rezept Käse Tomaten",
                 threshold=0.1,
             )
@@ -341,7 +341,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
         )
 
         # Critical Path: evidence/add
-        ok = _is_critical_request("POST", "/api/mtho/knowledge/evidence/add")
+        ok = _is_critical_request("POST", "/api/core/knowledge/evidence/add")
         results["Veto Gate"].append(
             ("Critical Path: evidence/add", ok, "" if ok else "nicht erkannt")
         )
@@ -354,7 +354,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 
         # Veto-Modus: z_widerstand >= INV_PHI (Patch am Quellmodul)
         with mock.patch(
-            "src.config.mtho_state_vector.get_current_state",
+            "src.config.core_state.get_current_state",
             return_value=type("S", (), {"z_widerstand": 0.7})(),
         ):
             z = _get_z_widerstand()
@@ -384,7 +384,7 @@ def run_tests() -> dict[str, list[tuple[str, bool, str]]]:
 def print_report(results: dict[str, list[tuple[str, bool, str]]]) -> None:
     """Gibt Test-Report aus."""
     print("\n" + "=" * 60)
-    print("MTHO CONTEXT - End-to-End Integration Test Report")
+    print("CORE CONTEXT - End-to-End Integration Test Report")
     print("=" * 60)
 
     total_pass = 0

@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,7 +7,7 @@
 
 # openWakeWord – Verfügbare Modelle
 
-**Zweck:** Übersicht der vordefinierten und Custom Wake Word Modelle für MTHO/Scout.
+**Zweck:** Übersicht der vordefinierten und Custom Wake Word Modelle für CORE/Scout.
 
 **Quelle:** [openWakeWord GitHub](https://github.com/dscripka/openWakeWord), [Hugging Face](https://huggingface.co/davidscripka/openwakeword)
 
@@ -18,9 +18,9 @@
 | Modell-ID      | Wake Word      | Beschreibung                    | Ähnlich zu |
 |----------------|----------------|----------------------------------|------------|
 | `alexa`        | alexa          | Ein-Wort-Trigger                 | –          |
-| `hey_mycroft`  | hey mycroft    | Zwei-Wort-Phrase                | hey atlas  |
-| `hey_jarvis`   | hey jarvis     | Zwei-Wort-Phrase (Computer-Assistent) | computer, hey atlas |
-| `hey_rhasspy`  | hey rhasspy    | Zwei-Wort-Phrase                | hey atlas  |
+| `hey_mycroft`  | hey mycroft    | Zwei-Wort-Phrase                | hey core  |
+| `hey_jarvis`   | hey jarvis     | Zwei-Wort-Phrase (Computer-Assistent) | computer, hey core |
+| `hey_rhasspy`  | hey rhasspy    | Zwei-Wort-Phrase                | hey core  |
 | `timer`        | timer-Befehle  | Speziell für Timer-Phrasen      | –          |
 | `weather`      | weather-Befehle| Speziell für Wetter-Phrasen     | –          |
 
@@ -34,7 +34,7 @@
 
 ---
 
-## 2. „Computer“ und „Atlas“
+## 2. „Computer“ und „Core“
 
 ### 2.1 „Computer“
 
@@ -44,11 +44,11 @@
 | Ähnliche Modelle              | `hey_jarvis` (Computer-Assistent-Kontext) |
 | Lösung                        | Custom Training (siehe [Custom Wake Word Training](#3-custom-wake-word-training)) |
 
-### 2.2 „Atlas“ / „hey atlas“
+### 2.2 „Core“ / „hey core“
 
 | Frage                         | Antwort |
 |------------------------------|---------|
-| Gibt es „atlas“ vordefiniert? | **Nein** |
+| Gibt es „core“ vordefiniert? | **Nein** |
 | Ähnliche Modelle              | `hey_mycroft`, `hey_jarvis`, `hey_rhasspy` (alle Zwei-Wort-Phrasen) |
 | Lösung                        | Custom Training (siehe [Custom Wake Word Training](#3-custom-wake-word-training)) |
 

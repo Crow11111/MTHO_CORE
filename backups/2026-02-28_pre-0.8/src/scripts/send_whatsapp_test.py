@@ -9,7 +9,7 @@ from src.network.ha_client import HAClient
 
 
 def main() -> int:
-    load_dotenv("c:/MTHO_CORE/.env")
+    load_dotenv("c:/CORE/.env")
     target = (os.getenv("WHATSAPP_TARGET_ID") or "").strip()
     if not target:
         print("FEHLER: WHATSAPP_TARGET_ID in .env nicht gesetzt.")

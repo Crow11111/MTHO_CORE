@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = (os.getenv("OPENCLAW_ADMIN_VPS_HOST") or os.getenv("VPS_HOST","")).strip()
 ADMIN_PORT = int(os.getenv("OPENCLAW_ADMIN_VPS_SSH_PORT") or os.getenv("VPS_SSH_PORT","22"))
@@ -89,7 +89,7 @@ def scp_upload_tar(ssh, local_dir, remote_dir, dry=False):
         sftp.close()
         
         print(f"    Entpacke auf Remote in {remote_dir}...")
-        # Das Elternverzeichnis auf dem Server (z.B. /opt/mtho)
+        # Das Elternverzeichnis auf dem Server (z.B. /opt/core)
         parent_remote = os.path.dirname(remote_dir.rstrip("/"))
         mkdir(ssh, parent_remote, dry=dry)
         
@@ -106,13 +106,13 @@ def mkdir(ssh, path, dry=False):
     run(ssh, f"mkdir -p {path}", check=False, dry=dry)
 
 def deploy_agi_state(ssh, dry=False):
-    compose_dir = "/opt/mtho/docker/agi-state"
-    mtho_dir = "/opt/mtho"
-    src_remote = f"{mtho_dir}/src"
+    compose_dir = "/opt/core/docker/agi-state"
+    core_dir = "/opt/core"
+    src_remote = f"{core_dir}/src"
     src_db_dir = f"{src_remote}/db"
     
     mkdir(ssh, compose_dir, dry=dry)
-    mkdir(ssh, mtho_dir, dry=dry)
+    mkdir(ssh, core_dir, dry=dry)
     
     # Lokale Pfade
     proj_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -123,7 +123,7 @@ def deploy_agi_state(ssh, dry=False):
     
     compose_remote = f"{compose_dir}/docker-compose.yml"
     dockerfile_remote = f"{compose_dir}/Dockerfile"
-    env_remote = f"{mtho_dir}/.env"
+    env_remote = f"{core_dir}/.env"
     
     print("\n[1] Upload Dateien & Verzeichnisse per SCP/TAR ...")
     if os.path.exists(compose_local):
@@ -147,7 +147,7 @@ def deploy_agi_state(ssh, dry=False):
         print(f"  FEHLER: Lokales Verzeichnis {src_local} nicht gefunden!")
     
     print("\n[2] Starte Docker Compose ...")
-    run(ssh, "docker network inspect mtho_net >/dev/null 2>&1 || docker network create mtho_net", check=False, dry=dry)
+    run(ssh, "docker network inspect core_net >/dev/null 2>&1 || docker network create core_net", check=False, dry=dry)
     # WICHTIG: build VOR up -d
     run(ssh, f"cd {compose_dir} && docker compose pull && docker compose build && docker compose up -d", check=True, dry=dry)
     
@@ -160,13 +160,13 @@ def deploy_agi_state(ssh, dry=False):
     
     c, out, err = run(ssh, "python3 -c 'import chromadb' 2>/dev/null", check=False, dry=dry)
     if c == 0:
-        run(ssh, "cd /opt/mtho && python3 src/db/init_chroma.py", check=False, dry=dry)
+        run(ssh, "cd /opt/core && python3 src/db/init_chroma.py", check=False, dry=dry)
     else:
         print("  'chromadb' fehlt auf Host. Verwende temporaeren Docker-Container...")
         chroma_init_cmd = (
-            "docker run --rm --network mtho_net "
+            "docker run --rm --network core_net "
             f"-v {src_db_dir}:/app/db "
-            "-e CHROMA_HOST=mtho_chroma_state "
+            "-e CHROMA_HOST=core_chroma_state "
             "-e CHROMA_PORT=8000 "
             "python:3.10-slim bash -c 'pip install chromadb && python /app/db/init_chroma.py'"
         )

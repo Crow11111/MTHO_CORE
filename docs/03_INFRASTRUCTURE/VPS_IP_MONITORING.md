@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -56,12 +56,12 @@ VPS registriert seine IP automatisch bei DuckDNS:
 
 ```bash
 # Auf VPS als Cron-Job (alle 5 Min):
-*/5 * * * * curl -s "https://www.duckdns.org/update?domains=atlas-vps&token=$DUCKDNS_TOKEN&ip="
+*/5 * * * * curl -s "https://www.duckdns.org/update?domains=core-vps&token=$DUCKDNS_TOKEN&ip="
 ```
 
 Dann in `.env`:
 ```
-VPS_HOST="atlas-vps.duckdns.org"
+VPS_HOST="core-vps.duckdns.org"
 ```
 
 **Vorteil:** IP-Änderung wird automatisch propagiert, keine manuelle Anpassung nötig.

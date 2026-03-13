@@ -1,33 +1,33 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO TTS Browser-Integration (Tampermonkey)
+# CORE TTS Browser-Integration (Tampermonkey)
 
-**Zweck:** Markierten Text im Browser direkt an MTHO senden und lokal als Sprache abspielen.
+**Zweck:** Markierten Text im Browser direkt an CORE senden und lokal als Sprache abspielen.
 
 ---
 
 ## Übersicht
 
-Mit `Strg + Shift + S` wird markierter Text an den lokalen MTHO-Backend-Server gesendet, der ihn via ElevenLabs in Sprache umwandelt und auf dem PC abspielt.
+Mit `Strg + Shift + S` wird markierter Text an den lokalen CORE-Backend-Server gesendet, der ihn via ElevenLabs in Sprache umwandelt und auf dem PC abspielt.
 
 ```
 Browser (Gemini, ChatGPT, etc.)
     ↓ Strg+Shift+S
 Tampermonkey GM_xmlhttpRequest (umgeht CORS)
     ↓ POST JSON
-http://localhost:8000/api/atlas/speak
+http://localhost:8000/api/core/speak
     ↓
 ElevenLabs TTS → MP3 → Lokale Wiedergabe (PC-Lautsprecher)
 ```
 
 ---
 
-## 1. Voraussetzung: MTHO Backend muss laufen
+## 1. Voraussetzung: CORE Backend muss laufen
 
 ```batch
 START_ATLAS_DIENSTE.bat
@@ -50,10 +50,10 @@ Backend läuft dann auf: `http://localhost:8000`
 
 ```javascript
 // ==UserScript==
-// @name         MTHO TTS Push
+// @name         CORE TTS Push
 // @namespace    http://tampermonkey.net/
 // @version      1.1
-// @description  Pusht markierten Text direkt an den lokalen MTHO TTS-Server
+// @description  Pusht markierten Text direkt an den lokalen CORE TTS-Server
 // @match        https://gemini.google.com/*
 // @match        https://chat.openai.com/*
 // @match        https://chatgpt.com/*
@@ -67,9 +67,9 @@ Backend läuft dann auf: `http://localhost:8000`
 (function() {
     'use strict';
 
-    // === MTHO KONFIGURATION ===
+    // === CORE KONFIGURATION ===
     const LOCAL_PORT = 8000;
-    const ENDPOINT_URL = `http://127.0.0.1:${LOCAL_PORT}/api/atlas/speak`;
+    const ENDPOINT_URL = `http://127.0.0.1:${LOCAL_PORT}/api/core/speak`;
     
     // Verfügbare Rollen: atlas_dialog, atlas_info, therapeut, analyst, atlas_high_density
     const DEFAULT_ROLE = "atlas_dialog";
@@ -86,13 +86,13 @@ Backend läuft dann auf: `http://localhost:8000`
                 "Content-Type": "application/json"
             },
             onload: function(response) {
-                console.log("MTHO-TTS: Wird abgespielt.", response.responseText);
+                console.log("CORE-TTS: Wird abgespielt.", response.responseText);
                 // Grüner Rahmen = Erfolg
                 document.body.style.boxShadow = "inset 0 0 15px #0f0";
                 setTimeout(() => document.body.style.boxShadow = "none", 800);
             },
             onerror: function(error) {
-                console.error("MTHO-TTS Error: Backend nicht erreichbar.", error);
+                console.error("CORE-TTS Error: Backend nicht erreichbar.", error);
                 // Roter Rahmen = Fehler
                 document.body.style.boxShadow = "inset 0 0 15px #f00";
                 setTimeout(() => document.body.style.boxShadow = "none", 800);
@@ -108,10 +108,10 @@ Backend läuft dann auf: `http://localhost:8000`
             let selectedText = window.getSelection().toString().trim();
             
             if (selectedText.length > 0) {
-                console.log("MTHO-TTS: Sende", selectedText.length, "Zeichen...");
+                console.log("CORE-TTS: Sende", selectedText.length, "Zeichen...");
                 pushToATLAS(selectedText);
             } else {
-                console.warn("MTHO-TTS: Kein Text markiert.");
+                console.warn("CORE-TTS: Kein Text markiert.");
                 // Gelber Rahmen = Warnung
                 document.body.style.boxShadow = "inset 0 0 15px #ff0";
                 setTimeout(() => document.body.style.boxShadow = "none", 500);
@@ -119,7 +119,7 @@ Backend läuft dann auf: `http://localhost:8000`
         }
     });
     
-    console.log("MTHO TTS Push geladen. Shortcut: Strg+Shift+S");
+    console.log("CORE TTS Push geladen. Shortcut: Strg+Shift+S");
 })();
 ```
 
@@ -144,7 +144,7 @@ Backend läuft dann auf: `http://localhost:8000`
 
 ## 4. API-Referenz
 
-### POST `/api/atlas/speak`
+### POST `/api/core/speak`
 Kurzform - spielt sofort ab.
 
 **Request:**
@@ -160,11 +160,11 @@ Kurzform - spielt sofort ab.
 {
     "status": "ok",
     "played": true,
-    "path": "c:\\MTHO_CORE\\media\\tts_abc123.mp3"
+    "path": "c:\\CORE\\media\\tts_abc123.mp3"
 }
 ```
 
-### POST `/api/atlas/tts`
+### POST `/api/core/tts`
 Vollversion mit allen Optionen.
 
 **Request:**
@@ -185,7 +185,7 @@ Vollversion mit allen Optionen.
 | `state_prefix` | string | `""` | Emotionaler State-Prefix |
 | `play` | bool | `true` | `true` = lokal abspielen, `false` = MP3 zurückgeben |
 
-### GET `/api/atlas/voice/roles`
+### GET `/api/core/voice/roles`
 Listet alle verfügbaren Rollen/Stimmen.
 
 **Response:**

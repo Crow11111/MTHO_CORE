@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -16,7 +16,7 @@ load_dotenv()
 # Configuration
 # SCOUT_IP should be in .env or passed as arg. For now, we look for it or prompt.
 SCOUT_HOST = os.getenv("SCOUT_HOST", "pi@192.168.178.XX") # Placeholder
-SCOUT_KEY_PATH = os.getenv("SCOUT_KEY_PATH", "c:/MTHO_CORE/.ssh/id_rsa_scout") # Placeholder
+SCOUT_KEY_PATH = os.getenv("SCOUT_KEY_PATH", "c:/CORE/.ssh/id_rsa_scout") # Placeholder
 
 def deploy_scout():
     print(f"Deploying Scout to {SCOUT_HOST}...")
@@ -32,7 +32,7 @@ def deploy_scout():
         return
 
     # 1. Create directory structure
-    remote_dir = "/home/pi/mtho_scout"
+    remote_dir = "/home/pi/core_scout"
     c.run(f"mkdir -p {remote_dir}/src/edge")
     c.run(f"mkdir -p {remote_dir}/src/services")
     c.run(f"mkdir -p {remote_dir}/docker")

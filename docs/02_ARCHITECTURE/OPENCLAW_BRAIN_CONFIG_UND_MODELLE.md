@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -13,7 +13,7 @@ Kurz: **GatewayRequestError: invalid config** = Schema-Validierung schlägt fehl
 
 ## 1. Exakte Fehlerstelle ermitteln: `openclaw doctor`
 
-**Von 4D_RESONATOR (MTHO_CORE) aus (mit .env für VPS):**
+**Von 4D_RESONATOR (CORE) aus (mit .env für VPS):**
 
 ```bash
 python -m src.scripts.openclaw_doctor_vps
@@ -84,7 +84,7 @@ Damit das Brain **andere Modelle** (z. B. Claude, Nexos, weitere Gemini-Variante
 4. **Defaults / Aliase:**  
    Unter `agents.defaults.models` für **jedes** genutzte Modell einen Eintrag: Key = `provider/model-id`, Value = `{ "alias": "Anzeigename" }`. Ohne diese Einträge erscheinen nicht alle Modelle in der UI.
 
-Nach Änderungen: Config ohne REDACTED/$VAR auf den VPS deployen, Container neustarten, dann erneut `openclaw doctor` und einen Test-Request (z. B. über MTHO) ausführen.
+Nach Änderungen: Config ohne REDACTED/$VAR auf den VPS deployen, Container neustarten, dann erneut `openclaw doctor` und einen Test-Request (z. B. über CORE) ausführen.
 
 ---
 

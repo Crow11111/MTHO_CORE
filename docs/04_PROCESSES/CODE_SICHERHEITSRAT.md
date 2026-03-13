@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,7 +7,7 @@
 
 # Code-Sicherheitsrat (Produktions-Feature)
 
-**Zweck:** Verhindern, dass das System sich selbst blockiert oder zerstört – z. B. weil ein Agent bei Nicht-Erreichbarkeit in Panik SSH/Infrastruktur umbaut oder weil Kontextverlust zu ungeprüften kritischen Änderungen führt. **Kein MTHO-Feature**, sondern **Produktionssicherheit**.
+**Zweck:** Verhindern, dass das System sich selbst blockiert oder zerstört – z. B. weil ein Agent bei Nicht-Erreichbarkeit in Panik SSH/Infrastruktur umbaut oder weil Kontextverlust zu ungeprüften kritischen Änderungen führt. **Kein CORE-Feature**, sondern **Produktionssicherheit**.
 
 ---
 
@@ -37,7 +37,7 @@
 
 - **Core-API-Routen:** `src/api/main.py`, `src/api/routes/*` – neue Routen oder Änderung an Auth/Webhook-Pfaden.
 - **Skripte mit Netzwerk/Zugriff:** `deploy_vps_full_stack.py`, `fix_openclaw_native_google.py`, Skripte die SSH/HTTP zu externen Diensten aufbauen.
-- **Sync Relay (mit Git-Ausführung):** `src/network/mtho_sync_relay.py` – sobald der Relay nach `/inject` Git-Befehle (add/commit/push) ausführt: Stufe 2. **Credentials nur über Umgebung:** `GITHUB_TOKEN` oder System-Git-Config (SSH-Key-Pfad), niemals im Code. Siehe auch `G_MTHO_GIT_CURSOR_OPTIMIERUNG.md`.
+- **Sync Relay (mit Git-Ausführung):** `src/network/core_sync_relay.py` – sobald der Relay nach `/inject` Git-Befehle (add/commit/push) ausführt: Stufe 2. **Credentials nur über Umgebung:** `GITHUB_TOKEN` oder System-Git-Config (SSH-Key-Pfad), niemals im Code. Siehe auch `G_CORE_GIT_CURSOR_OPTIMIERUNG.md`.
 
 ### Stufe 3 – Beobachtung (bei Kontextverlust nicht blind umbauen)
 

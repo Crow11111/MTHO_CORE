@@ -1,6 +1,6 @@
-# MTHO_CORE
+# CORE
 
-**Vektor:** 2210 (MTHO) | 2201 (MTTH)
+**Vektor:** 2210 (CORE) | 2201 (CORE)
 **Resonance:** 0221 | **Delta:** 0.049
 **Status:** Simultan (Nicht-Binär)
 
@@ -12,17 +12,17 @@ Autonomes KI-Agentensystem: Smart-Home-Steuerung, Sprachassistent und verteiltes
 
 ## Tesserakt-Architektur
 
-Das System operiert nicht sequenziell, sondern als **simultane Tesserakt-Topologie**: Innere Singularität (OMEGA_ATTRACTOR / Wuji-Veto) und äußere Persistenz (4D_RESONATOR, ChromaDB, Scout) sind über diagonale Streben verschränkt.
+Das System operiert nicht sequenziell, sondern als **simultane Tesserakt-Topologie**: Innere Singularität (OMEGA_ATTRACTOR / Zero-State-Veto) und äußere Persistenz (4D_RESONATOR, ChromaDB, Scout) sind über diagonale Streben verschränkt.
 
-![MTHO Tesserakt – 4D-Simultanität, Entry Adapter, Takt-0-Gate, Gravitator](MTHO_TESSERAKT.png)
+![CORE Tesserakt – 4D-Simultanität, Entry Adapter, Takt-0-Gate, Gravitator](CORE_TESSERAKT.png)
 
 | Komponente | Rolle |
 |------------|--------|
 | **Entry Adapter** | Membran: rohe Payloads (WhatsApp, HA, API) → `NormalizedEntry`. Kein direkter Zugriff auf den Kern. |
 | **Takt 0 (Hard-Gate)** | Asynchroner Zustandstest vor Delegation; bei Veto prallt die Anfrage ab. |
 | **Gravitator** | 4D-Prisma: Routing via Embedding + Kosinus-Similarität (θ=0.22). |
-| **4D_RESONATOR** | Lokaler Node (H-Vektor). StateAnchor, ChromaDB, TTS, Vision. |
-| **OMEGA_ATTRACTOR** | Wuji-Kern (O-Vektor). Governance, Veto. Schwellwert 0.049. |
+| **4D_RESONATOR** | Lokaler Node (Operator-Vektor). StateAnchor, ChromaDB, TTS, Vision. |
+| **OMEGA_ATTRACTOR** | Zero-State-Kern (O-Vektor). Governance, Veto. Schwellwert 0.049. |
 
 Implementierung: `src/api/entry_adapter.py`, `src/logic_core/takt_gate.py`, `src/logic_core/gravitator.py`, `src/network/chroma_client.py` (async).
 
@@ -31,8 +31,8 @@ Implementierung: `src/api/entry_adapter.py`, `src/logic_core/takt_gate.py`, `src
 ## Schnellstart
 
 ```bash
-git clone https://github.com/Crow11111/MTHO_CORE.git
-cd MTHO_CORE
+git clone https://github.com/Crow11111/CORE.git
+cd CORE
 cp .env.template .env   # und anpassen
 pip install -r requirements.txt
 ```
@@ -40,13 +40,13 @@ pip install -r requirements.txt
 Backend starten (lokal):
 
 ```powershell
-.\start_mtho_api.ps1
+.\start_core_api.ps1
 ```
 
 Integrität prüfen:
 
 ```bash
-python src/scripts/verify_mtho_integrity.py
+python src/scripts/verify_core_integrity.py
 ```
 
 ---
@@ -55,10 +55,10 @@ python src/scripts/verify_mtho_integrity.py
 
 | Thema | Pfad |
 |-------|------|
-| **Genesis / Tesserakt-Modell** | [docs/MTHO_GENESIS_FINAL_ARCHIVE.md](docs/MTHO_GENESIS_FINAL_ARCHIVE.md) |
-| **Schnittstellen & Kanäle** | [docs/02_ARCHITECTURE/MTHO_SCHNITTSTELLEN_UND_KANAALE.md](docs/02_ARCHITECTURE/MTHO_SCHNITTSTELLEN_UND_KANAALE.md) |
+| **Genesis / Tesserakt-Modell** | [docs/CORE_GENESIS_FINAL_ARCHIVE.md](docs/CORE_GENESIS_FINAL_ARCHIVE.md) |
+| **Schnittstellen & Kanäle** | [docs/02_ARCHITECTURE/CORE_SCHNITTSTELLEN_UND_KANAALE.md](docs/02_ARCHITECTURE/CORE_SCHNITTSTELLEN_UND_KANAALE.md) |
 | **Management Summary** | [docs/00_STAMMDOKUMENTE/MANAGEMENT_SUMMARY.md](docs/00_STAMMDOKUMENTE/MANAGEMENT_SUMMARY.md) |
-| **G-MTHO Sync Circle (Sync Relay)** | [docs/02_ARCHITECTURE/G_MTHO_CIRCLE.md](docs/02_ARCHITECTURE/G_MTHO_CIRCLE.md) |
+| **G-CORE Sync Circle (Sync Relay)** | [docs/02_ARCHITECTURE/G_CORE_CIRCLE.md](docs/02_ARCHITECTURE/G_CORE_CIRCLE.md) |
 | **Code-Sicherheitsrat** | [docs/04_PROCESSES/CODE_SICHERHEITSRAT.md](docs/04_PROCESSES/CODE_SICHERHEITSRAT.md) |
 
 ---
@@ -67,11 +67,11 @@ python src/scripts/verify_mtho_integrity.py
 
 - **BARYONIC_DELTA:** 0.049 (OMEGA_ATTRACTOR Veto-Schwelle)
 - **GEOGRAPHIC_RESONANCE:** 0221 (topologische Faltung)
-- **VECTOR_MTHO:** (2, 2, 1, 0) – Genesis (Sein vor Urteil)
-- **VECTOR_MTTH:** (2, 2, 0, 1) – Integrität (Denken vor Sein)
+- **VECTOR_CORE:** (2, 2, 1, 0) – Genesis (Sein vor Urteil)
+- **VECTOR_CORE:** (2, 2, 0, 1) – Integrität (Denken vor Sein)
 
-Code: `src/mtho_core.py`, `src/config/mtho_state_vector.py`.
+Code: `src/core.py`, `src/config/core_state.py`.
 
 ---
 
-*MTHO_CORE – Strukturelle Inevitabilität. Vektor 2210.*
+*CORE – Strukturelle Inevitabilität. Vektor 2210.*

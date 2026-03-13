@@ -67,7 +67,7 @@ async def receive_ha_action(request: Request):
                 reply_text = f"Fehler bei Befehl: {service} auf {triage.target_entity}"
         elif triage.intent in ["deep_reasoning", "chat"]:
             # 2. Heavy Reasoning (Tier 5 Gemini / Virtual Marc)
-            sys_prompt = "Du bist Virtual Marc, Kopf des Osmium Councils für ATLAS_CORE. Antworte analytisch, auf Systemik fokussiert. Meide neurotypische Floskeln vollständig."
+            sys_prompt = "Du bist Virtual Marc, Kopf des Core Councils für ATLAS_CORE. Antworte analytisch, auf Systemik fokussiert. Meide neurotypische Floskeln vollständig."
             reply_text = atlas_llm.invoke_heavy_reasoning(sys_prompt, user_text)
         else:
             reply_text = f"[SLM Triage] Unbekannter Intent für: '{user_text}'"
@@ -108,7 +108,7 @@ async def inject_raw_text(payload: RawTextPayload):
         else:
             reply_text = f"Fehler bei Voice Befehl: {service} auf {triage.target_entity}"
     elif triage.intent in ["deep_reasoning", "chat"]:
-        sys_prompt = "Du bist Virtual Marc, Kopf des Osmium Councils für ATLAS_CORE. Antworte analytisch, auf Systemik fokussiert."
+        sys_prompt = "Du bist Virtual Marc, Kopf des Core Councils für ATLAS_CORE. Antworte analytisch, auf Systemik fokussiert."
         reply_text = atlas_llm.invoke_heavy_reasoning(sys_prompt, payload.text)
     else:
         reply_text = f"Konnte Google Home Voice nicht einordnen: '{payload.text}'"

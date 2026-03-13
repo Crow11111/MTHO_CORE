@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Voice – Sound-Abspiel auf Mini
+CORE Voice – Sound-Abspiel auf Mini
 ====================================
 Spielt Audio-Dateien (MP3) auf HA media_player (z.B. Google Mini).
 Nutzt HTTP-Server + media_player.play_media wie tts_dispatcher.
@@ -55,7 +55,7 @@ async def play_sound_on_mini(
         await asyncio.to_thread(os.startfile, path)
         return True
 
-    host_ip = os.getenv("MTHO_HOST_IP", "192.168.178.20")
+    host_ip = os.getenv("CORE_HOST_IP", "192.168.178.20")
     port = port or int(os.getenv("TTS_STREAM_PORT", str(DEFAULT_STREAM_PORT)))
     entity_id = (
         entity_id

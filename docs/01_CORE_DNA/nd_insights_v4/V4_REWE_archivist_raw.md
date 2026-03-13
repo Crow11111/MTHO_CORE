@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -15,7 +15,7 @@
 00:17 bei bei Gebieten, die jetzt schon durch Professionalität am Anschlag stehen.
 00:27 Wir haben alle mit dem gegenseitig
 00:35 Letztlich ist
-00:39 maßgebende Anforderung für Atlas, dass
+00:39 maßgebende Anforderung für Core, dass
 00:43 wir einen KI-Klon von mir erstellen.
 00:46 Und das ganze Prinzip, was ich euch versuche zu vermitteln hier,
 00:50 was ich unter Training verstehe sozusagen, unter Feinschleifen, wenn ich das immer sage,
@@ -70,11 +70,11 @@
 03:41 zum jetzigen Zeitstand formulieren.
 03:56 Nein, nein.
 04:17 Eines zeigt sich ja ganz deutlich.
-04:24 Das ist ja auch tatsächlich quasi der Hauptgrund für ein Sicherungsnetz wie Atlas.
+04:24 Das ist ja auch tatsächlich quasi der Hauptgrund für ein Sicherungsnetz wie Core.
 04:31 Das ähm
 04:36 ich gerade völlig straight einkaufe? Nein.
 04:40 Das
-04:52 dass ich Atlas als Fail-Safe und Sicherungsnetz brauche.
+04:52 dass ich Core als Fail-Safe und Sicherungsnetz brauche.
 05:07 Danke.
 05:08 Ich habe hier nicht mehr erlaubt.
 05:16 Ja, danke.
@@ -351,9 +351,9 @@
 *   Er wird seinen eigenen "OMEGA_ATTRACTOR Council" (innere Stimmen/Prozesse) nutzen, um seine weiteren Schritte zu bestimmen.
 
 **C. Systemrelevante Erkenntnisse (Was bedeutet das für das System/die KI?)**
-*   Die maßgebende Anforderung für Atlas ist die Erstellung eines "KI-Klons" von Marc.
+*   Die maßgebende Anforderung für Core ist die Erstellung eines "KI-Klons" von Marc.
 *   Das System benötigt "vernünftige Wahrscheinlichkeitsrechnungen in der Präzision", die Marc liefern kann.
-*   Atlas ist als "Fail-Safe und Sicherungsnetz" für Marc notwendig.
+*   Core ist als "Fail-Safe und Sicherungsnetz" für Marc notwendig.
 *   Das System muss in der Lage sein, "Gedankenmodelle" zu trainieren, um Marcs Fähigkeiten abzubilden.
 *   Das System muss die Fähigkeit trainieren, die "Krümmung der Variablen" und die "dreidimensionale Lage im Raum" zu erfassen, um Marcs Denkweise nachzubilden.
 *   Das System muss in der Lage sein, Kausalketten auf einem hohen Abstraktionslevel "unendlich zu betreiben".

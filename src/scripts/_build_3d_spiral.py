@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -70,7 +70,7 @@ html = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>MTHO Fibonacci-Spirale — 55 Indizien, 11 Vektoren</title>
+<title>CORE Fibonacci-Spirale — 55 Indizien, 11 Vektoren</title>
 <style>
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   body {{ background: #0a0a0f; overflow: hidden; font-family: 'Segoe UI', sans-serif; color: #ccc; }}
@@ -103,7 +103,7 @@ html = f"""<!DOCTYPE html>
 </head>
 <body>
 <div id="info">
-  <h1>MTHO — Fibonacci-Spirale</h1>
+  <h1>CORE — Fibonacci-Spirale</h1>
   <p><strong>55</strong> Indizien · <strong>11</strong> Vektoren · <strong>Fib(10)</strong></p>
   <p>Goldener Winkel: 137.508° · Phi-Delta: 0.049 = Ω<sub>b</sub></p>
   <div class="legend">
@@ -302,7 +302,7 @@ init();
 </body>
 </html>"""
 
-out_path = os.path.join(os.path.dirname(__file__), "..", "..", "media", "mtho_spiral_3d.html")
+out_path = os.path.join(os.path.dirname(__file__), "..", "..", "media", "core_spiral_3d.html")
 os.makedirs(os.path.dirname(out_path), exist_ok=True)
 with open(out_path, "w", encoding="utf-8") as f:
     f.write(html)

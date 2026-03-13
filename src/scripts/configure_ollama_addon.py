@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -64,7 +64,7 @@ async def start_addon_via_service(client: httpx.AsyncClient) -> bool:
 
 async def main():
     async with httpx.AsyncClient(timeout=15.0) as client:
-        logger.info("=== MTHO: Ollama Raspi5 Aktivierung ===")
+        logger.info("=== CORE: Ollama Raspi5 Aktivierung ===")
         
         # Step 1: Check if port is already open
         if await check_ollama_port(client):

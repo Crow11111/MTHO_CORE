@@ -48,7 +48,7 @@ Diese Anleitung beschreibt, wie eine Logitech Brio Kamera in `go2rtc` **auf dem 
 Um den exakten Namen der Kamera für FFmpeg zu finden, führe folgenden Befehl aus:
 
 ```powershell
-& "C:\MTHO_CORE\driver\go2rtc_win64\ffmpeg.exe" -list_devices true -f dshow -i dummy
+& "C:\CORE\driver\go2rtc_win64\ffmpeg.exe" -list_devices true -f dshow -i dummy
 ```
 
 Suche unter der Sektion „DirectShow video devices“ nach dem Namen deiner Kamera (z. B. `"Logitech BRIO"` oder `"Logitech BRIO 4K"`). Notiere dir diesen Namen exakt.

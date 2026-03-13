@@ -4,7 +4,7 @@ Stammdokumente für OC auf den Hostinger-VPS deployen.
 Liest alle .md-Dateien aus docs/stammdokumente_oc/ und legt sie auf dem VPS
 unter /var/lib/openclaw/workspace/stammdokumente/ ab (für OC einsehbar).
 
-Nur ausführen nach Freigabe durch den Rat (Osmium Council).
+Nur ausführen nach Freigabe durch den Rat (Core Council).
 .env: VPS_HOST, VPS_USER, VPS_PASSWORD.
 
 Aufruf (aus Projekt-Root):
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HOST = os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))

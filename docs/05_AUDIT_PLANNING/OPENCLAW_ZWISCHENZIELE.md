@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -18,7 +18,7 @@
 | **Z1** | **LÄUFT** | `openclaw doctor` sauber; Container-Logs: `[gateway] listening on ws://0.0.0.0:18789`, Agent-Modell gesetzt, API 200 |
 | **Z2** | **LÄUFT** | Browser: Config-Seite zeigt **Formular** (Schema geladen), KEIN "Schema unavailable" |
 | **Z3** | **LÄUFT** | Browser: Agents/Channels/Config/Chat – alle Buttons reagieren, Seiten öffnen sich |
-| **Z4** | **LÄUFT** | Browser: 2 Agents (MTHO, Agent), 5 Instances, WhatsApp-Channel sichtbar, Config editierbar |
+| **Z4** | **LÄUFT** | Browser: 2 Agents (CORE, Agent), 5 Instances, WhatsApp-Channel sichtbar, Config editierbar |
 | **Z5** | **LÄUFT** | API-Call: `POST /v1/chat/completions` → Agent antwortet: "Signal verstanden. Status: bereit." |
 
 **Alle Z1–Z5 bestanden. OpenClaw Admin ist eine funktionsfähige Installation.**

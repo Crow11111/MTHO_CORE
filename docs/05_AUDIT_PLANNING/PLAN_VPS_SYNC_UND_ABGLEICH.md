@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -15,14 +15,14 @@
 
 ## Ziel
 
-1. **Ring-0/VPS-Sync:** Alle `core_directives` von 4D_RESONATOR (MTHO_CORE) (lokal) auf die VPS-ChromaDB synchronisieren.
-2. **VPS-Abgleich:** Prüfen, was auf dem VPS in `core_directives` liegt; Vergleich mit Repo/4D_RESONATOR (MTHO_CORE); Ergebnis in VERGLEICHSDOKUMENT eintragen.
+1. **Ring-0/VPS-Sync:** Alle `core_directives` von 4D_RESONATOR (CORE) (lokal) auf die VPS-ChromaDB synchronisieren.
+2. **VPS-Abgleich:** Prüfen, was auf dem VPS in `core_directives` liegt; Vergleich mit Repo/4D_RESONATOR (CORE); Ergebnis in VERGLEICHSDOKUMENT eintragen.
 
 ---
 
 ## Quellen (02 + 03 + 04)
 
-- **docs/02_ARCHITECTURE:** MTHO_SCHNITTSTELLEN_UND_KANAALE.md (ChromaDB, Tunnel), MTHO_CHROMADB_SCHEMA.md (core_directives, Tunnel-Befehl).
+- **docs/02_ARCHITECTURE:** CORE_SCHNITTSTELLEN_UND_KANAALE.md (ChromaDB, Tunnel), CORE_CHROMADB_SCHEMA.md (core_directives, Tunnel-Befehl).
 - **docs/03_INFRASTRUCTURE:** VPS_FULL_STACK_SETUP.md (Container, Port 8000 intern, ufw blockt 8000), VPS_DIENSTE_UND_OPENCLAW_SANDBOX.md.
 - **docs/04_PROCESSES:** VPS_SYNC_CORE_DIRECTIVES.md (Ablauf: SSH-Tunnel, dann Sync-Skript).
 - **.env:** VPS_HOST, VPS_USER, VPS_PASSWORD (oder VPS_SSH_KEY); OPENCLAW_ADMIN_VPS_*.

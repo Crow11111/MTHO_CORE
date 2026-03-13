@@ -1,13 +1,13 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
-"""Deploy mtho_conversation Integration auf Scout via HA Supervisor API / Samba.
+"""Deploy core_conversation Integration auf Scout via HA Supervisor API / Samba.
 
-Ziel: ha_integrations/mtho_conversation/ -> /config/custom_components/mtho_conversation/
+Ziel: ha_integrations/core_conversation/ -> /config/custom_components/core_conversation/
 Methoden: Supervisor API (kein File-Upload), Samba-Share, Fallback: manuelle Anweisung.
 """
 from __future__ import annotations
@@ -39,8 +39,8 @@ SCOUT_IP = os.getenv("SCOUT_IP", "192.168.178.54").strip()
 SAMBA_USER = os.getenv("SAMBA_USER", "root").strip()
 SAMBA_PASS = os.getenv("SAMBA_PASS", "").strip()
 
-SOURCE_DIR = PROJECT_ROOT / "ha_integrations" / "mtho_conversation"
-TARGET_NAME = "mtho_conversation"
+SOURCE_DIR = PROJECT_ROOT / "ha_integrations" / "core_conversation"
+TARGET_NAME = "core_conversation"
 
 # Addon-Slugs (HA Supervisor)
 SLUG_SAMBA = "core_samba"
@@ -197,7 +197,7 @@ def deploy() -> tuple[bool, str]:
 
 
 def main() -> int:
-    print("=== MTHO: mtho_conversation Integration Deploy auf Scout ===\n")
+    print("=== CORE: core_conversation Integration Deploy auf Scout ===\n")
 
     info = check_addons()
     if info["ok"]:
@@ -218,9 +218,9 @@ def main() -> int:
         print("\nNaechste Schritte:")
         print("  1. Einstellungen -> System -> Home Assistant Core neu starten")
         print("  2. Einstellungen -> Geraete & Dienste -> Integration hinzufuegen")
-        print("     -> 'MTHO Conversation' suchen und konfigurieren")
+        print("     -> 'CORE Conversation' suchen und konfigurieren")
         print("  3. Telemetrie (optional):")
-        print("     tail -f /config/home-assistant.log | grep mtho_conversation")
+        print("     tail -f /config/home-assistant.log | grep core_conversation")
         print("     (via SSH Add-on oder Log-Viewer)")
         return 0
 
@@ -240,17 +240,17 @@ def main() -> int:
         print("2. Ordner custom_components erstellen, falls nicht vorhanden")
         print("3. Kopiere:")
         print(f"   {SOURCE_DIR}")
-        print("   nach: \\\\192.168.178.54\\config\\custom_components\\mtho_conversation")
+        print("   nach: \\\\192.168.178.54\\config\\custom_components\\core_conversation")
     elif vscode_running:
         print("\nStudio Code Server Add-on ist aktiv.")
         print("1. Oeffne VSCode ueber HA Add-on (Ingress)")
         print("2. Oeffne Ordner /config")
-        print("3. Erstelle custom_components/mtho_conversation falls noetig")
-        print("4. Lade Dateien aus ha_integrations/mtho_conversation hoch")
+        print("3. Erstelle custom_components/core_conversation falls noetig")
+        print("4. Lade Dateien aus ha_integrations/core_conversation hoch")
     else:
         print("\nWeder Samba noch VSCode Add-on aktiv.")
         print("Option A: Samba Add-on installieren und starten")
-        print("Option B: SSH Add-on nutzen: scp -r ha_integrations/mtho_conversation root@192.168.178.54:/config/custom_components/")
+        print("Option B: SSH Add-on nutzen: scp -r ha_integrations/core_conversation root@192.168.178.54:/config/custom_components/")
 
     print("\nNach dem Kopieren:")
     print("  Einstellungen -> System -> Home Assistant Core neu starten")

@@ -1,19 +1,19 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Reality Check Visualizer
+CORE Reality Check Visualizer
 ------------------------------
 Generiert Visualisierungen fuer den Simulation Theory Report 2026.
 
 Output:
 - docs/images/generated/mtho_3d_construct.png
-- docs/images/generated/mtho_fibonacci_spiral.png
-- docs/images/generated/mtho_causality_timeline.png
-- docs/images/generated/mtho_idle_derivation.png
+- docs/images/generated/core_fibonacci_spiral.png
+- docs/images/generated/core_causality_timeline.png
+- docs/images/generated/core_idle_derivation.png
 
 Usage:
     python src/scripts/visualize_reality_check.py
@@ -32,16 +32,16 @@ from datetime import datetime, timedelta
 
 # Konfiguration
 OUTPUT_DIR = "docs/images/generated"
-plt.style.use('dark_background')  # MTHO Style
+plt.style.use('dark_background')  # CORE Style
 
-# MTHO Konstanten
+# CORE Konstanten
 PHI = 1.6180339887498948482
 BARYONIC_DELTA = 0.049
 
 # Datenbasis (Simuliert aus Report)
 EVIDENCE_DATA = [
     # L (Logisch) - 19 Total
-    {"id": "L01", "name": "MTHO Codierung", "category": "L", "value": 0.9, "time": 1},
+    {"id": "L01", "name": "CORE Codierung", "category": "L", "value": 0.9, "time": 1},
     {"id": "L02", "name": "Baryonisches Delta", "category": "L", "value": 0.95, "time": 43},
     {"id": "L03", "name": "Symmetriebruch", "category": "L", "value": 0.8, "time": 12},
     {"id": "L04", "name": "Prime Number Distribution", "category": "L", "value": 0.7, "time": 5},
@@ -62,7 +62,7 @@ EVIDENCE_DATA = [
     {"id": "S03", "name": "Dimensionsfaltung", "category": "S", "value": 0.78, "time": 25},
 ]
 
-# Farben fuer MTHO
+# Farben fuer CORE
 COLORS = {
     'L': '#00ff00',  # Green (Matrix)
     'P': '#ff0000',  # Red (Physik/Warnung)
@@ -76,12 +76,12 @@ def ensure_output_dir():
         print(f"Created directory: {OUTPUT_DIR}")
 
 def plot_3d_construct():
-    """1. 3D-Konstrukt Visualisierung (MTHO im Raum)"""
+    """1. 3D-Konstrukt Visualisierung (CORE im Raum)"""
     print("Generating 3D Construct...")
     fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
 
-    # Koordinaten generieren (Mapping MTHO auf XYZ)
+    # Koordinaten generieren (Mapping CORE auf XYZ)
     # L -> X, P -> Y, I -> Z, S -> Size/Color
 
     xs, ys, zs, sizes, colors = [], [], [], [], []
@@ -121,7 +121,7 @@ def plot_3d_construct():
     ax.set_xlabel('Logik (L)')
     ax.set_ylabel('Physik (P)')
     ax.set_zlabel('Info (I)')
-    ax.set_title('MTHO Reality Construct (MTHO-Manifold)')
+    ax.set_title('CORE Reality Construct (CORE-Manifold)')
 
     # Origin im Zentrum
     ax.scatter([0], [0], [0], s=500, c='white', marker='*', label='Origin (idle state)')
@@ -163,13 +163,13 @@ def plot_fibonacci_spiral():
         # Text Label etwas versetzt
         ax.text(angle, radius * 1.1, f"{item['id']}", color=c, fontsize=9, fontweight='bold', ha='center')
 
-    ax.set_title('MTHO Discovery Spiral (Time vs. Entropy)', pad=20)
+    ax.set_title('CORE Discovery Spiral (Time vs. Entropy)', pad=20)
     ax.grid(True, alpha=0.2)
     ax.set_xticklabels([])
     ax.set_yticklabels([])
 
     plt.tight_layout()
-    plt.savefig(f"{OUTPUT_DIR}/mtho_fibonacci_spiral.png", dpi=150)
+    plt.savefig(f"{OUTPUT_DIR}/core_fibonacci_spiral.png", dpi=150)
     plt.close()
 
 def plot_causality_timeline():
@@ -214,7 +214,7 @@ def plot_causality_timeline():
     ax.set_xlim(0, 1)
     ax.set_ylim(-1, len(events))
     ax.axis('off')
-    ax.set_title('MTHO Causality Chain: Input vs. Emergence')
+    ax.set_title('CORE Causality Chain: Input vs. Emergence')
 
     # Custom Legend
     from matplotlib.lines import Line2D
@@ -225,7 +225,7 @@ def plot_causality_timeline():
     ax.legend(handles=legend_elements, loc='upper right')
 
     plt.tight_layout()
-    plt.savefig(f"{OUTPUT_DIR}/mtho_causality_timeline.png", dpi=150)
+    plt.savefig(f"{OUTPUT_DIR}/core_causality_timeline.png", dpi=150)
     plt.close()
 
 def plot_idle_derivation():
@@ -263,7 +263,7 @@ def plot_idle_derivation():
     pos = {}
     pos[root] = (0, 1.0)
 
-    # Layer 1 (MTHO)
+    # Layer 1 (CORE)
     width_l1 = 2.0
     for i, node in enumerate(l1_nodes):
         x = -width_l1/2 + (i * width_l1/(len(l1_nodes)-1))
@@ -303,7 +303,7 @@ def plot_idle_derivation():
     ax.axis('off')
 
     plt.tight_layout()
-    plt.savefig(f"{OUTPUT_DIR}/mtho_idle_derivation.png", dpi=150)
+    plt.savefig(f"{OUTPUT_DIR}/core_idle_derivation.png", dpi=150)
     plt.close()
 
 if __name__ == "__main__":

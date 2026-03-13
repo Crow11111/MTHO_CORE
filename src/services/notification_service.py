@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -133,7 +133,7 @@ class WhatsAppNotificationService:
             return False
 
         message = (
-            f"⚠️ *MTHO SYSTEM REQUEST*\n\n"
+            f"⚠️ *CORE SYSTEM REQUEST*\n\n"
             f"*Typ:* Hardware Expansion\n"
             f"*Grund:* {reason}\n"
             f"*Erwarteter ROI:* {expected_roi}\n\n"

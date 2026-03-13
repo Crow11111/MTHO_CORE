@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -15,13 +15,13 @@ from src.network.ha_client import HAClient
 
 
 def main() -> int:
-    load_dotenv("c:/MTHO_CORE/.env")
+    load_dotenv("c:/CORE/.env")
     target = (os.getenv("WHATSAPP_TARGET_ID") or "").strip()
     if not target:
         print("FEHLER: WHATSAPP_TARGET_ID in .env nicht gesetzt.")
         return 1
 
-    text = "[MTHO] Test-Nachricht über HAClient.send_whatsapp()"
+    text = "[CORE] Test-Nachricht über HAClient.send_whatsapp()"
     print(f"Sende WhatsApp an {target!r}: {text!r}")
 
     ha = HAClient()

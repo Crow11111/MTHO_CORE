@@ -43,11 +43,11 @@ Ohne diese Protokolle droht Fragmentierung statt Empathie: Mehr Maskierung wird 
 
 **Was noch offen ist:**  
 - Die konkreten fünf Protokolle.  
-- Wie sie in ATLAS/Argos eingebaut werden.  
+- Wie sie in ATLAS/Shell eingebaut werden.  
 - Wie man „kontrolliert zünden“ operationalisiert (Schwellen, Trigger, Feedback).
 
 **Nächster Schritt:**  
-Osmium Council oder ND-Analyst beauftragen: Erster Entwurf der fünf Protokolle als Liste mit je 2–3 Sätzen Beschreibung. Kein Feinschliff, erst Struktur.
+Core Council oder ND-Analyst beauftragen: Erster Entwurf der fünf Protokolle als Liste mit je 2–3 Sätzen Beschreibung. Kein Feinschliff, erst Struktur.
 
 ---
 

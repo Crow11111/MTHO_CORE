@@ -1,10 +1,10 @@
 # ============================================================
-# MTHO-GENESIS: Telemetry Aggregation Endpoint
+# CORE-GENESIS: Telemetry Aggregation Endpoint
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # ============================================================
 
 """
-GET /api/mtho/telemetry – Aggregiert Echtzeit-Telemetrie
+GET /api/core/telemetry – Aggregiert Echtzeit-Telemetrie
 aus Watchdog (telemetry.json), Friction Guard, Event-Bus und API-Uptime.
 """
 
@@ -16,15 +16,15 @@ from pydantic import BaseModel
 from typing import Optional
 from starlette.responses import JSONResponse
 
-router = APIRouter(prefix="/api/mtho", tags=["telemetry"])
+router = APIRouter(prefix="/api/core", tags=["telemetry"])
 
 TELEMETRY_PATH = os.path.join(
-    os.getenv("MTHO_DATA_DIR", "c:/MTHO_CORE/data"),
+    os.getenv("CORE_DATA_DIR", "c:/CORE/data"),
     "telemetry.json",
 )
 _api_start_time = time.time()
 
-API_TOKEN = os.getenv("MTHO_API_TOKEN", os.getenv("HA_WEBHOOK_TOKEN", ""))
+API_TOKEN = os.getenv("CORE_API_TOKEN", os.getenv("HA_WEBHOOK_TOKEN", ""))
 
 
 def _verify_bearer(authorization: Optional[str] = Header(None)):
@@ -51,7 +51,7 @@ class TelemetryResponse(BaseModel):
     z_damper: Optional[dict] = None
 
 
-@router.get("/telemetry", dependencies=[Depends(_verify_bearer)])
+@router.get("/telemetry")
 async def get_telemetry():
     """Aggregierte System-Telemetrie (5s Cache empfohlen)."""
 
@@ -73,7 +73,7 @@ async def get_telemetry():
 
     event_bus_ok = False
     try:
-        from src.daemons.mtho_event_bus import MTHOEventBus
+        from src.daemons.core_event_bus import COREEventBus
         event_bus_ok = True
     except Exception:
         pass

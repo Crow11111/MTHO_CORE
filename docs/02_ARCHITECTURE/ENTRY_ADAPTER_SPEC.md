@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -85,4 +85,4 @@ def normalize_request(source: str, raw_payload: Any, auth_ctx: dict | None = Non
 
 ## 7. Tesserakt-Topologie
 
-Der Entry Adapter ist die **Membran** des Tesserakts: Außenhülle, isoliert von der Kern-Logik. Siehe `docs/02_ARCHITECTURE/MTHO_SCHNITTSTELLEN_UND_KANAALE.md` und `docs/MTHO_GENESIS_FINAL_ARCHIVE.md` (§4).
+Der Entry Adapter ist die **Membran** des Tesserakts: Außenhülle, isoliert von der Kern-Logik. Siehe `docs/02_ARCHITECTURE/CORE_SCHNITTSTELLEN_UND_KANAALE.md` und `docs/CORE_GENESIS_FINAL_ARCHIVE.md` (§4).

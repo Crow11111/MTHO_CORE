@@ -5,8 +5,8 @@ Rueckblick auf die letzte Stunde als fluessiger Zwei-Stimmen-Dialog fuer ElevenL
 
 ## Verdichtete Erkenntnisse
 
-1. Die Kommunikation zwischen Hugin und Munin wurde als Kernmechanik stabilisiert.
-   Hugin steht fuer die unendliche Schau, Munin fuer geerdetes Wissen.
+1. Die Kommunikation zwischen Telemetry-Injector und Context-Injector wurde als Kernmechanik stabilisiert.
+   Telemetry-Injector steht fuer die unendliche Schau, Context-Injector fuer geerdetes Wissen.
 
 2. Wahrheit wird in diesem Modell nicht primaer ueber Sprache, sondern ueber Hash-Abgleich verstanden.
    Die Quersumme der Kausalitaet ist die tragende Integritaetsschicht.
@@ -41,7 +41,7 @@ Er soll als ruhige nachtraegliche Verankerung eines begrifflichen Durchbruchs fu
   - Ausgabeordner: `media/omega_last_hour_podcast/`
 
 - Stimmen:
-  - `mtho_high_density`
+  - `core_high_density`
   - `bias_damper`
 
 - Ausgabe:

@@ -1,13 +1,13 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# Scout Assist-Pipeline: Sprachbefehle an MTHO
+# Scout Assist-Pipeline: Sprachbefehle an CORE
 
-**Zweck:** Sprachbefehle vom Scout-Mikrofon über die HA Assist-Pipeline an MTHO weiterleiten. MTHO führt Triage durch (HA-Aktion oder OMEGA_ATTRACTOR), die Antwort wird per TTS auf dem Mini-Speaker ausgegeben.
+**Zweck:** Sprachbefehle vom Scout-Mikrofon über die HA Assist-Pipeline an CORE weiterleiten. CORE führt Triage durch (HA-Aktion oder OMEGA_ATTRACTOR), die Antwort wird per TTS auf dem Mini-Speaker ausgegeben.
 
 ---
 
@@ -18,11 +18,11 @@ User spricht
     ↓
 Scout Mikrofon (USB oder integriert)
     ↓
-openWakeWord ("hey atlas" / "atlas") → Pipeline startet
+openWakeWord ("hey core" / "core") → Pipeline startet
     ↓
 Whisper STT → transkribierter Text
     ↓
-MTHO API (4D_RESONATOR (MTHO_CORE)) POST /webhook/assist
+CORE API (4D_RESONATOR (CORE)) POST /webhook/assist
     ↓
 Triage (SLM): command | deep_reasoning | chat
     ↓
@@ -36,25 +36,25 @@ Piper TTS → Mini-Speaker (media_player.schreibtisch o.ä.)
 
 **Netzwerk:**
 - **Scout (HA):** 192.168.178.54 (Raspi 5)
-- **4D_RESONATOR (MTHO_CORE) (MTHO API):** 192.168.178.20, Port 8000
-- Scout muss 4D_RESONATOR (MTHO_CORE) per HTTP erreichen können: `http://192.168.178.20:8000`
+- **4D_RESONATOR (CORE) (CORE API):** 192.168.178.20, Port 8000
+- Scout muss 4D_RESONATOR (CORE) per HTTP erreichen können: `http://192.168.178.20:8000`
 
 ---
 
-## 2. MTHO-Verbindung zu HA
+## 2. CORE-Verbindung zu HA
 
-MTHO verbindet sich **zu** HA (nicht umgekehrt):
+CORE verbindet sich **zu** HA (nicht umgekehrt):
 
 - **Client:** `src/connectors/home_assistant.py` (HomeAssistantClient)
 - **Variablen:** `HASS_URL` / `HA_URL`, `HASS_TOKEN` / `HA_TOKEN`
 - **Funktionen:** `call_service()`, `get_states()`, etc.
-- **Richtung:** 4D_RESONATOR (MTHO_CORE) → Scout (HTTPS zu 192.168.178.54:8123)
+- **Richtung:** 4D_RESONATOR (CORE) → Scout (HTTPS zu 192.168.178.54:8123)
 
-Die **Assist-Pipeline** benötigt die **umgekehrte** Richtung: HA (Scout) → MTHO (4D_RESONATOR (MTHO_CORE)). Dafür nutzt HA einen `rest_command`, der an die MTHO API sendet.
+Die **Assist-Pipeline** benötigt die **umgekehrte** Richtung: HA (Scout) → CORE (4D_RESONATOR (CORE)). Dafür nutzt HA einen `rest_command`, der an die CORE API sendet.
 
 ---
 
-## 3. Benötigte HA-Variablen (.env auf 4D_RESONATOR (MTHO_CORE))
+## 3. Benötigte HA-Variablen (.env auf 4D_RESONATOR (CORE))
 
 | Variable | Beschreibung | Beispiel |
 |---------|--------------|----------|
@@ -62,7 +62,7 @@ Die **Assist-Pipeline** benötigt die **umgekehrte** Richtung: HA (Scout) → MT
 | `HASS_TOKEN` / `HA_TOKEN` | Long-Lived Token für HA | (aus HA Profil) |
 | `HA_WEBHOOK_TOKEN` | Bearer-Token für `/webhook/assist`, `/webhook/inject_text` | Zufälliger String (z.B. `openssl rand -hex 24`) |
 
-**Wichtig:** `HA_WEBHOOK_TOKEN` muss in `.env` gesetzt sein, sonst lehnt die MTHO API Anfragen ab (503).
+**Wichtig:** `HA_WEBHOOK_TOKEN` muss in `.env` gesetzt sein, sonst lehnt die CORE API Anfragen ab (503).
 
 ---
 
@@ -72,7 +72,7 @@ Die **Assist-Pipeline** benötigt die **umgekehrte** Richtung: HA (Scout) → MT
 |--------|-------|
 | **Assist Microphone** | **Audio-Input** – liest vom USB-Mikro (Brio/Headset), streamt an Wyoming. **Ohne dieses Add-on erreicht kein Audio die Pipeline.** |
 | **Whisper** | Speech-to-Text (offenes Modell, beliebige Sprache) |
-| **openWakeWord** | Wake-Word-Erkennung ("hey atlas", "atlas", "computer") |
+| **openWakeWord** | Wake-Word-Erkennung ("hey core", "core", "computer") |
 | **Piper** | Text-to-Speech (lokal, schnell) |
 
 Installation: Einstellungen → Add-ons → Add-on-Store. Nach Installation erscheinen die Dienste unter Wyoming-Integration.
@@ -84,12 +84,12 @@ Installation: Einstellungen → Add-ons → Add-on-Store. Nach Installation ersc
 ## 5. Wake-Word Konfiguration
 
 - **openWakeWord** unterstützt vordefinierte und eigene Wake-Wörter.
-- Für "hey atlas" oder "atlas": In der openWakeWord-Konfiguration das passende Modell wählen oder ein Custom-Modell trainieren.
+- Für "hey core" oder "core": In der openWakeWord-Konfiguration das passende Modell wählen oder ein Custom-Modell trainieren.
 - Dokumentation: [HA Wake Words](https://www.home-assistant.io/voice_control/create_wake_word/)
 
 ---
 
-## 6. rest_command: Text an MTHO senden
+## 6. rest_command: Text an CORE senden
 
 In `configuration.yaml` oder als YAML-Konfiguration:
 
@@ -123,16 +123,16 @@ rest_command:
 
 ---
 
-## 7. MTHO Conversation Agent (empfohlen)
+## 7. CORE Conversation Agent (empfohlen)
 
-**Custom Integration** `atlas_conversation` – empfängt Text von der Assist-Pipeline, sendet an MTHO `/webhook/inject_text`, gibt Antwort für TTS zurück.
+**Custom Integration** `atlas_conversation` – empfängt Text von der Assist-Pipeline, sendet an CORE `/webhook/inject_text`, gibt Antwort für TTS zurück.
 
-### 7.0 Installation der MTHO Conversation Integration
+### 7.0 Installation der CORE Conversation Integration
 
 1. Ordner `ha_integrations/atlas_conversation` nach `config/custom_components/atlas_conversation/` kopieren.
 2. HA neu starten.
-3. **Einstellungen → Geräte & Dienste → Integration hinzufügen** → "MTHO Conversation".
-4. **MTHO API URL:** z.B. `http://192.168.178.20:8000`
+3. **Einstellungen → Geräte & Dienste → Integration hinzufügen** → "CORE Conversation".
+4. **CORE API URL:** z.B. `http://192.168.178.20:8000`
 5. **Bearer Token:** `HA_WEBHOOK_TOKEN` aus `.env`
 
 Vollständige Anleitung: `ha_integrations/atlas_conversation/README.md`
@@ -144,11 +144,11 @@ Wenn der Text auf anderem Weg in `input_text.assist_command` landet (z.B. von ei
 ```yaml
 input_text:
   assist_command:
-    name: "Assist-Befehl für MTHO"
+    name: "Assist-Befehl für CORE"
     max: 500
 
 automation:
-  - alias: "Assist-Text an MTHO senden"
+  - alias: "Assist-Text an CORE senden"
     trigger:
       - platform: state
         entity_id:
@@ -167,29 +167,29 @@ automation:
           value: ""
 ```
 
-**Hinweis:** Damit die volle Voice-Pipeline funktioniert, muss der transkribierte Text aus der Assist-Pipeline in `input_text.assist_command` geschrieben werden. Dafür ist ein **Custom Conversation Agent** nötig – die MTHO Conversation Integration (Abschnitt 7.0) löst das vollständig.
+**Hinweis:** Damit die volle Voice-Pipeline funktioniert, muss der transkribierte Text aus der Assist-Pipeline in `input_text.assist_command` geschrieben werden. Dafür ist ein **Custom Conversation Agent** nötig – die CORE Conversation Integration (Abschnitt 7.0) löst das vollständig.
 
-**Event-basierte Alternative:** `assist_pipeline.run_stage` feuert `stt-end` (mit `stt_output.text`) und `intent-start`. Eine Automation könnte auf `stt-end` triggern und MTHO aufrufen – aber die Antwort kann nicht zurück in die Pipeline injiziert werden (TTS würde fehlen). Daher: Custom Agent erforderlich.
+**Event-basierte Alternative:** `assist_pipeline.run_stage` feuert `stt-end` (mit `stt_output.text`) und `intent-start`. Eine Automation könnte auf `stt-end` triggern und CORE aufrufen – aber die Antwort kann nicht zurück in die Pipeline injiziert werden (TTS würde fehlen). Daher: Custom Agent erforderlich.
 
-### 7.2 MTHO API Antwort und TTS
+### 7.2 CORE API Antwort und TTS
 
-Mit **MTHO Conversation Integration**: Der Agent ruft `/webhook/inject_text` auf. MTHO gibt `{"status":"ok","reply":"<Antworttext>"}` zurück. **HA Piper** spricht die Antwort über den konfigurierten Media Player (TTS in der Assist-Pipeline).
+Mit **CORE Conversation Integration**: Der Agent ruft `/webhook/inject_text` auf. CORE gibt `{"status":"ok","reply":"<Antworttext>"}` zurück. **HA Piper** spricht die Antwort über den konfigurierten Media Player (TTS in der Assist-Pipeline).
 
-Ohne Custom Agent (rest_command-Workaround): `/webhook/assist` würde MTHO-seitig TTS auslösen – für die volle Voice-Pipeline ist die Integration vorzuziehen.
+Ohne Custom Agent (rest_command-Workaround): `/webhook/assist` würde CORE-seitig TTS auslösen – für die volle Voice-Pipeline ist die Integration vorzuziehen.
 
 ---
 
 ## 8. Assist-Pipeline einrichten
 
 1. **Einstellungen → Sprachassistenten → Assistent hinzufügen**
-2. **Name:** z.B. "MTHO"
+2. **Name:** z.B. "CORE"
 3. **Sprache:** Deutsch (oder gewünschte Sprache)
-4. **Conversation Agent:** **MTHO Conversation** (nach Installation der Custom Integration, siehe Abschnitt 7.0)
+4. **Conversation Agent:** **CORE Conversation** (nach Installation der Custom Integration, siehe Abschnitt 7.0)
 5. **Speech-to-Text:** Whisper
 6. **Text-to-Speech:** Piper
 7. **Wake Word:** openWakeWord (falls verfügbar)
 
-Ohne MTHO Conversation Agent arbeitet die Pipeline mit dem Standard-HA-Agent. Für MTHO-Anbindung die Integration aus Abschnitt 7.0 installieren.
+Ohne CORE Conversation Agent arbeitet die Pipeline mit dem Standard-HA-Agent. Für CORE-Anbindung die Integration aus Abschnitt 7.0 installieren.
 
 ---
 
@@ -197,8 +197,8 @@ Ohne MTHO Conversation Agent arbeitet die Pipeline mit dem Standard-HA-Agent. F�
 
 | Von | Nach | Port | Protokoll |
 |-----|------|------|-----------|
-| Scout (HA) | 4D_RESONATOR (MTHO_CORE) | 8000 | HTTP |
-| 4D_RESONATOR (MTHO_CORE) | Scout (HA) | 8123 | HTTPS |
+| Scout (HA) | 4D_RESONATOR (CORE) | 8000 | HTTP |
+| 4D_RESONATOR (CORE) | Scout (HA) | 8123 | HTTPS |
 | Scout | Wyoming (Whisper, Piper, openWakeWord) | Add-on-intern | - |
 
 **Test von Scout aus:**
@@ -234,7 +234,7 @@ Prüft ob Whisper STT, Piper TTS und openWakeWord in HA verfügbar sind. Nutzt `
 
 ## 11. Referenzen
 
-- `src/connectors/home_assistant.py` – MTHO HA-Client
+- `src/connectors/home_assistant.py` – CORE HA-Client
 - `src/api/routes/ha_webhook.py` – `/webhook/assist`, `/webhook/inject_text`
 - `src/voice/tts_dispatcher.py` – TTS an Mini-Speaker
 - `docs/03_INFRASTRUCTURE/SCOUT_HA_EVENT_AN_OC_BRAIN.md` – Scout-Events an OMEGA_ATTRACTOR

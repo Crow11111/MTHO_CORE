@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -21,9 +21,9 @@ from loguru import logger
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(PROJECT_ROOT / ".env")
 
-VPS_HOST = os.getenv("VPS_HOST", "").strip() or "mtho-vps"
+VPS_HOST = os.getenv("VPS_HOST", "").strip() or "core-vps"
 VPS_USER = os.getenv("VPS_USER", "root").strip()
-VPS_DEPLOY_PATH = os.getenv("VPS_DEPLOY_PATH", "/opt/mtho-core").strip()
+VPS_DEPLOY_PATH = os.getenv("VPS_DEPLOY_PATH", "/opt/core-core").strip()
 VPS_SSH_KEY = os.getenv("VPS_SSH_KEY", "").strip()
 
 
@@ -95,14 +95,14 @@ def main() -> None:
     # 5. SSH: docker build + run
     cmd = (
         f"cd {VPS_DEPLOY_PATH} && "
-        "docker build -f docker/agi-state/Dockerfile.vps -t mtho-vps-slim . && "
-        "docker stop mtho-vps-slim 2>/dev/null || true && "
-        "docker rm mtho-vps-slim 2>/dev/null || true && "
-        "docker run -d --name mtho-vps-slim --env-file .env -p 8001:8001 mtho-vps-slim"
+        "docker build -f docker/agi-state/Dockerfile.vps -t core-vps-slim . && "
+        "docker stop core-vps-slim 2>/dev/null || true && "
+        "docker rm core-vps-slim 2>/dev/null || true && "
+        "docker run -d --name core-vps-slim --env-file .env -p 8001:8001 core-vps-slim"
     )
     r = _run(_ssh_base() + [cmd], timeout=300)
     _check(r, "SSH docker build/run fehlgeschlagen")
-    logger.success("Deploy abgeschlossen: mtho-vps-slim auf Port 8001")
+    logger.success("Deploy abgeschlossen: core-vps-slim auf Port 8001")
 
 
 if __name__ == "__main__":

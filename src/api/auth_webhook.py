@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Webhook-Auth-Dependencies für MTHO_CORE API.
+Webhook-Auth-Dependencies für CORE API.
 Shared-Secret / Bearer / API-Key Checks mit constant-time Vergleich.
 """
 from __future__ import annotations
@@ -26,12 +26,12 @@ def _constant_time_compare(a: str | None, b: str | None) -> bool:
     return secmod.compare_digest(a.strip(), b.strip())
 
 
-def verify_whatsapp_auth(x_mtho_webhook_secret: str | None = Header(None, alias="X-MTHO-WEBHOOK-SECRET")):
+def verify_whatsapp_auth(x_core_webhook_secret: str | None = Header(None, alias="X-CORE-WEBHOOK-SECRET")):
     """Shared-Secret Header-Check für WhatsApp-Webhook."""
-    expected = os.getenv("MTHO_WEBHOOK_SECRET", "").strip()
+    expected = os.getenv("CORE_WEBHOOK_SECRET", "").strip()
     if not expected:
-        raise HTTPException(status_code=503, detail="MTHO_WEBHOOK_SECRET nicht konfiguriert")
-    if not _constant_time_compare(x_mtho_webhook_secret, expected):
+        raise HTTPException(status_code=503, detail="CORE_WEBHOOK_SECRET nicht konfiguriert")
+    if not _constant_time_compare(x_core_webhook_secret, expected):
         raise HTTPException(status_code=401, detail="Ungültiger oder fehlender Webhook-Secret")
 
 

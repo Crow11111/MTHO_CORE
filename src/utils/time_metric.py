@@ -2,7 +2,7 @@ import time
 import random
 import math
 from loguru import logger
-from src.config.mtho_state_vector import get_current_state, BARYONIC_DELTA
+from src.config.core_state import get_current_state, BARYONIC_DELTA
 import asyncio
 
 def get_friction_timeout(base_timeout: float) -> float:

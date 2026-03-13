@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -53,14 +53,14 @@ query_text
 
 ---
 
-## 3. Collection-Typen (Wuji-Feld-kompatibel)
+## 3. Collection-Typen (Zero-State-Feld-kompatibel)
 
-| Collection | type (Wuji) | Repräsentant-Signatur |
+| Collection | type (Zero-State) | Repräsentant-Signatur |
 |------------|-------------|------------------------|
 | simulation_evidence | evidence | Simulationstheorie-Indizien, Evidenz, physikalische/informationstheoretische Argumente |
 | core_directives | directive | Ring-0/1 Direktiven, System-Prompts, Governance, Compliance |
 | session_logs | session | Gesprächs-Sessions, Session-Logs, Dialoge, Turn-Turns |
-| argos_knowledge_graph | context | Argos Knowledge Graph, Kontext, Wissensgraphen, Chunk-Daten |
+| shell_knowledge_graph | context | Shell Knowledge Graph, Kontext, Wissensgraphen, Chunk-Daten |
 | marc_li_patterns | pattern | Marc-LI Patterns, Muster, ND-Patterns |
 
 ---
@@ -69,14 +69,14 @@ query_text
 
 Jeder Collection-Repräsentant kombiniert:
 
-1. **MTHO-Bootloader** (`state_to_embedding_text()` aus `atlas_state_vector.py`)
-2. **Collection-spezifische Signatur** (Keywords, GTAC/MTHO-Bezug)
+1. **CORE-Bootloader** (`state_to_embedding_text()` aus `atlas_state_vector.py`)
+2. **Collection-spezifische Signatur** (Keywords, GTAC/CORE-Bezug)
 
 ```python
 repr_text = state_to_embedding_text() + "\n" + collection_signature
 ```
 
-Dadurch ist der Repräsentant sowohl im MTHO-Kontext verankert als auch semantisch unterscheidbar.
+Dadurch ist der Repräsentant sowohl im CORE-Kontext verankert als auch semantisch unterscheidbar.
 
 ---
 
@@ -145,7 +145,7 @@ for t in targets:
 
 ## 9. Referenzen
 
-- `src/config/mtho_state_vector.py` (state_to_embedding_text)
+- `src/config/core_state.py` (state_to_embedding_text)
 - `docs/02_ARCHITECTURE/WUJI_FIELD_SCHEMA.md` (Collection-Typen)
 - `src/network/chroma_client.py` (Collection-Namen, async Query-Funktionen)
 - `src/logic_core/takt_gate.py` (Takt-0-Check vor Routing)

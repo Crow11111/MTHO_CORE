@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -7,7 +7,7 @@
 """
 Erstellt fehlende ChromaDB Collections auf VPS oder lokal.
 Nutzt get_chroma_client() aus chroma_client; CHROMA_HOST aus .env.
-Collections laut docs/02_ARCHITECTURE/MTHO_CHROMADB_SCHEMA.md
+Collections laut docs/02_ARCHITECTURE/CORE_CHROMADB_SCHEMA.md
 """
 import sys
 import os
@@ -25,7 +25,7 @@ from src.network.chroma_client import (
 
 # Fehlende + zusätzliche Collections
 COLLECTION_USER_STATE_VECTORS = "user_state_vectors"
-COLLECTION_MTHO_IDENTITY = "mtho_identity"
+COLLECTION_CORE_IDENTITY = "core_identity"
 COLLECTION_ENTITIES = "entities"
 COLLECTION_RELATIONSHIPS = "relationships"
 
@@ -43,7 +43,7 @@ def create_collections():
         COLLECTION_EVENTS,
         COLLECTION_INSIGHTS,
         COLLECTION_KNOWLEDGE_GRAPH,
-        COLLECTION_MTHO_IDENTITY,
+        COLLECTION_CORE_IDENTITY,
         COLLECTION_ENTITIES,
         COLLECTION_RELATIONSHIPS,
     ]
@@ -52,7 +52,7 @@ def create_collections():
         try:
             col = client.get_or_create_collection(
                 name=name,
-                metadata={"description": f"MTHO_CORE: {name}"},
+                metadata={"description": f"CORE: {name}"},
             )
             count = col.count()
             if count == 0:
@@ -66,7 +66,7 @@ def create_collections():
     try:
         col = client.get_or_create_collection(
             name=COLLECTION_USER_STATE_VECTORS,
-            metadata={"description": "MTHO_CORE: user_state_vectors (1536 dim)"},
+            metadata={"description": "CORE: user_state_vectors (1536 dim)"},
         )
         count = col.count()
         if count == 0:

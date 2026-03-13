@@ -1,10 +1,10 @@
-# MTHO HA Config – Einbindung
+# CORE HA Config – Einbindung
 
 ## Dateien
 
 | Datei | Inhalt |
 |-------|--------|
-| `rest_commands.yaml` | REST-Commands für MTHO Event/Query API |
+| `rest_commands.yaml` | REST-Commands für CORE Event/Query API |
 | `automations_mtho.yaml` | 3 Automationen (Door, Temperatur, Presence) |
 
 ## Einbindung in Home Assistant
@@ -23,7 +23,7 @@ Kopiere die Dateien in dein HA-Config-Verzeichnis, z.B.:
 Oder per Symlink:
 
 ```bash
-# Von MTHO_CORE aus
+# Von CORE aus
 ln -s "$(pwd)/ha_integrations/ha_config/rest_commands.yaml" /path/to/ha/config/
 ln -s "$(pwd)/ha_integrations/ha_config/automations_mtho.yaml" /path/to/ha/config/
 ```
@@ -53,21 +53,21 @@ automation: !include_dir_merge_list automations/
 # → Lege automations_mtho.yaml in Unterordner automations/
 ```
 
-### 3. input_text.mtho_webhook_token anlegen
+### 3. input_text.core_webhook_token anlegen
 
-Die REST-Commands nutzen `states('input_text.mtho_webhook_token')` für den Bearer-Token.
+Die REST-Commands nutzen `states('input_text.core_webhook_token')` für den Bearer-Token.
 
 **Developer Tools → YAML** oder `configuration.yaml`:
 
 ```yaml
 input_text:
-  mtho_webhook_token:
-    name: MTHO Webhook Token
+  core_webhook_token:
+    name: CORE Webhook Token
     initial: ""
     max: 256
 ```
 
-Dann unter **Einstellungen → Geräte & Dienste → Helfer** den Wert mit deinem MTHO-API-Token setzen.
+Dann unter **Einstellungen → Geräte & Dienste → Helfer** den Wert mit deinem CORE-API-Token setzen.
 
 ### 4. Neustart / Reload
 
@@ -79,4 +79,4 @@ Dann unter **Einstellungen → Geräte & Dienste → Helfer** den Wert mit deine
 ## API-Pfade (Hinweis)
 
 Die REST-Commands verwenden `/api/v1/event` und `/api/v1/query`.  
-Falls deine MTHO-API andere Pfade nutzt (z.B. `/api/mtho/event`), passe die URLs in `rest_commands.yaml` an.
+Falls deine CORE-API andere Pfade nutzt (z.B. `/api/core/event`), passe die URLs in `rest_commands.yaml` an.

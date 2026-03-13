@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -38,9 +38,9 @@ def run(cmd):
 print("SSH OK zu", host)
 
 run('find / -maxdepth 4 -name "docker-compose*" 2>/dev/null | head -20')
-run('docker inspect mtho_chroma_state --format "{{json .HostConfig.PortBindings}}" 2>/dev/null')
+run('docker inspect core_chroma_state --format "{{json .HostConfig.PortBindings}}" 2>/dev/null')
 run('docker inspect chroma-uvmy-chromadb-1 --format "{{json .HostConfig.PortBindings}}" 2>/dev/null')
-run('docker inspect mtho_chroma_state --format "{{json .Config.ExposedPorts}}" 2>/dev/null')
+run('docker inspect core_chroma_state --format "{{json .Config.ExposedPorts}}" 2>/dev/null')
 
 # Prüfe ob socat verfügbar ist
 socat_check = run("which socat 2>/dev/null || echo 'NOT_FOUND'")

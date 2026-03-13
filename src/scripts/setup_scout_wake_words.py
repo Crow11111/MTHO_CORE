@@ -1,17 +1,17 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
 """
-MTHO – Scout Wake Word Setup
+CORE – Scout Wake Word Setup
 
 Kopiert Wake Word .tflite Dateien nach Scout (/share/openwakeword).
 Unterstützt:
   - Lokales Verzeichnis (z.B. data/openwakeword_models) → Samba-Share
-  - Zwei Wake Words: hey mtho, computer (nach Custom Training)
+  - Zwei Wake Words: hey core, computer (nach Custom Training)
 
 Voraussetzung:
   - Samba-Share auf Scout erreichbar (z.B. \\192.168.178.54\share)

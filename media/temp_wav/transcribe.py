@@ -4,7 +4,7 @@ import os, time
 model = WhisperModel("base", device="cpu", compute_type="int8")
 print("Model loaded successfully")
 
-wav_dir = r"c:\MTHO_CORE\media\temp_wav"
+wav_dir = r"c:\CORE\media\temp_wav"
 files = sorted([f for f in os.listdir(wav_dir) if f.endswith(".wav")])
 
 for f in files:

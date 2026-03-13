@@ -1,6 +1,6 @@
 ---
 name: expertise-database
-description: Fachgebiet Datenbank-Design und -Betrieb für Schicht-3-Produzenten. ChromaDB, PostgreSQL, SQLite. Schema-Design, Indexing, Migration, Embedding-Strategien. MTHO Collections.
+description: Fachgebiet Datenbank-Design und -Betrieb für Schicht-3-Produzenten. ChromaDB, PostgreSQL, SQLite. Schema-Design, Indexing, Migration, Embedding-Strategien. CORE Collections.
 ---
 
 # Expertise: Datenbank
@@ -11,7 +11,7 @@ description: Fachgebiet Datenbank-Design und -Betrieb für Schicht-3-Produzenten
 |--------|-------|
 | ChromaDB | Vektor-DB, RAG, semantische Suche |
 | PostgreSQL | Persistenz, strukturierte Daten |
-| SQLite | mtho_knowledge_graph (lokal) |
+| SQLite | core_knowledge_graph (lokal) |
 
 ## Schema-Design-Patterns
 
@@ -20,19 +20,19 @@ description: Fachgebiet Datenbank-Design und -Betrieb für Schicht-3-Produzenten
 - **Migration**: Versionierte Skripte, Rollback-Strategie
 - **Embedding-Strategien**: Ein Modell pro Collection, Chunk-Größe konsistent
 
-## MTHO Collections (ChromaDB)
+## CORE Collections (ChromaDB)
 
 | Collection | Zweck |
 |------------|-------|
-| mtho_knowledge_graph | KG-Relationen, ND-Insights, RAG |
+| core_knowledge_graph | KG-Relationen, ND-Insights, RAG |
 | core_brain_registr | Immutable Systemdaten, Confidence ≥ 0.99 |
 | session_logs | Gesprächs-Sessions, semantische Suche |
-| events | Mtho-Events, Event-Log |
+| events | Core-Events, Event-Log |
 | core_directives | Direktiven für RAG |
 | krypto_scan_buffer | Scan-Puffer |
 
 ## Wichtige Patterns
 
 - core_brain_registr: Nur schreiben bei hoher Confidence (Bias Damper)
-- mtho_knowledge_graph: component1, component2, relation_type, source_file
+- core_knowledge_graph: component1, component2, relation_type, source_file
 - session_logs: add_session_turn, query_session_logs für Kontext

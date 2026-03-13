@@ -3,7 +3,7 @@ import os
 import json
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HA_URL = os.getenv("HASS_URL", "https://192.168.178.54:8123")
 HA_TOKEN = os.getenv("HASS_TOKEN")

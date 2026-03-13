@@ -14,7 +14,7 @@ from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 MODEL = os.getenv("GEMINI_AUDIO_MODEL", "gemini-3.1-pro-preview")

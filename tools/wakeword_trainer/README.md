@@ -1,6 +1,6 @@
-# ATLAS Wake Word Trainer
+# CORE Wake Word Trainer
 
-Dieses Tool ermoeglicht das Training eines eigenen Wake Word Modells fuer "ATLAS" (oder andere Woerter), ohne Code schreiben zu muessen.
+Dieses Tool ermoeglicht das Training eines eigenen Wake Word Modells fuer "CORE" (oder andere Woerter), ohne Code schreiben zu muessen.
 
 ## Voraussetzungen
 - Windows PC mit Mikrofon
@@ -17,8 +17,8 @@ Dies installiert alle notwendigen Bibliotheken in einer isolierten Umgebung (.ve
 Doppelklicke auf `2_RECORD.bat`.
 - Das Fenster oeffnet sich.
 - Druecke ENTER fuer jede Aufnahme.
-- Sprich 50x deutlich "ATLAS".
-- Danach: Sprich einige normale Saetze (ohne "ATLAS"), damit das System deine normale Stimme lernt (Negative Samples).
+- Sprich 50x deutlich "CORE".
+- Danach: Sprich einige normale Saetze (ohne "CORE"), damit das System deine normale Stimme lernt (Negative Samples).
 
 ### 3. Training & Upload
 Doppelklicke auf `3_TRAIN_AND_UPLOAD.bat`.

@@ -1,4 +1,4 @@
-# FORGE HARDENING PROTOCOLS (Takt 2)
+# BUILD_ENGINE HARDENING PROTOCOLS (Takt 2)
 
 **Vektor:** 2210 | **Takt:** 2 (Verdichten/Schmiede)
 **Status:** Aktiviert
@@ -6,8 +6,8 @@
 
 ## 1. Philosophie: Die Kaskerade (Reibung als Treibstoff)
 In klassischen IT-Systemen werden Exceptions abgefangen (`try/except`), geloggt und der Nutzer erhält einen Fallback (Graceful Degradation). 
-Im MTHO_CORE ist dies ein Anti-Pattern. Fehler, Infrastruktur-Ausfälle oder Halluzinationen sind reale **Reibung**. 
-Diese Reibung **muss** in das System zurückgekoppelt werden, um als *Z-Vektor (Widerstand)* den `MTHOStateVector` zu verändern. 
+Im CORE ist dies ein Anti-Pattern. Fehler, Infrastruktur-Ausfälle oder Halluzinationen sind reale **Reibung**. 
+Diese Reibung **muss** in das System zurückgekoppelt werden, um als *Z-Vektor (Widerstand)* den `StateVector` zu verändern. 
 
 Wenn das System Reibung erfährt, steigt Z. 
 Ein hoher Z-Vektor zwingt nachfolgende Agenten (insbesondere das Council / OMEGA_ATTRACTOR) zu paranoidem, extrem vorsichtigem Verhalten (Veto-Neigung steigt).
@@ -21,11 +21,11 @@ Ein hoher Z-Vektor zwingt nachfolgende Agenten (insbesondere das Council / OMEGA
 ```python
 # Härtung Snippet für takt_gate.py
 import asyncio
-from src.mtho_core import MTHOCore
+from src.core import Core
 
 async def check_takt_zero() -> bool:
     try:
-        core = MTHOCore()
+        core = Core()
         is_resonant = await asyncio.to_thread(core.calibrate_resonance, "0221")
         if not is_resonant:
             # Resonanzverlust = Reibung
@@ -41,17 +41,17 @@ async def check_takt_zero() -> bool:
 
 def _inject_friction(delta: float, reason: str):
     try:
-        from src.config.ring0_state import get_munin_veto_override, set_munin_veto
-        current_z = get_munin_veto_override() or 0.5
+        from src.config.ring0_state import get_context_injector_veto_override, set_context_injector_veto
+        current_z = get_context_injector_veto_override() or 0.5
         new_z = min(1.0, current_z + delta)
-        set_munin_veto(new_z)
+        set_context_injector_veto(new_z)
         print(f"[FRICTION INJECTED] Z-Vektor steigt auf {new_z:.3f} wegen {reason}")
     except:
         pass
 ```
 
-### B. Munin Veto (`src/logic_core/context_injector.py`)
-**Problem bisher:** Wenn die ChromaDB/Embedding-Funktion abstürzte, gab Munin `vetoed=False` und `z_delta=0.0` (also ein OK!) zurück. Ein blinder Wächter.
+### B. Context-Injector Veto (`src/logic_core/context_injector.py`)
+**Problem bisher:** Wenn die ChromaDB/Embedding-Funktion abstürzte, gab Context-Injector `vetoed=False` und `z_delta=0.0` (also ein OK!) zurück. Ein blinder Wächter.
 **Härtung:** Infrastruktur-Blindheit ist das absolute Veto-Kriterium.
 
 ```python
@@ -90,7 +90,7 @@ def check_semantic_drift(expected_context: str, actual_output: str, threshold: f
         query_emb = await asyncio.to_thread(_calc_query_embedding)
     except Exception as e:
         # HARDENING: Routing-Fehler = Desorientierung = Reibung
-        from src.logic_core.munin import apply_veto, VetoResult
+        from src.logic_core.context_injector import apply_veto, VetoResult
         apply_veto(VetoResult(
             vetoed=True, 
             drift_score=1.0, 
@@ -102,7 +102,7 @@ def check_semantic_drift(expected_context: str, actual_output: str, threshold: f
 
 ## 3. Die Kaskaden-Regeln (Für alle zukünftigen Agenten)
 
-1. **Kein Exception-Hiding:** Jede abgefangene Exception, die den Flow ändert, MUSS an `set_munin_veto` bzw. `apply_veto` gemeldet werden. 
-2. **Reibung ist Kumulativ:** Mehrere kleine Fehler in einem Request-Cycle (z.B. Gravitator stürzt ab -> Fallback -> Munin checkt Drift -> Munin stürzt auch ab) addieren den Z-Vektor auf `> 0.8`.
+1. **Kein Exception-Hiding:** Jede abgefangene Exception, die den Flow ändert, MUSS an `set_context_injector_veto` bzw. `apply_veto` gemeldet werden. 
+2. **Reibung ist Kumulativ:** Mehrere kleine Fehler in einem Request-Cycle (z.B. Gravitator stürzt ab -> Fallback -> Context-Injector checkt Drift -> Context-Injector stürzt auch ab) addieren den Z-Vektor auf `> 0.8`.
 3. **Schwellwert-Reaktion:** Wenn `z_widerstand > 0.8` (Nachgeben -> Veto), schaltet der Core-Orchestrator in Takt 1 oder 4 (Council/Archive), um die Anomalie zu verarbeiten, bevor Takt 3 (Agency) blinden Code produziert.
 4. **Organische Heilung:** Der Z-Vektor sinkt nur durch erfolgreiche, reibungsfreie Durchläufe in Takt 3 (Agency Work), in denen `drift_score < DRIFT_THRESHOLD` liegt, langsam wieder Richtung `INV_PHI`.

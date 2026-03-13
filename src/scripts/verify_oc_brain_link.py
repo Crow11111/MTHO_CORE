@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -18,7 +18,7 @@ def main():
     
     # 1. Ping
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    message = f"MTHO_CORE PING {timestamp}. Status Report anfordern."
+    message = f"CORE PING {timestamp}. Status Report anfordern."
     
     print(f"Sending to OC Brain (Agent 'main'): '{message}'")
     

@@ -15,7 +15,7 @@ from ai.llm_interface import atlas_llm
 
 class VirtualMarcSimulator:
     """
-    Virtual Marc (Osmium Council Chair)
+    Virtual Marc (Core Council Chair)
     Simulates Marc's High-Monotropism and systemic cross-linking.
     Evaluates ATLAS responses for cognitive dissonance.
     """

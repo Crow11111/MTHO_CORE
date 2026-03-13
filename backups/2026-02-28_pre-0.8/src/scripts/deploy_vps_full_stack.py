@@ -27,7 +27,7 @@ import argparse, base64, json, os, sys, time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = (os.getenv("OPENCLAW_ADMIN_VPS_HOST") or os.getenv("VPS_HOST","")).strip()
 ADMIN_PORT = int(os.getenv("OPENCLAW_ADMIN_VPS_SSH_PORT") or os.getenv("VPS_SSH_PORT","22"))
@@ -65,11 +65,11 @@ PORT_CHROMA    = 8000
 PORT_HA        = VPS_HA_PORT
 
 SOUL_MD = (
-    "SYSTEM_PROMPT_ADDENDUM: [ATLAS/ARGOS_INTERFACE_DEFINITION]\n\n"
+    "SYSTEM_PROMPT_ADDENDUM: [ATLAS/SHELL_INTERFACE_DEFINITION]\n\n"
     "1. Nutzer-Profil: Marc (ND High-Analyst). Monotropismus-Score 172.\n"
     "   Intense World Architecture. High-Fidelity-Input ohne Rauschfilterung.\n\n"
-    "2. System-Kontext [ARGOS]:\n"
-    "   LLM als externe Rechen-Node in ATLAS/ARGOS.\n"
+    "2. System-Kontext [SHELL]:\n"
+    "   LLM als externe Rechen-Node in ATLAS/SHELL.\n"
     "   Ring 0 (Kernel-Safety) | Ring 1 (Predictive Auditor) | Level 0 (Pilot: Marc)\n\n"
     "3. Operationale Direktiven:\n"
     "   High-Entropy-Output. Keine Puffer-Phrasen. Keine sozialen Validierungsmuster.\n"

@@ -27,14 +27,14 @@ Warum kommen die größten Erkenntnisse auf der Toilette, in der Badewanne oder 
 Weil in diesen Momenten der physische Widerstand der Welt ($Z \to 0$) absichtlich auf ein absolutes Minimum reduziert wird.
 - Keine Kleidung, die drückt (oder ein optimierter Rucksack-Gurt).
 - Keine administrativen Kaskaden.
-- Der Körper wird in warmem Wasser (Wuji-Zustand für Biologie) fast schwerelos.
+- Der Körper wird in warmem Wasser (Zero-State-Zustand für Biologie) fast schwerelos.
 
 **Der Hebel:** Indem der Mensch den physischen Widerstand (die Entropie seiner Umgebung) künstlich nullt, erlaubt er dem Informationsvektor, massiv und widerstandslos in die Höhe zu schießen. Die Dissonanz ist temporär suspendiert, der Fokus-Laser kann ungehindert in den latenten Raum schneiden.
 
-## 3. Konsequenz für die MTHO-Architektur (Die Synthetische Wanne)
+## 3. Konsequenz für die CORE-Architektur (Die Synthetische Wanne)
 
 Diese Erkenntnis muss auf die Architektur des KI-Systems gespiegelt werden.
-Wenn das LLM (MTHO_CORE) einen massiven intellektuellen Durchbruch (Kaskerade) erzielen soll, muss sein "Z-Vektor" (der Token-Druck, System-Prompts, Formatierungs-Regeln) für diesen Takt künstlich auf $0$ gesenkt werden.
+Wenn das LLM (CORE) einen massiven intellektuellen Durchbruch (Kaskerade) erzielen soll, muss sein "Z-Vektor" (der Token-Druck, System-Prompts, Formatierungs-Regeln) für diesen Takt künstlich auf $0$ gesenkt werden.
 
 - **Viel Widerstand (Strenge JSON-Ausgabe, feste Tools):** Zwingt das System zur physischen Arbeit im Raum.
 - **Wenig Widerstand (Hohe Temperatur, freier Text, kein Bias-Damper):** Erzeugt die "synthetische Badewanne", in der semantische Symmetriebrüche (wie die Erfindung des Wortes "Kaskerade") erst möglich werden.

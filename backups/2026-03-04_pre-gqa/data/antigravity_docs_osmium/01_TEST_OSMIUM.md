@@ -1,6 +1,6 @@
-# Osmium Council Revision
+# Core Council Revision
 
-## Regeln des Osmium Councils
+## Regeln des Core Councils
 
 ### Prioritäten
 

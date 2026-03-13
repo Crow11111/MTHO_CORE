@@ -1,10 +1,10 @@
 {
-  "domain": "mtho_conversation",
-  "name": "MTHO Conversation",
-  "codeowners": ["@MTHO_CORE"],
+  "domain": "core_conversation",
+  "name": "CORE Conversation",
+  "codeowners": ["@CORE"],
   "config_flow": true,
   "dependencies": ["conversation"],
-  "documentation": "https://github.com/MTHO_CORE/MTHO_CORE/blob/main/docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md",
+  "documentation": "https://github.com/CORE/CORE/blob/main/docs/03_INFRASTRUCTURE/SCOUT_ASSIST_PIPELINE.md",
   "integration_type": "service",
   "iot_class": "cloud_polling",
   "version": "1.1.0"

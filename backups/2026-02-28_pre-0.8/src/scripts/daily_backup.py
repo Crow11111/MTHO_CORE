@@ -1,7 +1,7 @@
 """
 Tägliches Backup für ATLAS_CORE → Hostinger-VPS (/var/backups/atlas).
 
-- Archiv: Code (ohne .git, __pycache__, venv, data/backups, logs), config/, data/argos_db/
+- Archiv: Code (ohne .git, __pycache__, venv, data/backups, logs), config/, data/shell_db/
 - .env nur verschlüsselt (Fernet), wenn BACKUP_ENCRYPTION_KEY gesetzt
 - Upload per SFTP (paramiko); Retention auf dem VPS (7 Tage)
 - Logging: logs/backup.log
@@ -61,9 +61,9 @@ def setup_logging() -> None:
 def should_exclude(path: Path, arcname: str) -> bool:
     if any(part in EXCLUDE_DIRS for part in Path(arcname).parts):
         return True
-    # data/ nur argos_db sichern (laut BACKUP_PLAN_FINAL), Rest auslassen
+    # data/ nur shell_db sichern (laut BACKUP_PLAN_FINAL), Rest auslassen
     an = arcname.replace("\\", "/")
-    if an.startswith("data/") and not an.startswith("data/argos_db/"):
+    if an.startswith("data/") and not an.startswith("data/shell_db/"):
         return True
     if path.is_file() and (path.suffix in EXCLUDE_SUFFIXES or ".env" == path.name):
         return True  # .env wird separat verschlüsselt hinzugefügt

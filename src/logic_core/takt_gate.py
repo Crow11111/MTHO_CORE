@@ -3,7 +3,7 @@ TAKT 0 GATE - The Glüh-Gate on the Diagonal.
 Acts as a hard async barrier before any query reaches the Core Cube.
 """
 import asyncio
-from src.mtho_core import MTHOCore
+from src.core import Core
 
 async def check_takt_zero() -> bool:
     """
@@ -16,7 +16,7 @@ async def check_takt_zero() -> bool:
     """
     try:
         # Run the synchronous core check in a non-blocking thread
-        core = MTHOCore()
+        core = Core()
         is_resonant = await asyncio.to_thread(core.calibrate_resonance, "0221")
 
         if not is_resonant:
@@ -24,7 +24,7 @@ async def check_takt_zero() -> bool:
 
         # Z-Vector Damper / Z-Vector Escalation
         import os
-        z_vector = float(os.getenv("MTHO_Z_WIDERSTAND", "0.049"))
+        z_vector = float(os.getenv("CORE_Z_WIDERSTAND", "0.049"))
         if z_vector >= 0.9:
             print(f"[TAKT 0 VETO] System Locked - Z-Vector Critical ({z_vector}). Auto-Loop detected.")
             return False

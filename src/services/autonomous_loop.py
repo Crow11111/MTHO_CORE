@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO_CORE: Autonomous Loop
+CORE: Autonomous Loop
 Monitors data/events/ for new events, processes them via OC Brain, and executes actions.
 """
 import os
@@ -18,12 +18,12 @@ from src.services.action_dispatcher import ActionDispatcher
 from src.voice.elevenlabs_tts import speak_text
 
 # Pfade
-ROOT = "c:/MTHO_CORE"
+ROOT = "c:/CORE"
 EVENTS_DIR = os.path.join(ROOT, "data", "events")
 PROCESSED_DIR = os.path.join(EVENTS_DIR, "processed")
 
 SYSTEM_INSTRUCTION = (
-    "Du bist MTHO 1.0, die AGI-Schnittstelle von Marc. "
+    "Du bist CORE 1.0, die AGI-Schnittstelle von Marc. "
     "Du agierst autonom. Wenn ein Event eintrifft, analysiere es. "
     "Du kannst Home Assistant steuern mit dem Format: [HA: domain.service(entity_id, {\"key\": \"value\"})]. "
     "Halte deine Antworten präzise. Wenn eine Aktion nötig ist, führe sie aus. "
@@ -69,7 +69,7 @@ def process_event(event_path: str, dispatcher: ActionDispatcher):
         return False
 
 def run_loop():
-    logger.info("MTHO 1.0 Autonomer Loop gestartet.")
+    logger.info("CORE 1.0 Autonomer Loop gestartet.")
     dispatcher = ActionDispatcher()
     
     while True:

@@ -8,7 +8,7 @@ from __future__ import annotations
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 NEXOS_API_KEY = os.getenv("NEXOS_API_KEY", "").strip().strip('"')
 NEXOS_BASE_URL = os.getenv("NEXOS_BASE_URL", "https://api.nexos.ai/v1").rstrip("/")

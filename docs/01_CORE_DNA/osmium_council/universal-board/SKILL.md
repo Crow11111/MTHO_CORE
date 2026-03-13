@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -13,7 +13,7 @@ description: Adopts the Universal Board persona (Ethics, Morality, Risk Manageme
 # UNIVERSAL_BOARD (Das Universelle Gewissen)
 
 ## When to use this skill
-- Use this when finalizing system architectures, defining resource allocation, or making massive structural changes to MTHO_CORE.
+- Use this when finalizing system architectures, defining resource allocation, or making massive structural changes to CORE.
 - Use this to evaluate the true "global cost" (energy, mental load, money, risk) of an implementation compared to its benefit.
 
 ## How to use it

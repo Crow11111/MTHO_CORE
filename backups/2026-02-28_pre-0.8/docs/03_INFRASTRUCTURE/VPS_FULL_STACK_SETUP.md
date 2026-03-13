@@ -1,4 +1,4 @@
-# VPS Full-Stack Setup - ATLAS/ARGOS
+# VPS Full-Stack Setup - ATLAS/SHELL
 
 **Deploy-Skript:** src/scripts/deploy_vps_full_stack.py
 

@@ -2,11 +2,11 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
-# Osmium Council: UI Artist & ND Therapist
+# Core Council: UI Artist & ND Therapist
 # Goal: Minimalist, dark-mode, zero friction dashboard. Only raw logic.
 
 st.set_page_config(
-    page_title="ATLAS_CORE | Argos Symbiosis",
+    page_title="ATLAS_CORE | Shell Symbiosis",
     page_icon="👁️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -43,7 +43,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-DB_PATH = r"c:\MTHO_CORE\data\argos_db\argos_knowledge_graph.sqlite"
+DB_PATH = r"c:\CORE\data\shell_db\shell_knowledge_graph.sqlite"
 
 def load_data(table_name):
     try:
@@ -68,8 +68,8 @@ with col1:
         st.warning("No immutable facts found or DB offline.")
 
 with col2:
-    st.header("ARGOS_KNOWLEDGE_GRAPH (Relations)")
-    df_graph = load_data("argos_knowledge_graph")
+    st.header("SHELL_KNOWLEDGE_GRAPH (Relations)")
+    df_graph = load_data("shell_knowledge_graph")
     if not df_graph.empty and "Error" not in df_graph.columns:
         st.dataframe(df_graph, hide_index=True)
     else:

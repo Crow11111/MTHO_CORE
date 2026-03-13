@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,9 +8,9 @@ import os
 import sqlite3
 from loguru import logger
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights"
-DB_DIR = r"c:\MTHO_CORE\data\argos_db"
-DB_FILE = os.path.join(DB_DIR, "argos_knowledge_graph.sqlite")
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights"
+DB_DIR = r"c:\CORE\data\shell_db"
+DB_FILE = os.path.join(DB_DIR, "shell_knowledge_graph.sqlite")
 
 def init_db():
     if not os.path.exists(DB_DIR):

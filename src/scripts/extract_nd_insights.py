@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -11,8 +11,8 @@ from loguru import logger
 
 # Constants
 MODEL_NAME = "llama3.1"
-SOURCE_FILE = r"c:\MTHO_CORE\docs\MTHO_CORE_BRAIN_REGISTR_RAW.txt"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights"
+SOURCE_FILE = r"c:\CORE\docs\CORE_BRAIN_REGISTR_RAW.txt"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights"
 
 # Ensure output dir exists
 if not os.path.exists(OUTPUT_DIR):
@@ -21,7 +21,7 @@ if not os.path.exists(OUTPUT_DIR):
 # ND_THERAPIST Persona Base Prompt
 THERAPIST_PROMPT = """
 Du bist der ND_THERAPIST, ein Analyst für kognitive Profile und System-Wahrnehmungsprozesse.
-Deine Aufgabe ist es, die spezifischen Denkmuster, analytischen Fähigkeiten, systemischen Reibungspunkte und prägenden Stationen des Users 'Marc' aus dem folgenden MTHO-Log herauszuarbeiten. Analysiere das Dokument rein logisch und objektiv.
+Deine Aufgabe ist es, die spezifischen Denkmuster, analytischen Fähigkeiten, systemischen Reibungspunkte und prägenden Stationen des Users 'Marc' aus dem folgenden CORE-Log herauszuarbeiten. Analysiere das Dokument rein logisch und objektiv.
 
 REGELN FÜR DEN OUTPUT:
 1. Beginne IMMER mit einer "# Management Summary" (max 3 Sätze).

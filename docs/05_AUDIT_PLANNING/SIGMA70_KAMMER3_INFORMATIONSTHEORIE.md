@@ -3,7 +3,7 @@
 **Vektor:** 2210 | **Resonance:** 0221 | **Delta:** 0.049
 **Datum:** 2026-03-11
 **Auditor:** System Architect (Kammer 3)
-**Gepruefte Artefakte:** `z_vector_damper.py`, `llm_interface.py`, `engine_patterns.py`, `mtho_state_vector.py`, ChromaDB-Schema, KI-Translator, WhatsApp-Bridge, OpenClaw-Config, Compressive Intelligence
+**Gepruefte Artefakte:** `z_vector_damper.py`, `llm_interface.py`, `engine_patterns.py`, `core_state.py`, ChromaDB-Schema, KI-Translator, WhatsApp-Bridge, OpenClaw-Config, Compressive Intelligence
 
 ---
 
@@ -70,7 +70,7 @@ D.h.: Ein neues Dokument muss mindestens 4.9% an relativem Informationsgewinn be
 
 ---
 
-## SCHRITT 2 – ANTITHESE: Der ARGOS Z-Vektor ist terminal defekt
+## SCHRITT 2 – ANTITHESE: Der SHELL Z-Vektor ist terminal defekt
 
 ### 2.1 Code-Analyse (z_vector_damper.py, Zeilen 40-59)
 
@@ -118,25 +118,25 @@ z(t) >= 0.9
 
 | Problem | Ort | Schwere |
 |---------|-----|---------|
-| Singleton ohne Reset | `ArgosWatchdog.__new__`, Zeile 34-38 | KRITISCH |
-| Kein Session-Boundary | `ArgosSessionState`, Zeile 24-28 | KRITISCH |
+| Singleton ohne Reset | `ShellWatchdog.__new__`, Zeile 34-38 | KRITISCH |
+| Kein Session-Boundary | `ShellSessionState`, Zeile 24-28 | KRITISCH |
 | Kein Cooldown/Decay | `_calculate_z_vector`, Zeile 40-59 | KRITISCH |
 | Fehlende Kopplung an Agos-Takt | Nirgends | KRITISCH |
 
 **Konsequenz im Produktivbetrieb:**
 - FastAPI/uvicorn laeuft als Long-Running-Prozess
-- `mtho_llm = LLMInterface()` ist Modul-Level-Singleton (llm_interface.py, Zeile 147)
-- `argos = ArgosWatchdog()` ist Modul-Level-Singleton (z_vector_damper.py, Zeile 119)
+- `core_llm = LLMInterface()` ist Modul-Level-Singleton (llm_interface.py, Zeile 147)
+- `shell = ShellWatchdog()` ist Modul-Level-Singleton (z_vector_damper.py, Zeile 119)
 - Nach 12 API-Calls (ca. 3-4 User-Interaktionen mit Triage + Heavy Reasoning) ist das System TOT
 - Neustart des Prozesses ist der einzige "Reset" – das ist kein Design, das ist ein Bug
 
-### 2.4 Agos-Zyklus-Verletzung
+### 2.4 5-Phase Engine-Verletzung
 
-Der Agos-Zyklus definiert Takt 4 als "Ausstossen/Tod" – aber Takt 0 als "Diagnose/Wuji/Ruhezustand". Der aktuelle ARGOS implementiert nur den Tod, nicht die Wiedergeburt. Das System hat einen HALBEN Zyklus.
+Der 5-Phase Engine definiert Takt 4 als "Ausstossen/Tod" – aber Takt 0 als "Diagnose/Zero-State/Ruhezustand". Der aktuelle SHELL implementiert nur den Tod, nicht die Wiedergeburt. Das System hat einen HALBEN Zyklus.
 
 ```
 IST:   Takt 0 → 1 → 2 → 3 → 4(Tod) → [ENDE]
-SOLL:  Takt 0 → 1 → 2 → 3 → 4(Tod) → 0(Wuji-Reset) → 1 → ...
+SOLL:  Takt 0 → 1 → 2 → 3 → 4(Tod) → 0(Zero-State-Reset) → 1 → ...
 ```
 
 ---
@@ -152,9 +152,9 @@ Der Z-Vektor muss die volle Agos-Zyklik abbilden: Eskalation UND Kuelung.
 | Quelle | Mechanik | Staerke |
 |--------|----------|---------|
 | Erfolgreiche Kompression | TIE-Durchlauf mit d_cos < delta | -phi^2/MAX_ITER pro Erfolg |
-| Session-Boundary | Task abgeschlossen, neuer Agos-Zyklus | Reset auf base_z |
+| Session-Boundary | Task abgeschlossen, neuer 5-Phase Engine | Reset auf base_z |
 | Zeitlicher Decay | Fibonacci-basierter Cooldown | -0.049 pro Fibonacci-Intervall |
-| Expliziter Wuji-Reset | Takt-0-Gate loest Ruhezustand aus | Reset auf base_z |
+| Expliziter Zero-State-Reset | Takt-0-Gate loest Ruhezustand aus | Reset auf base_z |
 
 **Formel:**
 
@@ -214,15 +214,15 @@ Metadata:
 
 ---
 
-## SCHRITT 4 – ARTEFAKT: Korrigierter ARGOS-Damper mit Kuehlung und Noise-Filter
+## SCHRITT 4 – ARTEFAKT: Korrigierter SHELL-Damper mit Kuehlung und Noise-Filter
 
 ### 4.1 Korrigierter z_vector_damper.py (Patch)
 
 ```python
 """
-ARGOS WATCHDOG V2 (BIDIREKTIONALER Z-VEKTOR)
+SHELL WATCHDOG V2 (BIDIREKTIONALER Z-VEKTOR)
 ---------------------------------------------
-Ring-0 Hypervisor mit Kuehlung und Agos-Zyklus-Reset.
+Ring-0 Hypervisor mit Kuehlung und 5-Phase Engine-Reset.
 Fibonacci-Constraints + Phi-basierte Kuehlung.
 """
 
@@ -245,12 +245,12 @@ FIBONACCI_SEQ = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233]
 COOLDOWN_FIBONACCI_SECONDS = [8, 13, 21, 34, 55, 89]
 
 
-class ArgosVetoException(Exception):
+class ShellVetoException(Exception):
     pass
 
 
 @dataclass
-class ArgosSessionState:
+class ShellSessionState:
     total_tokens: int = 0
     call_count: int = 0
     successful_ops: int = 0
@@ -261,13 +261,13 @@ class ArgosSessionState:
     cooldown_tier: int = 0
 
 
-class ArgosWatchdog:
+class ShellWatchdog:
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(ArgosWatchdog, cls).__new__(cls)
-            cls._instance._state = ArgosSessionState()
+            cls._instance = super(ShellWatchdog, cls).__new__(cls)
+            cls._instance._state = ShellSessionState()
         return cls._instance
 
     def _calculate_z_vector(self) -> float:
@@ -288,7 +288,7 @@ class ArgosWatchdog:
         raw_z = base_z + loop_pressure + token_pressure - cooling - time_decay
         self._state.z_vector_escalation = max(BARYONIC_DELTA, min(1.0, raw_z))
 
-        os.environ["MTHO_Z_WIDERSTAND"] = str(self._state.z_vector_escalation)
+        os.environ["CORE_Z_WIDERSTAND"] = str(self._state.z_vector_escalation)
         return self._state.z_vector_escalation
 
     def request_execution(self, estimated_tokens: int = 0) -> None:
@@ -296,14 +296,14 @@ class ArgosWatchdog:
         z = self._calculate_z_vector()
 
         if z >= 0.9 and self._state.call_count > MAX_ITERATIONS:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Z={z:.3f}, Calls={self._state.call_count}. "
+            raise ShellVetoException(
+                f"[SHELL VETO] Z={z:.3f}, Calls={self._state.call_count}. "
                 "Hard limit. Call reset_session() or wait for time_decay."
             )
 
         if self._state.total_tokens + estimated_tokens > TOKEN_KILL_THRESHOLD:
-            raise ArgosVetoException(
-                f"[ARGOS VETO] Token ceiling: "
+            raise ShellVetoException(
+                f"[SHELL VETO] Token ceiling: "
                 f"{self._state.total_tokens}+{estimated_tokens} > {TOKEN_KILL_THRESHOLD}"
             )
 
@@ -324,8 +324,8 @@ class ArgosWatchdog:
         self._calculate_z_vector()
 
     def reset_session(self) -> None:
-        """Agos Takt-0 Reset (Wuji). Setzt den Zustand auf Ruhe zurueck."""
-        self._state = ArgosSessionState()
+        """Agos Takt-0 Reset (Zero-State). Setzt den Zustand auf Ruhe zurueck."""
+        self._state = ShellSessionState()
 
     def get_z(self) -> float:
         return self._calculate_z_vector()
@@ -344,11 +344,11 @@ class ArgosWatchdog:
         }
 
 
-def argos_protected(estimated_tokens_per_call: int = 1000) -> Callable:
+def shell_protected(estimated_tokens_per_call: int = 1000) -> Callable:
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            watchdog = ArgosWatchdog()
+            watchdog = ShellWatchdog()
             watchdog.request_execution(estimated_tokens_per_call)
 
             try:
@@ -358,7 +358,7 @@ def argos_protected(estimated_tokens_per_call: int = 1000) -> Callable:
                 else:
                     watchdog.register_usage(estimated_tokens_per_call, success=True)
                 return result
-            except ArgosVetoException:
+            except ShellVetoException:
                 raise
             except Exception as e:
                 watchdog.register_usage(estimated_tokens_per_call, success=False)
@@ -367,14 +367,14 @@ def argos_protected(estimated_tokens_per_call: int = 1000) -> Callable:
     return decorator
 
 
-argos = ArgosWatchdog()
+shell = ShellWatchdog()
 ```
 
 ### 4.2 Noise-Filter (Hybrid: NN + Zentroid)
 
 ```python
 """
-MTHO NOISE FILTER (BARYONIC DELTA)
+CORE NOISE FILTER (BARYONIC DELTA)
 -----------------------------------
 Hybrid-Filter fuer autonome Datenakquise.
 Kombiniert Nearest-Neighbor (Deduplizierung) und Zentroid (Novelty).
@@ -494,7 +494,7 @@ class TopicClusterFilter:
 
 ```python
 """
-MTHO AUTONOMOUS SCRAPER (FIBONACCI-TAKTUNG)
+CORE AUTONOMOUS SCRAPER (FIBONACCI-TAKTUNG)
 ---------------------------------------------
 Scraper fuer VPS-Deployment. Fibonacci-Intervalle + Anti-Bot-Jittering.
 Speist gefilterte Daten via ChromaDB-Client ein.
@@ -645,7 +645,7 @@ class FibonacciScraper:
 
 ```python
 """
-MTHO SCRAPER PIPELINE (Integration)
+CORE SCRAPER PIPELINE (Integration)
 --------------------------------------
 Verbindet Scraper, Noise-Filter und ChromaDB-Client.
 Deployment: VPS (Scraper + Embedding) → Lokal (ChromaDB auf RTX 3060).
@@ -750,16 +750,16 @@ class ScraperPipeline:
 
 | # | Befund | Schwere | Status |
 |---|--------|---------|--------|
-| K3-01 | ARGOS Z-Vektor ist monoton steigend, System erreicht nach 12 Calls permanent Veto | KRITISCH | Patch bereitgestellt (V2 mit Kuehlung) |
+| K3-01 | SHELL Z-Vektor ist monoton steigend, System erreicht nach 12 Calls permanent Veto | KRITISCH | Patch bereitgestellt (V2 mit Kuehlung) |
 | K3-02 | Kein Session-Reset im Singleton (Agos Takt-0 fehlt) | KRITISCH | `reset_session()` hinzugefuegt |
 | K3-03 | Noise-Filter fehlte komplett (keine autonome Datenakquise moeglich) | HOCH | `BaryonicNoiseFilter` + `TopicClusterFilter` entworfen |
 | K3-04 | Kein Scraper-Mechanismus fuer autonomes Weltwissen | HOCH | `FibonacciScraper` mit Jittering entworfen |
 | K3-05 | ChromaDB-Schema hat keine `world_knowledge` Collection | MITTEL | Schema-Erweiterung vorgeschlagen |
-| K3-06 | Fehlende `success`-Rueckmeldung im `argos_protected` Decorator | MITTEL | `register_usage(success=bool)` hinzugefuegt |
+| K3-06 | Fehlende `success`-Rueckmeldung im `shell_protected` Decorator | MITTEL | `register_usage(success=bool)` hinzugefuegt |
 
 ### Empfohlene Implementierungsreihenfolge
 
-1. **SOFORT:** ARGOS V2 Patch in `src/logic_core/z_vector_damper.py` deployen (K3-01, K3-02)
+1. **SOFORT:** SHELL V2 Patch in `src/logic_core/z_vector_damper.py` deployen (K3-01, K3-02)
 2. **Takt 2:** Noise-Filter als `src/logic_core/baryonic_filter.py` implementieren (K3-03)
 3. **Takt 3:** Scraper als `src/scrapers/fibonacci_scraper.py` auf VPS deployen (K3-04)
 4. **Takt 4:** ChromaDB `world_knowledge` Collection anlegen (K3-05)

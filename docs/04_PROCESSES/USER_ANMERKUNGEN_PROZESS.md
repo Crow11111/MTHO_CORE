@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -12,7 +12,7 @@
 ## Ablauf
 
 1. **User-Input** (Anmerkung, Präferenz, Vorgabe) wird erfasst.
-2. **Einordnung:** Welcher Strang / welche Rolle ist zuständig? (Council: Validierung/Veto, Forge: Alternativen, Judge: finale Abwägung.)
+2. **Einordnung:** Welcher Strang / welche Rolle ist zuständig? (Council: Validierung/Veto, Build-Engine: Alternativen, Judge: finale Abwägung.)
 3. **Bewertung:** Input wird geprüft – Konsistenz mit Axiomen, Risiken, Verbesserungsmöglichkeiten, Gegenargumente.
 4. **Ergebnis:** Die **bewertete, ggf. angepasste Fassung** fließt in Specs/Docs ein, nicht der Roh-Input allein. Wo sinnvoll: User-Input als „Ausgangslage“ dokumentieren, Ergebnis der Bewertung als „umgesetzte Regel“ oder „Empfehlung“.
 

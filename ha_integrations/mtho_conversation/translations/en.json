@@ -2,19 +2,19 @@
   "config": {
     "step": {
       "user": {
-        "title": "Set up MTHO Conversation",
-        "description": "Enter MTHO API URL and Bearer token (HA_WEBHOOK_TOKEN from .env).",
+        "title": "Set up CORE Conversation",
+        "description": "Enter CORE API URL and Bearer token (HA_WEBHOOK_TOKEN from .env).",
         "data": {
-          "base_url": "MTHO API URL",
+          "base_url": "CORE API URL",
           "token": "Bearer Token (HA_WEBHOOK_TOKEN)"
         }
       }
     },
     "error": {
-      "cannot_connect": "MTHO API unreachable. Check URL and token (HA_WEBHOOK_TOKEN in .env)."
+      "cannot_connect": "CORE API unreachable. Check URL and token (HA_WEBHOOK_TOKEN in .env)."
     },
     "abort": {
-      "already_configured": "MTHO is already configured for this URL."
+      "already_configured": "CORE is already configured for this URL."
     }
   }
 }

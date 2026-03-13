@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -8,7 +8,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = os.getenv("OPENCLAW_ADMIN_VPS_HOST")
 PORT = "18789"
@@ -22,7 +22,7 @@ headers = {
 data = {
     "model": "gemini-3.1-pro-preview",
     "messages": [
-        {"role": "user", "content": "Hallo OC Brain, hier spricht der MTHO Dev-Agent. Wir testen gerade die Systeme. Hast du Kontext aus dem alten System übernommen? Was weißt du über Marc und das MTHO Projekt? Greifst du auf ChromaDB zu?"}
+        {"role": "user", "content": "Hallo OC Brain, hier spricht der CORE Dev-Agent. Wir testen gerade die Systeme. Hast du Kontext aus dem alten System übernommen? Was weißt du über Marc und das CORE Projekt? Greifst du auf ChromaDB zu?"}
     ]
 }
 

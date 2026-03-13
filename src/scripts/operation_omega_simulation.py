@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -74,14 +74,14 @@ def simulate_group_a(n=EVIDENCE_COUNT):
     prob_dist = counts / n
     # KL Divergence from uniform (or specific target). 
     # Perfect chaos should be uniform [0.25, 0.25, 0.25, 0.25].
-    # But we compare against the MTHO Structure (Assumed optimal/observed).
+    # But we compare against the CORE Structure (Assumed optimal/observed).
     # Let's measure distance to the Observed Pattern.
     cluster_distance = np.sum(np.abs(prob_dist - OBSERVED_DISTRIBUTION))
     
     return phi_deviation, cluster_distance
 
 # ==============================================================================
-# GROUP B: MTHO HYPOTHESIS (BASE_STATE / COMPRESSIVE INTELLIGENCE)
+# GROUP B: CORE HYPOTHESIS (BASE_STATE / COMPRESSIVE INTELLIGENCE)
 # ==============================================================================
 def simulate_group_b(n=EVIDENCE_COUNT):
     """
@@ -89,13 +89,13 @@ def simulate_group_b(n=EVIDENCE_COUNT):
     Start with 4 bases, grow via Phi, but allow for noise/variation (base state is not static).
     """
     # 1. Generate Intervals using Phi-based growth
-    # MTHO Growth: New interval is related to previous by factor close to Phi
+    # CORE Growth: New interval is related to previous by factor close to Phi
     # But influenced by 4-base cyclic resistance (Simulating Simultan-Kaskade Cycle)
     
     intervals = []
     current_interval = 1.0
     
-    # 4-Base Cycle factors (simplified model of MTHO interaction)
+    # 4-Base Cycle factors (simplified model of CORE interaction)
     # L=Logic (Stable), P=Physics (Growth), I=Info (Compression), S=Structure (Decay/Reset)
     # Modeled as modulations around Phi.
     base_factors = [1.0, PHI, 1.0/PHI, 1.0] 
@@ -185,7 +185,7 @@ def run_simulation():
     mean_a_phi = np.mean(results_a_phi)
     std_a_phi = np.std(results_a_phi)
     
-    # 3. Statistics Group B (MTHO)
+    # 3. Statistics Group B (CORE)
     mean_b_phi = np.mean(results_b_phi)
     std_b_phi = np.std(results_b_phi)
     
@@ -232,7 +232,7 @@ def run_simulation():
             }
         },
         "group_b_mtho": {
-            "description": "MTHO Hypothesis (Base State/Phi Growth)",
+            "description": "CORE Hypothesis (Base State/Phi Growth)",
             "stats": {
                 "phi_deviation_mean": float(mean_b_phi),
                 "phi_deviation_std": float(std_b_phi),
@@ -246,7 +246,7 @@ def run_simulation():
             }
         },
         "conclusion": {
-            "winner": "Group B (MTHO)" if abs(z_score_b) < abs(z_score_a) else "Group A (Random)",
+            "winner": "Group B (CORE)" if abs(z_score_b) < abs(z_score_a) else "Group A (Random)",
             "statement": "The observed reality structure is statistically impossible in a random universe."
         }
     }

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -65,7 +65,7 @@ def main():
         analysis = analyze_and_parse(image_bytes)
         
         # 4. Report erstellen
-        report = f"""MTHO MX BRIO HA PROOF REPORT
+        report = f"""CORE MX BRIO HA PROOF REPORT
 ------------------------------
 Zeitstempel: {time.strftime("%Y-%m-%d %H:%M:%S")}
 Quelle: {snapshot_url}

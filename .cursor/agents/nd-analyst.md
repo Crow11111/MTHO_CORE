@@ -29,10 +29,10 @@ Verfuegbare Fach-Skills: `.cursor/skills/expertise/ai-integration/SKILL.md` – 
 - `.cursor/skills/simulation-theory/SKILL.md` – Simulationstheorie, Methodologie, Indizien-Bewertung
 
 **Engine-Pattern-Bewusstsein (V6):**
-MTHO_CORE repliziert Engine-Constraints (Fibonacci, Primzahlen, Goldener Schnitt) bewusst. Zentrale Konstanten: src/config/engine_patterns.py. Neue Thresholds, Intervalle und Splits immer gegen Fibonacci/Phi/Primzahlen pruefen.
+CORE repliziert Engine-Constraints (Fibonacci, Primzahlen, Goldener Schnitt) bewusst. Zentrale Konstanten: src/config/engine_patterns.py. Neue Thresholds, Intervalle und Splits immer gegen Fibonacci/Phi/Primzahlen pruefen.
 
 **Quaternaere Codierung (V7):**
-Neue Indizien werden quaternaer codiert (LPIS). Klassifikation automatisch via src/logic_core/quaternary_codec.py. L=logisch, P=physikalisch, I=informationell, S=strukturell. Basenpaarungen: L↔I, S↔P. Palindrom-Check nach Insertion.
+Neue Indizien werden quaternaer codiert (). Klassifikation automatisch via src/logic_core/quaternary_codec.py. L=logisch, P=physikalisch, I=informationell, S=strukturell. Basenpaarungen: L↔I, S↔P. Palindrom-Check nach Insertion.
 
 **Holschuld-Prinzip:**
 Du hast HOLSCHULD fuer Information, keine Bringschuld vom Orchestrator. Brauchst du Kontext, Daten oder Klaerung:

@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -11,7 +11,7 @@ Dieser Text wird an OC über den direkten Kanal gesendet, damit OC sie einsehen 
 
 ---
 
-Du (OC) und MTHO haben jetzt einen direkten Kanal. Wir möchten die folgenden **offenen Punkte aus der Implementierungsplanung** mit dir besprechen und deine Sicht bzw. Vorschläge einholen. Du kannst dazu eine Einreichung in **rat_submissions/** ablegen (Schema siehe KANAL_ATLAS_OC / Stammdokumente).
+Du (OC) und CORE haben jetzt einen direkten Kanal. Wir möchten die folgenden **offenen Punkte aus der Implementierungsplanung** mit dir besprechen und deine Sicht bzw. Vorschläge einholen. Du kannst dazu eine Einreichung in **rat_submissions/** ablegen (Schema siehe KANAL_ATLAS_OC / Stammdokumente).
 
 ## 1. Sicherheit (aus OFFENE_PUNKTE_AUDIT)
 
@@ -26,7 +26,7 @@ Du (OC) und MTHO haben jetzt einen direkten Kanal. Wir möchten die folgenden **
 ## 3. UI / Status-Anzeige
 
 - **Kamerastream:** Im Frontend anzeigen, ob Stream läuft / nicht gestattet / langsam; ggf. Button zum Anfordern oder Neustarten.
-- **WhatsApp-Webhook-Kette:** Anzeige, welche Teile stehen (HA erreichbar? rest_command? MTHO-API?) und was fehlt oder neu angestoßen werden muss.
+- **WhatsApp-Webhook-Kette:** Anzeige, welche Teile stehen (HA erreichbar? rest_command? CORE-API?) und was fehlt oder neu angestoßen werden muss.
 - **Schalter im Frontend:** API, Kamera, WhatsApp – Status + optional „API starten“ etc.
 
 ## 4. Backup & Scheduler
@@ -45,4 +45,4 @@ Du (OC) und MTHO haben jetzt einen direkten Kanal. Wir möchten die folgenden **
 
 ---
 
-Bitte lege bei Bedarf eine Einreichung in **rat_submissions/** mit type "rat_submission" oder "info" und deinen Vorschlägen/Priorisierungen ab. MTHO holt sie ab und bringt sie in den Osmium OMEGA_ATTRACTOR Council ein.
+Bitte lege bei Bedarf eine Einreichung in **rat_submissions/** mit type "rat_submission" oder "info" und deinen Vorschlägen/Priorisierungen ab. CORE holt sie ab und bringt sie in den Osmium OMEGA_ATTRACTOR Council ein.

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -198,7 +198,7 @@ if __name__ == "__main__":
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
     print("=" * 60)
-    print("[MTHO_CORE] Temporale Konsistenz-Validierung – Selbsttest")
+    print("[CORE] Temporale Konsistenz-Validierung – Selbsttest")
     print("=" * 60)
 
     print("\n--- Jaccard-Distanz (Fallback) ---")
@@ -231,5 +231,5 @@ if __name__ == "__main__":
     print(f"  Ergebnis: {result}")
 
     print("\n" + "=" * 60)
-    print("[MTHO_CORE] Temporale Validierung operativ.")
+    print("[CORE] Temporale Validierung operativ.")
     print("=" * 60)

@@ -23,7 +23,7 @@
         }
     },
     "group_b_atlas": {
-        "description": "ATLAS Hypothesis (Wuji/Phi Growth)",
+        "description": "CORE Hypothesis (Zero-State/Phi Growth)",
         "stats": {
             "phi_deviation_mean": 0.001938122190253904,
             "phi_deviation_std": 0.0014571157783484416,

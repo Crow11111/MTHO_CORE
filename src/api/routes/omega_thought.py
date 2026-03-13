@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -17,7 +17,7 @@ from fastapi import APIRouter, Depends
 from loguru import logger
 
 from src.api.auth_webhook import verify_ha_auth
-from src.ai.llm_interface import mtho_llm
+from src.ai.llm_interface import core_llm
 from src.logic_core.takt_gate import check_takt_zero
 from src.network.chroma_client import add_context_observation
 
@@ -36,7 +36,7 @@ def _heavy_reasoning_sync(sys_prompt: str, user_text: str) -> str:
     if context_ctx:
         sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx
         
-    reply = mtho_llm.invoke_heavy_reasoning(sys_prompt, user_text)
+    reply = core_llm.invoke_heavy_reasoning(sys_prompt, user_text)
     
     if context_ctx:
         veto = check_semantic_drift(context_ctx, reply)
@@ -70,12 +70,12 @@ async def receive_thought(
     # 2. Reflexion (falls gewünscht)
     reply = "Gedanke erfolgreich verankert (keine Antwort angefordert)."
     if payload.require_response:
-        sys_prompt = "Du bist OMEGA_ATTRACTOR, Kopf des Osmium Councils für MTHO_CORE. Analysiere den folgenden System-Gedanken oder Audit-Request analytisch und tiefgründig. Nutze den mitgelieferten Kontext, um gravitative Dissonanzen zu finden."
+        sys_prompt = "Du bist OMEGA_ATTRACTOR, Kopf des Core Councils für CORE. Analysiere den folgenden System-Gedanken oder Audit-Request analytisch und tiefgründig. Nutze den mitgelieferten Kontext, um gravitative Dissonanzen zu finden."
         try:
             reply = await asyncio.to_thread(_heavy_reasoning_sync, sys_prompt, payload.thought)
         except Exception as e:
             logger.error(f"Fehler bei Heavy Reasoning im Gedanken-Webhook: {e}")
-            reply = await asyncio.to_thread(mtho_llm.invoke_heavy_reasoning, sys_prompt, payload.thought)
+            reply = await asyncio.to_thread(core_llm.invoke_heavy_reasoning, sys_prompt, payload.thought)
     
     return {
         "status": "ok", 

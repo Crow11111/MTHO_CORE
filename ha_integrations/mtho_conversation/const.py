@@ -1,8 +1,8 @@
-"""Constants for MTHO Conversation integration."""
+"""Constants for CORE Conversation integration."""
 from __future__ import annotations
 
-DOMAIN = "mtho_conversation"
-LOGGER = "mtho_conversation"
+DOMAIN = "core_conversation"
+LOGGER = "core_conversation"
 
 CONF_BASE_URL = "base_url"
 CONF_FALLBACK_URL = "fallback_url"

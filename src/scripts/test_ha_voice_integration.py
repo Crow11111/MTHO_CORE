@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO Voice Assistant – Wyoming Integration Verification
+CORE Voice Assistant – Wyoming Integration Verification
 
 Prüft ob Wyoming-Komponenten (Whisper STT, Piper TTS, openWakeWord) und
 Assist Pipelines in Home Assistant korrekt integriert sind.
@@ -201,7 +201,7 @@ async def run_verification():
 
 def print_report(report: dict):
     print("\n" + "=" * 60)
-    print("MTHO Voice Assistant – Wyoming Integration Status")
+    print("CORE Voice Assistant – Wyoming Integration Status")
     print("=" * 60)
 
     print("\n[1] Verbindung zu Home Assistant")

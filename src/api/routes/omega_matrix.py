@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # OMEGA-CORE: Identitäts-Matrix (Spiegelung, keine physikalische Verarbeitung)
 # ============================================================
 
@@ -12,7 +12,7 @@ from fastapi import APIRouter, Query
 
 from src.logic_core.omega_interface import OmegaInterface
 
-router = APIRouter(prefix="/api/mtho/omega", tags=["omega-matrix"])
+router = APIRouter(prefix="/api/core/omega", tags=["omega-matrix"])
 
 
 @router.get("/mirror")

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -34,4 +34,4 @@ def find_recent_files(directory, limit=15):
         print(f"[{time_str}] {rel_path}")
 
 if __name__ == "__main__":
-    find_recent_files("c:\\MTHO_CORE")
+    find_recent_files("c:\\CORE")

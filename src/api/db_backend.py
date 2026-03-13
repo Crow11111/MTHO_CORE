@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -11,10 +11,10 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 
-# Osmium Council: Low Latency Database Settings (WAL-Mode)
-DB_PATH = r"c:\MTHO_CORE\data\argos_db\argos_knowledge_graph.sqlite"
+# Core Council: Low Latency Database Settings (WAL-Mode)
+DB_PATH = r"c:\CORE\data\shell_db\shell_knowledge_graph.sqlite"
 
-app = FastAPI(title="MTHO_CORE Database Backend (Osmium Standard V1.3)")
+app = FastAPI(title="CORE Database Backend (Osmium Standard V1.3)")
 
 def get_db_connection():
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
@@ -89,7 +89,7 @@ def get_db_connection():
     conn.commit()
     return conn
 
-# --- Pydantic Models (MTHO Data Atoms) ---
+# --- Pydantic Models (CORE Data Atoms) ---
 class CoreBrainRegistr(BaseModel):
     system_status: str
     content: str
@@ -255,5 +255,5 @@ def add_proactive_trigger(entry: ProactiveTrigger):
 
 if __name__ == "__main__":
     import uvicorn
-    print("[MTHO_CORE] Starting Osmium Database Backend V1.3 (Port 8000)...")
+    print("[CORE] Starting Osmium Database Backend V1.3 (Port 8000)...")
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -9,7 +9,7 @@
 
 ## Identifiziertes Problem
 
-**Ursache:** Die MTHO Presence Director Automation triggerte auf `device_tracker.iphone_2` mit States `home`/`not_home`. Der iCloud3/iPhone Device Tracker liefert jedoch **"H91"** (Zone-Name von `zone.home_2`) statt `"home"` wenn Marc zuhause ist.
+**Ursache:** Die CORE Presence Director Automation triggerte auf `device_tracker.iphone_2` mit States `home`/`not_home`. Der iCloud3/iPhone Device Tracker liefert jedoch **"H91"** (Zone-Name von `zone.home_2`) statt `"home"` wenn Marc zuhause ist.
 
 - `device_tracker.iphone_2`: State = **H91** (in Zone) oder **not_home** (außerhalb)
 - `person.marc_ten_hoevel`: State = **H91** oder **home** (je nach Zone) bzw. **not_home**
@@ -27,7 +27,7 @@ Die Trigger `to: "home"` und `from: "home"` wurden nie erreicht → mth91/mth_aw
 
 ```
 person.marc_ten_hoevel (home/H91/not_home)
-    → MTHO Presence Director
+    → CORE Presence Director
         → input_boolean.mth91 / input_boolean.mth_away
             → NEW Welcome Hook, Home > Wlcome on, Zylon Dock > welcome on
                 → script.welcome, script.welcome_a, scene.standby

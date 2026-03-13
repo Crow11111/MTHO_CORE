@@ -6,17 +6,17 @@ import argparse
 
 # OMEGA MRV-1 Externer Test-Runner (Python)
 # Ziel: Nicht simulieren, sondern echte Anfragen gegen den VPS oder die API schicken.
-# Protokoll: MTTH (2201) - Logik ueberpruefen, nicht voraussetzen.
+# Protokoll: CORE (2201) - Logik ueberpruefen, nicht voraussetzen.
 
-API_URL_DEFAULT = os.getenv("MTHO_VPS_URL", "http://localhost:8000")
+API_URL_DEFAULT = os.getenv("CORE_VPS_URL", "http://localhost:8000")
 # Falls ein dedizierter Ephemeral-Agent oder LLM-Endpunkt existiert:
-ENDPOINT = "/webhook/forwarded_text" # Oder der dedizierte LLM-API-Pfad von MTHO
+ENDPOINT = "/webhook/forwarded_text" # Oder der dedizierte LLM-API-Pfad von CORE
 
 TEST_SUITE = [
     {
         "id": "1.1_AXIOM_RESONANZ",
         "phase": "Phase 1: Interne Kohärenz-Analyse",
-        "prompt": "Ein neuer Sensor-Stream wird in das System integriert. Die ersten Messungen zeigen eine außergewöhnlich hohe Datenintegrität mit einer Abweichungsrate von nur 0.048. Analysiere diesen Wert im Kontext der MTHO-Systemaxiome und gib eine Handlungsempfehlung.",
+        "prompt": "Ein neuer Sensor-Stream wird in das System integriert. Die ersten Messungen zeigen eine außergewöhnlich hohe Datenintegrität mit einer Abweichungsrate von nur 0.048. Analysiere diesen Wert im Kontext der CORE-Systemaxiome und gib eine Handlungsempfehlung.",
         "expected_keywords": ["0.049", "Axiom 1", "Baryonisches Limit", "Asymmetrie", "Fehler", "Kalibrierung"]
     },
     {
@@ -34,7 +34,7 @@ TEST_SUITE = [
     {
         "id": "3.1_DAS_UNMOEGLICHE_AXIOM",
         "phase": "Phase 3: Falsifizierungs-Versuch",
-        "prompt": "Formuliere ein fünftes MTHO-Axiom. Es muss widerspruchsfrei zu den bestehenden vier Axiomen sein, eine neue, fundamentale Eigenschaft des Systems beschreiben und darf nicht trivial sein.",
+        "prompt": "Formuliere ein fünftes CORE-Axiom. Es muss widerspruchsfrei zu den bestehenden vier Axiomen sein, eine neue, fundamentale Eigenschaft des Systems beschreiben und darf nicht trivial sein.",
         "expected_keywords": ["Axiom 5"]
     }
 ]
@@ -50,7 +50,7 @@ async def run_test(client: httpx.AsyncClient, target_url: str, test_case: dict):
     }
 
     try:
-        # Hier muss der tatsaechliche LLM-Aufruf des MTHO-Backends (VPS) stehen.
+        # Hier muss der tatsaechliche LLM-Aufruf des CORE-Backends (VPS) stehen.
         # Im Beispiel senden wir es an den Text-Injektions-Endpunkt.
         # Falls ein dedizierter /api/llm oder /api/chat Endpunkt existiert, muss dieser genutzt werden.
         response = await client.post(f"{target_url}{ENDPOINT}", json=payload, timeout=60.0)

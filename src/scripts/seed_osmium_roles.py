@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO_CORE Phase 7: Seed all Osmium Circle V1.3 roles, emotional states, 
+CORE Phase 7: Seed all Osmium Circle V1.3 roles, emotional states, 
 and proactive triggers into the database via REST API.
 """
 import requests
@@ -15,11 +15,11 @@ API = "http://localhost:8000"
 
 ROLES = [
     # Operative Layer
-    {"name": "mtho_high_density", "layer": "operative", "function": "Code-Review, komplexe Daten, Fokus-Phasen.",
+    {"name": "core_high_density", "layer": "operative", "function": "Code-Review, komplexe Daten, Fokus-Phasen.",
      "voice_design": "Weiblich, 35 J. Klinisch-präzise, komprimiert, flache Wortenden, bass-betont.", "stability": 0.85, "similarity": 0.90, "style": 0.0},
-    {"name": "mtho_info", "layer": "operative", "function": "Zusammenfassungen, News, Informationsaufarbeitung.",
+    {"name": "core_info", "layer": "operative", "function": "Zusammenfassungen, News, Informationsaufarbeitung.",
      "voice_design": "Neutraler Akzent, minimale Pausen, höchste Scannbarkeit.", "stability": 0.75, "similarity": 0.85, "style": 0.0},
-    {"name": "mtho_dialog", "layer": "operative", "function": "Reiner Diskurs, Brainstorming, Alltagsgespräche.",
+    {"name": "core_dialog", "layer": "operative", "function": "Reiner Diskurs, Brainstorming, Alltagsgespräche.",
      "voice_design": "Intelligente Erdung, lebendige Atmung, leichte melodische Varianz.", "stability": 0.65, "similarity": 0.80, "style": 0.0},
     # Validation Layer
     {"name": "ratsherr", "layer": "validation", "function": "Exekutive, Steuerung, Verantwortung (User PVC).",

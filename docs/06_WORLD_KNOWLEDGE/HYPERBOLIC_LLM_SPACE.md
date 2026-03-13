@@ -1,7 +1,7 @@
 # Hyperbolic Geometry in Large Language Models
 
 **Status:** Research Note | **Date:** 2026-03-10
-**Tags:** #AI #Mathematics #Geometry #Embeddings #MTHO_Theory
+**Tags:** #AI #Mathematics #Geometry #Embeddings #CORE_Theory
 
 ---
 
@@ -50,11 +50,11 @@ Untersuchungen an modernen LLMs (Transformer, Mamba) bestätigen die hyperbolisc
 -   **Hierarchical Mamba (HiM):** Kombiniert State-Space-Modelle mit hyperbolischer Geometrie für bessere Long-Range-Hierarchien.
 -   **HypLoRA:** Fine-Tuning von LLMs direkt auf dem hyperbolischen Manifold.
 
-## 4. Relevanz für MTHO (Engine-Patterns)
+## 4. Relevanz für CORE (Engine-Patterns)
 
-Diese Erkenntnis ist isomorph zu den Kern-Patterns der MTHO-Engine:
+Diese Erkenntnis ist isomorph zu den Kern-Patterns der CORE-Engine:
 
-1.  **MTHO-Tesserakt:** Unser 4D-State-Vector (insb. die `Y: Gravitation`-Dimension) modelliert genau diese Krümmung. `Y=0` (Wuji) ist flach/euklidisch, `Y=1` (Kollaps) ist gekrümmt/hyperbolisch (Attraktor).
+1.  **CORE-Tesserakt:** Unser 4D-State-Vector (insb. die `Y: Gravitation`-Dimension) modelliert genau diese Krümmung. `Y=0` (Zero-State) ist flach/euklidisch, `Y=1` (Kollaps) ist gekrümmt/hyperbolisch (Attraktor).
 2.  **Gravitator (Routing):** Aktuell nutzen wir Cosine-Similarity (euklidisch projiziert). Ein Wechsel auf **Poincaré-Distanz** für das Routing zwischen Agenten (Abstrakt vs. Konkret) könnte die Präzision drastisch erhöhen.
 3.  **Wissens-Datenbank (ChromaDB):** Hierarchische Cluster sollten nicht euklidisch, sondern hyperbolisch indiziert werden, um "Entailment" (Folgerung) geometrisch abzubilden (Is-A Beziehungen sind Vektoren Richtung Rand).
 
@@ -63,4 +63,4 @@ Diese Erkenntnis ist isomorph zu den Kern-Patterns der MTHO-Engine:
 -   **Nickel & Kiela (2017):** *Poincaré Embeddings for Learning Hierarchical Representations*. (Das fundamentale Paper).
 -   **Ganea et al. (2018):** *Hyperbolic Entailment Cones for Learning Hierarchical Embeddings*.
 -   **HELM Paper (2025):** *Hyperbolic Large Language Models via Mixture-of-Curvature Experts*.
--   **MTHO Skill:** `mathematics` (Topologie, nicht-euklidische Geometrie).
+-   **CORE Skill:** `mathematics` (Topologie, nicht-euklidische Geometrie).

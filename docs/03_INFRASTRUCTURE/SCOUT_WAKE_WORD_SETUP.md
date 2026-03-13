@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -7,13 +7,13 @@
 
 # Scout Wake Word & Whisper/Wyoming Setup
 
-**Zweck:** Whisper, Piper und openWakeWord als Wyoming-Integration in Home Assistant einrichten, Assist-Pipeline mit MTHO verbinden und Wake Word konfigurieren.
+**Zweck:** Whisper, Piper und openWakeWord als Wyoming-Integration in Home Assistant einrichten, Assist-Pipeline mit CORE verbinden und Wake Word konfigurieren.
 
 **Voraussetzung:** Add-ons Whisper, Piper, openWakeWord sind installiert und laufen (Scout/Raspi 5).
 
 **Verwandte Docs:**
 - [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) – Verfügbare vordefinierte Modelle
-- [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md) – Custom Training für „hey atlas“ und „computer“
+- [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md) – Custom Training für „hey core“ und „computer“
 
 ---
 
@@ -44,9 +44,9 @@ Nach dem Start der Add-ons erscheinen die Dienste unter **Einstellungen → Ger�
 ## 2. Assist-Pipeline erstellen
 
 1. **Einstellungen → Sprachassistenten → Assistent hinzufügen**
-2. **Name:** z.B. „MTHO“
+2. **Name:** z.B. „CORE“
 3. **Sprache:** Deutsch (oder gewünschte Sprache)
-4. **Conversation Agent:** Home Assistant (Standard) – für MTHO-Anbindung siehe Abschnitt 6
+4. **Conversation Agent:** Home Assistant (Standard) – für CORE-Anbindung siehe Abschnitt 6
 5. **Speech-to-Text:** Wyoming (Whisper)
 6. **Text-to-Speech:** Wyoming (Piper)
 7. **Wake Word:** Wyoming (openWakeWord) – siehe Abschnitt 3
@@ -64,12 +64,12 @@ Nach dem Start der Add-ons erscheinen die Dienste unter **Einstellungen → Ger�
 4. **Wake Word:** z.B. **ok nabu** (zum Testen) oder ein anderes vordefiniertes Modell
 
 **Vordefinierte Modelle:** alexa, hey_mycroft, hey_jarvis, hey_rhasspy, timer, weather.  
-**„computer“** und **„atlas“** sind nicht vordefiniert – siehe [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) und 3.2.
+**„computer“** und **„core“** sind nicht vordefiniert – siehe [OPENWAKEWORD_MODELS.md](OPENWAKEWORD_MODELS.md) und 3.2.
 
-### 3.2 Eigenes Wake Word „hey atlas“ und „computer“
+### 3.2 Eigenes Wake Word „hey core“ und „computer“
 
 1. [Wake-Word-Training (Google Colab)](https://colab.research.google.com/drive/1q1oe2zOyZp7UsB3jJiQ1IFn8z5YfjwEb?usp=sharing)
-2. `target_word`: `hey atlas` (oder `atlas`) bzw. `computer`
+2. `target_word`: `hey core` (oder `core`) bzw. `computer`
 3. **Runtime → Run all** ausführen (~30–60 Min.)
 4. `.tflite`-Datei herunterladen
 5. Samba: `/share/openwakeword` anlegen (falls nicht vorhanden)
@@ -83,9 +83,9 @@ Nach dem Start der Add-ons erscheinen die Dienste unter **Einstellungen → Ger�
 ### 3.3 Zwei Wake Words gleichzeitig (ab HA 2025.10)
 
 Ab Home Assistant 2025.10 unterstützen Voice Satellites **bis zu zwei Wake Words** pro Gerät.  
-→ Zwei verschiedene Assistenten/Pipelines mit unterschiedlichen Wake Words (z.B. „hey atlas“ und „computer“) können parallel aktiv sein.
+→ Zwei verschiedene Assistenten/Pipelines mit unterschiedlichen Wake Words (z.B. „hey core“ und „computer“) können parallel aktiv sein.
 
-### 3.4 Setup-Skripte (MTHO)
+### 3.4 Setup-Skripte (CORE)
 
 | Skript | Zweck |
 |--------|-------|
@@ -107,13 +107,13 @@ Ab Home Assistant 2025.10 unterstützen Voice Satellites **bis zu zwei Wake Word
 | Komponente | IP / Host | Port |
 |------------|-----------|------|
 | Scout (HA) | 192.168.178.54 | 8123 (HTTPS) |
-| 4D_RESONATOR (MTHO_CORE) (MTHO API) | 192.168.178.20 | 8000 (HTTP) |
+| 4D_RESONATOR (CORE) (CORE API) | 192.168.178.20 | 8000 (HTTP) |
 
-Scout muss 4D_RESONATOR (MTHO_CORE) per HTTP erreichen können: `http://192.168.178.20:8000`
+Scout muss 4D_RESONATOR (CORE) per HTTP erreichen können: `http://192.168.178.20:8000`
 
 ---
 
-## 5. configuration.yaml – MTHO-Anbindung
+## 5. configuration.yaml – CORE-Anbindung
 
 ### 5.1 Geheimnisse (empfohlen)
 
@@ -124,7 +124,7 @@ atlas_api_url: "http://192.168.178.20:8000"
 atlas_webhook_token: "778aabf5b13c7b5120161168811908da51448b9435423aacf4b67f31e3bb57e7"
 ```
 
-**Hinweis:** `atlas_webhook_token` = `HA_WEBHOOK_TOKEN` aus `c:\MTHO_CORE\.env`.
+**Hinweis:** `atlas_webhook_token` = `HA_WEBHOOK_TOKEN` aus `c:\CORE\.env`.
 
 ### 5.2 rest_command.atlas_assist
 
@@ -157,16 +157,16 @@ rest_command:
 ```yaml
 input_text:
   assist_command:
-    name: "Assist-Befehl für MTHO"
+    name: "Assist-Befehl für CORE"
     max: 500
 ```
 
-### 5.4 Automation: Text an MTHO senden
+### 5.4 Automation: Text an CORE senden
 
 ```yaml
 automation:
-  - alias: "Assist-Text an MTHO senden"
-    description: "Leitet Text aus input_text.assist_command an MTHO weiter"
+  - alias: "Assist-Text an CORE senden"
+    description: "Leitet Text aus input_text.assist_command an CORE weiter"
     trigger:
       - platform: state
         entity_id:
@@ -185,11 +185,11 @@ automation:
           value: ""
 ```
 
-**Verwendung:** Text in `input_text.assist_command` setzen (z.B. per Dashboard-Button oder Service-Aufruf) → Automation ruft MTHO auf.
+**Verwendung:** Text in `input_text.assist_command` setzen (z.B. per Dashboard-Button oder Service-Aufruf) → Automation ruft CORE auf.
 
 ---
 
-## 6. Voice-Pipeline → MTHO
+## 6. Voice-Pipeline → CORE
 
 ### 6.1 Einschränkung
 
@@ -199,9 +199,9 @@ Die Standard-Assist-Pipeline leitet den transkribierten Text an den **Conversati
 
 | Ansatz | Aufwand | Beschreibung |
 |--------|---------|--------------|
-| **input_text + Button** | Gering | Text manuell eingeben oder per Button setzen → Automation → MTHO |
+| **input_text + Button** | Gering | Text manuell eingeben oder per Button setzen → Automation → CORE |
 | **assist_pipeline.run_stage Event** | Mittel | Automation auf `assist_pipeline`-Event (z.B. `stt-end`, `intent-start`) – Event-Struktur prüfen |
-| **Custom Conversation Agent** | Hoch | Eigene Integration, die an MTHO weiterleitet |
+| **Custom Conversation Agent** | Hoch | Eigene Integration, die an CORE weiterleitet |
 
 ### 6.3 Experimentell: Event-basierte Automation
 
@@ -210,7 +210,7 @@ Falls HA ein Event mit dem transkribierten Text ausgibt:
 ```yaml
 # Beispiel – Event-Namen und Daten je nach HA-Version prüfen
 automation:
-  - alias: "Assist STT-Text an MTHO (experimentell)"
+  - alias: "Assist STT-Text an CORE (experimentell)"
     trigger:
       - platform: event
         event_type: "assist_pipeline.run_stage"
@@ -224,9 +224,9 @@ automation:
 
 **Hinweis:** Event-Struktur in den Entwicklerwerkzeugen (Ereignisse) prüfen.
 
-### 6.4 MTHO-Verhalten bei /webhook/assist
+### 6.4 CORE-Verhalten bei /webhook/assist
 
-- MTHO führt Triage durch (Befehl vs. Chat/Deep Reasoning)
+- CORE führt Triage durch (Befehl vs. Chat/Deep Reasoning)
 - Antwort wird per TTS auf dem Mini-Speaker ausgegeben (`tts_dispatcher`, Ziel: `media_player.schreibtisch` oder `TTS_CONFIRMATION_ENTITY`)
 - Keine zusätzliche HA-Automation für TTS nötig
 
@@ -253,7 +253,7 @@ curl -X POST http://192.168.178.20:8000/webhook/assist \
 2. `input_text.set_value` aufrufen:
    - `entity_id`: `input_text.assist_command`
    - `value`: `Licht an`
-3. Automation sollte auslösen und MTHO aufrufen
+3. Automation sollte auslösen und CORE aufrufen
 
 ---
 
@@ -265,7 +265,7 @@ curl -X POST http://192.168.178.20:8000/webhook/assist \
 | Custom Training | [CUSTOM_WAKE_WORD_TRAINING.md](CUSTOM_WAKE_WORD_TRAINING.md) |
 | Download-Skript | `src/scripts/download_openwakeword_models.py` |
 | Setup-Skript | `src/scripts/setup_scout_wake_words.py` |
-| MTHO HA-Client | `src/connectors/home_assistant.py` |
+| CORE HA-Client | `src/connectors/home_assistant.py` |
 | Webhook-Routen | `src/api/routes/ha_webhook.py` – `/webhook/assist`, `/webhook/inject_text` |
 | Auth | `src/api/auth_webhook.py` – `verify_ha_auth` (Bearer) |
 | TTS | `src/voice/tts_dispatcher.py` |
@@ -282,5 +282,5 @@ curl -X POST http://192.168.178.20:8000/webhook/assist \
 |---------|----------|
 | `HA_WEBHOOK_TOKEN` in `.env` | ✅ `778aabf5b13c7b5120161168811908da51448b9435423aacf4b67f31e3bb57e7` |
 | Scout IP | ✅ 192.168.178.54 |
-| 4D_RESONATOR (MTHO_CORE) IP | ✅ 192.168.178.20 |
+| 4D_RESONATOR (CORE) IP | ✅ 192.168.178.20 |
 | `/webhook/assist` Endpoint | ✅ `ha_webhook.assist_pipeline` – Payload `{"text": "..."}` |

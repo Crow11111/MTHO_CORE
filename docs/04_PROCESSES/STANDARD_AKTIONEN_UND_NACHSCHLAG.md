@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -43,7 +43,7 @@
 | Aktion | Wo nachschauen | Skript / Hinweis |
 |--------|----------------|------------------|
 | Lokale ChromaDB (core_directives) | `src/network/chroma_client.py`, `docs/04_PROCESSES/VPS_SYNC_CORE_DIRECTIVES.md` | CHROMA_LOCAL_PATH; CHROMA_HOST leer = lokal |
-| Abgleich VPS vs. 4D_RESONATOR (MTHO_CORE) | `docs/05_AUDIT_PLANNING/VERGLEICHSDOKUMENT_OC_BRAIN_VS_DREADNOUGHT.md` | `check_oc_brain_chroma_abgleich.py` (mit Tunnel/CHROMA_HOST) |
+| Abgleich VPS vs. 4D_RESONATOR (CORE) | `docs/05_AUDIT_PLANNING/VERGLEICHSDOKUMENT_OC_BRAIN_VS_DREADNOUGHT.md` | `check_oc_brain_chroma_abgleich.py` (mit Tunnel/CHROMA_HOST) |
 | Gravitations-Axiome hinzufügen | `src/scripts/add_gravitational_axioms_to_chroma.py` | Lokal ausführen; für VPS danach Sync nutzen |
 
 ---
@@ -52,8 +52,8 @@
 
 | Aktion | Wo nachschauen | Skript / Hinweis |
 |--------|----------------|------------------|
-| MTHO-Dienste starten | Projektroot: `START_MTHO_DIENSTE.bat` | Backend 8000, Dashboard 8501, Voice-Info 8502; bei Fehler: Fenster bleibt mit Pause offen (Fehlermeldung lesen) |
-| Komplett (inkl. MX-Snapshot) | `START_MTHO_KOMPLETT.bat` | Ruft START_MTHO_DIENSTE.bat auf |
+| CORE-Dienste starten | Projektroot: `START_CORE_DIENSTE.bat` | Backend 8000, Dashboard 8501, Voice-Info 8502; bei Fehler: Fenster bleibt mit Pause offen (Fehlermeldung lesen) |
+| Komplett (inkl. MX-Snapshot) | `START_CORE_KOMPLETT.bat` | Ruft START_CORE_DIENSTE.bat auf |
 
 ---
 

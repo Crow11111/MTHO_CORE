@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -10,7 +10,7 @@ import sys
 from dotenv import load_dotenv
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -23,7 +23,7 @@ stdin, stdout, _ = ssh.exec_command("tail -100 /root/config/home-assistant.log 2
 logs = stdout.read().decode('utf-8', errors='replace')
 
 # Filter for relevant lines
-keywords = ["mtho", "whatsapp", "rest_command", "new_whatsapp", "automation", "8000", "error"]
+keywords = ["core", "whatsapp", "rest_command", "new_whatsapp", "automation", "8000", "error"]
 matching = []
 for line in logs.split('\n'):
     for kw in keywords:

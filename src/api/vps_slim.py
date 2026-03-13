@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -18,10 +18,10 @@ from pydantic import BaseModel, Field
 
 from src.api.auth_webhook import verify_ha_auth
 
-_is_prod = os.getenv("MTHO_ENV", "production").lower() == "production"
+_is_prod = os.getenv("CORE_ENV", "production").lower() == "production"
 
 app = FastAPI(
-    title="MTHO_CORE VPS Slim",
+    title="CORE VPS Slim",
     version="1.0.0",
     docs_url=None if _is_prod else "/docs",
     redoc_url=None,
@@ -53,11 +53,11 @@ class ForwardedTextPayload(BaseModel):
 
 def _forwarded_text_pipeline(text: str) -> str:
     """VPS-Fallback Pipeline: Triage -> HA-Command oder Heavy-Reasoning. Sync."""
-    from src.ai.llm_interface import mtho_llm
+    from src.ai.llm_interface import core_llm
     from src.network.ha_client import HAClient
 
     ha_client = HAClient()
-    triage = mtho_llm.run_triage(text)
+    triage = core_llm.run_triage(text)
 
     if triage.intent == "command" or triage.intent in [
         "turn_on", "turn_off", "toggle", "light.turn_on", "light.turn_off",
@@ -80,7 +80,7 @@ def _forwarded_text_pipeline(text: str) -> str:
 
     if triage.intent in ["deep_reasoning", "chat"]:
         sys_prompt = (
-            "Du bist Virtual Marc, Kopf des Osmium Councils für MTHO_CORE. "
+            "Du bist Virtual Marc, Kopf des Core Councils für CORE. "
             "Antworte analytisch, auf Systemik fokussiert."
         )
         try:
@@ -93,14 +93,14 @@ def _forwarded_text_pipeline(text: str) -> str:
             context_ctx = inject_context_for_agent(text, n_results=3, format="markdown")
             if context_ctx:
                 sys_prompt += "\n\n## Relevanter Kontext (context field)\n" + context_ctx
-            reply = mtho_llm.invoke_heavy_reasoning(sys_prompt, text)
+            reply = core_llm.invoke_heavy_reasoning(sys_prompt, text)
             if context_ctx:
                 veto = check_semantic_drift(context_ctx, reply)
                 if veto.vetoed:
                     apply_veto(veto)
             return reply
         except Exception:
-            return mtho_llm.invoke_heavy_reasoning(sys_prompt, text)
+            return core_llm.invoke_heavy_reasoning(sys_prompt, text)
 
     return "[SLM Triage] Unbekannter Intent."
 
@@ -112,7 +112,7 @@ def _forwarded_text_pipeline(text: str) -> str:
 @app.get("/")
 async def health() -> Dict[str, str]:
     """Health Check."""
-    return {"status": "online", "system": "MTHO_CORE_VPS_SLIM", "version": "1.0.0"}
+    return {"status": "online", "system": "CORE_VPS_SLIM", "version": "1.0.0"}
 
 
 @app.post("/webhook/forwarded_text")

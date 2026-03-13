@@ -1,14 +1,14 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Token-Rotation für MTHO_CORE (90-Tage-Empfehlung, GQA F1).
+Token-Rotation für CORE (90-Tage-Empfehlung, GQA F1).
 
 Generiert neue sichere Werte für:
-- MTHO_WEBHOOK_SECRET
+- CORE_WEBHOOK_SECRET
 - HA_WEBHOOK_TOKEN
 - OPENCLAW_GATEWAY_TOKEN (optional)
 
@@ -53,9 +53,9 @@ def main() -> int:
             continue
         key, _, rest = line.partition("=")
         key = key.strip()
-        if key == "MTHO_WEBHOOK_SECRET":
+        if key == "CORE_WEBHOOK_SECRET":
             new_val = generate_hex_token(64)
-            replaced["MTHO_WEBHOOK_SECRET"] = new_val
+            replaced["CORE_WEBHOOK_SECRET"] = new_val
             updated.append(f'{key}="{new_val}"')
         elif key == "HA_WEBHOOK_TOKEN":
             new_val = generate_hex_token(64)
@@ -71,7 +71,7 @@ def main() -> int:
             updated.append(line)
 
     if not replaced:
-        print("Keine Token zum Rotieren gefunden (MTHO_WEBHOOK_SECRET, HA_WEBHOOK_TOKEN, OPENCLAW_GATEWAY_TOKEN).")
+        print("Keine Token zum Rotieren gefunden (CORE_WEBHOOK_SECRET, HA_WEBHOOK_TOKEN, OPENCLAW_GATEWAY_TOKEN).")
         return 0
 
     if "TOKEN_ROTATED_AT" not in content:
@@ -84,7 +84,7 @@ def main() -> int:
     print("\nManuelle Schritte:")
     print("1. Home Assistant: HA_WEBHOOK_TOKEN in Automation/rest_command anpassen.")
     print("2. OC Brain (VPS): OPENCLAW_GATEWAY_TOKEN in OpenClaw-Config setzen.")
-    print("3. WhatsApp-Webhook: X-MTHO-WEBHOOK-SECRET bei HA anpassen.")
+    print("3. WhatsApp-Webhook: X-CORE-WEBHOOK-SECRET bei HA anpassen.")
     return 0
 
 

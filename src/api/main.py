@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -15,7 +15,7 @@ from loguru import logger
 # Temporär auskommentiert wegen ImportError
 # from src.api.routes import id_safe
 
-from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, mtho_knowledge, mtho_voice, mtho_events, github_webhook, omega_matrix, omega_thought, telemetry, chat
+from src.api.routes import whatsapp_webhook, ha_webhook, oc_channel, core_knowledge, core_voice, core_events, github_webhook, omega_matrix, omega_thought, telemetry, chat
 
 from src.api.middleware.veto_gate import VetoGateMiddleware
 from src.api.middleware.friction_guard import FrictionGuardMiddleware
@@ -26,13 +26,13 @@ _agent_pool = None
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    """MTHO API Lifecycle: Ephemeral Pool + Event-Bus Startup/Shutdown."""
+    """CORE API Lifecycle: Ephemeral Pool + Event-Bus Startup/Shutdown."""
     global _event_bus, _agent_pool
 
     try:
-        from src.agents.scout_mtho_handlers import scout_fusion_init
+        from src.agents.scout_core_handlers import scout_fusion_init
         _agent_pool = await scout_fusion_init()
-        logger.info("[API] MTHO Agent Pool initialisiert")
+        logger.info("[API] CORE Agent Pool initialisiert")
     except Exception as exc:
         logger.error("[API] Agent Pool Init fehlgeschlagen: {} – API laeuft weiter", exc)
 
@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     hass_token = (os.getenv("HASS_TOKEN") or "").strip()
     if hass_url and hass_token:
         try:
-            from src.daemons.mtho_event_bus import start_event_bus
+            from src.daemons.core_event_bus import start_event_bus
             _event_bus = await start_event_bus()
             logger.info("[API] Event-Bus gestartet (HASS_URL konfiguriert)")
         except Exception as exc:
@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         logger.info("[API] Event-Bus uebersprungen (HASS_URL/HASS_TOKEN nicht gesetzt)")
 
     # --- SYNC RELAY ---
-    webhook_secret = (os.getenv("MTHO_WEBHOOK_SECRET") or "").strip()
+    webhook_secret = (os.getenv("CORE_WEBHOOK_SECRET") or "").strip()
     if webhook_secret:
         try:
             import threading
@@ -57,18 +57,18 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
             from aiohttp import web as _aio_web
 
             def _run_sync_relay():
-                from src.network.mtho_sync_relay import app as sync_relay_app
+                from src.network.core_sync_relay import app as sync_relay_app
                 loop = _aio.new_event_loop()
                 _aio.set_event_loop(loop)
                 loop.run_until_complete(_aio_web.run_app(sync_relay_app, port=8049, handle_signals=False, print=lambda *a: None))
 
-            _sync_relay_thread = threading.Thread(target=_run_sync_relay, daemon=True, name="mtho-sync-relay")
+            _sync_relay_thread = threading.Thread(target=_run_sync_relay, daemon=True, name="core-sync-relay")
             _sync_relay_thread.start()
             logger.info("[API] Sync Relay gestartet (Port 8049)")
         except Exception as exc:
             logger.error("[API] Sync Relay Start fehlgeschlagen: {} – API laeuft weiter", exc)
     else:
-        logger.info("[API] Sync Relay uebersprungen (MTHO_WEBHOOK_SECRET nicht gesetzt)")
+        logger.info("[API] Sync Relay uebersprungen (CORE_WEBHOOK_SECRET nicht gesetzt)")
 
     yield
 
@@ -88,8 +88,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(
-    title="MTHO_CORE API",
-    description="Main Backend Interface for MTHO Operations",
+    title="CORE API",
+    description="Main Backend Interface for CORE Operations",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -115,9 +115,9 @@ app.add_middleware(
 app.include_router(whatsapp_webhook.router)
 app.include_router(ha_webhook.router)
 app.include_router(oc_channel.router)
-app.include_router(mtho_knowledge.router)
-app.include_router(mtho_voice.router)
-app.include_router(mtho_events.router)
+app.include_router(core_knowledge.router)
+app.include_router(core_voice.router)
+app.include_router(core_events.router)
 app.include_router(github_webhook.router)
 app.include_router(omega_matrix.router)
 app.include_router(omega_thought.router)
@@ -127,7 +127,7 @@ app.include_router(chat.router)
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "system": "MTHO_CORE", "version": "1.0.0"}
+    return {"status": "online", "system": "CORE", "version": "1.0.0"}
 
 
 @app.get("/status")
@@ -139,7 +139,7 @@ def system_status() -> dict:
     )
     bus_stats = _event_bus.stats if _event_bus is not None else None
     return {
-        "system": "MTHO_CORE",
+        "system": "CORE",
         "version": "1.0.0",
         "event_bus": {
             "hass_configured": hass_configured,
@@ -150,7 +150,7 @@ def system_status() -> dict:
             "active": _agent_pool is not None,
         },
         "sync_relay": {
-            "enabled": bool((os.getenv("MTHO_WEBHOOK_SECRET") or "").strip()),
+            "enabled": bool((os.getenv("CORE_WEBHOOK_SECRET") or "").strip()),
             "port": 8049,
         },
     }

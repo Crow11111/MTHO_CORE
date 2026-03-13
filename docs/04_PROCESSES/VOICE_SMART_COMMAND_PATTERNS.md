@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO Voice Assistant – Smart Command Patterns
+# CORE Voice Assistant – Smart Command Patterns
 
 Dokumentation der vom Smart Command Parser unterstützten Sprachbefehle.
 
@@ -112,7 +112,7 @@ Structured Output: `{domain, service, entity_id, data}`
 ## Integration
 
 1. **Entities laden:** `data/home_assistant/states.json` (via `fetch_ha_data.py`) oder `context["entities"]`
-2. **Scout Direct Handler:** Versucht Smart Parser zuerst, sonst Hugin/LLM-Triage
+2. **Scout Direct Handler:** Versucht Smart Parser zuerst, sonst Telemetry-Injector/LLM-Triage
 3. **HA-Webhook:** `/webhook/ha_action`, `/webhook/inject_text` → `process_text()`
 
 ---

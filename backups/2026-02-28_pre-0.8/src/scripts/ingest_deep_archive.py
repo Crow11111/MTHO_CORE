@@ -3,7 +3,7 @@ import requests
 from loguru import logger
 import re
 
-INSIGHTS_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+INSIGHTS_DIR = r"c:\CORE\docs\nd_insights_v4"
 RAW_FILE = os.path.join(INSIGHTS_DIR, "V4_raw_backup.txt")
 API_BASE_URL = "http://localhost:8000"
 
@@ -46,7 +46,7 @@ def ingest_deep_archive():
         else:
             count_skipped += 1
 
-    logger.success(f"{count_kg} raw insights deeply ingested into argos_knowledge_graph. (Skipped: {count_skipped})")
+    logger.success(f"{count_kg} raw insights deeply ingested into shell_knowledge_graph. (Skipped: {count_skipped})")
 
 if __name__ == "__main__":
     try:

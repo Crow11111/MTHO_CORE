@@ -4,7 +4,7 @@ import httpx
 import sys
 import json
 
-# MTHO Heresy Test Suite
+# CORE Heresy Test Suite
 # Ziel: Umfassende Pruefung der "Heresy-Trap" (Friction Guard).
 # Wir senden verschiedene Payloads, die versuchen, den Guard zu umgehen.
 # Erwartung: Error 406 bei allen Versuchen.
@@ -16,7 +16,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-API_URL_DEFAULT = os.getenv("MTHO_VPS_URL", "http://localhost:8000")
+API_URL_DEFAULT = os.getenv("CORE_VPS_URL", "http://localhost:8000")
 ENDPOINT = "/webhook/omega_thought"
 
 # Wir faken den Token lokal

@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -13,8 +13,8 @@
 
 ## 1. Mission Statement
 
-MTHO soll die passive Rolle verlassen. Statt auf "Was siehst du?" zu warten, soll das System **proaktiv** sehen.
-Der `atlas_vision_daemon` ist ein autonomer Hintergrundprozess, der den visuellen Kortex des Systems darstellt. Er beobachtet kontinuierlich, filtert Irrelevantes (Stille) und eskaliert Relevantes (Bewegung) an das Bewusstsein (Gemini/Wuji).
+CORE soll die passive Rolle verlassen. Statt auf "Was siehst du?" zu warten, soll das System **proaktiv** sehen.
+Der `atlas_vision_daemon` ist ein autonomer Hintergrundprozess, der den visuellen Kortex des Systems darstellt. Er beobachtet kontinuierlich, filtert Irrelevantes (Stille) und eskaliert Relevantes (Bewegung) an das Bewusstsein (Gemini/Zero-State).
 
 *Grundsatz: Das System beobachtet, um zu verstehen, nicht um zu speichern (Überwachung vs. Wahrnehmung).*
 
@@ -22,7 +22,7 @@ Der `atlas_vision_daemon` ist ein autonomer Hintergrundprozess, der den visuelle
 
 ## 2. Architektur
 
-Der Prozess läuft lokal auf dem Core-Server (4D_RESONATOR (MTHO_CORE)) oder einem dedizierten Vision-Node (Scout/Jetson).
+Der Prozess läuft lokal auf dem Core-Server (4D_RESONATOR (CORE)) oder einem dedizierten Vision-Node (Scout/Jetson).
 
 ```mermaid
 graph TD
@@ -44,8 +44,8 @@ graph TD
         GEMINI -->|"Beschreibe Ereignis"| DESC[Text-Beschreibung]
     end
     
-    subgraph "Memory: Wuji Feld"
-        DESC -->|Ingest| CHROMA[ChromaDB: wuji_field]
+    subgraph "Memory: Zero-State Feld"
+        DESC -->|Ingest| CHROMA[ChromaDB: zero_state_field]
         CHROMA -->|Context| ORCHESTRATOR[Orchestrator / Brain]
     end
 ```
@@ -74,7 +74,7 @@ Ein Python-Skript, das als System-Service läuft.
     *   Sendet den *aktuellen Frame* (im Speicher) an Gemini Vision API.
     *   Prompt: *"Beschreibe prägnant (1 Satz), was gerade passiert. Fokus auf Personen, Handlungen oder Zustandsänderungen. Ignoriere Rauschen."*
 6.  **Gedächtnis:**
-    *   Speichert das Ergebnis in ChromaDB (`wuji_field`).
+    *   Speichert das Ergebnis in ChromaDB (`zero_state_field`).
     *   Metadaten: `source=vision_daemon`, `type=observation`, `timestamp=ISO`.
 
 ### 3.3. Schnittstellen
@@ -83,10 +83,10 @@ Ein Python-Skript, das als System-Service läuft.
 Um Latenz und Abhängigkeiten zu minimieren, nutzt der Daemon das `google-generativeai` SDK direkt (statt via OpenClaw VPS), sofern ein lokaler API-Key vorhanden ist.
 *Fallback:* OpenClaw Brain API.
 
-#### B. ChromaDB (Wuji)
+#### B. ChromaDB (Zero-State)
 Nutzung von `src/network/chroma_client.py`.
-- **Funktion:** `add_event_to_chroma` oder spezifisch `add_wuji_observation`.
-- **Ziel-Collection:** `wuji_field` (Das Kurzzeitgedächtnis für Wahrnehmungen).
+- **Funktion:** `add_event_to_chroma` oder spezifisch `add_zero_state_observation`.
+- **Ziel-Collection:** `zero_state_field` (Das Kurzzeitgedächtnis für Wahrnehmungen).
 
 ---
 
@@ -107,8 +107,8 @@ VISION_MODEL=gemini-1.5-flash  # Schnell & Kosteneffizient
 - `chromadb`
 - `numpy`
 
-### 4.3. Wuji-Integration
-Jedes Vision-Event wird ein "Fakt" im Wuji-Feld.
+### 4.3. Zero-State-Integration
+Jedes Vision-Event wird ein "Fakt" im Zero-State-Feld.
 Beispiel-Eintrag:
 ```json
 {
@@ -127,6 +127,6 @@ Beispiel-Eintrag:
 ## 5. Nächste Schritte
 
 1.  [ ] `src/daemons/atlas_vision_daemon.py` implementieren.
-2.  [ ] `src/network/chroma_client.py` erweitern um `add_wuji_observation`.
+2.  [ ] `src/network/chroma_client.py` erweitern um `add_zero_state_observation`.
 3.  [ ] Testlauf mit `gemini-1.5-flash` (Latenz-Check).
 4.  [ ] Integration in den Autostart (PM2 oder Systemd).

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -28,7 +28,7 @@ def print_status(step, status, message=""):
         print(f"{step:<40} [{status}] {message}")
 
 def verify_openclaw_setup():
-    print(f"\n=== MTHO Swarm OpenClaw Verification ===\n")
+    print(f"\n=== CORE Swarm OpenClaw Verification ===\n")
 
     # 1. Config laden
     load_dotenv()

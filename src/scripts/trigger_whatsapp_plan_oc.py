@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -10,7 +10,7 @@ Abschnitt 6 (OC-Teil) in WHATSAPP_TRIGGER_UND_ADRESSIERUNG_PLAN.md auszufüllen.
 
 OC erhält die Nachricht im gleichen Kanal wie andere Eingaben (Gateway /v1/responses).
 OC soll seine Antwort als rat_submission ablegen (topic z. B. "WhatsApp-Plan Abschnitt 6");
-MTHO holt sie später mit fetch_oc_submissions ab.
+CORE holt sie später mit fetch_oc_submissions ab.
 
 Kein SSH nötig – nur OPENCLAW_GATEWAY_TOKEN und VPS_HOST in .env.
 
@@ -31,7 +31,7 @@ PLAN_DOC = os.path.join(PROJECT_ROOT, "docs", "WHATSAPP_TRIGGER_UND_ADRESSIERUNG
 # Aufgabe für OC (inkl. Auszug aus dem Plan, damit OC den Kontext hat)
 TASK_MESSAGE = """Abstimmung WhatsApp-Plan (Trigger & Adressierung): Bitte fülle deinen Teil in Abschnitt 6 aus.
 
-Kontext: Es geht darum, dass nur bei Trigger (@Mtho/@OC) systemisch geantwortet wird und Nachrichten für Marc privat nicht von Systemen beantwortet werden. MTHO und Dev-Agent stimmen sich mit dir ab.
+Kontext: Es geht darum, dass nur bei Trigger (@Core/@OC) systemisch geantwortet wird und Nachrichten für Marc privat nicht von Systemen beantwortet werden. CORE und Dev-Agent stimmen sich mit dir ab.
 
 Deine Aufgabe (für Abschnitt 6 im Plan-Dokument):
 1. Empfohlenes Procedere für „nur richtige Absender / unterschiedliche Nummern“ (z. B. allowFrom, getrennte Nummer, Kombination mit @OC).
@@ -42,7 +42,7 @@ Bitte lege deine Antwort als Einreichung in rat_submissions/ ab:
 - payload.topic: "WhatsApp-Plan Abschnitt 6"
 - payload.body: dein Text (Vorschläge, Procedere, wie du Nachrichten siehst).
 
-MTHO holt die Einreichungen mit fetch_oc_submissions ab und trägt sie in den Plan ein."""
+CORE holt die Einreichungen mit fetch_oc_submissions ab und trägt sie in den Plan ein."""
 
 
 def main() -> int:

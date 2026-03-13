@@ -1,6 +1,6 @@
 # 01 ARCHITEKTUR HARDWARE (OSMIUM STANDARD)
 
-> **Osmium Council Revision**
+> **Core Council Revision**
 > - **ND_THERAPIST**: Hardware-Modularität erzwungen. Die Trennung zwischen Node Alpha (Dreadnought) und Node Beta (Scout) dient Marcs Monotropismus, um "Dissonanz-Jucken" (Fehlersuche im falschen System) physikalisch auszuschließen. "Open Thresholds" (offene Eingangsschwellen) erfordern latenzfreien I/O, daher der radikale Fokus auf NVMe-SSDs und RAM-Caching.
 > - **UNIVERSAL_BOARD**: Striktes Energie- und Token-Management. Der Scout (Pi 5) übernimmt das Vorfiltern (Grob-Sieb), um den Dreadnought (10600K, GTX 3050) nur bei echten High-Entropy-Aufgaben aus dem Idle zu holen. Dies senkt Stromverbrauch und Hardware-Verschleiß drastisch.
 > - **NT_SPECIALIST**: Die Telemetrie- und Logging-Ebenen werden so standardisiert (Level 0), dass Neurotypische Admins/Schnittstellen ohne Verständnis für Marcs mentale Architektur das System warten können.

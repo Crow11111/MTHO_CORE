@@ -1,14 +1,14 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 #!/usr/bin/env python3
 """
-MTHO Voice Assistant – End-to-End Test
+CORE Voice Assistant – End-to-End Test
 ========================================
-Simuliert: "MTHO Regal 80% Helligkeit"
+Simuliert: "CORE Regal 80% Helligkeit"
 - Verifiziert Smart Command Parser → light.turn_on
 - Optional: HA-Service-Aufruf (wenn HASS_URL gesetzt)
 - Optional: NASA Sound auf Mini (wenn data/sounds/nasa_mission_complete.mp3 existiert)
@@ -109,7 +109,7 @@ async def test_nasa_sound():
 
 
 async def main():
-    print("=== MTHO Voice E2E Test ===\n")
+    print("=== CORE Voice E2E Test ===\n")
 
     action = await test_parser()
     await test_scout_direct_handler()

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -17,16 +17,18 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
-def main():
+import asyncio
+
+async def main():
     from src.network.chroma_client import get_core_directives_collection
 
-    col = get_core_directives_collection()
-    n = col.count()
+    col = await get_core_directives_collection()
+    n = await asyncio.to_thread(col.count)
     if n == 0:
         print("core_directives: 0 Einträge.")
         return
 
-    data = col.get(include=["documents", "metadatas"])
+    data = await asyncio.to_thread(col.get, include=["documents", "metadatas"])
     ids = data["ids"]
     docs = data.get("documents") or []
     metas = data.get("metadatas") or []
@@ -57,4 +59,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

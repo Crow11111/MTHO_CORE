@@ -45,7 +45,7 @@ Volltext: `docs/04_PROCESSES/COMMIT_UND_REFACTOR.md`.
 
 | Kategorie | Zielordner |
 |-----------|------------|
-| Kern-Theorie, LPIS, State Vector | `docs/01_CORE_DNA/` |
+| Kern-Theorie, , State Vector | `docs/01_CORE_DNA/` |
 | System-Architektur, Komponenten, Schnittstellen | `docs/02_ARCHITECTURE/` |
 | Hardware, VPS, Scout, Netzwerk | `docs/03_INFRASTRUCTURE/` |
 | Prozesse, Sicherheitsrat, Standard-Aktionen | `docs/04_PROCESSES/` |

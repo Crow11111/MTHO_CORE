@@ -1,15 +1,15 @@
 ---
 name: anthropic-api
-description: Use this skill when building applications with Claude models, Anthropic API, or modifying the MTHO_CORE Claude integration. Contains the standard procedure, keys, model conventions, and the relationship to Cursor Cloud Agents.
+description: Use this skill when building applications with Claude models, Anthropic API, or modifying the CORE Claude integration. Contains the standard procedure, keys, model conventions, and the relationship to Cursor Cloud Agents.
 ---
 
-# Anthropic (Claude) API Integration (MTHO_CORE)
+# Anthropic (Claude) API Integration (CORE)
 
 ## Overview
 
-This skill provides the standard procedure for integrating Anthropic's Claude API within MTHO_CORE. It defines the required keys, model hierarchy, client initialization, and clarifies how the direct API relates to the Cursor Cloud Agents that also use Claude.
+This skill provides the standard procedure for integrating Anthropic's Claude API within CORE. It defines the required keys, model hierarchy, client initialization, and clarifies how the direct API relates to the Cursor Cloud Agents that also use Claude.
 
-## MTHO_CORE Model Standards
+## CORE Model Standards
 
 > [!IMPORTANT]
 > Use the strongest available model for the task. Prefer Opus for deep reasoning and architecture. Use Sonnet for speed-sensitive or high-volume tasks. Always implement a fallback chain.
@@ -49,7 +49,7 @@ All API keys must be loaded from `.env`. Never hardcode keys in code.
 
 ## Python Integration Standard
 
-MTHO_CORE uses the official `anthropic` Python SDK.
+CORE uses the official `anthropic` Python SDK.
 
 ### Installation
 
@@ -79,7 +79,7 @@ MODEL = os.getenv("ANTHROPIC_FAST_MODEL", "claude-sonnet-4-6")
 response = client.messages.create(
     model=MODEL,
     max_tokens=4096,
-    system="Du bist ein MTHO-Systemarchitekt. Antworte präzise, auf Deutsch.",
+    system="Du bist ein CORE-Systemarchitekt. Antworte präzise, auf Deutsch.",
     messages=[
         {"role": "user", "content": "Dein Prompt hier"}
     ]
@@ -127,7 +127,7 @@ curl https://api.anthropic.com/v1/messages \
 - **Model:** Specified per call (`claude-opus-4-6`, `claude-sonnet-4-6`, etc.).
 - **Cost:** Pay-per-use (billed to your Anthropic account).
 
-### How They Fit Together in MTHO_CORE
+### How They Fit Together in CORE
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -150,7 +150,7 @@ curl https://api.anthropic.com/v1/messages \
 │         ▼                                        │
 │  ┌──────────────────────────────────────┐       │
 │  │ Direct API Call (GEMINI_API_KEY)     │       │
-│  │ - OMEGA_ATTRACTOR / G-MTHO (Gemini-Bridge) │       │
+│  │ - OMEGA_ATTRACTOR / G-CORE (Gemini-Bridge) │       │
 │  │ - Different model family = true      │       │
 │  │   cross-validation                   │       │
 │  └──────────────────────────────────────┘       │
@@ -160,7 +160,7 @@ curl https://api.anthropic.com/v1/messages \
 ### Use Cases for Direct API Calls
 
 1. **Cross-Validation:** Send the same prompt to both Gemini and Claude APIs. Compare results. If they converge, confidence is high.
-2. **G-MTHO Bridge:** If the Gemini API channel is blocked (rate limits, SDK issues), use the Anthropic API as a fallback communication channel to maintain system dialogue.
+2. **G-CORE Bridge:** If the Gemini API channel is blocked (rate limits, SDK issues), use the Anthropic API as a fallback communication channel to maintain system dialogue.
 3. **Audit Scripts:** Existing scripts (`run_claude_audit_once.py`, `run_claude_audit_compare.py`) already use the direct API for independent code reviews.
 4. **OpenClaw Integration:** The VPS OpenClaw instance uses `ANTHROPIC_API_KEY` for its Claude provider configuration.
 

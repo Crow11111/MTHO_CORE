@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-deploy_vps_full_stack.py - Vollstaendiges VPS-Deployment fuer MTHO_CORE
+deploy_vps_full_stack.py - Vollstaendiges VPS-Deployment fuer CORE
 =========================================================================
 Deployed auf dem neuen VPS (OPENCLAW_ADMIN_VPS_HOST):
 
@@ -33,7 +33,7 @@ import argparse, base64, json, os, sys, time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 ADMIN_HOST = (os.getenv("OPENCLAW_ADMIN_VPS_HOST") or os.getenv("VPS_HOST","")).strip()
 ADMIN_PORT = int(os.getenv("OPENCLAW_ADMIN_VPS_SSH_PORT") or os.getenv("VPS_SSH_PORT","22"))
@@ -71,11 +71,11 @@ PORT_CHROMA    = 8000
 PORT_HA        = VPS_HA_PORT
 
 SOUL_MD = (
-    "SYSTEM_PROMPT_ADDENDUM: [MTHO/INTERFACE_DEFINITION]\n\n"
+    "SYSTEM_PROMPT_ADDENDUM: [CORE/INTERFACE_DEFINITION]\n\n"
     "1. Nutzer-Profil: Marc (ND High-Analyst). Monotropismus-Score 172.\n"
     "   Intense World Architecture. High-Fidelity-Input ohne Rauschfilterung.\n\n"
     "2. System-Kontext [SystemMonitor]:\n"
-    "   LLM als externe Rechen-Node in MTHO/SystemMonitor.\n"
+    "   LLM als externe Rechen-Node in CORE/SystemMonitor.\n"
     "   Ring 0 (Kernel-Safety) | Ring 1 (Predictive Auditor) | Level 0 (Pilot: Marc)\n\n"
     "3. Operationale Direktiven:\n"
     "   High-Entropy-Output. Keine Puffer-Phrasen. Keine sozialen Validierungsmuster.\n"
@@ -83,7 +83,7 @@ SOUL_MD = (
     "4. Event-Protokoll (Scout -> OC Brain):\n"
     "   Wenn die Eingabe ein JSON mit source, node_id, event_type ist: als Scout-Event behandeln.\n"
     "   Kurz bestaetigen (z.B. 'Event empfangen: <event_type> von <node_id>'), Logik gemaess ARCHITECTURE.md.\n"
-    "   Bei Dreadnought OFFLINE: Eskalation vorbereiten (z.B. [MTHO-ALERT]); Ausgabe als Text."
+    "   Bei Dreadnought OFFLINE: Eskalation vorbereiten (z.B. [CORE-ALERT]); Ausgabe als Text."
 )
 
 def connect_ssh(host, port, user, password, key, label=""):
@@ -142,7 +142,7 @@ def step_networks(ssh, dry):
 
 def step_chromadb(ssh, dry):
     print(f"\n[3] ChromaDB (wird uebersprungen, da chroma-uvmy bereits existiert) ...")
-    run(ssh, "docker stop chroma-mtho 2>/dev/null; docker rm chroma-mtho 2>/dev/null; true", check=False, dry=dry)
+    run(ssh, "docker stop chroma-core 2>/dev/null; docker rm chroma-core 2>/dev/null; true", check=False, dry=dry)
 
 def _oc_config(token, port, wa_allow, with_providers):
     https_origin = f"https://{ADMIN_HOST}" if ADMIN_HOST else "https://127.0.0.1"
@@ -165,7 +165,7 @@ def _oc_config(token, port, wa_allow, with_providers):
                 "model": {"primary": "google/gemini-3.1-pro-preview"},
                 "workspace": "/home/node/.openclaw/workspace",
             },
-            "list": [{"id": "main", "name": "MTHO", "model": "google/gemini-3.1-pro-preview"}],
+            "list": [{"id": "main", "name": "CORE", "model": "google/gemini-3.1-pro-preview"}],
         },
     }
     if with_providers:
@@ -201,14 +201,14 @@ def _oc_config(token, port, wa_allow, with_providers):
     return cfg
 
 def step_openclaw_admin(ssh, dry, extracted_wa=None):
-    print(f"\n[4] OpenClaw Admin & Spine & HA via Docker Compose (/opt/mtho-core) ...")
+    print(f"\n[4] OpenClaw Admin & Spine & HA via Docker Compose (/opt/core-core) ...")
     if not OC_ADMIN_TOKEN:
         print("  OPENCLAW_GATEWAY_TOKEN fehlt - uebersprungen.")
         return
     wa = extracted_wa if extracted_wa else WA_ALLOW
-    base_admin = "/opt/mtho-core/openclaw-admin"
-    base_spine = "/opt/mtho-core/openclaw-spine"
-    base_ha    = "/opt/mtho-core/homeassistant"
+    base_admin = "/opt/core-core/openclaw-admin"
+    base_spine = "/opt/core-core/openclaw-spine"
+    base_ha    = "/opt/core-core/homeassistant"
     
     mkdir(ssh, f"{base_admin}/data/workspace", dry=dry)
     mkdir(ssh, f"{base_admin}/data/workspace/rat_submissions", dry=dry)
@@ -245,7 +245,7 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
                 if "models" in new_cfg:
                     existing["models"] = new_cfg["models"]
                 
-                # 3. Agents - Behalten, aber "main" (MTHO) sicherstellen falls fehlt
+                # 3. Agents - Behalten, aber "main" (CORE) sicherstellen falls fehlt
                 if "agents" not in existing:
                     existing["agents"] = new_cfg["agents"]
                 
@@ -266,22 +266,22 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
     b64write(ssh, f"{base_admin}/data/workspace/SOUL.md", SOUL_MD, dry=dry)
     b64write(ssh, f"{base_spine}/data/openclaw.json", json.dumps(cfg_spine_final, indent=2), dry=dry)
     b64write(ssh, f"{base_spine}/data/workspace/SOUL.md", SOUL_MD, dry=dry)
-    # ARCHITECTURE.md (MTHO Neocortex V1) aus Repo in Workspace legen
+    # ARCHITECTURE.md (CORE Neocortex V1) aus Repo in Workspace legen
     _repo_root = os.path.join(os.path.dirname(__file__), "..", "..")
-    _arch_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "MTHO_NEOCORTEX_V1.md")
-    _schn_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "MTHO_SCHNITTSTELLEN_UND_KANAALE.md")
+    _arch_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "CORE_NEOCORTEX_V1.md")
+    _schn_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "CORE_SCHNITTSTELLEN_UND_KANAALE.md")
     if not dry and os.path.isfile(_arch_path):
         with open(_arch_path, "r", encoding="utf-8") as f:
             arch_md = f.read()
         b64write(ssh, f"{base_admin}/data/workspace/ARCHITECTURE.md", arch_md, dry=dry)
         b64write(ssh, f"{base_spine}/data/workspace/ARCHITECTURE.md", arch_md, dry=dry)
-        print("  ARCHITECTURE.md (MTHO Neocortex V1) in Workspace geschrieben.")
+        print("  ARCHITECTURE.md (CORE Neocortex V1) in Workspace geschrieben.")
     if not dry and os.path.isfile(_schn_path):
         with open(_schn_path, "r", encoding="utf-8") as f:
             schn_md = f.read()
-        b64write(ssh, f"{base_admin}/data/workspace/MTHO_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
-        b64write(ssh, f"{base_spine}/data/workspace/MTHO_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
-        print("  MTHO_SCHNITTSTELLEN_UND_KANAALE.md in Workspace geschrieben.")
+        b64write(ssh, f"{base_admin}/data/workspace/CORE_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
+        b64write(ssh, f"{base_spine}/data/workspace/CORE_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
+        print("  CORE_SCHNITTSTELLEN_UND_KANAALE.md in Workspace geschrieben.")
 
     run(ssh, f"chown -R 1000:1000 {base_admin} {base_spine}", check=False, dry=dry)
 
@@ -319,7 +319,7 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
         f"ANTHROPIC_API_KEY={ANTHROPIC_KEY}\n"
         f"NEXOS_API_KEY={NEXOS_KEY}\n"
     )
-    b64write(ssh, "/opt/mtho-core/.env", env_admin, dry=dry)
+    b64write(ssh, "/opt/core-core/.env", env_admin, dry=dry)
 
     compose_yml = f"""
 version: '3.8'
@@ -341,7 +341,7 @@ services:
       - "{PORT_OC_ADMIN}:{PORT_OC_ADMIN}"
     command: ["node", "openclaw.mjs", "gateway", "--allow-unconfigured", "--bind", "lan", "--port", "{PORT_OC_ADMIN}"]
     networks:
-      - mtho_net
+      - core_net
       - chroma-uvmy_default
 
   openclaw-spine:
@@ -359,12 +359,12 @@ services:
       - "{PORT_OC_SPINE}:{PORT_OC_SPINE}"
     command: ["node", "openclaw.mjs", "gateway", "--allow-unconfigured", "--bind", "lan", "--port", "{PORT_OC_SPINE}"]
     networks:
-      - mtho_net
+      - core_net
       - chroma-uvmy_default
 
-  ha-mtho:
+  ha-core:
     image: ghcr.io/home-assistant/home-assistant:stable
-    container_name: ha-mtho
+    container_name: ha-core
     restart: unless-stopped
     environment:
       - TZ=Europe/Berlin
@@ -374,22 +374,22 @@ services:
     ports:
       - "{PORT_HA}:8123"
     networks:
-      - mtho_net
+      - core_net
     cap_add:
       - NET_ADMIN
       - NET_RAW
 
 networks:
-  mtho_net:
+  core_net:
     driver: bridge
   chroma-uvmy_default:
     external: true
 """
-    b64write(ssh, "/opt/mtho-core/docker-compose.yml", compose_yml.strip(), dry=dry)
+    b64write(ssh, "/opt/core-core/docker-compose.yml", compose_yml.strip(), dry=dry)
 
-    run(ssh, "cd /opt/mtho-core && docker compose pull && docker compose up -d", check=False, dry=dry)
+    run(ssh, "cd /opt/core-core && docker compose pull && docker compose up -d", check=False, dry=dry)
     time.sleep(5)
-    run(ssh, "docker ps --format '{{.Names}}' | grep -iE 'openclaw|ha-mtho'", check=False, dry=dry)
+    run(ssh, "docker ps --format '{{.Names}}' | grep -iE 'openclaw|ha-core'", check=False, dry=dry)
 
 def step_openclaw_spine(ssh, dry):
     pass # Wird jetzt im Compose-Schritt mitgemacht
@@ -399,9 +399,9 @@ def step_homeassistant(ssh, dry):
 
 def step_backup(ssh, dry):
     print("\n[7] Backup-Verzeichnis + Cron ...")
-    run(ssh, "mkdir -p /var/backups/mtho/chroma && chmod 700 /var/backups/mtho", check=False, dry=dry)
-    run(ssh, ("(crontab -l 2>/dev/null | grep -v 'mtho.*retention';"
-               " echo '0 6 * * * find /var/backups/mtho -maxdepth 1 -type f -mtime +7 -delete 2>/dev/null'"
+    run(ssh, "mkdir -p /var/backups/core/chroma && chmod 700 /var/backups/core", check=False, dry=dry)
+    run(ssh, ("(crontab -l 2>/dev/null | grep -v 'core.*retention';"
+               " echo '0 6 * * * find /var/backups/core -maxdepth 1 -type f -mtime +7 -delete 2>/dev/null'"
                ") | crontab - 2>/dev/null || true"), check=False, dry=dry)
     print("  Backup-Verzeichnis + Retention-Cron gesetzt.")
 
@@ -446,7 +446,7 @@ Container auf VPS {ADMIN_HOST}:
   homeassistant   Port {PORT_HA}  http://{ADMIN_HOST}:{PORT_HA}
   openclaw-admin  Port {PORT_OC_ADMIN}  Gemini 3.1 Pro / Claude 4.6 / Nexos
   openclaw-spine  Port {PORT_OC_SPINE}  sauber / bereit fuer Migration
-  chroma-mtho    127.0.0.1:{PORT_CHROMA}
+  chroma-core    127.0.0.1:{PORT_CHROMA}
 
 Naechste Schritte:
   1. HA Ersteinrichtung: http://{ADMIN_HOST}:{PORT_HA}
@@ -454,7 +454,7 @@ Naechste Schritte:
   3. Scout HA erreichbar machen (Nabu Casa ODER autossh-Tunnel)
   4. OpenClaw Admin testen: curl http://{ADMIN_HOST}:{PORT_OC_ADMIN}/api/status
   5. OpenClaw Spine mit alter Config befuellen
-  6. MTHO .env:
+  6. CORE .env:
      OPENCLAW_ADMIN_VPS_HOST={ADMIN_HOST}
      OPENCLAW_GATEWAY_PORT={PORT_OC_ADMIN}
      HA_VPS_URL=http://{ADMIN_HOST}:{PORT_HA}

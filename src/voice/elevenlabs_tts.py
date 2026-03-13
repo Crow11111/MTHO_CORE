@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -12,12 +12,12 @@ from loguru import logger
 from src.config.voice_config import build_elevenlabs_payload, OSMIUM_VOICE_CONFIG
 
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 
 def speak_text(
     text: str,
-    role_name: str = "mtho_dialog",
+    role_name: str = "core_dialog",
     state_prefix: str = "",
     output_path: str | None = None,
     play: bool = True,
@@ -27,7 +27,7 @@ def speak_text(
     Wandelt Text über ElevenLabs in Sprache um und speichert/optional spielt die Datei.
 
     :param text: Text, der gesprochen werden soll.
-    :param role_name: Osmium-Rolle (z.B. 'therapeut', 'analyst', 'mtho_dialog').
+    :param role_name: Osmium-Rolle (z.B. 'therapeut', 'analyst', 'core_dialog').
     :param state_prefix: Optionales STATE-Markup (z.B. '[STATE: Internal-Crisis]').
     :param output_path: Zielpfad für die MP3-Datei. Wenn None, wird ein Default im media-Ordner verwendet.
     :param play: Wenn True, wird die Datei unter Windows direkt abgespielt.
@@ -42,7 +42,7 @@ def speak_text(
         return None
 
     # VoiceID aus Rollen-Config oder Override / Fallback auf ENV
-    config = OSMIUM_VOICE_CONFIG.get(role_name, OSMIUM_VOICE_CONFIG["mtho_dialog"])
+    config = OSMIUM_VOICE_CONFIG.get(role_name, OSMIUM_VOICE_CONFIG["core_dialog"])
     voice_id = override_voice_id or config.get("voice_id") or env_default_voice
 
     if not voice_id:
@@ -71,9 +71,9 @@ def speak_text(
         return None
 
     if output_path is None:
-        media_dir = os.path.join("c:/MTHO_CORE", "media")
+        media_dir = os.path.join("c:/CORE", "media")
         os.makedirs(media_dir, exist_ok=True)
-        output_path = os.path.join(media_dir, "mtho_reply.mp3")
+        output_path = os.path.join(media_dir, "core_reply.mp3")
 
     try:
         with open(output_path, "wb") as f:

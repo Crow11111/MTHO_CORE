@@ -63,7 +63,7 @@ Details (inkl. OC-Prozedere und Antwortformat [ATLAS]/[OC]): **docs/WHATSAPP_ROU
 **Voraussetzungen:** HA erreichbar, rest_command und Automation wie oben eingerichtet, ATLAS-CORE-API läuft und ist von HA aus erreichbar.
 
 ```bash
-cd C:\MTHO_CORE
+cd C:\CORE
 python -m src.scripts.run_whatsapp_e2e_ha
 ```
 

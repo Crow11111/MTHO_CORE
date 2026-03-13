@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 from src.api.whatsapp_bridge import router as whatsapp_router
 
 app = FastAPI(
-    title="MTHO AGI Core",
+    title="CORE AGI Core",
     description="Einstiegspunkt für WhatsApp Bridge und Sensor Bus",
     version="1.0.0"
 )

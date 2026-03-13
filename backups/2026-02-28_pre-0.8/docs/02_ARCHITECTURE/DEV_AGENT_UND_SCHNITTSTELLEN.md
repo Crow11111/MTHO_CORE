@@ -27,7 +27,7 @@ Kleines Tool zur Bedienung des Dev-Agenten über eine lokale Web-UI (ohne Cursor
 **Starten:**
 
 ```bash
-cd C:\MTHO_CORE
+cd C:\CORE
 streamlit run src/ui/dev_agent_console.py
 ```
 
@@ -63,8 +63,8 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 ## Backup
 
 - **Plan (final):** [BACKUP_PLAN_FINAL.md](../03_INFRASTRUCTURE/BACKUP_PLAN_FINAL.md) – **einziges Backup-Ziel: Hostinger-VPS** (`/var/backups/atlas`). Kein S3, kein lokales Primärziel.
-- **Umsetzung:** Skript `src/scripts/daily_backup.py` – archiviert Code, `config/`, `data/argos_db/`; `.env` nur verschlüsselt (Fernet), wenn `BACKUP_ENCRYPTION_KEY` gesetzt; Push per SFTP zum VPS; Retention 7 Tage (lokal auf VPS gelöscht). Automatisierung: Windows Task Scheduler oder cron (siehe BACKUP_PLAN_FINAL.md).
-- **Relevante Pfade:** Projekt-Root, `data/argos_db/`, `config/`, `.env` (nur verschlüsselt).
+- **Umsetzung:** Skript `src/scripts/daily_backup.py` – archiviert Code, `config/`, `data/shell_db/`; `.env` nur verschlüsselt (Fernet), wenn `BACKUP_ENCRYPTION_KEY` gesetzt; Push per SFTP zum VPS; Retention 7 Tage (lokal auf VPS gelöscht). Automatisierung: Windows Task Scheduler oder cron (siehe BACKUP_PLAN_FINAL.md).
+- **Relevante Pfade:** Projekt-Root, `data/shell_db/`, `config/`, `.env` (nur verschlüsselt).
 
 ### Dev-Agent-Review (Schnittstellen / Architektur / Sicherheit / Backup)
 
@@ -145,8 +145,8 @@ Alternativ mit explizitem Python: `python -m streamlit run src/ui/dev_agent_cons
 
 ## ChromaDB (Vektor-DB / RAG)
 
-- **Rolle:** Vektor-Datenbank für RAG (u. a. ND-Insights, argos_knowledge_graph). Laut [03_DATENBANK_VECTOR_STORE_OSMIUM.md](../../data/antigravity_docs_osmium/03_DATENBANK_VECTOR_STORE_OSMIUM.md) Collections: `argos_knowledge_graph`, `core_brain_registr`, `krypto_scan_buffer`.
-- **Lokal (Standard):** `PersistentClient` mit `CHROMA_LOCAL_PATH` (z. B. `c:\MTHO_CORE\data\chroma_db`).
+- **Rolle:** Vektor-Datenbank für RAG (u. a. ND-Insights, shell_knowledge_graph). Laut [03_DATENBANK_VECTOR_STORE_OSMIUM.md](../../data/antigravity_docs_osmium/03_DATENBANK_VECTOR_STORE_OSMIUM.md) Collections: `shell_knowledge_graph`, `core_brain_registr`, `krypto_scan_buffer`.
+- **Lokal (Standard):** `PersistentClient` mit `CHROMA_LOCAL_PATH` (z. B. `c:\CORE\data\chroma_db`).
 - **Remote (VPS):** Wenn `CHROMA_HOST` in `.env` gesetzt ist, nutzt ATLAS_CORE `HttpClient(host=CHROMA_HOST, port=CHROMA_PORT)` – typisch Port 8000. Chroma-Server auf dem VPS muss laufen (`chroma run --path /pfad` o. ä.).
 - **Code:** `src/network/chroma_client.py` – `get_chroma_client()`, `get_collection(name)`. Ingest: `src/scripts/ingest_nd_insights_to_chroma.py`.
 

@@ -5,8 +5,8 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime
 
-# Osmium Council: Low Latency Database Settings (WAL-Mode)
-DB_PATH = r"c:\MTHO_CORE\data\argos_db\argos_knowledge_graph.sqlite"
+# Core Council: Low Latency Database Settings (WAL-Mode)
+DB_PATH = r"c:\CORE\data\shell_db\shell_knowledge_graph.sqlite"
 
 app = FastAPI(title="ATLAS_CORE Database Backend (Osmium Standard V1.3)")
 
@@ -37,7 +37,7 @@ def get_db_connection():
         )
     """)
     conn.execute("""
-        CREATE TABLE IF NOT EXISTS argos_knowledge_graph (
+        CREATE TABLE IF NOT EXISTS shell_knowledge_graph (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             component1 TEXT,
             component2 TEXT,
@@ -92,7 +92,7 @@ class KryptoScanBuffer(BaseModel):
     threat_level: str
     affected_resources: str
 
-class ArgosKnowledgeGraph(BaseModel):
+class ShellKnowledgeGraph(BaseModel):
     component1: str
     component2: str
     relation_type: str
@@ -144,15 +144,15 @@ def add_core_brain(entry: CoreBrainRegistr):
 @app.get("/knowledge_graph", response_model=List[dict])
 def get_knowledge_graph():
     conn = get_db_connection()
-    rows = conn.execute("SELECT * FROM argos_knowledge_graph").fetchall()
+    rows = conn.execute("SELECT * FROM shell_knowledge_graph").fetchall()
     conn.close()
     return [dict(row) for row in rows]
 
 @app.post("/knowledge_graph")
-def add_knowledge_graph(entry: ArgosKnowledgeGraph):
+def add_knowledge_graph(entry: ShellKnowledgeGraph):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO argos_knowledge_graph (component1, component2, relation_type, source_file) VALUES (?, ?, ?, ?)", 
+    cursor.execute("INSERT INTO shell_knowledge_graph (component1, component2, relation_type, source_file) VALUES (?, ?, ?, ?)", 
                    (entry.component1, entry.component2, entry.relation_type, entry.source_file))
     conn.commit()
     conn.close()

@@ -1,4 +1,4 @@
-"""Config flow for MTHO Conversation."""
+"""Config flow for CORE Conversation."""
 from __future__ import annotations
 
 from typing import Any
@@ -23,7 +23,7 @@ DATA_SCHEMA = vol.Schema(
 
 
 class MthoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Handle MTHO Conversation config flow."""
+    """Handle CORE Conversation config flow."""
 
     VERSION = 1
 
@@ -66,7 +66,7 @@ class MthoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
 
         return self.async_create_entry(
-            title=f"MTHO - {base_url}",
+            title=f"CORE - {base_url}",
             data={
                 CONF_BASE_URL: base_url,
                 CONF_FALLBACK_URL: fallback_url,

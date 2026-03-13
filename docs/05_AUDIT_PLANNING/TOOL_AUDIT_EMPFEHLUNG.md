@@ -1,5 +1,5 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
@@ -70,6 +70,6 @@
 
 ## 4. Anhang: Referenzen
 
-- MTHO Auth: Bearer/API-Key, OpenClaw Gateway Token (Outbound).
+- CORE Auth: Bearer/API-Key, OpenClaw Gateway Token (Outbound).
 - OWASP: Injection, Broken Access Control; Webhook-Signatur (HMAC).
 - Skill: `.cursor/skills/expertise/security/SKILL.md`

@@ -4,14 +4,14 @@
 import chromadb
 from datetime import datetime
 
-client = chromadb.PersistentClient(path=r"c:\MTHO_CORE\data\chroma_db")
+client = chromadb.PersistentClient(path=r"c:\CORE\data\chroma_db")
 col = client.get_or_create_collection("core_directives")
 
 doc_id = "nano_banana_tesserakt_master_prompt_v1"
 
 document = """# Master-Prompt für Nano Banana Pro (Tesserakt-Architektur)
 
-Create a hyper-realistic, maximum resolution technical architectural visualization of the "MTHO-GENESIS" system, designed strictly as a glowing TESSERACT (a 4D hypercube projected into a 3D shadow box). Visual style: Nano Banana Pro aesthetic, futuristic neon cyan, gold, and deep magenta glowing circuitry on a pitch-black, professional carbon-fiber blueprint background.
+Create a hyper-realistic, maximum resolution technical architectural visualization of the "CORE-GENESIS" system, designed strictly as a glowing TESSERACT (a 4D hypercube projected into a 3D shadow box). Visual style: Nano Banana Pro aesthetic, futuristic neon cyan, gold, and deep magenta glowing circuitry on a pitch-black, professional carbon-fiber blueprint background.
 
 ## GEOMETRY & PLACEMENT:
 
@@ -19,14 +19,14 @@ Create a hyper-realistic, maximum resolution technical architectural visualizati
 Deep in the center, a highly condensed, glowing core.
 - Label: "OMEGA_ATTRACTOR (Vektor 0 / OpenClaw)"
 - Add a holographic brain/crown icon.
-- Add text: "Wuji-Veto (0)" floating perfectly inside this inner cube.
+- Add text: "Zero-State-Veto (0)" floating perfectly inside this inner cube.
 
 ### 2. THE OUTER CUBE (The Physical Shell)
 The large, transparent structural box enclosing the inner core.
 - Top outer face: "ChromaDB (StateAnchor) / simulation_evidence"
 - Right outer face: "VPS-Slim (:8001)"
 - Bottom outer face: "Scout (Home Assistant)"
-- Left outer face: "4D_RESONATOR (MTHO_CORE)"
+- Left outer face: "4D_RESONATOR (CORE)"
 
 ### 3. THE DIAGONAL STRUTS (The Data Verschränkung)
 The glowing beams connecting the corners of the inner cube to the outer cube.

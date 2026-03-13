@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -127,7 +127,7 @@ EVIDENCE = [
         "category": "strukturell",
         "strength": "strong",
         "branch_count": 3,
-        "source": "mtho_session_2026-03-01",
+        "source": "core_session_2026-03-01",
     },
     {
         "id": "sim_logisch_wahrscheinlichkeitssprung",
@@ -141,7 +141,7 @@ EVIDENCE = [
         "category": "logisch",
         "strength": "strong",
         "branch_count": 2,
-        "source": "mtho_session_2026-03-01",
+        "source": "core_session_2026-03-01",
     },
     {
         "id": "sim_logisch_ressourcenminimierung",
@@ -171,7 +171,7 @@ EVIDENCE = [
         "category": "strukturell",
         "strength": "strong",
         "branch_count": 2,
-        "source": "mtho_session_2026-03-01",
+        "source": "core_session_2026-03-01",
     },
 ]
 
@@ -186,7 +186,7 @@ def main():
             category=ev["category"],
             strength=ev["strength"],
             branch_count=ev.get("branch_count", 0),
-            source=ev.get("source", "mtho"),
+            source=ev.get("source", "core"),
         )
         status = "OK" if ok else "FEHLER"
         print(f"  [{status}] {ev['id']} ({ev['strength']}, {ev['category']})")

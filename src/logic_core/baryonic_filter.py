@@ -2,7 +2,7 @@ import sys, os
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
 """
-MTHO Baryonic Noise Filter (Sigma-70 Hardening)
+CORE Baryonic Noise Filter (Sigma-70 Hardening)
 Hybrid-Filter: Nearest-Neighbor (Deduplizierung) + Zentroid (Novelty).
 accept(v) <=> d_nn(v) > delta AND d_centroid(v) > delta
 Design: SIGMA70_KAMMER3_INFORMATIONSTHEORIE.md

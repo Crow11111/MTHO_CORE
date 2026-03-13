@@ -1,11 +1,11 @@
 <!-- ============================================================
-<!-- MTHO-GENESIS: Marc Tobias ten Hoevel
+<!-- CORE-GENESIS: Marc Tobias ten Hoevel
 <!-- VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 <!-- LOGIC: 2-2-1-0 (NON-BINARY)
 <!-- ============================================================
 -->
 
-# MTHO 4D State Vector – Validierungs-Report
+# CORE 4D State Vector – Validierungs-Report
 
 **Datum:** 2026-03-04  
 **Priorität:** HIGH  
@@ -21,7 +21,7 @@
 | **PHI** | 1.6180339887498948482 | ✓ OK | (1+√5)/2, Goldener Schnitt |
 | **INV_PHI** | 0.6180339887498948482 | ✓ OK | 1/φ = φ−1 |
 | **COMP_PHI** | 0.3819660112501051518 | ✓ OK | 1 − INV_PHI |
-| **SYMMETRY_BREAK** | 0.49 | ✓ OK | Wuji-Theorie: minimale Asymmetrie 0.49/0.51 |
+| **SYMMETRY_BREAK** | 0.49 | ✓ OK | Zero-State-Theorie: minimale Asymmetrie 0.49/0.51 |
 | **BARYONIC_DELTA** | 0.049 | ✓ OK | Ω_b (Planck 2018), 4.9% baryonische Materie |
 
 ### Verifikation
@@ -35,13 +35,13 @@
 
 | Zustand | X (CAR/CDR) | Y (Gravitation) | Z (Widerstand) | W (Takt) | Status |
 |---------|-------------|-----------------|----------------|----------|--------|
-| WUJI | 0.5 | 0 | 0.5 | 0 | ✓ |
+| ZERO_STATE | 0.5 | 0 | 0.5 | 0 | ✓ |
 | ANSAUGEN | 0.3 | 0.2 | 0.8 | 1 | ✓ |
 | VERDICHTEN | 0.7 | 0.5 | 0.4 | 2 | ✓ |
 | ARBEITEN | 0.2 | 0.8 | 0.2 | 3 | ✓ |
 | AUSSTOSSEN | 0.5 | 0.3 | 0.6 | 4 | ✓ |
 
-Konsistent mit `docs/01_CORE_DNA/MTHO_4_STRANG_THEORIE.md`.
+Konsistent mit `docs/01_CORE_DNA/CORE_4_STRANG_THEORIE.md`.
 
 ---
 
@@ -49,9 +49,9 @@ Konsistent mit `docs/01_CORE_DNA/MTHO_4_STRANG_THEORIE.md`.
 
 | Takt | Zustand | Strang | Status |
 |------|---------|--------|--------|
-| 0 | WUJI (Diagnose) | — | ✓ |
+| 0 | ZERO_STATE (Diagnose) | — | ✓ |
 | 1 | ANSAUGEN | Council | ✓ |
-| 2 | VERDICHTEN | Forge | ✓ |
+| 2 | VERDICHTEN | Build-Engine | ✓ |
 | 3 | ARBEITEN | Agency | ✓ |
 | 4 | AUSSTOSSEN | Archive/Council | ✓ |
 
@@ -65,7 +65,7 @@ Zyklus 0→1→2→3→4 ist konsistent.
 
 - INV_PHI (0.618): ✓ True
 - COMP_PHI (0.382): ✓ True
-- WUJI (0.5): ✓ False (neutral, nicht golden-ratio-balanciert)
+- ZERO_STATE (0.5): ✓ False (neutral, nicht golden-ratio-balanciert)
 
 ---
 
@@ -82,18 +82,18 @@ Zyklus 0→1→2→3→4 ist konsistent.
 
 | Quelle | Priorität | Verhalten | Status |
 |--------|-----------|-----------|--------|
-| Munin Veto (ring0_state) | 1 | z_widerstand Override | ✓ |
-| MTHO_STATE_PRESET | 2 | ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN | ✓ |
-| MTHO_Z_WIDERSTAND | 3 | z-Wert 0..1 | ✓ |
-| Default | 4 | WUJI | ✓ |
+| Context-Injector Veto (ring0_state) | 1 | z_widerstand Override | ✓ |
+| CORE_STATE_PRESET | 2 | ANSAUGEN, VERDICHTEN, ARBEITEN, AUSSTOSSEN | ✓ |
+| CORE_Z_WIDERSTAND | 3 | z-Wert 0..1 | ✓ |
+| Default | 4 | ZERO_STATE | ✓ |
 
 ---
 
-## 7. Munin-Veto-Override (ring0_state)
+## 7. Context-Injector-Veto-Override (ring0_state)
 
-- `set_munin_veto(z)` setzt z_widerstand-Override
+- `set_context_injector_veto(z)` setzt z_widerstand-Override
 - `get_current_state()` liest Override mit Vorrang
-- `clear_munin_veto()` entfernt Override
+- `clear_context_injector_veto()` entfernt Override
 
 ✓ Alle Funktionen verifiziert.
 
@@ -101,7 +101,7 @@ Zyklus 0→1→2→3→4 ist konsistent.
 
 ## 8. Ergebnis
 
-**Keine Korrekturen erforderlich.** Alle Konstanten, Zustaende und Funktionen sind konsistent mit der MTHO-Architektur und der Wuji-Theorie.
+**Keine Korrekturen erforderlich.** Alle Konstanten, Zustaende und Funktionen sind konsistent mit der CORE-Architektur und der Zero-State-Theorie.
 
 ### Ausfuehrung des Tests
 
@@ -111,4 +111,4 @@ python src/scripts/test_state_vector.py
 
 ---
 
-*Erstellt: 2026-03-04 | MTHO WUJI 4D-Vektor Kalibrierung*
+*Erstellt: 2026-03-04 | CORE ZERO_STATE 4D-Vektor Kalibrierung*

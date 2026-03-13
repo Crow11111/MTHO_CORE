@@ -5,7 +5,7 @@ from datetime import datetime
 
 from src.logic_core.id_safe import id_safe_instance, IdentityDocument
 
-router = APIRouter(prefix="/api/mtho", tags=["identity"])
+router = APIRouter(prefix="/api/core", tags=["identity"])
 
 # Dummy-Auth fuer lokale Entwicklung
 async def get_current_user():

@@ -7,7 +7,7 @@ Schnittstelle: Snapshot (Einzelbild) für Tests/Dashboard; Stream-URLs für HA/W
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 GO2RTC_BASE_URL = os.getenv("GO2RTC_BASE_URL", "http://localhost:1984").rstrip("/")
 GO2RTC_STREAM_NAME = os.getenv("GO2RTC_STREAM_NAME", "pc")

@@ -196,7 +196,7 @@ from pathlib import Path
 # Konfiguration aus Umgebungsvariablen (nie hardcoded)
 BACKUP_DIR = Path(os.getenv("BACKUP_DIR", "/var/backups/atlas"))
 PROJECT_ROOT = Path(os.getenv("PROJECT_ROOT", "/opt/atlas"))
-DB_PATH = Path(os.getenv("DB_PATH", "data/argos_db"))
+DB_PATH = Path(os.getenv("DB_PATH", "data/shell_db"))
 RETENTION_DAYS = int(os.getenv("BACKUP_RETENTION_DAYS", "7"))
 ALERT_WEBHOOK = os.getenv("ALERT_WEBHOOK_URL")  # Discord/Telegram/Slack
 
@@ -306,7 +306,7 @@ Dokument 2 fordert einen monatlichen Restore-Test auf Staging. Dies sollte skrip
 # scripts/test_restore.py – monatlich per Cron
 # 1. Neuestes Backup identifizieren
 # 2. In /tmp/atlas_restore_test/ entpacken
-# 3. Prüfen ob kritische Dateien vorhanden: .env, argos_db, config/
+# 3. Prüfen ob kritische Dateien vorhanden: .env, shell_db, config/
 # 4. Integritätsprüfung: SQLite PRAGMA integrity_check
 # 5. Ergebnis loggen und Heartbeat senden
 ```

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
@@ -20,8 +20,8 @@ if not GEMINI_API_KEY:
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 MODEL_NAME = os.getenv("GEMINI_AUDIO_MODEL", "gemini-3.1-pro-preview")
-AUDIO_FILE = r"c:\MTHO_CORE\media\REWE 2.m4a"
-OUTPUT_DIR = r"c:\MTHO_CORE\docs\nd_insights_v4"
+AUDIO_FILE = r"c:\CORE\media\REWE 2.m4a"
+OUTPUT_DIR = r"c:\CORE\docs\nd_insights_v4"
 
 # --- PERSONAS ---
 DATA_ARCHIVIST = """
@@ -52,8 +52,8 @@ Analysiere Marcs Beschreibungen aus dem Audit: Wie verarbeitet er die Realität 
 
 ND_ANALYST = """
 Du bist der ND_ANALYST (Spezialist für Cognitive Friction & ND System Integration). 
-Nimm das Dokument des Therapeuten. Füge am Ende die Sektion "6. Systemische ND-Zusammenfassung für MTHO_CORE" hinzu. 
-Fokus: Marc denkt extrem systemisch. Wie muss MTHO künftig mit ihm kommunizieren, um kognitive Reibung zu minimieren (basierend auf diesem Audio)? Welche neuen Regeln für MTHO können wir aus diesem Denkanstoß ableiten?
+Nimm das Dokument des Therapeuten. Füge am Ende die Sektion "6. Systemische ND-Zusammenfassung für CORE" hinzu. 
+Fokus: Marc denkt extrem systemisch. Wie muss CORE künftig mit ihm kommunizieren, um kognitive Reibung zu minimieren (basierend auf diesem Audio)? Welche neuen Regeln für CORE können wir aus diesem Denkanstoß ableiten?
 """
 
 def process_audio():
@@ -116,7 +116,7 @@ def process_audio():
         logger.success("Analyst abgeschlossen.")
 
         # Save output
-        out_path = os.path.join(OUTPUT_DIR, "MTHO_REWE_AUDIO_ANALYSIS.md")
+        out_path = os.path.join(OUTPUT_DIR, "CORE_REWE_AUDIO_ANALYSIS.md")
         with open(out_path, "w", encoding="utf-8") as f:
             f.write(final_doc)
             

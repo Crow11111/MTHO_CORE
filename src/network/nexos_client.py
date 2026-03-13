@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Nexos-API-Anbindung für MTHO_CORE (unter unserer Kontrolle).
+Nexos-API-Anbindung für CORE (unter unserer Kontrolle).
 Modell-IDs und baseUrl aus der bestehenden OpenClaw-Instanz übernehmen;
 siehe docs/NEXOS_EINBINDUNG.md.
 """
@@ -14,7 +14,7 @@ from __future__ import annotations
 import os
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 NEXOS_API_KEY = os.getenv("NEXOS_API_KEY", "").strip().strip('"')
 NEXOS_BASE_URL = os.getenv("NEXOS_BASE_URL", "https://api.nexos.ai/v1").rstrip("/")

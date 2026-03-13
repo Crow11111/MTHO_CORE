@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import requests
 
 # Konfiguration
-LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\MTHO_CORE\data\chroma_db")
+LOCAL_PATH = os.getenv("CHROMA_LOCAL_PATH", r"c:\CORE\data\chroma_db")
 VPS_BASE = os.getenv("CHROMA_VPS_URL", "https://187.77.68.250/chroma/api/v2")
 # VPS oft mit self-signed cert; CHROMA_SSL_VERIFY=true für Verifikation
 VERIFY_SSL = os.getenv("CHROMA_SSL_VERIFY", "false").lower() in ("1", "true", "yes")

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -25,11 +25,11 @@ HEADERS = {
 
 async def create_automation():
     # Adding a unique ID explicitly and POSTing to the correct endpoint
-    automation_id = "mtho_presence_director"
+    automation_id = "core_presence_director"
     url = f"{HASS_URL}/api/config/automation/config/{automation_id}"
 
     automation_config = {
-        "alias": "System: MTHO Presence Director",
+        "alias": "System: CORE Presence Director",
         "description": "Ersetzt das alte Boolean-Sprawl durch eine saubere Bayes'sche Steuerung.",
         "mode": "queued",
         "trigger": [

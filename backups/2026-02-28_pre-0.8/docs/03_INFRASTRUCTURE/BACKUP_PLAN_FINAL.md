@@ -15,7 +15,7 @@ Kritische Projektdaten (Code, Konfiguration, SQLite-DB) täglich automatisiert a
 | Anwendungscode | Projekt-Root | Ausschlüsse: `.git`, `__pycache__`, `node_modules`, `*.pyc`, venv, `data/backups`, `logs` |
 | Konfiguration | `config/` | Vollständig |
 | .env | Projekt-Root | **Nur verschlüsselt** (Fernet); Schlüssel nicht im Backup |
-| SQLite-DB | `data/argos_db/*.sqlite` | Vollständig |
+| SQLite-DB | `data/shell_db/*.sqlite` | Vollständig |
 
 ChromaDB-Daten liegen auf dem VPS; Backup der ChromaDB erfolgt auf dem VPS (Cold-Backup, siehe Abschnitt 5).
 
@@ -28,7 +28,7 @@ ChromaDB-Daten liegen auf dem VPS; Backup der ChromaDB erfolgt auf dem VPS (Cold
 ## 4. Wie wird gesichert? (Automatisierung)
 
 - **Automatisiertes Backup:** Ein Windows Task führt `python src/scripts/daily_backup.py` täglich aus (seit 25.02.2026 aktiv). Das Skript packt den Code (ohne `node_modules`, `.venv` etc.) und lädt ihn per SFTP auf den Hostinger-VPS in `/var/backups/atlas`.
-  - Erstellt ein Archiv (tar.gz) aus Code, `config/`, `data/argos_db/`.
+  - Erstellt ein Archiv (tar.gz) aus Code, `config/`, `data/shell_db/`.
   - `.env` wird bei gesetztem `BACKUP_ENCRYPTION_KEY` mit Fernet verschlüsselt und als separate Datei hochgeladen.
   - Upload per SFTP zu `VPS_HOST` mit `VPS_USER` / `VPS_PASSWORD` aus `.env`.
   - **Retention:** Auf dem VPS werden Backups älter als 7 Tage gelöscht (vom Skript per SSH-Befehl ausgeführt).
@@ -43,14 +43,14 @@ ChromaDB läuft im Container auf dem VPS. Ein Cold-Backup (Container kurz stoppe
 
 - **Zeitpunkt:** Täglich, z. B. 04:00 Uhr (Windows: Task Scheduler; Linux: cron).
 - **Windows (Task Scheduler):**
-  - **Programm:** `C:\MTHO_CORE\scripts\run_daily_backup.bat`  
-  - **Arbeitsverzeichnis:** `C:\MTHO_CORE`  
-  - Oder direkt: Programm `python`, Argument `C:\MTHO_CORE\src\scripts\daily_backup.py`, Starten in `C:\MTHO_CORE`.
+  - **Programm:** `C:\CORE\scripts\run_daily_backup.bat`  
+  - **Arbeitsverzeichnis:** `C:\CORE`  
+  - Oder direkt: Programm `python`, Argument `C:\CORE\src\scripts\daily_backup.py`, Starten in `C:\CORE`.
 - **Linux (cron):**  
   `0 4 * * * cd /pfad/zu/ATLAS_CORE && python3 src/scripts/daily_backup.py >> logs/backup.log 2>&1`
 - **Windows Task Scheduler (einmalig anlegen):**  
   Als Administrator in cmd/PowerShell:  
-  `schtasks /create /tn "ATLAS Daily Backup" /tr "C:\MTHO_CORE\scripts\run_daily_backup.bat" /sc daily /st 04:00 /ru SYSTEM`  
+  `schtasks /create /tn "ATLAS Daily Backup" /tr "C:\CORE\scripts\run_daily_backup.bat" /sc daily /st 04:00 /ru SYSTEM`  
   (Oder GUI: Aufgabenplanung → Aufgabe erstellen → Trigger täglich 04:00, Aktion: Batch-Datei oder `python …\daily_backup.py`.)
 
 ## 7. Aufbewahrung (Retention)

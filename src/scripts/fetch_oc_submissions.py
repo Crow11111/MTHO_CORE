@@ -1,11 +1,11 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Liest Einreichungen von OC für den Osmium Rat (OC → MTHO).
+Liest Einreichungen von OC für den Osmium Rat (OC → CORE).
 
 OC (oder ein Agent auf OC) legt JSON-Dateien in
 /var/lib/openclaw/workspace/rat_submissions/ ab. Dieses Skript verbindet per SSH,
@@ -34,15 +34,15 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 import paramiko
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 HOST = os.getenv("OPENCLAW_ADMIN_VPS_HOST", "").strip() or os.getenv("VPS_HOST", "").strip()
 PORT = int(os.getenv("VPS_SSH_PORT", "22"))
 USER = os.getenv("VPS_USER", "root")
 PASSWORD = os.getenv("VPS_PASSWORD", "")
 KEY_PATH = os.getenv("VPS_SSH_KEY", "").strip()
-# Full-Stack VPS: /opt/mtho-core/openclaw-admin/data/workspace/rat_submissions
-REMOTE_DIR = os.getenv("OPENCLAW_RAT_SUBMISSIONS_DIR", "").strip() or "/opt/mtho-core/openclaw-admin/data/workspace/rat_submissions"
+# Full-Stack VPS: /opt/core-core/openclaw-admin/data/workspace/rat_submissions
+REMOTE_DIR = os.getenv("OPENCLAW_RAT_SUBMISSIONS_DIR", "").strip() or "/opt/core-core/openclaw-admin/data/workspace/rat_submissions"
 REMOTE_ARCHIVE = (os.getenv("OPENCLAW_RAT_SUBMISSIONS_ARCHIVE", "").strip()
     or (os.path.dirname(REMOTE_DIR) + "/rat_submissions_archive"))
 

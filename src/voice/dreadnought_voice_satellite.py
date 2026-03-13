@@ -1,18 +1,18 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-Dreadnought Voice Satellite - Windows-based voice input for MTHO.
+Dreadnought Voice Satellite - Windows-based voice input for CORE.
 
 Captures audio from Razer Seiren, detects wake word via openWakeWord (on Scout),
-sends transcription to MTHO pipeline.
+sends transcription to CORE pipeline.
 
 Architecture:
   Razer Seiren -> This Script -> openWakeWord (Scout:10400) -> Whisper (Scout:10300)
-                                                            -> MTHO Pipeline
+                                                            -> CORE Pipeline
 """
 import asyncio
 import json
@@ -32,14 +32,14 @@ import websockets
 import ssl
 from dotenv import load_dotenv
 
-load_dotenv("c:/MTHO_CORE/.env")
+load_dotenv("c:/CORE/.env")
 
 # Configuration
 HA_HOST = "192.168.178.54"
 HA_TOKEN = os.getenv("HASS_TOKEN", "")
 WAKE_WORD_PORT = 10400  # openWakeWord
 WHISPER_PORT = 10300    # Whisper STT
-PIPELINE_ID = "01hzktez4kncsm0sr1qx32hy5x"  # MTHO Pipeline
+PIPELINE_ID = "01hzktez4kncsm0sr1qx32hy5x"  # CORE Pipeline
 
 SAMPLE_RATE = 16000
 CHANNELS = 1
@@ -47,7 +47,7 @@ CHUNK_DURATION = 0.1  # 100ms chunks
 
 
 class DreadnoughtVoiceSatellite:
-    """Windows voice satellite for MTHO."""
+    """Windows voice satellite for CORE."""
     
     def __init__(self):
         self.running = False
@@ -62,7 +62,7 @@ class DreadnoughtVoiceSatellite:
         # We'll use the HA WebSocket API instead
         
     async def run_pipeline_with_audio(self, audio_data: bytes):
-        """Run MTHO pipeline with captured audio."""
+        """Run CORE pipeline with captured audio."""
         uri = f"wss://{HA_HOST}:8123/api/websocket"
         
         ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
@@ -129,7 +129,7 @@ class DreadnoughtVoiceSatellite:
                     
                     if event_type == "intent-end":
                         result = data["event"]["data"]["intent_output"]["response"]["speech"]["plain"]["speech"]
-                        print(f"[MTHO] {result}")
+                        print(f"[CORE] {result}")
                     
                     if event_type == "run-end":
                         break
@@ -164,7 +164,7 @@ class DreadnoughtVoiceSatellite:
 
 
 async def test_text_pipeline():
-    """Test MTHO pipeline with text input (simpler)."""
+    """Test CORE pipeline with text input (simpler)."""
     uri = f"wss://{HA_HOST}:8123/api/websocket"
     
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
@@ -194,7 +194,7 @@ async def test_text_pipeline():
             
             if event_type == "intent-end":
                 speech = data["event"]["data"]["intent_output"]["response"]["speech"]["plain"]["speech"]
-                print(f"[MTHO Reply] {speech}")
+                print(f"[CORE Reply] {speech}")
             
             if event_type == "run-end":
                 break

@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: ZERO WATCHDOG (HEPHAISTOS HARDENED)
+# CORE-GENESIS: ZERO WATCHDOG (BUILD_SYSTEM HARDENED)
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -31,7 +31,7 @@ from dotenv import dotenv_values
 sys.path.append(os.getcwd())
 # Versuche Konstanten zu laden, Fallback auf Hardcoded wenn Module fehlen
 try:
-    from src.config.mtho_state_vector import BARYONIC_DELTA, SYMMETRY_BREAK
+    from src.config.core_state import BARYONIC_DELTA, SYMMETRY_BREAK
 except ImportError:
     BARYONIC_DELTA = 0.049
     SYMMETRY_BREAK = 0.49
@@ -39,11 +39,11 @@ except ImportError:
 # Konfiguration
 WATCHDOG_INTERVAL = 61.0  # Sekunden (Herzschlag) - Primzahl für Zikaden-Prinzip
 REMOTE_CHECK_INTERVAL = 300.0 # Alle 5 Min Git Check (teuer)
-TELEMETRY_PATH = os.path.join(os.getenv("MTHO_DATA_DIR", "c:/MTHO_CORE/data"), "telemetry.json")
+TELEMETRY_PATH = os.path.join(os.getenv("CORE_DATA_DIR", "c:/CORE/data"), "telemetry.json")
 
 # Environment
 env_vars = dotenv_values(".env")
-API_URL = os.getenv("MTHO_VPS_URL", "http://localhost:8000")
+API_URL = os.getenv("CORE_VPS_URL", "http://localhost:8000")
 WEBHOOK_URL = f"{API_URL}/webhook/omega_thought"
 HEADERS = {"Authorization": f"Bearer {env_vars.get('HA_WEBHOOK_TOKEN', '')}"}
 
@@ -184,7 +184,7 @@ async def inject_reality_anchor(friction_data: Dict[str, Any]):
         logger.error(f"[WATCHDOG] Injection failed: {e}")
 
 async def watchdog_loop():
-    logger.info("ZERO WATCHDOG (HEPHAISTOS EDITION) gestartet.")
+    logger.info("ZERO WATCHDOG (BUILD_SYSTEM EDITION) gestartet.")
     logger.info(f"Target: {API_URL} | Interval: {WATCHDOG_INTERVAL}s")
 
     # Initial Wait for Body

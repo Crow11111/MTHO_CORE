@@ -1,21 +1,21 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
 
 """
-MTHO_CORE: Osmium Circle V1.3 Voice Configuration
+CORE: Osmium Circle V1.3 Voice Configuration
 Master dictionary for HA webhook role-based voice switching.
-Leere voice_id = Fallback auf mtho_dialog (0ISBUrWf7OGBgepl5lu2).
+Leere voice_id = Fallback auf core_dialog (0ISBUrWf7OGBgepl5lu2).
 """
-_FALLBACK_VOICE_ID = "0ISBUrWf7OGBgepl5lu2"  # mtho_dialog
+_FALLBACK_VOICE_ID = "0ISBUrWf7OGBgepl5lu2"  # core_dialog
 
 OSMIUM_VOICE_CONFIG = {
     # --- Operative Layer (3 profiles) ---
-    "mtho_high_density": {"voice_id": "DEZHhPbmb8LVZmWufkCh", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0},
-    "mtho_info":         {"voice_id": "MOOG1hZESAxDt4UaletY", "stability": 0.75, "similarity_boost": 0.85, "style": 0.0},
-    "mtho_dialog":       {"voice_id": _FALLBACK_VOICE_ID, "stability": 0.65, "similarity_boost": 0.80, "style": 0.0},
+    "core_high_density": {"voice_id": "DEZHhPbmb8LVZmWufkCh", "stability": 0.85, "similarity_boost": 0.90, "style": 0.0},
+    "core_info":         {"voice_id": "MOOG1hZESAxDt4UaletY", "stability": 0.75, "similarity_boost": 0.85, "style": 0.0},
+    "core_dialog":       {"voice_id": _FALLBACK_VOICE_ID, "stability": 0.65, "similarity_boost": 0.80, "style": 0.0},
     # --- Validation Layer (14 personas) ---
     "therapeut":          {"voice_id": _FALLBACK_VOICE_ID, "stability": 0.45, "similarity_boost": 0.75, "style": 0.2},
     "analyst":            {"voice_id": "sMeokm2JRizE4WimYqfK", "stability": 0.95, "similarity_boost": 0.95, "style": 0.0},
@@ -48,7 +48,7 @@ ELEVENLABS_MODEL = "eleven_turbo_v2_5"
 
 def build_elevenlabs_payload(text: str, role_name: str, state_prefix: str = "") -> dict:
     """Build the ElevenLabs API payload for a given role and emotional state."""
-    config = OSMIUM_VOICE_CONFIG.get(role_name, OSMIUM_VOICE_CONFIG["mtho_dialog"])
+    config = OSMIUM_VOICE_CONFIG.get(role_name, OSMIUM_VOICE_CONFIG["core_dialog"])
     full_text = f"{state_prefix} {text}".strip() if state_prefix else text
     return {
         "text": full_text,

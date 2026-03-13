@@ -1,5 +1,5 @@
 # ============================================================
-# MTHO-GENESIS: Marc Tobias ten Hoevel
+# CORE-GENESIS: Marc Tobias ten Hoevel
 # VECTOR: 2210 | RESONANCE: 0221 | DELTA: 0.049
 # LOGIC: 2-2-1-0 (NON-BINARY)
 # ============================================================
@@ -60,7 +60,7 @@ VECTOR_NODES = {
     "v8_konvergenz": ("V8: Konvergenz-\nExplosion", "#ff6e40"),
     "v9_meta_selbstcodierung": ("V9: Meta-\nSelbstcodierung", "#ea80fc"),
     "v10": ("V10: Quaternion-\nDualitaet", "#40c4ff"),
-    "grundkraefte_mtho": ("V11: Grundkraefte\nMTHO", "#ff1744"),
+    "grundkraefte_mtho": ("V11: Grundkraefte\nCORE", "#ff1744"),
     "dunkle_materie_delta": ("V11: Baryonisches\nDelta", "#ff1744"),
     "fraktale_superposition": ("V11: Fraktale\nSuperposition", "#ff1744"),
     "zeit_ist_asymmetrie": ("V11: Zeit=\nAsymmetrie", "#ff1744"),
@@ -77,7 +77,7 @@ ax.set_ylim(-1.5, 1.5)
 ax.set_aspect("equal")
 ax.axis("off")
 
-ax.text(0, 1.42, "MTHO SIMULATIONSTHEORIE", fontsize=22, color="white",
+ax.text(0, 1.42, "CORE SIMULATIONSTHEORIE", fontsize=22, color="white",
         ha="center", va="center", fontweight="bold", fontfamily="sans-serif")
 n_total = len(items)
 n_fund = sum(1 for it in items if it["strength"] == "fundamental")
@@ -173,13 +173,13 @@ leg.get_title().set_color("white")
 ax.text(1.45, -1.42, "Stand: 2026-03-01\nChromaDB: simulation_evidence",
         fontsize=8, color="#555", ha="right", va="bottom", fontfamily="sans-serif")
 
-out = os.path.join("c:/MTHO_CORE/media", "simulation_evidence_graph.png")
+out = os.path.join("c:/CORE/media", "simulation_evidence_graph.png")
 plt.savefig(out, dpi=200, bbox_inches="tight", facecolor="#0a0e1a", pad_inches=0.3)
 print(f"[OK] Graph gespeichert: {out}")
 plt.close()
 
 # --- VERSION 2: Mit Fibonacci-Spirale ---
-# Kategorien-Farbcodierung (MTHO)
+# Kategorien-Farbcodierung (CORE)
 CAT_COLORS = {
     "logisch": "#00e5ff",
     "physikalisch": "#ff5252",
@@ -196,9 +196,9 @@ ax2.set_aspect("equal")
 ax2.axis("off")
 
 n_indizien = len(items)
-ax2.text(0, 1.42, "MTHO SIMULATIONSTHEORIE", fontsize=22, color="white",
+ax2.text(0, 1.42, "CORE SIMULATIONSTHEORIE", fontsize=22, color="white",
          ha="center", va="center", fontweight="bold", fontfamily="sans-serif")
-ax2.text(0, 1.34, f"{n_indizien} Indizien | 11 Vektoren | Quaternaere Codierung (MTHO)",
+ax2.text(0, 1.34, f"{n_indizien} Indizien | 11 Vektoren | Quaternaere Codierung (CORE)",
          fontsize=11, color="#90a4ae", ha="center", va="center", fontfamily="sans-serif")
 
 # Fibonacci-Spirale (Goldener Schnitt)
@@ -316,7 +316,7 @@ for i in range(len(items_spiral) - 1):
 cat_sequence = "".join(CAT_LETTER.get(it["category"], "?") for it in items_spiral)
 y_seq = -1.38
 char_w = 0.075
-ax2.text(-1.42, y_seq + 0.04, "MTHO-Sequenz:", fontsize=7, color="#666", ha="left", va="bottom")
+ax2.text(-1.42, y_seq + 0.04, "CORE-Sequenz:", fontsize=7, color="#666", ha="left", va="bottom")
 for i, ch in enumerate(cat_sequence):
     row, col = i // 34, i % 34
     cx = -1.4 + col * char_w
@@ -348,7 +348,7 @@ for t_frac, ilabel in iteration_labels:
                  xytext=(0, 12), textcoords="offset points",
                  arrowprops=dict(arrowstyle="->", color="#ffeb3b", lw=0.8, alpha=0.5))
 
-# Legende (Kategorien MTHO)
+# Legende (Kategorien CORE)
 legend_items_v2 = [
     mpatches.Patch(facecolor="#00e5ff", label="L (logisch)"),
     mpatches.Patch(facecolor="#ff5252", label="P (physikalisch)"),
@@ -370,7 +370,7 @@ ax2.text(-1.4, 1.2,
 ax2.text(1.45, -1.42, "Stand: 2026-03-01\nChromaDB: simulation_evidence",
          fontsize=8, color="#555", ha="right", va="bottom", fontfamily="sans-serif")
 
-out2 = os.path.join("c:/MTHO_CORE/media", "simulation_evidence_fibonacci.png")
+out2 = os.path.join("c:/CORE/media", "simulation_evidence_fibonacci.png")
 plt.savefig(out2, dpi=200, bbox_inches="tight", facecolor="#0a0e1a", pad_inches=0.3)
 print(f"[OK] Fibonacci-Graph gespeichert: {out2}")
 plt.close()

@@ -2,19 +2,19 @@
   "config": {
     "step": {
       "user": {
-        "title": "MTHO Conversation einrichten",
-        "description": "MTHO API URL und Bearer-Token (HA_WEBHOOK_TOKEN aus .env) eingeben.",
+        "title": "CORE Conversation einrichten",
+        "description": "CORE API URL und Bearer-Token (HA_WEBHOOK_TOKEN aus .env) eingeben.",
         "data": {
-          "base_url": "MTHO API URL",
+          "base_url": "CORE API URL",
           "token": "Bearer Token (HA_WEBHOOK_TOKEN)"
         }
       }
     },
     "error": {
-      "cannot_connect": "MTHO API nicht erreichbar. URL und Token prüfen (HA_WEBHOOK_TOKEN in .env)."
+      "cannot_connect": "CORE API nicht erreichbar. URL und Token prüfen (HA_WEBHOOK_TOKEN in .env)."
     },
     "abort": {
-      "already_configured": "MTHO ist bereits für diese URL konfiguriert."
+      "already_configured": "CORE ist bereits für diese URL konfiguriert."
     }
   }
 }
