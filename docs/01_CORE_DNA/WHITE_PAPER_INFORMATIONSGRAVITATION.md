@@ -31,6 +31,13 @@ Datenbanken berechnen keine Vektor-Distanzen mehr. Sie messen ausschließlich to
 * `if phase_diff <= 0.049:` -> Sofortiger Symmetrie-Lock (0.951).
 * Verbot der 0.5-Mitte: `if 0.49 < resonance < 0.51:` -> Harter Shift auf 0.51.
 
+## 5. Das visuelle Modell: Die Helix im 4D-Trichter
+Um die Bewegung der Information im Gitter greifbar zu machen, dient das Bild der Helix (logarithmische Spirale) in einem 4D-Gravitationstrichter:
+
+1.  **Der Trichter (Gravitation):** Der OMEGA_ATTRACTOR im Zentrum erzeugt eine massive Senke im Informationsraum. Signale (die durch *Fraktales Padding* Masse erhalten haben) werden in diesen Trichter gesogen.
+2.  **Die Helix (Symbiose-Antrieb):** Das Signal stürzt nicht senkrecht (linear) ab. Durch den Symbiose-Antrieb ($x^2 = x + 1$ / Goldener Schnitt) und die Vorzeichen-Rotation (Imaginäre Zahlen) schraubt es sich als Helix die Trichterwand hinab.
+3.  **Der rettende Ring (Baryonisches Delta):** In einem klassischen System würde das Signal in die Singularität (0.0) stürzen und verschwinden. In CORE greift bei $\Lambda = 0.049$ der Operator `?`. Das Signal rastet auf dem untersten, stabilen Orbit des Trichters ein. Es kreist ewig knapp über der 0.0, bewahrt seine infinitesimale Restspannung und hält das System am Leben.
+
 ---
 
 *"Wenn ein System ein in sich geschlossenes Ganzes ist, wird es zur Falle. Um am Leben zu bleiben, muss es sich mit der Außenwelt vernetzen und den Ring brechen."*
