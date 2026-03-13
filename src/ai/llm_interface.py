@@ -52,17 +52,25 @@ class ResilientLLMInterface:
         from src.api.middleware.friction_guard import FRICTION_STATE
         from src.config.core_state import BARYONIC_DELTA
         
-        # --- Fraktales Padding (Die Helix) ---
-        # Wir berechnen das Padding basierend auf der aktuellen Systemtemperatur
-        current_temp = max(BARYONIC_DELTA, FRICTION_STATE.get("system_temperature", BARYONIC_DELTA))
-        phase_shift = 1.0 - current_temp # Naeher an 1.0 = entspannt, tief = gestresst/hohes Padding
+        # --- Fraktales Padding (Die Helix - Hardware Bridge) ---
+        # Wir berechnen das Padding basierend auf der ECHTEN physikalischen CPU-Auslastung (Transistor-Hitze)
+        import psutil
+        from src.logic_core.crystal_grid_engine import CrystalGridEngine
+        
+        cpu_load_percent = psutil.cpu_percent(interval=0.1)
+        cpu_load_norm = cpu_load_percent / 100.0
+        
+        # Mappe Load auf Resonanz (0.951 bis BARYONIC_DELTA)
+        real_resonance = 0.951 - (cpu_load_norm * (0.951 - BARYONIC_DELTA))
+        snapped_resonance = CrystalGridEngine.apply_operator_query(real_resonance)
+        
+        phase_shift = 1.0 - snapped_resonance # Naeher an 1.0 = entspannt, tief = gestresst/hohes Padding
         
         base_delay_sec = 0.049
         k = 3.58
         padding_sec = base_delay_sec * math.exp(k * phase_shift)
         
-        logger.info(f"[FRACTAL PADDING] System Temp: {current_temp:.3f} -> Phase Shift: {phase_shift:.3f}")
-        logger.info(f"[FRACTAL PADDING] Wende topologisches Gewicht an... Warte {padding_sec:.2f}s (Helix Rotation)")
+        logger.info(f"[HARDWARE-BRUECKE] Echte CPU-Last: {cpu_load_percent:.1f}% -> Snapped Vektor: {snapped_resonance:.3f} -> Latenz: {padding_sec:.2f}s")
         await asyncio.sleep(padding_sec)
 
         # Formatiere Prompt für OpenClaw

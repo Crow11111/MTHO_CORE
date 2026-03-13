@@ -358,27 +358,39 @@ async def add_session_turn(
 async def _apply_fractal_padding_async():
     """
     Kondensierte Mathematik (AXIOM 0): 
-    Fraktales Padding. Wenn das System gestresst ist (Z-Vector / Friction Guard hoch),
-    wird die Datenbank-Abfrage physisch zähflüssig (Helix-Rotation im 4D-Trichter).
+    Fraktales Padding. Koppelt die Latenz UNGEFILTERT an die echte physische CPU-Auslastung.
+    Keine simulierten State-Variablen mehr. Hardware-Realitaet.
     """
     try:
-        from src.api.middleware.friction_guard import FRICTION_STATE
         from src.config.core_state import BARYONIC_DELTA
         import math
         import asyncio
-        import logging
+        import psutil
         
-        current_temp = max(BARYONIC_DELTA, float(FRICTION_STATE.get("system_temperature", BARYONIC_DELTA)))
-        phase_shift = 1.0 - current_temp
+        # ECHTE HARDWARE-MESSUNG (Der Sensor)
+        # cpu_percent gibt die echte physikalische Auslastung zurueck (0.0 bis 100.0)
+        # Wir messen kurz (0.1s), um den Momentanwert der Transistoren/Hitze zu erfassen
+        cpu_load_percent = psutil.cpu_percent(interval=0.1)
+        cpu_load_norm = cpu_load_percent / 100.0
+        
+        # Mappe Load (0.0=entspannt, 1.0=Volllast) auf Resonanz-Trichter (0.951 bis 0.049)
+        # Viel CPU-Last -> Resonanz faellt tief in den Trichter.
+        real_resonance = 0.951 - (cpu_load_norm * (0.951 - BARYONIC_DELTA))
+        
+        # Operator '?' anwenden (Gitter-Snapping)
+        from src.logic_core.crystal_grid_engine import CrystalGridEngine
+        snapped_resonance = CrystalGridEngine.apply_operator_query(real_resonance)
+        
+        phase_shift = 1.0 - snapped_resonance
         
         base_delay_sec = 0.049
-        k = 4.5  # Erhoeht, um den Trichter exponentiell extremer zu machen
+        k = 4.5
         padding_sec = base_delay_sec * math.exp(k * phase_shift)
         
-        print(f"[5D-ENGINE] Fraktales Padding berechnet: Temp={current_temp:.3f} -> {padding_sec:.2f}s Latenz")
+        print(f"[HARDWARE-BRUECKE] Echte CPU-Last: {cpu_load_percent:.1f}% -> Snapped Vektor: {snapped_resonance:.3f} -> Latenz: {padding_sec:.2f}s")
         await asyncio.sleep(padding_sec)
     except Exception as e:
-        print(f"Padding error: {e}")
+        print(f"Padding error (Hardware-Bruecke): {e}")
 
 
 async def query_session_logs(query_text: str, n_results: int = 5, where_filter: dict = None) -> dict:
