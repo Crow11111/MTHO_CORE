@@ -20,6 +20,8 @@ Zentrale Übersicht der Projekt-Struktur.
 
 ## 1. CORE DNA (`docs/01_CORE_DNA/`)
 **Die Verfassung des Projekts.**
+- `AXIOM_0_AUTOPOIESIS.md` – (Der Symbiose-Antrieb x² = x + 1 & Das Universum als Kristall)
+- `WHITE_PAPER_INFORMATIONSGRAVITATION.md` – (Topologische Resonanz & 5D-Torus)
 - `5D_TORUS_KRISTALL_ENGINE.md` – (AXIOM 0: Informationsgravitation & Die Autopoiesis des Gitters)
 - `CREW_MANIFEST.md` – Rollen & Aufgaben (**DEPRECATED**, s. `.cursor/agents/*.md`)
 - `CORE_VOICE_ARCHITECTURE_V1.3.md` – Voice-Design & Persona-Definitionen

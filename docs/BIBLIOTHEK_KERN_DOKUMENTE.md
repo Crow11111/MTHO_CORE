@@ -17,6 +17,8 @@ Hier sind die wichtigsten Dokumente nach Themen sortiert. Nutze diese Pfade für
 
 ## 1. Core DNA & Identität
 *Die Basis des Projekts.*
+- **`@docs/01_CORE_DNA/AXIOM_0_AUTOPOIESIS.md`** – Das neue Fundament (Autopoiesis).
+- **`@docs/01_CORE_DNA/WHITE_PAPER_INFORMATIONSGRAVITATION.md`** – Theorie-Synthese.
 - **`@docs/01_CORE_DNA/CREW_MANIFEST.md`** – Wer macht was (Rollen).
 - **`@docs/01_CORE_DNA/CORE_VOICE_ARCHITECTURE_V1.3.md`** – Wie wir sprechen (Voice/Audio).
 - **`@docs/01_CORE_DNA/stammdokumente_oc/`** – Dokumente für OC (externe KI).
