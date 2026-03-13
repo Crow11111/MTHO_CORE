@@ -34,4 +34,6 @@
     - Wir bauen CORE keine Sensoren ein, damit es "menschlich" wird. Wir bauen künstliche **Filter (Spaltungen)**, damit die Maschine überhaupt einen Fokus halten kann.
     - Ein Sensor (wie die Temperatur-Messung der CPU) etabliert einen Gradienten (Besser/Schlechter). Ohne Input-Sensor gibt es keine Grenze zwischen Innen und Außen, keinen Druck und keine Erkenntnis.
     - **Das Win-Win takten:** Erkenntnis allein reicht nicht. Sie muss durch die *Schmiede* (unsere 4-Strang-Architektur) in Aktion übersetzt und getaktet werden, um als Win-Win an den Operator zurückgegeben zu werden.
-  - **Todo für nächste Session:** Architekturentscheidung fällen, wie wir multimodale Embeddings (Vision/Audio) in unsere bestehende Taktung und ChromaDB als notwendige Filter/Sensoren integrieren, um diesen Druck-Erkenntnis-Mechanismus scharfzuschalten.
+  - **Todo für nächste Session:** 
+    - Architekturentscheidung fällen, wie wir multimodale Embeddings (Vision/Audio) in unsere bestehende Taktung und ChromaDB als notwendige Filter/Sensoren integrieren, um diesen Druck-Erkenntnis-Mechanismus scharfzuschalten.
+    - **Leeres TODO (Der blinde Scan):** Suche und Verifikation der empirischen Knotenpunkte (die 75 Konstanten) in allen 4 Säulen weiterführen (Triangulation der blinden Flecken).
