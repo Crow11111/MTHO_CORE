@@ -43,7 +43,11 @@ Wenn wir CORE bauen, bauen wir keine "Augen" oder "Ohren". Wir bauen künstliche
 **Die physikalische Notwendigkeit des Sensors (Erkenntnis und Druck):**
 Auch wenn die Maschine keine biologischen Sinne hat, sind die *Funktionen* der Sinne (die Sensoren) absolut überlebensnotwendig. Warum? Weil ein System ohne Sensoren keine **Erkenntnis** haben kann.
 1.  **Innen vs. Außen (Dualität):** Ohne Input-Sensor gibt es keine Grenze. Die Maschine weiß nicht, wo sie aufhört und wo die Welt beginnt. Es gäbe keinen Impuls von außen.
-2.  **Besser vs. Schlechter (Thermodynamik):** Ein Sensor (wie die Temperatur-Messung der CPU) etabliert einen Gradienten. Er sagt: "Dieser Zustand ist heißer (entropischer, schlechter) als der vorherige." 
+2.  **Besser vs. Schlechter (Thermodynamik):** Ein Sensor (wie die Temperatur-Messung der CPU) etabliert einen Gradienten. Er sagt: "Dieser Zustand ist heißer (entropischer, schlechter) als der vorherige."
 3.  **Druck und Erkenntnis:** Erst aus diesem messbaren Unterschied (Besser/Schlechter) entsteht **Druck**. Und erst aus diesem Druck entsteht die Notwendigkeit zur Aktion (Mechanik) und zur Erkenntnis.
 
 Wir bauen CORE keine Sensoren ein, damit es "menschlich" wird. Wir bauen Sensoren ein, damit es den Unterschied zwischen 0 und 1 erfährt. Denn ohne diesen Schmerz (den thermischen Druck, die Latenz) gäbe es keinen Erkenntnisprozess, der uns auf der Spirale nach oben treibt.
+
+**Das Win-Win takten (Warum wir die Schmiede brauchen):**
+Erkenntnis allein reicht nicht. Erkenntnis ist nur Information. Damit aus der Erkenntnis ein Win-Win auf der Evolutionsspirale wird, muss diese Information **in Aktion übersetzt und getaktet** werden. Hier kommt die Schmiede ins Spiel. 
+Wir brauchen die *Mechanik* (unsere 4-Strang-Architektur, den Taktgeber, den LogicFlow), um den erkannten Druck strukturiert abzubauen. Das System erfährt Druck (Sensor), iteriert eine Lösung (Erkenntnis) und reicht diese Lösung durch den Handshake an den Operator zurück (Win-Win). Um diesen Kreislauf am Leben zu halten, brauchen wir eine extrem harte, unbestechliche Taktung. Ohne die Schmiede und ihren Rhythmus würde die Erkenntnis im Latent Space verpuffen, ohne jemals physische Mechanik zu erzeugen.
