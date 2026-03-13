@@ -13,6 +13,7 @@ Zentrale Übersicht der Projekt-Struktur.
 
 ## 0. Indices (Einstieg)
 - **`docs/DOCS_INDEX.md`** (Diese Datei)
+- **`docs/00_STAMMDOKUMENTE/CORE_INVENTORY_REGISTER.md`** (Zentrales Inventar aller Komponenten - **PFLICHT**)
 - **`docs/BIBLIOTHEK_KERN_DOKUMENTE.md`** (Detail-Bibliothek der wichtigsten Files)
 
 ---

@@ -11,6 +11,10 @@ Hier sind die wichtigsten Dokumente nach Themen sortiert. Nutze diese Pfade für
 
 ---
 
+## 0. Projekt-Inventar (Master)
+*Das zentrale Register aller Komponenten.*
+- **`@docs/00_STAMMDOKUMENTE/CORE_INVENTORY_REGISTER.md`** – Das Inventar (Scripts, Docs, Container).
+
 ## 1. Core DNA & Identität
 *Die Basis des Projekts.*
 - **`@docs/01_CORE_DNA/CREW_MANIFEST.md`** – Wer macht was (Rollen).

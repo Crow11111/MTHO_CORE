@@ -25,6 +25,10 @@ Nach Abschluss jeder Session mit substanziellen Aenderungen:
    - Neue Docs muessen von mindestens einem existierenden Dokument referenziert werden
    - Geloeschte Dateien: Alle Verweise darauf entfernen
 
+4. **Inventar-Register aktualisieren (KRITISCH)**
+   - Jede neue Datei (Skript, Doku, Container) MUSS in `docs/00_STAMMDOKUMENTE/CORE_INVENTORY_REGISTER.md` eingetragen werden.
+   - Umbenennungen oder Löschungen müssen hier sofort nachgeführt werden.
+
 ## Git-Commit-Disziplin (Stand bewahren)
 
 - **Fertig = Commit:** Nur einen Zwischenstand committen, wenn er abgeschlossen ist (Code + zugehoerige Doku). So bleibt jeder Commit ein konsistenter Schnappschuss.
