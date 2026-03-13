@@ -38,25 +38,49 @@ class CrystalGridEngine:
     @staticmethod
     def apply_operator_query(value: float) -> float:
         """
-        Der Operator ?: Deterministischer Hard-Cut-off bei Λ.
+        Der Operator ?: Deterministischer Hard-Cut-off bei Λ (Baryonic Delta).
         Bricht lineare Vorwärtsbewegung ab und rastet am Gitter ein.
+        Berücksichtigt die Spiegelung nach oben/unten (negative Werte)
+        und vorne/hinten (Werte > 1.0).
         """
-        # Verbot der Null-Linie und statischen Mitte
-        if abs(value) < BARYONIC_DELTA:
-            logger.debug(f"[CRYSTAL] Snapping value {value} to Delta {BARYONIC_DELTA}")
-            return BARYONIC_DELTA
+        # 1. Spiegelung nach Hinten/Vorne (Werte außerhalb [0, 1])
+        # Modulo-Arithmetik für das Fraktal-Wrapping, behält das Vorzeichen
+        sign = -1.0 if value < 0 else 1.0
+        abs_val = abs(value)
         
-        # Verbot der 0.5-Mitte (Thermodynamischer Stillstand)
-        if SYMMETRY_BREAK_LOW < value < SYMMETRY_BREAK_HIGH:
-            logger.debug(f"[CRYSTAL] Breaking symmetry at 0.5 -> {SYMMETRY_BREAK_HIGH}")
-            return SYMMETRY_BREAK_HIGH
+        # Fraktale Faltung: Werte > 1.0 falten sich zurück in [0, 1]
+        # Bsp: 1.2 -> 0.2
+        folded_val = abs_val % 1.0
+        
+        # 2. Spiegelung Oben/Unten (Kompensation der Fraktur)
+        # Wenn der Wert exakt auf die 0.0 fällt (nach Faltung),
+        # MUSS er auf das Delta springen.
+        if folded_val < BARYONIC_DELTA:
+            logger.debug(f"[CRYSTAL] Snapping folded value {folded_val} to Delta {BARYONIC_DELTA}")
+            return BARYONIC_DELTA * sign
             
-        # Resonanz-Lock vor der Singularität
-        if value > RESONANCE_LOCK:
-            logger.debug(f"[CRYSTAL] Resonance Lock: {value} -> {RESONANCE_LOCK}")
-            return RESONANCE_LOCK
+        # Wenn der Wert sich der Singularität (1.0) nähert,
+        # rastet er am Resonance Lock ein.
+        if folded_val > RESONANCE_LOCK:
+            logger.debug(f"[CRYSTAL] Resonance Lock (Folded): {folded_val} -> {RESONANCE_LOCK}")
+            return RESONANCE_LOCK * sign
             
-        return value
+        # 3. Verbot der 0.5-Mitte (Thermodynamischer Stillstand)
+        if SYMMETRY_BREAK_LOW < folded_val < SYMMETRY_BREAK_HIGH:
+            # Asymmetrischer Stups: Wenn exakt 0.5, schiebe in Richtung des Vorzeichens
+            # Ansonsten snappe an den nächstgelegenen Rand der Fraktur
+            if folded_val == 0.5:
+                snapped = SYMMETRY_BREAK_HIGH if sign > 0 else SYMMETRY_BREAK_LOW
+                logger.debug(f"[CRYSTAL] Breaking exact symmetry at 0.5 -> {snapped}")
+                return snapped * sign
+            elif folded_val < 0.5:
+                logger.debug(f"[CRYSTAL] Snapping lower symmetry: {folded_val} -> {SYMMETRY_BREAK_LOW}")
+                return SYMMETRY_BREAK_LOW * sign
+            else:
+                logger.debug(f"[CRYSTAL] Snapping upper symmetry: {folded_val} -> {SYMMETRY_BREAK_HIGH}")
+                return SYMMETRY_BREAK_HIGH * sign
+                
+        return folded_val * sign
 
     @staticmethod
     def calculate_resonance(vector_a: List[float], vector_b: List[float]) -> float:
