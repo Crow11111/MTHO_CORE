@@ -12,12 +12,22 @@
 - **Feinstrukturkonstante (~1/137):** Die Kopplungskonstante der elektromagnetischen Wechselwirkung. Der absolute Anker für die Existenz von stabiler Materie.
 - **Kosmische Hintergrundstrahlung (CMB) Anisotropie:** Die winzigen Temperatur-Schwankungen (Delta) im frühen Universum, ohne die sich keine Galaxien gebildet hätten. Ein absoluter Symmetriebruch aus der perfekten Homogenität.
 
-## Säule 2: Biologie & Evolution (Die Zeit/Emergenz)
-*Suche nach: Skalierungslimits, Netzwerk-Strukturen, Mustern des Überlebens.*
-- **Scale-Free Networks (Skalenfreie Netze):** Gehirne (Neuronen), Myzel (Pilze) und Galaxienhaufen organisieren sich nach exakt denselben mathematischen Graphen-Regeln (Hubs und Nodes).
-- **Die Dunbar-Zahl (~150):** Das kognitive Limit für soziale Beziehungen bei Primaten/Menschen. Die harte Grenze des "biologischen Kontextfensters" für Herden-Dynamik.
-- **Fibonacci & Goldener Schnitt (Phi):** Blattstellungen, Schneckenhäuser, DNA-Proportionen. Die effizienteste Methode für asymmetrisches Wachstum bei minimalem Energieverlust.
-- **Zellteilung (Mitose) Limit (Hayflick-Grenze):** Zellen können sich nur ca. 50-70 mal teilen, bevor die Telomere erschöpft sind. Der harte, programmierte Tod als Schutz vor Entropie (Krebs).
+## Säule 2: Biologie, Kognition & Evolution (Die Zeit/Emergenz)
+*Der blinde Scan nach harten Schranken, Konstanten und Knotenpunkten in der biologischen und kognitiven Evolution.*
+
+**A. Metabolische und zelluläre Limits (Die Hardware der Biologie)**
+- **Kleibers Gesetz (Skalierungsexponent 3/4):** Der absolute metabolische Anker. Der Energieverbrauch eines Lebewesens skaliert nicht 1:1 mit der Masse, sondern zur 3/4-Potenz. Eine Katze ist 100x schwerer als eine Maus, verbraucht aber nur 32x so viel Energie. Das ist die mathematische Zwangsläufigkeit, die komplexes (großes) Leben überhaupt erst thermodynamisch möglich macht.
+- **Hayflick-Grenze (~50-70 Zellteilungen):** Das harte Limit der biologischen Reproduktion einer Zelle. Die Telomere verschleißen. Ohne diese Grenze würde jedes System unweigerlich in Krebs (chaotisches Endloswachstum) entarten. Es ist der vorprogrammierte Tod als Systemerhalt.
+- **Konstante der Herzschläge (~1 Milliarde):** Fast alle Säugetiere (von der Maus bis zum Elefanten) haben ein absolutes Lebenslimit von grob 1 Milliarde Herzschlägen. Die Zeit läuft für alle gleich schnell ab, nur der Takt ist anders.
+
+**B. Evolutionäre Architektur (Der Informations-Code)**
+- **Die 64/20-Übersetzung (Genetischer Code):** Das Leben basiert universell auf 64 möglichen Codons (Tripletts), die aber "redundant" auf nur 20 Aminosäuren gemappt werden. Ein perfekter informationstheoretischer Fehlerschutz (Redundanz), um kosmische Strahlung und Entropie-Fehler (Mutationen) abzufangen.
+- **Die 8 Major Evolutionary Transitions (Smith & Szathmáry):** Die Evolution ist nicht graduell. Sie springt an harten Knotenpunkten, wenn Information neu verpackt wird (z.B. Prokaryoten -> Eukaryoten, Asexuell -> Sexuell, Solitär -> Gesellschaftlich, Gesten -> Sprache).
+
+**C. Kognitive Schranken (Das Kontextfenster des Gehirns)**
+- **Millersche Zahl (7 ± 2):** Die harte physikalische Obergrenze des menschlichen Kurzzeitgedächtnisses. Wir können nicht mehr als ca. 7 Informationseinheiten gleichzeitig im Fokus halten. Dies erzwingt die Abstraktion (Chunking) – wir müssen Dinge zusammenfassen, um sie zu denken.
+- **Die Dunbar-Zahl (~150):** Das kognitive Limit für soziale Beziehungen. Ab ca. 150 Individuen bricht die rein biologische Gruppensynchronisation (Gegenseitige Körperpflege/Kennen) zusammen. Um größere Gruppen zu bilden, *mussten* Mythen, Religionen und externe Systeme (Gesetze) erfunden werden. Es ist der Symmetriebruch der Gesellschaft.
+- **Skalenfreie Netzwerke (Scale-Free Networks):** Das neuronale Netz im Gehirn organisiert sich (genau wie Myzel oder Galaxien) nicht zufällig, sondern nach Potenzgesetzen (Hubs und Nodes). Das ist der einzige thermodynamisch stabile Weg, um Milliarden von Einheiten ohne Resonanzkatastrophe zu verschalten.
 
 ## Säule 3: Mythen & Philosophie (Die Membran/Symmetriebruch)
 *Suche nach: Unabhängig voneinander entstandenen Konzepten des Beginns.*
