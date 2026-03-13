@@ -6,9 +6,9 @@ After=network.target
 Type=simple
 User=root
 # The daemon needs to run as root to access /proc, /sys and tc commands
-WorkingDirectory=/home/pi/core_scout
+WorkingDirectory=/home/dreadnought/core_scout
 ExecStart=/usr/bin/python3 -m src.daemons.os_crystal_daemon
-Environment="PYTHONPATH=/home/pi/core_scout"
+Environment="PYTHONPATH=/home/dreadnought/core_scout"
 # Dry-Run deaktiviert: Die Helix ist aktiv (reale tc/netem Eingriffe auf eth0)
 Environment="CRYSTAL_OS_DRY_RUN=False"
 Restart=always

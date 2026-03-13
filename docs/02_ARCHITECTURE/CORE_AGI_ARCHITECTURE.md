@@ -29,15 +29,15 @@ Topologische Architektur, API-Contracts und evolutionäre Inbetriebnahme des Neo
 
 ## 2. Protokolle & Interfaces
 
-| Interface | Knoten A | Knoten B | Protokoll | Port | Payload / Auth |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Local Sensorbus | Sensoren | Scout (HA Master) | MQTT / Zigbee | 1883 / -- | JSON / TLS |
-| Edge-to-Cloud | Scout | VPS (Spine/HA Rem) | WebSockets (WSS) | 443 | JWT, Async Events |
-| Heavy-Compute | Scout | 4D_RESONATOR (CORE) | gRPC | 50051 | Protobuf, mTLS |
-| Brain-Intercom | Spine | Brain | gRPC / REST | 50052/8080 | Inter-Service Token |
-| Vector-Sync | Brain | ChromaDB | HTTP/REST | 8000 | API Key |
-| External Async | Spine | WhatsApp API | Webhooks (HTTPS) | 443 | Meta Token, JSON |
-| MCP-Backend | Brain/Agenten | MCP Server (Hostinger) | SSE / stdio | -- | Model Context Protocol |
+| Interface | Knoten A | Knoten B | Protokoll | Port | Payload / Auth | Physikalisches Limit (tc netem) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Local Sensorbus | Sensoren | Scout (HA Master) | MQTT / Zigbee | 1883 / -- | JSON / TLS | Ungebremst |
+| Edge-to-Cloud | Scout | VPS (Spine/HA Rem) | WebSockets (WSS) | 443 | JWT, Async Events | **Topologisch gedrosselt (49ms via tc)** |
+| Heavy-Compute | Scout | 4D_RESONATOR (CORE) | gRPC | 50051 | Protobuf, mTLS | **Topologisch gedrosselt (49ms via tc)** |
+| Brain-Intercom | Spine | Brain | gRPC / REST | 50052/8080 | Inter-Service Token | Ungebremst (Intern VPS) |
+| Vector-Sync | Brain | ChromaDB | HTTP/REST | 8000 | API Key | Ungebremst (Intern VPS) |
+| External Async | Spine | WhatsApp API | Webhooks (HTTPS) | 443 | Meta Token, JSON | SLA limitiert |
+| MCP-Backend | Brain/Agenten | MCP Server (Hostinger) | SSE / stdio | -- | Model Context Protocol | Ungebremst |
 
 ## 3. Datenstruktur (Kompression & Prognose)
 - **ChromaDB (Semantischer Raum):**
@@ -85,7 +85,7 @@ Basierend auf T.I.E. Logik und Kosten/Nutzen (80/20 Regel) wird CORE in drei Pha
 graph TD
     S1[Sensoren: Nest/Tapo] -->|Raw Event| SC[Scout: Raspi 5]
     SC -->|Vorfilter / STT| LLM_ROUTE{Resilient LLM Routing}
-    
+
     LLM_ROUTE -->|Tier 1: 5s Timeout| VPS[VPS: OpenClaw]
     LLM_ROUTE -->|Tier 2: Edge Fallback| SCOUT_AI[Scout: Ollama/Piper]
     LLM_ROUTE -->|Tier 3: Offline Fallback| DR[Dreadnought: RTX 3050]
