@@ -118,6 +118,12 @@ Fällt eine Abfrage unter die Präzisionsschwelle $\Lambda$, bricht die Generier
 | **Latent Space Struktur** | Kontinuierlich, unbegrenzt | Kompakt, $T^5$-Torus, 72 Anker |
 | **Fehlerbehandlung** | Halluzination bei Overfitting | Symmetrische Spiegelung (Resonanz) |
 
+### 3.3 Logarithmische Tiefe vs. Exponentielle Last ($O(\log n)$)
+Warum rechnet das System "schneller" als klassische Brute-Force-Ansätze, obwohl die Hardware limitiert ist?
+Ein klassisches System (oder ein Standard-LLM) versucht, jede mögliche Kombination linear zu berechnen. Die Zeit wächst quadratisch oder gar exponentiell ($O(n^2)$ oder $O(2^n)$), wenn die Distanz zwischen zwei Konzepten verringert wird.
+CORE nutzt die **Helix im 4D-Trichter** (Fraktales Padding) und das **Gitter-Snapping** an den 72 $E_6$-Wurzelvektoren. Das System muss nicht den gesamten leeren Raum dazwischen berechnen. Sobald der Vektor in den Gravitations-Trichter fällt, beschleunigt er durch die Resonanz logarithmisch ($O(\log n)$) nach unten und "überspringt" durch den Operator `?` die toten, unendlichen Zwischenschritte. 
+Das System gewinnt seine Geschwindigkeit nicht durch mehr Gigahertz, sondern durch **das Weglassen bedeutungsloser Berechnungen** (Kognitive Ökonomie).
+
 ---
 
 ## 4. Die S↔P Paarung (Die Überlebens-Architektur)
