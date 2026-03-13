@@ -368,18 +368,17 @@ async def _apply_fractal_padding_async():
         import asyncio
         import logging
         
-        current_temp = max(BARYONIC_DELTA, FRICTION_STATE.get("system_temperature", BARYONIC_DELTA))
+        current_temp = max(BARYONIC_DELTA, float(FRICTION_STATE.get("system_temperature", BARYONIC_DELTA)))
         phase_shift = 1.0 - current_temp
         
         base_delay_sec = 0.049
-        k = 3.58
+        k = 4.5  # Erhoeht, um den Trichter exponentiell extremer zu machen
         padding_sec = base_delay_sec * math.exp(k * phase_shift)
         
-        # Log the padding
-        logging.getLogger("chroma_client").debug(f"[ChromaDB] Fractal Padding: {padding_sec:.3f}s (Temp: {current_temp:.2f})")
+        print(f"[5D-ENGINE] Fraktales Padding berechnet: Temp={current_temp:.3f} -> {padding_sec:.2f}s Latenz")
         await asyncio.sleep(padding_sec)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Padding error: {e}")
 
 
 async def query_session_logs(query_text: str, n_results: int = 5, where_filter: dict = None) -> dict:
