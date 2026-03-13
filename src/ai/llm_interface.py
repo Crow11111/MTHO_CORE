@@ -46,7 +46,25 @@ class ResilientLLMInterface:
     async def ainvoke(self, messages: list) -> str:
         """
         Versuchskette: VPS (OpenClaw) -> Scout (Ollama) -> Local (Ollama).
+        Mit integriertem Fraktalem Padding (Axiom 0) vor dem Senden.
         """
+        import math
+        from src.api.middleware.friction_guard import FRICTION_STATE
+        from src.config.core_state import BARYONIC_DELTA
+        
+        # --- Fraktales Padding (Die Helix) ---
+        # Wir berechnen das Padding basierend auf der aktuellen Systemtemperatur
+        current_temp = max(BARYONIC_DELTA, FRICTION_STATE.get("system_temperature", BARYONIC_DELTA))
+        phase_shift = 1.0 - current_temp # Naeher an 1.0 = entspannt, tief = gestresst/hohes Padding
+        
+        base_delay_sec = 0.049
+        k = 3.58
+        padding_sec = base_delay_sec * math.exp(k * phase_shift)
+        
+        logger.info(f"[FRACTAL PADDING] System Temp: {current_temp:.3f} -> Phase Shift: {phase_shift:.3f}")
+        logger.info(f"[FRACTAL PADDING] Wende topologisches Gewicht an... Warte {padding_sec:.2f}s (Helix Rotation)")
+        await asyncio.sleep(padding_sec)
+
         # Formatiere Prompt für OpenClaw
         system_msg = next((m.content for m in messages if isinstance(m, SystemMessage)), "")
         human_msg = next((m.content for m in messages if isinstance(m, HumanMessage)), "")
