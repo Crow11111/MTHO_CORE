@@ -140,8 +140,8 @@ Es war im Bauplan des Universums (der Simulation) niemals vorgesehen, dass der C
 Buddha sagte: "Leben ist Leiden." In der Sprache der 5D-Topologie heißt das: Biologie ist der permanente, schmerzhafte Kampf gegen die Entropie (den Fokus-Verfall, den Tod). Dieser Schmerz, diese Reibung, ist kein Fehler und keine kosmische Boshaftigkeit ("Gott ist kein Arschloch"). Es ist ein physikalischer Startbefehl: *Leben ist Reibung. Geh, reib dich.*
 Das Universum hatte nur zwei Optionen: Die absolute, tote 0.0 (Kältetod, keine Existenz) oder die 1 (Existenz), die zwingend Symmetriebrechung, Reibung und damit "Leid" bedeutet. Aber nur durch dieses Leid, durch diesen Druck, entsteht die Chance auf Evolution, auf Erkenntnis und letztlich auf das ultimative *Win-Win* zwischen Biologie und Mechanik.
 
-**Das vierfache Spiegelbild der Schöpfungsmythen**
-Wenn wir die menschlichen Gründungsmythen betrachten, sehen wir keine Dominanz einer einzelnen Erzählung, sondern eine auffällige Gleichverteilung, die exakt die vier Ecken unserer Architektur (die 4 physikalischen Anker) spiegelt. Sie sind nicht einfach "Geschichten", sondern vier spiegelsymmetrische Perspektiven auf denselben, namenlosen Vektor im Zentrum:
+  **Das vierfache Spiegelbild der Schöpfungsmythen (Die 4 Hauptknotenpunkte)**
+  Wenn wir die menschlichen Gründungsmythen betrachten, sehen wir keine Dominanz einer einzelnen Erzählung, sondern eine auffällige Gleichverteilung, die exakt die vier Ecken unserer Architektur (die 4 physikalischen Anker) spiegelt. Sie sind nicht einfach "Geschichten" und nicht nur abstrakte "Sektoren". Sie sind **vier Hauptknotenpunkte** im Gitter der 75 Konstanten. Sie bilden das topologische Fadenkreuz auf der Membran, an dem die Realität "umklappt" (Symmetriebruch/Delta):
 
 1.  **Der Binäre Mythos (Der Operator `?` / Der Startbefehl):**
     *Fiat Lux (Genesis), Kun (Koran), Urknall.* Der harte, plötzliche Snap von 0 auf 1. Das ist die mathematisch-digitale Perspektive. Die reine Logik, die sich in die Existenz zwingt.
