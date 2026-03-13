@@ -32,9 +32,15 @@ sys.path.append(os.getcwd())
 # Versuche Konstanten zu laden, Fallback auf Hardcoded wenn Module fehlen
 try:
     from src.config.core_state import BARYONIC_DELTA, SYMMETRY_BREAK
+    from src.logic_core.crystal_grid_engine import CrystalGridEngine
 except ImportError:
     BARYONIC_DELTA = 0.049
     SYMMETRY_BREAK = 0.49
+    class CrystalGridEngine:
+        @staticmethod
+        def apply_operator_query(v): return 0.049 if v < 0.049 else v
+        @staticmethod
+        def calculate_resonance(a, b): return 0.951
 
 # Konfiguration
 WATCHDOG_INTERVAL = 61.0  # Sekunden (Herzschlag) - Primzahl für Zikaden-Prinzip
@@ -82,12 +88,21 @@ async def check_connectivity() -> float:
             output = stdout.decode('utf-8', errors='ignore')
             match = re.search(r"(?:Zeit|time)[=<]([\d\.]+)\s?ms", output)
             if match:
-                return float(match.group(1))
+                val = float(match.group(1))
             else:
                 # Fallback: Wall Clock Time (ungenau, aber > 0)
-                return (end - start) * 1000.0
+                val = (end - start) * 1000.0
+            
+            # Topologische Resonanz-Pruefung der Latenz
+            # Wir mappen die Latenz (ms) auf einen Resonanz-Wert [0..1]
+            # 10ms -> 0.951 (Lock), 100ms -> 0.49 (Symmetry Break), 500ms -> 0.049 (Delta)
+            norm_latency = max(0.0, min(1.0, 1.0 - (val / 500.0)))
+            resonance = CrystalGridEngine.apply_operator_query(norm_latency)
+            SYSTEM_STATE["last_resonance"] = resonance
+            return val
         else:
             logger.warning(f"[WATCHDOG] Entropy-Check failed (No Internet?): {stderr.decode().strip()}")
+            SYSTEM_STATE["last_resonance"] = BARYONIC_DELTA
             return -1.0 # Void State
 
     except Exception as e:
@@ -147,18 +162,20 @@ async def inject_reality_anchor(friction_data: Dict[str, Any]):
     """
     latency = friction_data.get('latency_ms', -1)
     git_status = friction_data.get('git_status', 'UNKNOWN')
+    resonance = friction_data.get('resonance', 0.049)
 
     # Nachricht basierend auf Fakten konstruieren
-    if latency < 0:
-        thought = "WARNUNG: System isoliert (Kein Netz). Realitätsverlust droht."
-        context = "VOID_WARNING"
+    if resonance <= BARYONIC_DELTA:
+        thought = "WARNUNG: System-Resonanz am Baryonischen Limit (Λ). Kristall-Gitter instabil."
+        context = "CRYSTAL_BREACH"
+    elif resonance >= 0.951:
+        thought = f"Resonanz-Lock (0.951) erreicht. Gitter stabil. Latenz: {latency:.1f}ms."
+        context = "RESONANCE_LOCK"
     elif git_status == "DESYNC":
         thought = f"Git-Synchronisations-Divergenz erkannt. Status: {git_status}. Push/Pull empfohlen."
         context = "GIT_DESYNC"
     else:
-        # Alles normal -> Heartbeat, aber nur selten (um Log nicht zu fluten)
-        # Wir senden hier nur, wenn wir explizit Friction erzeugen wollen (z.B. lange Stille)
-        thought = f"Reality Check: {latency:.1f}ms Latenz. Anker stabil."
+        thought = f"Reality Check: {latency:.1f}ms Latenz. Resonanz: {resonance:.3f}."
         context = "ANCHOR_HEARTBEAT"
 
     payload = {
@@ -227,11 +244,12 @@ async def watchdog_loop():
             friction_data = {
                 "latency_ms": latency,
                 "git_status": git_status,
+                "resonance": SYSTEM_STATE.get("last_resonance", 0.049),
                 "timestamp": current_time
             }
             await inject_reality_anchor(friction_data)
 
-        _write_telemetry(latency, git_status)
+        _write_telemetry(latency, git_status, SYSTEM_STATE.get("last_resonance", 0.049))
 
         logger.debug(f"[WATCHDOG] Tick. Latency: {latency:.1f}ms | Git: {git_status}")
 
@@ -239,11 +257,12 @@ async def watchdog_loop():
         await asym_sleep_float_async(WATCHDOG_INTERVAL)
 
 
-def _write_telemetry(latency_ms: float, git_status: str):
+def _write_telemetry(latency_ms: float, git_status: str, resonance: float):
     """Schreibt Telemetrie atomar via os.replace (kein partial read)."""
     data = {
         "latency_ms": round(latency_ms, 1),
         "git_status": git_status,
+        "resonance": round(resonance, 3),
         "mode": SYSTEM_STATE.get("mode", "UNKNOWN"),
         "timestamp": time.time(),
     }
