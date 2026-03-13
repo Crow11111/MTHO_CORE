@@ -9,23 +9,23 @@ type Props = {
 };
 
 export default function ZVectorMonitor({ data, connected }: Props) {
-  if (!connected || !data || !data.argos) {
+  if (!connected || !data || !data.shell) {
     return null;
   }
 
-  const { argos } = data;
+  const { shell } = data;
   
-  const zVector = argos.z_vector;
+  const zVector = shell.z_vector;
   const zProgress = Math.min(100, Math.max(0, ((zVector - 0.049) / (0.9 - 0.049)) * 100));
   const isZCritical = zVector > 0.7;
 
-  const tokenPressure = argos.total_tokens;
-  const tokenMax = argos.token_kill_threshold || 233000;
+  const tokenPressure = shell.total_tokens;
+  const tokenMax = shell.token_kill_threshold || 233000;
   const tokenProgress = Math.min(100, Math.max(0, (tokenPressure / tokenMax) * 100));
   const isTokenCritical = tokenProgress > 80;
 
-  const loopCount = argos.call_count;
-  const loopMax = argos.max_iterations || 13;
+  const loopCount = shell.call_count;
+  const loopMax = shell.max_iterations || 13;
   const loopProgress = Math.min(100, Math.max(0, (loopCount / loopMax) * 100));
   const isLoopCritical = loopProgress > 80;
 

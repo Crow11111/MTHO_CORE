@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "motion/react";
 import TelemetryHUD from "./components/TelemetryHUD";
 import ZVectorMonitor from "./components/ZVectorMonitor";
 import CommandConsole from "./components/CommandConsole";
-import ValidationForge from "./components/ValidationForge";
+import ValidationBuildEngine from "./components/ValidationForge";
 import { useTelemetryPolling } from "./hooks/useTelemetryPolling";
 
 type Message = {
@@ -31,12 +31,12 @@ export default function App() {
     },
   ]);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isForgeOpen, setIsForgeOpen] = useState(false);
+  const [isBuildEngineOpen, setIsBuildEngineOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
 
   const apiBase = (
-    import.meta.env.VITE_MTHO_API_URL || "http://localhost:8000"
+    import.meta.env.VITE_CORE_API_URL || "http://localhost:8000"
   ).replace(/\/$/, "");
   const wsUrl = apiBase.replace(/^http/, "ws") + "/ws";
   const { data: telemetry, connected: telemetryConnected } =
@@ -115,12 +115,12 @@ export default function App() {
     setMessages((prev) => [...prev, newMsg]);
     setIsProcessing(true);
 
-    // Wenn der Befehl "audit" oder "forge" enthaelt, oeffne die Forge testweise
+    // Wenn der Befehl "audit" oder "build_engine" enthaelt, oeffne die Build-Engine testweise
     if (
-      cmd.toLowerCase().includes("forge") ||
+      cmd.toLowerCase().includes("build_engine") ||
       cmd.toLowerCase().includes("audit")
     ) {
-      setIsForgeOpen(true);
+      setIsBuildEngineOpen(true);
     }
 
     const controller = new AbortController();
@@ -164,9 +164,9 @@ export default function App() {
     }
   };
 
-  const handleForgeRotate = () => {
+  const handleBuildEngineRotate = () => {
     // Dummy-Action fuer die UI Demonstration
-    console.log("Rotating Forge...");
+    console.log("Rotating Build-Engine...");
   };
 
   return (
@@ -187,14 +187,14 @@ export default function App() {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setIsForgeOpen(!isForgeOpen)}
+            onClick={() => setIsBuildEngineOpen(!isBuildEngineOpen)}
             className={`p-1.5 rounded-lg border transition-all flex items-center gap-2
-              ${isForgeOpen ? "bg-[#FFB300] text-[#121212] border-[#FFB300]" : "bg-[#1A1A1A] text-[#A0A0A0] border-[#333] hover:text-[#E0E0E0] hover:border-[#666]"}`}
-            title="Validation Forge"
+              ${isBuildEngineOpen ? "bg-[#FFB300] text-[#121212] border-[#FFB300]" : "bg-[#1A1A1A] text-[#A0A0A0] border-[#333] hover:text-[#E0E0E0] hover:border-[#666]"}`}
+            title="Validation Build-Engine"
           >
             <GitBranch size={16} />
             <span className="text-[10px] uppercase font-mono tracking-wider px-1">
-              Forge
+              Build-Engine
             </span>
           </button>
           <div className="w-px h-6 bg-[#333] mx-1"></div>
@@ -248,12 +248,12 @@ export default function App() {
           </div>
         </div>
 
-        {/* Sliding Validation Forge Panel */}
-        <ValidationForge
-          isOpen={isForgeOpen}
-          onClose={() => setIsForgeOpen(false)}
+        {/* Sliding Validation Build-Engine Panel */}
+        <ValidationBuildEngine
+          isOpen={isBuildEngineOpen}
+          onClose={() => setIsBuildEngineOpen(false)}
           isRotating={false}
-          onRotate={handleForgeRotate}
+          onRotate={handleBuildEngineRotate}
           logs={[
             {
               id: "1",

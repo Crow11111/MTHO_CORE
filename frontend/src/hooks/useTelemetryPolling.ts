@@ -12,7 +12,7 @@ export type TelemetryData = {
   friction_violations: number;
   event_bus_connected: boolean;
   api_uptime_s: number;
-  argos?: {
+  shell?: {
     z_vector: number;
     total_tokens: number;
     call_count: number;
@@ -38,7 +38,7 @@ export function useTelemetryPolling({
 
   const fetchTelemetry = useCallback(async () => {
     try {
-      const res = await fetch(`${apiBase}/api/mtho/telemetry`, {
+      const res = await fetch(`${apiBase}/api/core/telemetry`, {
         signal: AbortSignal.timeout(4000),
       });
       if (res.ok) {

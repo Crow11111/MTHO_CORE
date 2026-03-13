@@ -1,6 +1,6 @@
-# MTHO Dev Agent - Backend Integration Guide
+# CORE Dev Agent - Backend Integration Guide
 
-Dieses Dokument beschreibt, wie das Frontend des MTHO Dev Agents an ein reales Backend angebunden werden sollte. 
+Dieses Dokument beschreibt, wie das Frontend des CORE Dev Agents an ein reales Backend angebunden werden sollte. 
 
 Da es sich um eine interaktive Chat-Anwendung mit Echtzeit-Statusanzeigen und asynchronen System-Events handelt, empfehlen wir eine **hybride Architektur aus WebSockets (für Echtzeit-Kommunikation) und REST (für gezielte Aktionen)**.
 
@@ -28,7 +28,7 @@ Das Frontend erwartet Nachrichten und Status-Updates in folgenden Formaten:
 {
   "id": "unique-uuid-1234",
   "role": "user" | "agent" | "external",
-  "sender": "You" | "Mtho" | "Service-A (Pipeline)",
+  "sender": "You" | "Core" | "Service-A (Pipeline)",
   "content": "Der eigentliche Text der Nachricht...",
   "timestamp": "2026-02-25T11:45:00Z"
 }
@@ -52,12 +52,12 @@ Das Backend sollte einen WebSocket-Server bereitstellen, auf den sich das Fronte
 ### Client -> Server (Frontend sendet an Backend)
 *   **`chat:send`**
     *   *Payload:* `{ "content": "Baue mir eine neue Komponente..." }`
-    *   *Aktion:* Der User schickt eine Nachricht an den MTHO Agenten.
+    *   *Aktion:* Der User schickt eine Nachricht an den CORE Agenten.
 
 ### Server -> Client (Backend sendet an Frontend)
 *   **`chat:reply`**
     *   *Payload:* `Message Object` (role: "agent")
-    *   *Aktion:* Der MTHO Agent antwortet dem User.
+    *   *Aktion:* Der CORE Agent antwortet dem User.
 *   **`system:event`**
     *   *Payload:* `Message Object` (role: "external")
     *   *Aktion:* Ein externes System (z.B. CI/CD, Database) pusht eine Info in den Dev-Channel.

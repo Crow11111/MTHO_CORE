@@ -2,7 +2,7 @@
 
 ## Ein-Klick-Start (empfohlen)
 
-Im **Projekt-Root** (MTHO_CORE) die Datei **`START_DEV_AGENT.bat`** doppelklicken.
+Im **Projekt-Root** (CORE) die Datei **`START_DEV_AGENT.bat`** doppelklicken.
 
 Die Batch-Datei:
 - führt **npm install** im Ordner frontend aus (über CMD, nicht PowerShell – umgeht die Ausführungsrichtlinie)
@@ -18,7 +18,7 @@ Wenn du **manuell** im Ordner `frontend` arbeitest und **PowerShell** nutzt, kan
 - **Option B:** In PowerShell einmal erlauben:  
   `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`  
   Danach z. B. `npm install` im Ordner frontend ausführen.
-- **Option C:** In **CMD** (cmd.exe) wechseln: `cd C:\MTHO_CORE\frontend` und dort `npm install` ausführen.
+- **Option C:** In **CMD** (cmd.exe) wechseln: `cd C:\CORE\frontend` und dort `npm install` ausführen.
 
 ## Port 8000 bereits belegt
 

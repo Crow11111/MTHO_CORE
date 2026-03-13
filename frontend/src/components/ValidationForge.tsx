@@ -17,7 +17,7 @@ type Props = {
   onRotate: () => void;
 };
 
-export default function ValidationForge({
+export default function ValidationBuildEngine({
   isOpen,
   onClose,
   logs,
@@ -39,7 +39,7 @@ export default function ValidationForge({
         <div className="flex items-center gap-2">
           <Code2 size={20} className="text-[#FFB300]" />
           <h2 className="font-mono text-sm uppercase tracking-wider text-[#E0E0E0] font-semibold">
-            Validation Forge
+            Validation Build-Engine
           </h2>
         </div>
         <button
