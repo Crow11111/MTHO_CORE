@@ -20,7 +20,7 @@ SCOUT_KEY_PATH = os.getenv("SCOUT_KEY_PATH", "c:/CORE/.ssh/id_rsa_scout") # Plac
 
 def deploy_scout():
     print(f"Deploying Scout to {SCOUT_HOST}...")
-    
+
     # Initialize connection
     # Note: We assume key-based auth. If password, we need connect_kwargs.
     try:
@@ -45,18 +45,18 @@ def deploy_scout():
     # Let's use individual put for simplicity of this script, or better:
     # Use rsync if available, but Windows->Linux rsync is tricky.
     # Simple recursion or tarball is best.
-    
+
     # Create local tarball
-    os.system("tar -czf scout_payload.tar.gz src/edge src/services docker/scout .env")
-    
+    os.system("tar -czf scout_payload.tar.gz src/edge src/services src/logic_core src/config docker/scout .env")
+
     # Upload tarball
     c.put("scout_payload.tar.gz", f"{remote_dir}/scout_payload.tar.gz")
-    
+
     # Extract
     with c.cd(remote_dir):
         c.run("tar -xzf scout_payload.tar.gz")
         c.run("rm scout_payload.tar.gz")
-        
+
     # 3. Build and Run Docker
     print("Building and starting Scout container...")
     with c.cd(f"{remote_dir}/docker/scout"):
@@ -68,7 +68,7 @@ def deploy_scout():
     # We might need to adjust docker-compose.yml to point to relative paths correctly on the remote
     # or just run docker build manually.
     # Let's assume docker-compose works if paths are correct.
-    
+
     with c.cd(remote_dir):
         # We run compose from the root of the deployed folder, pointing to the file
         try:

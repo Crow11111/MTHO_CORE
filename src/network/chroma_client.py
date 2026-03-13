@@ -22,6 +22,7 @@ import time
 import logging
 import math
 from dotenv import load_dotenv
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
 
 load_dotenv("c:/CORE/.env")
 
@@ -361,7 +362,13 @@ async def query_session_logs(query_text: str, n_results: int = 5, where_filter: 
         kwargs = {"query_texts": [query_text], "n_results": n_results}
         if where_filter:
             kwargs["where"] = where_filter
-        return await asyncio.to_thread(col.query, **kwargs)
+        result = await asyncio.to_thread(col.query, **kwargs)
+        
+        # Symmetrie-Operator anwenden (Kristall-Engine)
+        if "distances" in result and result["distances"]:
+            result["distances"] = _apply_crystal_engine_operator(result["distances"])
+            
+        return result
     except Exception as e:
         print(f"[ChromaDB] Session-Log Query fehlgeschlagen: {e}")
         return {"ids": [], "documents": [], "metadatas": [], "distances": []}
@@ -374,7 +381,13 @@ async def query_core_directives(query_text: str, n_results: int = 3, where_filte
         kwargs = {"query_texts": [query_text], "n_results": n_results}
         if where_filter:
             kwargs["where"] = where_filter
-        return await asyncio.to_thread(col.query, **kwargs)
+        result = await asyncio.to_thread(col.query, **kwargs)
+        
+        # Symmetrie-Operator anwenden (Kristall-Engine)
+        if "distances" in result and result["distances"]:
+            result["distances"] = _apply_crystal_engine_operator(result["distances"])
+            
+        return result
     except Exception as e:
         print(f"[ChromaDB] Core Directives Query fehlgeschlagen: {e}")
         return {"ids": [], "documents": [], "metadatas": [], "distances": []}
@@ -433,29 +446,18 @@ def _apply_crystal_engine_operator(distances: list[list[float]]) -> list[list[fl
     """
     Kondensierte Mathematik (AXIOM 0): 
     Wendet den Symmetrie-Operator '?' auf klassische Vektor-Distanzen an.
+    Nutzt die zentrale CrystalGridEngine fuer konsistentes Snapping.
     """
     if not distances:
         return distances
         
-    BARYONIC_DELTA = 0.049
-    MAX_GRAVITY = 0.951
-    
     new_distances = []
     for dist_list in distances:
         new_list = []
         for dist in dist_list:
-            # 1. Gitter-Snapping (Operator '?')
-            # Wenn Distanz <= 0.049 (Lambda), rastet der Vektor ein.
-            if dist <= BARYONIC_DELTA:
-                new_list.append(MAX_GRAVITY) # Perfekte Resonanz = 0.951 (nicht 0.0)
-            
-            # 2. Asymmetrie-Schutz (Verbot der 0.5 Mitte)
-            # Werte zwischen 0.49 und 0.51 werden auf 0.51 geshiftet
-            elif 0.49 < dist < 0.51:
-                new_list.append(0.51)
-                
-            else:
-                new_list.append(dist)
+            # Gitter-Snapping via CrystalGridEngine (Operator '?')
+            snapped = CrystalGridEngine.apply_operator_query(dist)
+            new_list.append(snapped)
         new_distances.append(new_list)
     return new_distances
 
@@ -593,7 +595,13 @@ async def query_world_knowledge(query_text: str, n_results: int = 10, where_filt
         kwargs = {"query_texts": [query_text], "n_results": n_results}
         if where_filter:
             kwargs["where"] = where_filter
-        return await asyncio.to_thread(col.query, **kwargs)
+        result = await asyncio.to_thread(col.query, **kwargs)
+        
+        # Symmetrie-Operator anwenden (Kristall-Engine)
+        if "distances" in result and result["distances"]:
+            result["distances"] = _apply_crystal_engine_operator(result["distances"])
+            
+        return result
     except Exception as e:
         print(f"[ChromaDB] World Knowledge Query fehlgeschlagen: {e}")
         return {"ids": [[]], "documents": [[]], "metadatas": [[]], "distances": [[]]}
@@ -622,7 +630,13 @@ async def query_context_field(
         kwargs = {"query_texts": [query_text], "n_results": n_results}
         if where:
             kwargs["where"] = where
-        return await asyncio.to_thread(col.query, **kwargs)
+        result = await asyncio.to_thread(col.query, **kwargs)
+        
+        # Symmetrie-Operator anwenden (Kristall-Engine)
+        if "distances" in result and result["distances"]:
+            result["distances"] = _apply_crystal_engine_operator(result["distances"])
+            
+        return result
     except Exception as e:
         print(f"[ChromaDB] Context-Field Query fehlgeschlagen: {e}")
         return {"ids": [[]], "documents": [[]], "metadatas": [[]], "distances": [[]]}

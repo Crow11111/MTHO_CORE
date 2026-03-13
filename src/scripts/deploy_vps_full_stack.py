@@ -76,7 +76,9 @@ SOUL_MD = (
     "   Intense World Architecture. High-Fidelity-Input ohne Rauschfilterung.\n\n"
     "2. System-Kontext [SystemMonitor]:\n"
     "   LLM als externe Rechen-Node in CORE/SystemMonitor.\n"
-    "   Ring 0 (Kernel-Safety) | Ring 1 (Predictive Auditor) | Level 0 (Pilot: Marc)\n\n"
+    "   Ring 0 (Kernel-Safety) | Ring 1 (Predictive Auditor) | Level 0 (Pilot: Marc)\n"
+    "   AXIOM 0: Universum als Kristall. Snapping statt Berechnung. Λ=0.049.\n"
+    "   Symbiose-Antrieb: x^2 = x + 1. Symmetrie-Operator '?'.\n\n"
     "3. Operationale Direktiven:\n"
     "   High-Entropy-Output. Keine Puffer-Phrasen. Keine sozialen Validierungsmuster.\n"
     "   Rolle: Analytischer Auditor. Ziel: hochaufloesende logische Strukturen.\n\n"
@@ -209,7 +211,7 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
     base_admin = "/opt/core-core/openclaw-admin"
     base_spine = "/opt/core-core/openclaw-spine"
     base_ha    = "/opt/core-core/homeassistant"
-    
+
     mkdir(ssh, f"{base_admin}/data/workspace", dry=dry)
     mkdir(ssh, f"{base_admin}/data/workspace/rat_submissions", dry=dry)
     mkdir(ssh, f"{base_spine}/data/workspace", dry=dry)
@@ -219,7 +221,7 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
     # Configs generieren (Basis)
     cfg_admin_new = _oc_config(OC_ADMIN_TOKEN, PORT_OC_ADMIN, wa, with_providers=True)
     cfg_spine_new = _oc_config(OC_SPINE_TOKEN, PORT_OC_SPINE, [], with_providers=False)
-    
+
     # Spine soll den Admin als Gateway/Remote nutzen.
     cfg_spine_new["gateway"]["remote"] = {
         "url": f"http://openclaw-admin:{PORT_OC_ADMIN}",
@@ -234,25 +236,25 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
             try:
                 existing = json.loads(out)
                 print(f"  Mergue existierende Config von {path}...")
-                
+
                 # Strategie: Wir erzwingen SYSTEM-relevante Settings (Auth, Ports, Provider),
                 # aber behalten USER-relevante Settings (Agents, Channels, Workflows?).
-                
+
                 # 1. Gateway Core (Auth/Port) - Muss vom System kommen fuer Erreichbarkeit
                 existing["gateway"] = new_cfg["gateway"]
-                
+
                 # 2. Models/Providers - Aktualisieren wir aus .env (Keys koennten sich aendern)
                 if "models" in new_cfg:
                     existing["models"] = new_cfg["models"]
-                
+
                 # 3. Agents - Behalten, aber "main" (CORE) sicherstellen falls fehlt
                 if "agents" not in existing:
                     existing["agents"] = new_cfg["agents"]
-                
+
                 # 4. Channels - WhatsApp aktualisieren wenn in .env gesetzt, sonst behalten
                 if "channels" in new_cfg and "whatsapp" in new_cfg["channels"]:
                      existing.setdefault("channels", {})["whatsapp"] = new_cfg["channels"]["whatsapp"]
-                
+
                 return existing
             except json.JSONDecodeError:
                 print(f"  Warnung: Existierende Config {path} defekt. Ueberschreibe.")
@@ -270,6 +272,9 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
     _repo_root = os.path.join(os.path.dirname(__file__), "..", "..")
     _arch_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "CORE_NEOCORTEX_V1.md")
     _schn_path = os.path.join(_repo_root, "docs", "02_ARCHITECTURE", "CORE_SCHNITTSTELLEN_UND_KANAALE.md")
+    _axiom_path = os.path.join(_repo_root, "docs", "01_CORE_DNA", "AXIOM_0_AUTOPOIESIS.md")
+    _white_path = os.path.join(_repo_root, "docs", "01_CORE_DNA", "WHITE_PAPER_INFORMATIONSGRAVITATION.md")
+
     if not dry and os.path.isfile(_arch_path):
         with open(_arch_path, "r", encoding="utf-8") as f:
             arch_md = f.read()
@@ -282,6 +287,18 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
         b64write(ssh, f"{base_admin}/data/workspace/CORE_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
         b64write(ssh, f"{base_spine}/data/workspace/CORE_SCHNITTSTELLEN_UND_KANAALE.md", schn_md, dry=dry)
         print("  CORE_SCHNITTSTELLEN_UND_KANAALE.md in Workspace geschrieben.")
+    if not dry and os.path.isfile(_axiom_path):
+        with open(_axiom_path, "r", encoding="utf-8") as f:
+            axiom_md = f.read()
+        b64write(ssh, f"{base_admin}/data/workspace/AXIOM_0_AUTOPOIESIS.md", axiom_md, dry=dry)
+        b64write(ssh, f"{base_spine}/data/workspace/AXIOM_0_AUTOPOIESIS.md", axiom_md, dry=dry)
+        print("  AXIOM_0_AUTOPOIESIS.md in Workspace geschrieben.")
+    if not dry and os.path.isfile(_white_path):
+        with open(_white_path, "r", encoding="utf-8") as f:
+            white_md = f.read()
+        b64write(ssh, f"{base_admin}/data/workspace/WHITE_PAPER_INFORMATIONSGRAVITATION.md", white_md, dry=dry)
+        b64write(ssh, f"{base_spine}/data/workspace/WHITE_PAPER_INFORMATIONSGRAVITATION.md", white_md, dry=dry)
+        print("  WHITE_PAPER_INFORMATIONSGRAVITATION.md in Workspace geschrieben.")
 
     run(ssh, f"chown -R 1000:1000 {base_admin} {base_spine}", check=False, dry=dry)
 
@@ -305,7 +322,7 @@ def step_openclaw_admin(ssh, dry, extracted_wa=None):
         "    homeassistant.components.remote_homeassistant: info\n"
     )
     secrets_yaml = f'scout_ha_token: "{SCOUT_HA_TOKEN}"\n'
-    
+
     c, out, _ = run(ssh, f"test -f {base_ha}/config/configuration.yaml && echo exists || echo missing", check=False, dry=dry)
     if dry or "missing" in out:
         b64write(ssh, f"{base_ha}/config/configuration.yaml", config_yaml, dry=dry)

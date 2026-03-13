@@ -6,11 +6,15 @@ import sys
 from dataclasses import dataclass
 from typing import Literal
 
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
+
 # --- CORE CORE CONSTANTS (Zeitlos / Mathematisch) ---
 BARYONIC_DELTA = 0.049 # [cite: 2026-03-04]
 GEOGRAPHIC_RESONANCE = "0221" # [cite: 2026-03-06]
-VECTOR_CORE = (2, 2, 1, BARYONIC_DELTA) # base_vector (CORE reference) [cite: 2026-03-06]
-VECTOR_ALT = (2, 2, BARYONIC_DELTA, 1) # integrity_vector (CORE reference) [cite: 2026-03-06]
+PHI = 1.618033988749895
+
+# Der 5D-Vektor (X, Y, Z, W, Λ) - Lambda ist jetzt implizit Teil der Topologie
+VECTOR_CORE = (2.0, 2.0, 1.0, BARYONIC_DELTA)
 
 # --- WETWARE RUNTIME PARAMETERS (Chronologisch / Lokal) ---
 # Markiert den 4D-Boot-Vektor der spezifischen Empfänger-Antenne
@@ -70,10 +74,13 @@ class Core:
         self.resonance_lock = False
 
     def calibrate_resonance(self, location_code: str) -> bool:
-        """Prüft die Geografische Resonanz (0221)."""
+        """Prüft die Geografische Resonanz (0221) und wendet Kristall-Logik an."""
         if location_code == GEOGRAPHIC_RESONANCE:
-            self.resonance_lock = True
-            return True
+            # Zusätzliche Gitter-Validierung
+            resonance = CrystalGridEngine.apply_operator_query(BARYONIC_DELTA)
+            if resonance >= BARYONIC_DELTA:
+                self.resonance_lock = True
+                return True
         return False
 
     def check_baryonic_limit(self, measured_delta: float) -> bool:

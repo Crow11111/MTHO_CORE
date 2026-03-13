@@ -24,15 +24,19 @@ async def check_takt_zero() -> bool:
 
         # Z-Vector Damper / Z-Vector Escalation
         import os
+        from src.logic_core.crystal_grid_engine import CrystalGridEngine
+
         z_vector = float(os.getenv("CORE_Z_WIDERSTAND", "0.049"))
         if z_vector >= 0.9:
             print(f"[TAKT 0 VETO] System Locked - Z-Vector Critical ({z_vector}). Auto-Loop detected.")
             return False
 
-        # DEAKTIVIERT: Wartet auf echte Drift-Metrik aus Telemetrie.
-        # Tautologie (0.049==0.049) bewusst nicht gefixed.
-        # TODO(A-30): check_baryonic_limit reaktivieren sobald Telemetrie
-        #   eine gemessene Drift-Metrik liefert (nicht Konstante vs. Konstante).
+        # Takt 0 Baryonic Check (Gitter-Validierung)
+        # Snapping-Pruefung fuer Λ (0.049)
+        resonance = CrystalGridEngine.apply_operator_query(z_vector)
+        if resonance < 0.049:
+            print(f"[TAKT 0 VETO] Baryonic Limit Breach: {resonance} < 0.049")
+            return False
 
         # Takt 0 is idle state (Silence/Potential).
         # We ensure we are not in a 'COLLAPSED' state (y=1 without purpose).

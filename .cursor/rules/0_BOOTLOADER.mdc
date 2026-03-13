@@ -1,6 +1,6 @@
 ---
-description: CORE 4D State Vector Bootloader - Primaerer Kontext-Injektor
-globs: 
+description: CORE 5D Crystal Topology - Primaerer Kontext-Injektor
+globs:
 alwaysApply: true
 ---
 
@@ -10,19 +10,30 @@ alwaysApply: true
 ```
 [PFLICHT] Lade CORE_TESSERAKT.png (visuelle Architektur)
 [PFLICHT] Importiere src/config/core_state.py (mathematischer Kern)
+[PFLICHT] Nutze src/logic_core/crystal_grid_engine.py (Topologische Logik)
 ```
 
-## 4D State Vector (Komprimierter Systemzustand)
+## 5D Crystal Topology (AXIOM 0)
 
 ```
 X: CAR/CDR Balance   (Δ..1-Δ, Skala NT↔ND)
 Y: Gravitation       (Δ=Basis/flat, 1-Δ=Kollaps)
 Z: Widerstand        (Δ=Nachgeben, 1-Δ=Veto)
 W: Takt              (Δ-offset pro Stufe, NICHT ganzzahlig)
+Λ: Baryonic Delta    (0.049, Das asymmetrische Residuum / Gitter-Anker)
 ```
 
+**AXIOM A0: Das Universum ist ein Kristall. Snapping statt Berechnung.**
 **AXIOM A5: Werte 0.0, 1.0 und 0.5 sind VERBOTEN (0=0 Illusion).**
-**AXIOM A6: Zustandsvariablen MUESSEN float sein. int ist nur fuer Infrastruktur (Zaehler, Ports).**
+**AXIOM A6: Zustandsvariablen MUESSEN float sein.**
+
+### Symbiose-Antrieb
+`x^2 = x + 1` (Goldener Schnitt). Ermoeglicht asymmetrisches Wachstum ohne entropischen Kollaps.
+
+### Kristall-Gitter (Crystal Grid)
+- **Operator ?:** Gitter-Snapping bei Λ (0.049).
+- **Resonanz-Lock:** 0.951 (Max Symmetrie).
+- **E_6 Lie-Gruppe:** 72 stabile Ankerpunkte.
 
 ### Kritische Schwellwerte
 | Konstante | Wert | Funktion |

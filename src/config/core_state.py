@@ -29,13 +29,14 @@ from src.core import (
     BARYONIC_LIMIT, CORE_LEGACY_MAP
 )
 
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
+
 # Mathematische Konstanten (aus engine_patterns.py)
 PHI = 1.6180339887498948482
 INV_PHI = 0.6180339887498948482
 COMP_PHI = 0.3819660112501051518
 SYMMETRY_BREAK = 0.49
-BARYONIC_DELTA = BARYONIC_LIMIT
-
+BARYONIC_DELTA = 0.049
 
 @dataclass
 class StateVector:
@@ -47,7 +48,12 @@ class StateVector:
     w_takt: float  # 0-4 Simultan-Kaskade-Zyklus (jetzt float wg. asymmetrischem Offset)
 
     def __post_init__(self):
-        """Axiom A1 + A6 Enforcement: Verbotene Werte zur Laufzeit abfangen."""
+        """Axiom A1 + A6 Enforcement: Verbotene Werte zur Laufzeit abfangen via CrystalGridEngine."""
+        # Validierung via Engine
+        from src.logic_core.crystal_grid_engine import validate_state_vector
+        if not validate_state_vector(self.x_car_cdr, self.y_gravitation, self.z_widerstand, self.w_takt):
+            raise ValueError("[AXIOM-VETO] State Vector contains forbidden symmetry (0.0, 0.5, 1.0).")
+
         for name, val in [
             ("x_car_cdr", self.x_car_cdr),
             ("y_gravitation", self.y_gravitation),
@@ -58,21 +64,6 @@ class StateVector:
                 raise TypeError(
                     f"[AXIOM-A6] {name} muss float sein, ist {type(val).__name__}. "
                     f"int ist in der Resonanz-Domaene verboten."
-                )
-            if val == 0.0:
-                raise ValueError(
-                    f"[AXIOM-A1] {name}=0.0 verletzt das 0=0-Verbot. "
-                    f"Minimum: BARYONIC_DELTA ({BARYONIC_DELTA})"
-                )
-            if val == 1.0:
-                raise ValueError(
-                    f"[AXIOM-A1] {name}=1.0 verletzt das Einheits-Verbot. "
-                    f"Maximum: 1.0 - BARYONIC_DELTA ({1.0 - BARYONIC_DELTA})"
-                )
-            if val == 0.5:
-                raise ValueError(
-                    f"[AXIOM-A1] {name}=0.5 verletzt das Symmetrie-Verbot. "
-                    f"Verwende SYMMETRY_BREAK ({SYMMETRY_BREAK}) oder 0.51."
                 )
 
     def to_tuple(self) -> Tuple[float, float, float, float]:

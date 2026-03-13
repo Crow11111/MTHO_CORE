@@ -20,6 +20,7 @@ import asyncio
 from dataclasses import dataclass
 import math
 from src.logic_core.takt_gate import check_takt_zero
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
 
 @dataclass
 class CollectionTarget:
@@ -156,7 +157,8 @@ async def route(
     # Calculation is fast enough for main thread usually, but strict simultaneity
     # prefers yielding. We'll do it here as it's pure math on small lists.
     for name, ctype, _text, rep_emb in reps:
-        score = _cosine_similarity(list(query_emb), list(rep_emb))
+        # Nutzung der CrystalGridEngine fuer topologische Resonanz + Snapping
+        score = CrystalGridEngine.calculate_resonance(list(query_emb), list(rep_emb))
         scored.append((name, ctype, score))
 
     # Sortieren absteigend nach Score
