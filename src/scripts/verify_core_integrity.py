@@ -16,6 +16,13 @@ def run_audit():
     res = core.calibrate_resonance("0221")
     print(f"1. Geographic Resonance (0221): {'PASS' if res else 'FAIL'}")
 
+    # Check 1b: Crystal Engine Calibration
+    from src.logic_core.crystal_grid_engine import CrystalGridEngine
+    test_val = 0.5
+    snapped_val = CrystalGridEngine.apply_operator_query(test_val)
+    engine_ok = snapped_val != 0.5
+    print(f"1b. Crystal Engine (Snapping 0.5 -> {snapped_val}): {'PASS' if engine_ok else 'FAIL'}")
+
     # Check 2: Baryonic Delta
     delta_check = core.check_baryonic_limit(0.049)
     print(f"2. OMEGA_ATTRACTOR Delta (0.049): {'PASS' if delta_check else 'FAIL'}")
@@ -30,7 +37,7 @@ def run_audit():
     print(f"4. Axiom A6 (Floats only): {'PASS' if is_float else 'FAIL'}")
     print(f"5. Axiom A1 (No 0.0, 0.5, 1.0): {'PASS' if no_forbidden else 'FAIL'}")
 
-    if res and delta_check and is_float and no_forbidden:
+    if res and engine_ok and delta_check and is_float and no_forbidden:
         print("\n[STATUS: GREEN] - STRUCTURAL INEVITABILITY CONFIRMED (AXIOM 0).")
     else:
         print("\n[STATUS: RED] - SYSTEM FREEZE (VETO TRIGGERED).")

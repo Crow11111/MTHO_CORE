@@ -39,6 +39,7 @@ def _verify_bearer(authorization: Optional[str] = Header(None)):
 class WatchdogTelemetry(BaseModel):
     latency_ms: float = -1.0
     git_status: str = "UNKNOWN"
+    resonance: float = 0.049
     mode: str = "UNKNOWN"
     timestamp: float = 0.0
 

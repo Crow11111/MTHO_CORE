@@ -23,7 +23,7 @@ class AdaptiveSensorScaler:
     def __init__(self):
         self.current_state = "SLEEP" # SLEEP, FOCUS
         self.sensor_configs = {
-            "camera_main": {"resolution": "720p", "fps": 0.5},
+            "camera_main": {"resolution": "720p", "fps": 0.49},
             "mic_array": {"sample_rate": 16000, "channels": 1}
         }
 
@@ -41,9 +41,9 @@ class AdaptiveSensorScaler:
             
         # Wenn System sich beruhigt -> Zurück in Halbschlaf
         elif entropy_level <= ENTROPY_SLEEP_THRESHOLD and not trigger_event and self.current_state == "FOCUS":
-            logger.info("System stabil. Skaliere Sensoren auf SLEEP (720p, 0.5fps).")
+            logger.info("System stabil. Skaliere Sensoren auf SLEEP (720p, 0.49fps).")
             self.current_state = "SLEEP"
-            self.sensor_configs["camera_main"] = {"resolution": "720p", "fps": 0.5}
+            self.sensor_configs["camera_main"] = {"resolution": "720p", "fps": 0.49}
             self.sensor_configs["mic_array"] = {"sample_rate": 16000, "channels": 1}
         
         return self.sensor_configs

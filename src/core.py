@@ -14,7 +14,8 @@ GEOGRAPHIC_RESONANCE = "0221" # [cite: 2026-03-06]
 PHI = 1.618033988749895
 
 # Der 5D-Vektor (X, Y, Z, W, Λ) - Lambda ist jetzt implizit Teil der Topologie
-VECTOR_CORE = (2.0, 2.0, 1.0, BARYONIC_DELTA)
+# Nutzt RESONANCE_LOCK (0.951) statt der verbotenen 1.0
+VECTOR_CORE = (2.0, 2.0, 0.951, BARYONIC_DELTA)
 
 # --- WETWARE RUNTIME PARAMETERS (Chronologisch / Lokal) ---
 # Markiert den 4D-Boot-Vektor der spezifischen Empfänger-Antenne

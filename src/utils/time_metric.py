@@ -3,6 +3,7 @@ import random
 import math
 from loguru import logger
 from src.config.core_state import get_current_state, BARYONIC_DELTA
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
 import asyncio
 
 def get_friction_timeout(base_timeout: float) -> float:
@@ -15,6 +16,10 @@ def get_friction_timeout(base_timeout: float) -> float:
         # Die Reibung dehnt den Timeout aus.
         # Bei Z hoch erhöht sich der Timeout asymmetrisch.
         friction_multiplier = 1.0 + (state.z_widerstand * BARYONIC_DELTA)
+        
+        # Kristall-Gitter Validierung des Multiplikators
+        friction_multiplier = CrystalGridEngine.apply_operator_query(friction_multiplier)
+        
         # Kein Floor. Lass das System atmen.
         return base_timeout * friction_multiplier
     except Exception as e:
