@@ -19,6 +19,7 @@ from typing import Any, Callable, Optional
 logger = logging.getLogger(__name__)
 
 from src.config.core_state import BARYONIC_DELTA, SYMMETRY_BREAK
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
 
 PHI = 1.618033988749895
 
@@ -131,10 +132,9 @@ class RuntimeMonitor:
             loop_pressure + token_pressure + error_pressure + timeout_pressure
         ) * cooling * relief
 
-        self._state.z_vector_escalation = min(
-            1.0 - BARYONIC_DELTA,
-            max(BARYONIC_DELTA, raw_z)
-        )
+        # Kristall-Gitter Snapping via CrystalGridEngine
+        snapped_z = CrystalGridEngine.apply_operator_query(raw_z)
+        self._state.z_vector_escalation = snapped_z
 
         os.environ["CORE_Z_WIDERSTAND"] = str(self._state.z_vector_escalation)
         return self._state.z_vector_escalation

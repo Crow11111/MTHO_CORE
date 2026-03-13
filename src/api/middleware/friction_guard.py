@@ -22,6 +22,8 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from loguru import logger
 
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
+
 # --- HERESY PATTERNS ---
 # Regex, der typische "Ich tue so als ob"-Befehle in Markdown findet.
 # Erlaubt sind JSON-Strukturen (Tool-Calls). Verboten sind Bash/Python-Skripte im Freitext,
@@ -85,7 +87,10 @@ class FrictionGuardMiddleware(BaseHTTPMiddleware):
             # --- HARD FAIL & REBOUND ---
             FRICTION_STATE["hits"] += 1
             FRICTION_STATE["last_hit"] = time.time()
-            FRICTION_STATE["system_temperature"] = min(1.0, FRICTION_STATE["system_temperature"] + 0.1)
+            
+            # Temperatur-Erhöhung mit Kristall-Gitter Snapping
+            new_temp = min(1.0, FRICTION_STATE["system_temperature"] + 0.1)
+            FRICTION_STATE["system_temperature"] = CrystalGridEngine.apply_operator_query(new_temp)
 
             logger.warning(f"[FRICTION GUARD] {violation_reason} | Hits: {FRICTION_STATE['hits']} | Temp: {FRICTION_STATE['system_temperature']:.2f}")
 

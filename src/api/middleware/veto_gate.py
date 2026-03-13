@@ -25,6 +25,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
+from src.logic_core.crystal_grid_engine import CrystalGridEngine
+
 # Veto-Schwellwert: z_widerstand >= INV_PHI → Veto-Modus (Confirmation erforderlich)
 try:
     from src.config.core_state import INV_PHI
@@ -110,15 +112,19 @@ class VetoGateMiddleware(BaseHTTPMiddleware):
             return await call_next(request)
 
         z = _get_z_widerstand()
-        in_veto_mode = z >= VETO_THRESHOLD
+        # Kristall-Gitter Validierung
+        z_snapped = CrystalGridEngine.apply_operator_query(z)
+        
+        in_veto_mode = z_snapped >= VETO_THRESHOLD
         has_confirm = _has_confirmation(request)
 
         # Audit-Log (immer bei kritischen Operationen)
         logger.info(
-            "veto_gate|critical|method=%s path=%s z_widerstand=%.3f veto_mode=%s confirm=%s",
+            "veto_gate|critical|method=%s path=%s z_widerstand=%.3f z_snapped=%.3f veto_mode=%s confirm=%s",
             request.method,
             request.url.path,
             z,
+            z_snapped,
             in_veto_mode,
             has_confirm,
             extra={"audit": "veto_gate"},
