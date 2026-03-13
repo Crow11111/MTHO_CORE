@@ -1,0 +1,18 @@
+[Unit]
+Description=CORE OS-Level Crystal Daemon (Axiom 0)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+# The daemon needs to run as root to access /proc, /sys and tc commands
+WorkingDirectory=/home/pi/core_scout
+ExecStart=/usr/bin/python3 -m src.daemons.os_crystal_daemon
+Environment="PYTHONPATH=/home/pi/core_scout"
+# Dry-Run aktiv fuer die ersten Tests (nur Logging, keine tc/cpufreq Eingriffe)
+Environment="CRYSTAL_OS_DRY_RUN=True"
+Restart=always
+RestartSec=4.9
+
+[Install]
+WantedBy=multi-user.target

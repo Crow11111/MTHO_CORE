@@ -47,7 +47,7 @@ def deploy_scout():
     # Simple recursion or tarball is best.
 
     # Create local tarball
-    os.system("tar -czf scout_payload.tar.gz src/edge src/services src/logic_core src/config docker/scout .env")
+    os.system("tar -czf scout_payload.tar.gz src/edge src/services src/logic_core src/config src/daemons docker/scout .env")
 
     # Upload tarball
     c.put("scout_payload.tar.gz", f"{remote_dir}/scout_payload.tar.gz")
@@ -56,6 +56,17 @@ def deploy_scout():
     with c.cd(remote_dir):
         c.run("tar -xzf scout_payload.tar.gz")
         c.run("rm scout_payload.tar.gz")
+        
+    # 2b. Setup OS-Level Crystal Daemon (Systemd)
+    print("Setting up OS-Level Crystal Daemon...")
+    try:
+        c.run(f"sudo cp {remote_dir}/docker/scout/core-os-crystal.service /etc/systemd/system/")
+        c.run("sudo systemctl daemon-reload")
+        c.run("sudo systemctl enable core-os-crystal.service")
+        c.run("sudo systemctl restart core-os-crystal.service")
+        print("OS Crystal Daemon installed and started.")
+    except Exception as e:
+        print(f"Failed to setup OS daemon: {e}")
 
     # 3. Build and Run Docker
     print("Building and starting Scout container...")
