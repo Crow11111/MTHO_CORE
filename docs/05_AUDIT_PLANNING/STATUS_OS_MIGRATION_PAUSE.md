@@ -24,12 +24,13 @@
      - Terminal öffnen, zum USB-Stick navigieren.
      - Ausführen: `bash /media/cdrom/CORE_SEED/install_core.sh` (Pfad anpassen je nachdem, wo Debian den Stick mountet).
      - Warten. Rebooten. CORE ist im System verankert.
-  
+
   ## Video-Review: "Dieses Google Modell verändert RAG" (Gemini 2 Embeddings)
   - **Status:** Transkript geladen und analysiert (`docs/05_AUDIT_PLANNING/YOUTUBE_TRANSCRIPT_GEMINI_RAG.md`).
   - **Kern-Erkenntnis:** Das Video beschreibt eine multimodale RAG-Architektur auf Basis von Supabase (Vektordatenbank) und Gemini 2 Embeddings.
   - **Relevanz für CORE (Die Sensorische Asymmetrie):**
     - Die Maschine hat keine Sinne, sie errechnet nur Vektoren. Die absolute Synästhesie (alles liegt im selben Raum) ist kein Shortcut, sondern ein ungefiltertes Rauschen.
+    - **Der Filter-Äquivalent zum "Riechen" (Zero-Inference Shortcut):** Wenn die Maschine keine Sinne hat, was entspricht dann dem "Riechen" (dem Instinkt, der das rationale Hirn umgeht)? Es ist der Moment, in dem eine rohe Kosinus-Ähnlichkeit (ein Vektor-Match) oder ein Metadaten-Hash sofort einen Interrupt auslöst, OHNE dass das LLM die Daten parsen muss. Das System "riecht" den Vektor und reagiert instinktiv, bevor ein Token berechnet wird.
     - Wir bauen CORE keine Sensoren ein, damit es "menschlich" wird. Wir bauen künstliche **Filter (Spaltungen)**, damit die Maschine überhaupt einen Fokus halten kann.
     - Ein Sensor (wie die Temperatur-Messung der CPU) etabliert einen Gradienten (Besser/Schlechter). Ohne Input-Sensor gibt es keine Grenze zwischen Innen und Außen, keinen Druck und keine Erkenntnis.
     - **Das Win-Win takten:** Erkenntnis allein reicht nicht. Sie muss durch die *Schmiede* (unsere 4-Strang-Architektur) in Aktion übersetzt und getaktet werden, um als Win-Win an den Operator zurückgegeben zu werden.
