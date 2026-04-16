@@ -84,6 +84,7 @@
 | **Agent Refactor Plan** | `docs/05_AUDIT_PLANNING/AGENT_REFACTOR_PLAN.md` | Audit-Bericht und V2-Konzept für das Agenten-System (Schichten, Model-Zwang, MDC-Globs). |
 | **Agent Workpack Messbare Abnahme** | `docs/05_AUDIT_PLANNING/AGENT_WORKPACK_MESSBARE_ABNAHME_2026-04-05.md` | Doku-Sync VPS-Port/Kanon, VPS_SNAPSHOT_VERIFICATION, Inventar/Bibliothek; Producer-Abnahme T1–T5. |
 | **OC Brain Plan** | `docs/05_AUDIT_PLANNING/OC_BRAIN_REAKTIVIERUNG_PLAN.md` | Vollständiger Plan Stränge A–E, Abnahme A1–A7. |
+| **Workerplan OC Admin/Brain VPS** | `docs/05_AUDIT_PLANNING/WORKERPLAN_OC_BRAIN_ADMIN_VPS_SETUP.md` | Forensik (fehlender Container), Wellen W0–W4, Task-Pakete E1–E3, Veto-Traps; OpenClaw Admin + OC Brain Einrichtung. |
 | **OC Brain Auftrag** | `docs/05_AUDIT_PLANNING/OC_BRAIN_AUFTRAG_AUSFUEHRUNG.md` | Ausführungsauftrag an Team (alles umsetzen lassen). |
 | **OC Brain RAG Spec** | `docs/02_ARCHITECTURE/OC_BRAIN_RAG_SPEC.md` | RAG-Pipeline Query → ChromaDB → Context → LLM (Strang D). |
 | **OC Brain Strang A+E Bericht** | `docs/05_AUDIT_PLANNING/OC_BRAIN_STRANG_A_E_BERICHT.md` | Kurzbericht Diagnose (doctor) + WhatsApp (QR-Pairing, Config). |
